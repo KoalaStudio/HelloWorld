@@ -38,7 +38,7 @@ THE SOFTWARE.
 #include "base/CCScheduler.h"
 #include "base/CCEventDispatcher.h"
 #include "2d/CCCamera.h"
-#include "2d/CCActionManager.h"
+//#include "2d/CCActionManager.h"
 #include "2d/CCScene.h"
 //#include "2d/CCComponent.h"
 //#include "2d/CCComponentContainer.h"
@@ -116,7 +116,7 @@ Node::Node(void)
 #if CC_ENABLE_SCRIPT_BINDING
 , _updateScriptHandler(0)
 #endif
-, _componentContainer(nullptr)
+//, _componentContainer(nullptr)
 #if CC_USE_PHYSICS
 , _physicsBody(nullptr)
 , _physicsScaleStartX(1.0f)
@@ -138,8 +138,8 @@ Node::Node(void)
 {
     // set default scheduler and actionManager
     _director = Director::getInstance();
-    _actionManager = _director->getActionManager();
-    _actionManager->retain();
+//    _actionManager = _director->getActionManager();
+//    _actionManager->retain();
     _scheduler = _director->getScheduler();
     _scheduler->retain();
     _eventDispatcher = _director->getEventDispatcher();
@@ -198,9 +198,9 @@ Node::~Node()
 
 #endif
     
-    stopAllActions();
+//    stopAllActions();
     unscheduleAllCallbacks();
-    CC_SAFE_RELEASE_NULL(_actionManager);
+//    CC_SAFE_RELEASE_NULL(_actionManager);
     CC_SAFE_RELEASE_NULL(_scheduler);
     
     _eventDispatcher->removeEventListenersForTarget(this);
@@ -221,7 +221,7 @@ bool Node::init()
 void Node::cleanup()
 {
     // actions
-    this->stopAllActions();
+//    this->stopAllActions();
     this->unscheduleAllCallbacks();
 
 #if CC_ENABLE_SCRIPT_BINDING
@@ -1522,58 +1522,58 @@ void Node::setEventDispatcher(EventDispatcher* dispatcher)
     }
 }
 
-void Node::setActionManager(ActionManager* actionManager)
-{
-    if( actionManager != _actionManager )
-    {
-        this->stopAllActions();
-        CC_SAFE_RETAIN(actionManager);
-        CC_SAFE_RELEASE(_actionManager);
-        _actionManager = actionManager;
-    }
-}
-
-// MARK: actions
-
-Action * Node::runAction(Action* action)
-{
-    CCASSERT( action != nullptr, "Argument must be non-nil");
-    _actionManager->addAction(action, this, !_running);
-    return action;
-}
-
-void Node::stopAllActions()
-{
-    _actionManager->removeAllActionsFromTarget(this);
-}
-
-void Node::stopAction(Action* action)
-{
-    _actionManager->removeAction(action);
-}
-
-void Node::stopActionByTag(int tag)
-{
-    CCASSERT( tag != Action::INVALID_TAG, "Invalid tag");
-    _actionManager->removeActionByTag(tag, this);
-}
-
-void Node::stopAllActionsByTag(int tag)
-{
-    CCASSERT( tag != Action::INVALID_TAG, "Invalid tag");
-    _actionManager->removeAllActionsByTag(tag, this);
-}
-
-Action * Node::getActionByTag(int tag)
-{
-    CCASSERT( tag != Action::INVALID_TAG, "Invalid tag");
-    return _actionManager->getActionByTag(tag, this);
-}
-
-ssize_t Node::getNumberOfRunningActions() const
-{
-    return _actionManager->getNumberOfRunningActionsInTarget(this);
-}
+//void Node::setActionManager(ActionManager* actionManager)
+//{
+//    if( actionManager != _actionManager )
+//    {
+//        this->stopAllActions();
+//        CC_SAFE_RETAIN(actionManager);
+//        CC_SAFE_RELEASE(_actionManager);
+//        _actionManager = actionManager;
+//    }
+//}
+//
+//// MARK: actions
+//
+//Action * Node::runAction(Action* action)
+//{
+//    CCASSERT( action != nullptr, "Argument must be non-nil");
+//    _actionManager->addAction(action, this, !_running);
+//    return action;
+//}
+//
+//void Node::stopAllActions()
+//{
+//    _actionManager->removeAllActionsFromTarget(this);
+//}
+//
+//void Node::stopAction(Action* action)
+//{
+//    _actionManager->removeAction(action);
+//}
+//
+//void Node::stopActionByTag(int tag)
+//{
+//    CCASSERT( tag != Action::INVALID_TAG, "Invalid tag");
+//    _actionManager->removeActionByTag(tag, this);
+//}
+//
+//void Node::stopAllActionsByTag(int tag)
+//{
+//    CCASSERT( tag != Action::INVALID_TAG, "Invalid tag");
+//    _actionManager->removeAllActionsByTag(tag, this);
+//}
+//
+//Action * Node::getActionByTag(int tag)
+//{
+//    CCASSERT( tag != Action::INVALID_TAG, "Invalid tag");
+//    return _actionManager->getActionByTag(tag, this);
+//}
+//
+//ssize_t Node::getNumberOfRunningActions() const
+//{
+//    return _actionManager->getNumberOfRunningActionsInTarget(this);
+//}
 
 // MARK: Callbacks
 
@@ -1697,14 +1697,14 @@ void Node::unscheduleAllCallbacks()
 void Node::resume()
 {
     _scheduler->resumeTarget(this);
-    _actionManager->resumeTarget(this);
+//    _actionManager->resumeTarget(this);
     _eventDispatcher->resumeEventListenersForTarget(this);
 }
 
 void Node::pause()
 {
     _scheduler->pauseTarget(this);
-    _actionManager->pauseTarget(this);
+//    _actionManager->pauseTarget(this);
     _eventDispatcher->pauseEventListenersForTarget(this);
 }
 

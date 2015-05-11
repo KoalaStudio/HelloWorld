@@ -405,12 +405,12 @@ public:
     /** Gets the ActionManager associated with this director.
      * @since v2.0
      */
-    ActionManager* getActionManager() const { return _actionManager; }
+//    ActionManager* getActionManager() const { return _actionManager; }
     
     /** Sets the ActionManager associated with this director.
      * @since v2.0
      */
-    void setActionManager(ActionManager* actionManager);
+//    void setActionManager(ActionManager* actionManager);
     
     /** Gets the EventDispatcher associated with this director.
      * @since v3.0
@@ -521,7 +521,7 @@ protected:
     /** ActionManager associated with this director
      @since v2.0
      */
-    ActionManager *_actionManager;
+//    ActionManager *_actionManager;
     
     /** EventDispatcher associated with this director
      @since v3.0

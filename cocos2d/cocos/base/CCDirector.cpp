@@ -35,10 +35,10 @@ THE SOFTWARE.
 #include "2d/CCSpriteFrameCache.h"
 #include "platform/CCFileUtils.h"
 
-#include "2d/CCActionManager.h"
+//#include "2d/CCActionManager.h"
 //#include "2d/CCFontFNT.h"
 //#include "2d/CCFontAtlasCache.h"
-#include "2d/CCAnimationCache.h"
+//#include "2d/CCAnimationCache.h"
 //#include "2d/CCTransition.h"
 //#include "2d/CCFontFreeType.h"
 //#include "2d/CCLabelAtlas.h"
@@ -151,8 +151,8 @@ bool Director::init(void)
     // scheduler
     _scheduler = new (std::nothrow) Scheduler();
     // action manager
-    _actionManager = new (std::nothrow) ActionManager();
-    _scheduler->scheduleUpdate(_actionManager, Scheduler::PRIORITY_SYSTEM, false);
+//    _actionManager = new (std::nothrow) ActionManager();
+//    _scheduler->scheduleUpdate(_actionManager, Scheduler::PRIORITY_SYSTEM, false);
 
     _eventDispatcher = new (std::nothrow) EventDispatcher();
     _eventAfterDraw = new (std::nothrow) EventCustom(EVENT_AFTER_DRAW);
@@ -185,7 +185,7 @@ Director::~Director(void)
     CC_SAFE_RELEASE(_runningScene);
     CC_SAFE_RELEASE(_notificationNode);
     CC_SAFE_RELEASE(_scheduler);
-    CC_SAFE_RELEASE(_actionManager);
+//    CC_SAFE_RELEASE(_actionManager);
     
     delete _eventAfterUpdate;
     delete _eventAfterDraw;
@@ -989,7 +989,7 @@ void Director::reset()
 #elif _MSC_VER >= 1400 //vs 2005 or higher
 #pragma warning (pop)
 #endif
-    AnimationCache::destroyInstance();
+//    AnimationCache::destroyInstance();
     SpriteFrameCache::destroyInstance();
     GLProgramCache::destroyInstance();
     GLProgramStateCache::destroyInstance();
@@ -1029,7 +1029,7 @@ void Director::restartDirector()
     initTextureCache();
     
     // Reschedule for action manager
-    getScheduler()->scheduleUpdate(getActionManager(), Scheduler::PRIORITY_SYSTEM, false);
+//    getScheduler()->scheduleUpdate(getActionManager(), Scheduler::PRIORITY_SYSTEM, false);
     
     // release the objects
     PoolManager::getInstance()->getCurrentPool()->clear();
@@ -1285,15 +1285,15 @@ void Director::setScheduler(Scheduler* scheduler)
     }
 }
 
-void Director::setActionManager(ActionManager* actionManager)
-{
-    if (_actionManager != actionManager)
-    {
-        CC_SAFE_RETAIN(actionManager);
-        CC_SAFE_RELEASE(_actionManager);
-        _actionManager = actionManager;
-    }    
-}
+//void Director::setActionManager(ActionManager* actionManager)
+//{
+//    if (_actionManager != actionManager)
+//    {
+//        CC_SAFE_RETAIN(actionManager);
+//        CC_SAFE_RELEASE(_actionManager);
+//        _actionManager = actionManager;
+//    }    
+//}
 
 void Director::setEventDispatcher(EventDispatcher* dispatcher)
 {

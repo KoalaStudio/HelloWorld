@@ -38,14 +38,14 @@
 
 NS_CC_BEGIN
 
-class GridBase;
+//class GridBase;
 class Touch;
-class Action;
+//class Action;
 class LabelProtocol;
 class Scheduler;
-class ActionManager;
-class Component;
-class ComponentContainer;
+//class ActionManager;
+//class Component;
+//class ComponentContainer;
 class EventDispatcher;
 class Scene;
 class Renderer;
@@ -1171,86 +1171,86 @@ public:
      */
     virtual EventDispatcher* getEventDispatcher() const { return _eventDispatcher; };
 
-    /// @{
-    /// @name Actions
-
-    /**
-     * Sets the ActionManager object that is used by all actions.
-     *
-     * @warning If you set a new ActionManager, then previously created actions will be removed.
-     *
-     * @param actionManager     A ActionManager object that is used by all actions.
-     */
-    virtual void setActionManager(ActionManager* actionManager);
-    /**
-     * Gets the ActionManager object that is used by all actions.
-     * @see setActionManager(ActionManager*)
-     * @return A ActionManager object.
-     */
-    virtual ActionManager* getActionManager() { return _actionManager; }
-    virtual const ActionManager* getActionManager() const { return _actionManager; }
-
-    /**
-     * Executes an action, and returns the action that is executed.
-     *
-     * This node becomes the action's target. Refer to Action::getTarget().
-     * @warning Actions don't retain their target.
-     *
-     * @param action An Action pointer.
-     */
-    virtual Action* runAction(Action* action);
-
-    /**
-     * Stops and removes all actions from the running action list .
-     */
-    void stopAllActions();
-
-    /**
-     * Stops and removes an action from the running action list.
-     *
-     * @param action    The action object to be removed.
-     */
-    void stopAction(Action* action);
-
-    /**
-     * Removes an action from the running action list by its tag.
-     *
-     * @param tag   A tag that indicates the action to be removed.
-     */
-    void stopActionByTag(int tag);
-    
-    /**
-     * Removes all actions from the running action list by its tag.
-     *
-     * @param tag   A tag that indicates the action to be removed.
-     */
-    void stopAllActionsByTag(int tag);
-
-    /**
-     * Gets an action from the running action list by its tag.
-     *
-     * @see `setTag(int)`, `getTag()`.
-     *
-     * @return The action object with the given tag.
-     */
-    Action* getActionByTag(int tag);
-
-    /**
-     * Returns the numbers of actions that are running plus the ones that are schedule to run (actions in actionsToAdd and actions arrays).
-     *
-     * Composable actions are counted as 1 action. Example:
-     *    If you are running 1 Sequence of 7 actions, it will return 1.
-     *    If you are running 7 Sequences of 2 actions, it will return 7.
-     * @todo Rename to getNumberOfRunningActions()
-     *
-     * @return The number of actions that are running plus the ones that are schedule to run.
-     */
-    ssize_t getNumberOfRunningActions() const;
-
-    /** @deprecated Use getNumberOfRunningActions() instead */
-    CC_DEPRECATED_ATTRIBUTE ssize_t numberOfRunningActions() const { return getNumberOfRunningActions(); };
-
-    /// @} end of Actions
+//    /// @{
+//    /// @name Actions
+//
+//    /**
+//     * Sets the ActionManager object that is used by all actions.
+//     *
+//     * @warning If you set a new ActionManager, then previously created actions will be removed.
+//     *
+//     * @param actionManager     A ActionManager object that is used by all actions.
+//     */
+//    virtual void setActionManager(ActionManager* actionManager);
+//    /**
+//     * Gets the ActionManager object that is used by all actions.
+//     * @see setActionManager(ActionManager*)
+//     * @return A ActionManager object.
+//     */
+//    virtual ActionManager* getActionManager() { return _actionManager; }
+//    virtual const ActionManager* getActionManager() const { return _actionManager; }
+//
+//    /**
+//     * Executes an action, and returns the action that is executed.
+//     *
+//     * This node becomes the action's target. Refer to Action::getTarget().
+//     * @warning Actions don't retain their target.
+//     *
+//     * @param action An Action pointer.
+//     */
+//    virtual Action* runAction(Action* action);
+//
+//    /**
+//     * Stops and removes all actions from the running action list .
+//     */
+//    void stopAllActions();
+//
+//    /**
+//     * Stops and removes an action from the running action list.
+//     *
+//     * @param action    The action object to be removed.
+//     */
+//    void stopAction(Action* action);
+//
+//    /**
+//     * Removes an action from the running action list by its tag.
+//     *
+//     * @param tag   A tag that indicates the action to be removed.
+//     */
+//    void stopActionByTag(int tag);
+//    
+//    /**
+//     * Removes all actions from the running action list by its tag.
+//     *
+//     * @param tag   A tag that indicates the action to be removed.
+//     */
+//    void stopAllActionsByTag(int tag);
+//
+//    /**
+//     * Gets an action from the running action list by its tag.
+//     *
+//     * @see `setTag(int)`, `getTag()`.
+//     *
+//     * @return The action object with the given tag.
+//     */
+//    Action* getActionByTag(int tag);
+//
+//    /**
+//     * Returns the numbers of actions that are running plus the ones that are schedule to run (actions in actionsToAdd and actions arrays).
+//     *
+//     * Composable actions are counted as 1 action. Example:
+//     *    If you are running 1 Sequence of 7 actions, it will return 1.
+//     *    If you are running 7 Sequences of 2 actions, it will return 7.
+//     * @todo Rename to getNumberOfRunningActions()
+//     *
+//     * @return The number of actions that are running plus the ones that are schedule to run.
+//     */
+//    ssize_t getNumberOfRunningActions() const;
+//
+//    /** @deprecated Use getNumberOfRunningActions() instead */
+//    CC_DEPRECATED_ATTRIBUTE ssize_t numberOfRunningActions() const { return getNumberOfRunningActions(); };
+//
+//    /// @} end of Actions
 
 
     /// @{
@@ -1810,7 +1810,7 @@ protected:
 
     Scheduler *_scheduler;          ///< scheduler used to schedule timers and updates
 
-    ActionManager *_actionManager;  ///< a pointer to ActionManager singleton, which is used to handle all the actions
+//    ActionManager *_actionManager;  ///< a pointer to ActionManager singleton, which is used to handle all the actions
 
     EventDispatcher* _eventDispatcher;  ///< event dispatcher used to dispatch all kinds of events
 
@@ -1830,7 +1830,7 @@ protected:
     ccScriptType _scriptType;         ///< type of script binding, lua or javascript
 #endif
     
-    ComponentContainer *_componentContainer;        ///< Dictionary of components
+//    ComponentContainer *_componentContainer;        ///< Dictionary of components
 
 #if CC_USE_PHYSICS
     PhysicsBody* _physicsBody;        ///< the physicsBody the node have
