@@ -39,7 +39,7 @@ THE SOFTWARE.
 #include "2d/CCFontFNT.h"
 #include "2d/CCFontAtlasCache.h"
 #include "2d/CCAnimationCache.h"
-#include "2d/CCTransition.h"
+//#include "2d/CCTransition.h"
 #include "2d/CCFontFreeType.h"
 #include "2d/CCLabelAtlas.h"
 #include "renderer/CCGLProgramCache.h"
@@ -1043,8 +1043,10 @@ void Director::restartDirector()
 
 void Director::setNextScene()
 {
-    bool runningIsTransition = dynamic_cast<TransitionScene*>(_runningScene) != nullptr;
-    bool newIsTransition = dynamic_cast<TransitionScene*>(_nextScene) != nullptr;
+//    bool runningIsTransition = dynamic_cast<TransitionScene*>(_runningScene) != nullptr;
+//    bool newIsTransition = dynamic_cast<TransitionScene*>(_nextScene) != nullptr;
+    bool runningIsTransition = false;
+    bool newIsTransition = false;
 
     // If it is not a transition, call onExit/cleanup
      if (! newIsTransition)
