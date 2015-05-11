@@ -632,35 +632,35 @@ CC_DEPRECATED_ATTRIBUTE typedef CallFunc CCCallFunc;
 CC_DEPRECATED_ATTRIBUTE typedef CallFuncN CCCallFuncN;
 CC_DEPRECATED_ATTRIBUTE typedef __CCCallFuncND CCCallFuncND;
 CC_DEPRECATED_ATTRIBUTE typedef __CCCallFuncO CCCallFuncO;
-CC_DEPRECATED_ATTRIBUTE typedef GridAction CCGridAction;
-CC_DEPRECATED_ATTRIBUTE typedef Grid3DAction CCGrid3DAction;
-CC_DEPRECATED_ATTRIBUTE typedef TiledGrid3DAction CCTiledGrid3DAction;
-CC_DEPRECATED_ATTRIBUTE typedef StopGrid CCStopGrid;
-CC_DEPRECATED_ATTRIBUTE typedef ReuseGrid CCReuseGrid;
-CC_DEPRECATED_ATTRIBUTE typedef Waves3D CCWaves3D;
-CC_DEPRECATED_ATTRIBUTE typedef FlipX3D CCFlipX3D;
-CC_DEPRECATED_ATTRIBUTE typedef FlipY3D CCFlipY3D;
-CC_DEPRECATED_ATTRIBUTE typedef Lens3D CCLens3D;
-CC_DEPRECATED_ATTRIBUTE typedef Ripple3D CCRipple3D;
-CC_DEPRECATED_ATTRIBUTE typedef Shaky3D CCShaky3D;
-CC_DEPRECATED_ATTRIBUTE typedef Liquid CCLiquid;
-CC_DEPRECATED_ATTRIBUTE typedef Waves CCWaves;
-CC_DEPRECATED_ATTRIBUTE typedef Twirl CCTwirl;
-CC_DEPRECATED_ATTRIBUTE typedef PageTurn3D CCPageTurn3D;
+//CC_DEPRECATED_ATTRIBUTE typedef GridAction CCGridAction;
+//CC_DEPRECATED_ATTRIBUTE typedef Grid3DAction CCGrid3DAction;
+//CC_DEPRECATED_ATTRIBUTE typedef TiledGrid3DAction CCTiledGrid3DAction;
+//CC_DEPRECATED_ATTRIBUTE typedef StopGrid CCStopGrid;
+//CC_DEPRECATED_ATTRIBUTE typedef ReuseGrid CCReuseGrid;
+//CC_DEPRECATED_ATTRIBUTE typedef Waves3D CCWaves3D;
+//CC_DEPRECATED_ATTRIBUTE typedef FlipX3D CCFlipX3D;
+//CC_DEPRECATED_ATTRIBUTE typedef FlipY3D CCFlipY3D;
+//CC_DEPRECATED_ATTRIBUTE typedef Lens3D CCLens3D;
+//CC_DEPRECATED_ATTRIBUTE typedef Ripple3D CCRipple3D;
+//CC_DEPRECATED_ATTRIBUTE typedef Shaky3D CCShaky3D;
+//CC_DEPRECATED_ATTRIBUTE typedef Liquid CCLiquid;
+//CC_DEPRECATED_ATTRIBUTE typedef Waves CCWaves;
+//CC_DEPRECATED_ATTRIBUTE typedef Twirl CCTwirl;
+//CC_DEPRECATED_ATTRIBUTE typedef PageTurn3D CCPageTurn3D;
 CC_DEPRECATED_ATTRIBUTE typedef ProgressTo CCProgressTo;
 CC_DEPRECATED_ATTRIBUTE typedef ProgressFromTo CCProgressFromTo;
-CC_DEPRECATED_ATTRIBUTE typedef ShakyTiles3D CCShakyTiles3D;
-CC_DEPRECATED_ATTRIBUTE typedef ShatteredTiles3D CCShatteredTiles3D;
-CC_DEPRECATED_ATTRIBUTE typedef ShuffleTiles CCShuffleTiles;
-CC_DEPRECATED_ATTRIBUTE typedef FadeOutTRTiles CCFadeOutTRTiles;
-CC_DEPRECATED_ATTRIBUTE typedef FadeOutBLTiles CCFadeOutBLTiles;
-CC_DEPRECATED_ATTRIBUTE typedef FadeOutUpTiles CCFadeOutUpTiles;
-CC_DEPRECATED_ATTRIBUTE typedef FadeOutDownTiles CCFadeOutDownTiles;
-CC_DEPRECATED_ATTRIBUTE typedef TurnOffTiles CCTurnOffTiles;
-CC_DEPRECATED_ATTRIBUTE typedef WavesTiles3D CCWavesTiles3D;
-CC_DEPRECATED_ATTRIBUTE typedef JumpTiles3D CCJumpTiles3D;
-CC_DEPRECATED_ATTRIBUTE typedef SplitRows CCSplitRows;
-CC_DEPRECATED_ATTRIBUTE typedef SplitCols CCSplitCols;
+//CC_DEPRECATED_ATTRIBUTE typedef ShakyTiles3D CCShakyTiles3D;
+//CC_DEPRECATED_ATTRIBUTE typedef ShatteredTiles3D CCShatteredTiles3D;
+//CC_DEPRECATED_ATTRIBUTE typedef ShuffleTiles CCShuffleTiles;
+//CC_DEPRECATED_ATTRIBUTE typedef FadeOutTRTiles CCFadeOutTRTiles;
+//CC_DEPRECATED_ATTRIBUTE typedef FadeOutBLTiles CCFadeOutBLTiles;
+//CC_DEPRECATED_ATTRIBUTE typedef FadeOutUpTiles CCFadeOutUpTiles;
+//CC_DEPRECATED_ATTRIBUTE typedef FadeOutDownTiles CCFadeOutDownTiles;
+//CC_DEPRECATED_ATTRIBUTE typedef TurnOffTiles CCTurnOffTiles;
+//CC_DEPRECATED_ATTRIBUTE typedef WavesTiles3D CCWavesTiles3D;
+//CC_DEPRECATED_ATTRIBUTE typedef JumpTiles3D CCJumpTiles3D;
+//CC_DEPRECATED_ATTRIBUTE typedef SplitRows CCSplitRows;
+//CC_DEPRECATED_ATTRIBUTE typedef SplitCols CCSplitCols;
 CC_DEPRECATED_ATTRIBUTE typedef ActionTween CCActionTween;
 CC_DEPRECATED_ATTRIBUTE typedef CardinalSplineTo CCCardinalSplineTo;
 CC_DEPRECATED_ATTRIBUTE typedef CardinalSplineBy CCCardinalSplineBy;
@@ -675,8 +675,8 @@ CC_DEPRECATED_ATTRIBUTE typedef LabelAtlas CCLabelAtlas;
 CC_DEPRECATED_ATTRIBUTE typedef LabelProtocol CCLabelProtocol;
 CC_DEPRECATED_ATTRIBUTE typedef Director CCDirector;
 CC_DEPRECATED_ATTRIBUTE typedef GridBase CCGridBase;
-CC_DEPRECATED_ATTRIBUTE typedef Grid3D CCGrid3D;
-CC_DEPRECATED_ATTRIBUTE typedef TiledGrid3D CCTiledGrid3D;
+//CC_DEPRECATED_ATTRIBUTE typedef Grid3D CCGrid3D;
+//CC_DEPRECATED_ATTRIBUTE typedef TiledGrid3D CCTiledGrid3D;
 CC_DEPRECATED_ATTRIBUTE typedef Sprite CCSprite;
 #define CCLabelTTF LabelTTF
 CC_DEPRECATED_ATTRIBUTE typedef SpriteBatchNode CCSpriteBatchNode;
@@ -737,20 +737,20 @@ CC_DEPRECATED_ATTRIBUTE typedef ClippingNode CCClippingNode;
 CC_DEPRECATED_ATTRIBUTE typedef MotionStreak CCMotionStreak;
 CC_DEPRECATED_ATTRIBUTE typedef ProgressTimer CCProgressTimer;
 CC_DEPRECATED_ATTRIBUTE typedef RenderTexture CCRenderTexture;
-CC_DEPRECATED_ATTRIBUTE typedef ParticleBatchNode CCParticleBatchNode;
-CC_DEPRECATED_ATTRIBUTE typedef ParticleSystem CCParticleSystem;
-CC_DEPRECATED_ATTRIBUTE typedef ParticleSystemQuad CCParticleSystemQuad;
-CC_DEPRECATED_ATTRIBUTE typedef ParticleFire CCParticleFire;
-CC_DEPRECATED_ATTRIBUTE typedef ParticleFireworks CCParticleFireworks;
-CC_DEPRECATED_ATTRIBUTE typedef ParticleSun CCParticleSun;
-CC_DEPRECATED_ATTRIBUTE typedef ParticleGalaxy CCParticleGalaxy;
-CC_DEPRECATED_ATTRIBUTE typedef ParticleFlower CCParticleFlower;
-CC_DEPRECATED_ATTRIBUTE typedef ParticleMeteor CCParticleMeteor;
-CC_DEPRECATED_ATTRIBUTE typedef ParticleSpiral CCParticleSpiral;
-CC_DEPRECATED_ATTRIBUTE typedef ParticleExplosion CCParticleExplosion;
-CC_DEPRECATED_ATTRIBUTE typedef ParticleSmoke CCParticleSmoke;
-CC_DEPRECATED_ATTRIBUTE typedef ParticleSnow CCParticleSnow;
-CC_DEPRECATED_ATTRIBUTE typedef ParticleRain CCParticleRain;
+//CC_DEPRECATED_ATTRIBUTE typedef ParticleBatchNode CCParticleBatchNode;
+//CC_DEPRECATED_ATTRIBUTE typedef ParticleSystem CCParticleSystem;
+//CC_DEPRECATED_ATTRIBUTE typedef ParticleSystemQuad CCParticleSystemQuad;
+//CC_DEPRECATED_ATTRIBUTE typedef ParticleFire CCParticleFire;
+//CC_DEPRECATED_ATTRIBUTE typedef ParticleFireworks CCParticleFireworks;
+//CC_DEPRECATED_ATTRIBUTE typedef ParticleSun CCParticleSun;
+//CC_DEPRECATED_ATTRIBUTE typedef ParticleGalaxy CCParticleGalaxy;
+//CC_DEPRECATED_ATTRIBUTE typedef ParticleFlower CCParticleFlower;
+//CC_DEPRECATED_ATTRIBUTE typedef ParticleMeteor CCParticleMeteor;
+//CC_DEPRECATED_ATTRIBUTE typedef ParticleSpiral CCParticleSpiral;
+//CC_DEPRECATED_ATTRIBUTE typedef ParticleExplosion CCParticleExplosion;
+//CC_DEPRECATED_ATTRIBUTE typedef ParticleSmoke CCParticleSmoke;
+//CC_DEPRECATED_ATTRIBUTE typedef ParticleSnow CCParticleSnow;
+//CC_DEPRECATED_ATTRIBUTE typedef ParticleRain CCParticleRain;
 CC_DEPRECATED_ATTRIBUTE typedef FileUtils CCFileUtils;
 CC_DEPRECATED_ATTRIBUTE typedef Application CCApplication;
 CC_DEPRECATED_ATTRIBUTE typedef GLProgramCache CCShaderCache;
@@ -885,23 +885,23 @@ CC_DEPRECATED_ATTRIBUTE const Texture2D::PixelFormat kCCTexture2DPixelFormat_Def
 CC_DEPRECATED_ATTRIBUTE typedef Texture2D::PixelFormat CCTexture2DPixelFormat;
 
 
-CC_DEPRECATED_ATTRIBUTE const int kCCParticleDurationInfinity = ParticleSystem::DURATION_INFINITY;
-CC_DEPRECATED_ATTRIBUTE const int kCCParticleStartSizeEqualToEndSize = ParticleSystem::START_SIZE_EQUAL_TO_END_SIZE;
-CC_DEPRECATED_ATTRIBUTE const int kCCParticleStartRadiusEqualToEndRadius = ParticleSystem::START_RADIUS_EQUAL_TO_END_RADIUS;
-
-CC_DEPRECATED_ATTRIBUTE const int kParticleDurationInfinity = ParticleSystem::DURATION_INFINITY;
-CC_DEPRECATED_ATTRIBUTE const int kParticleStartSizeEqualToEndSize = ParticleSystem::START_SIZE_EQUAL_TO_END_SIZE;
-CC_DEPRECATED_ATTRIBUTE const int kParticleStartRadiusEqualToEndRadius = ParticleSystem::START_RADIUS_EQUAL_TO_END_RADIUS;
-
-CC_DEPRECATED_ATTRIBUTE const ParticleSystem::Mode kCCParticleModeGravity = ParticleSystem::Mode::GRAVITY;
-CC_DEPRECATED_ATTRIBUTE const ParticleSystem::Mode kCCParticleModeRadius = ParticleSystem::Mode::RADIUS;
-CC_DEPRECATED_ATTRIBUTE const int kCCParticleDefaultCapacity = kParticleDefaultCapacity;
-
-CC_DEPRECATED_ATTRIBUTE const ParticleSystem::PositionType kCCPositionTypeFree =  ParticleSystem::PositionType::FREE;
-CC_DEPRECATED_ATTRIBUTE const ParticleSystem::PositionType kCCPositionTypeRelative =  ParticleSystem::PositionType::RELATIVE;
-CC_DEPRECATED_ATTRIBUTE const ParticleSystem::PositionType kCCPositionTypeGrouped =  ParticleSystem::PositionType::GROUPED;
-
-CC_DEPRECATED_ATTRIBUTE typedef ParticleSystem::PositionType tPositionType;
+//CC_DEPRECATED_ATTRIBUTE const int kCCParticleDurationInfinity = ParticleSystem::DURATION_INFINITY;
+//CC_DEPRECATED_ATTRIBUTE const int kCCParticleStartSizeEqualToEndSize = ParticleSystem::START_SIZE_EQUAL_TO_END_SIZE;
+//CC_DEPRECATED_ATTRIBUTE const int kCCParticleStartRadiusEqualToEndRadius = ParticleSystem::START_RADIUS_EQUAL_TO_END_RADIUS;
+//
+//CC_DEPRECATED_ATTRIBUTE const int kParticleDurationInfinity = ParticleSystem::DURATION_INFINITY;
+//CC_DEPRECATED_ATTRIBUTE const int kParticleStartSizeEqualToEndSize = ParticleSystem::START_SIZE_EQUAL_TO_END_SIZE;
+//CC_DEPRECATED_ATTRIBUTE const int kParticleStartRadiusEqualToEndRadius = ParticleSystem::START_RADIUS_EQUAL_TO_END_RADIUS;
+//
+//CC_DEPRECATED_ATTRIBUTE const ParticleSystem::Mode kCCParticleModeGravity = ParticleSystem::Mode::GRAVITY;
+//CC_DEPRECATED_ATTRIBUTE const ParticleSystem::Mode kCCParticleModeRadius = ParticleSystem::Mode::RADIUS;
+//CC_DEPRECATED_ATTRIBUTE const int kCCParticleDefaultCapacity = kParticleDefaultCapacity;
+//
+//CC_DEPRECATED_ATTRIBUTE const ParticleSystem::PositionType kCCPositionTypeFree =  ParticleSystem::PositionType::FREE;
+//CC_DEPRECATED_ATTRIBUTE const ParticleSystem::PositionType kCCPositionTypeRelative =  ParticleSystem::PositionType::RELATIVE;
+//CC_DEPRECATED_ATTRIBUTE const ParticleSystem::PositionType kCCPositionTypeGrouped =  ParticleSystem::PositionType::GROUPED;
+//
+//CC_DEPRECATED_ATTRIBUTE typedef ParticleSystem::PositionType tPositionType;
 
 #define kCCLabelAutomaticWidth  kLabelAutomaticWidth
 
