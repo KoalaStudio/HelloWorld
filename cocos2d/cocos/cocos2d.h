@@ -107,7 +107,6 @@ THE SOFTWARE.
 
 // 2d nodes
 #include "2d/CCNode.h"
-#include "2d/CCProtectedNode.h"
 #include "2d/CCAtlasNode.h"
 #include "2d/CCDrawingPrimitives.h"
 #include "2d/CCDrawNode.h"
@@ -118,9 +117,6 @@ THE SOFTWARE.
 #include "2d/CCFontFNT.h"
 #include "2d/CCLayer.h"
 #include "2d/CCScene.h"
-#include "2d/CCTransition.h"
-#include "2d/CCTransitionPageTurn.h"
-#include "2d/CCTransitionProgress.h"
 #include "2d/CCMenu.h"
 #include "2d/CCMenuItem.h"
 #include "2d/CCClippingNode.h"
@@ -163,13 +159,6 @@ THE SOFTWARE.
 #include "renderer/CCPrimitive.h"
 #include "renderer/CCPrimitiveCommand.h"
 #include "renderer/CCTrianglesCommand.h"
-
-// physics
-#include "physics/CCPhysicsBody.h"
-#include "physics/CCPhysicsContact.h"
-#include "physics/CCPhysicsShape.h"
-#include "physics/CCPhysicsJoint.h"
-#include "physics/CCPhysicsWorld.h"
 
 // platform
 #include "platform/CCDevice.h"

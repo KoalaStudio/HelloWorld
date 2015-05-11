@@ -39,7 +39,6 @@ THE SOFTWARE.
 #include "2d/CCFontFNT.h"
 #include "2d/CCFontAtlasCache.h"
 #include "2d/CCAnimationCache.h"
-#include "2d/CCTransition.h"
 #include "2d/CCFontFreeType.h"
 #include "2d/CCLabelAtlas.h"
 #include "renderer/CCGLProgramCache.h"
@@ -65,9 +64,7 @@ THE SOFTWARE.
 #include "CCScriptSupport.h"
 #endif
 
-#if CC_USE_PHYSICS
-#include "physics/CCPhysicsWorld.h"
-#endif
+
 
 /**
  Position of the FPS
@@ -285,13 +282,6 @@ void Director::drawScene()
     
     if (_runningScene)
     {
-#if CC_USE_PHYSICS
-        auto physicsWorld = _runningScene->getPhysicsWorld();
-        if (physicsWorld && physicsWorld->isAutoStep())
-        {
-            physicsWorld->update(_deltaTime, false);
-        }
-#endif
         //clear draw stats
         _renderer->clearDrawStats();
         
@@ -1043,12 +1033,7 @@ void Director::restartDirector()
 
 void Director::setNextScene()
 {
-    bool runningIsTransition = dynamic_cast<TransitionScene*>(_runningScene) != nullptr;
-    bool newIsTransition = dynamic_cast<TransitionScene*>(_nextScene) != nullptr;
 
-    // If it is not a transition, call onExit/cleanup
-     if (! newIsTransition)
-     {
          if (_runningScene)
          {
              _runningScene->onExitTransitionDidStart();
@@ -1061,7 +1046,7 @@ void Director::setNextScene()
          {
              _runningScene->cleanup();
          }
-     }
+
 
     if (_runningScene)
     {
@@ -1071,11 +1056,10 @@ void Director::setNextScene()
     _nextScene->retain();
     _nextScene = nullptr;
 
-    if ((! runningIsTransition) && _runningScene)
-    {
+
         _runningScene->onEnter();
         _runningScene->onEnterTransitionDidFinish();
-    }
+
 }
 
 void Director::pause()
