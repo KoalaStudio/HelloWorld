@@ -31,7 +31,7 @@ THE SOFTWARE.
 // standard includes
 #include <string>
 
-#include "2d/CCDrawingPrimitives.h"
+//#include "2d/CCDrawingPrimitives.h"
 #include "2d/CCSpriteFrameCache.h"
 #include "platform/CCFileUtils.h"
 
@@ -982,7 +982,7 @@ void Director::reset()
 #endif
 //it will crash clang static analyzer so hide it if __clang_analyzer__ defined
 #ifndef __clang_analyzer__
-    DrawPrimitives::free();
+//    DrawPrimitives::free();
 #endif
 #if defined(__GNUC__) && ((__GNUC__ >= 4) || ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 1)))
 #pragma GCC diagnostic warning "-Wdeprecated-declarations"
