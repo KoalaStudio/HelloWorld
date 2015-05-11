@@ -647,8 +647,8 @@ CC_DEPRECATED_ATTRIBUTE typedef __CCCallFuncO CCCallFuncO;
 //CC_DEPRECATED_ATTRIBUTE typedef Waves CCWaves;
 //CC_DEPRECATED_ATTRIBUTE typedef Twirl CCTwirl;
 //CC_DEPRECATED_ATTRIBUTE typedef PageTurn3D CCPageTurn3D;
-CC_DEPRECATED_ATTRIBUTE typedef ProgressTo CCProgressTo;
-CC_DEPRECATED_ATTRIBUTE typedef ProgressFromTo CCProgressFromTo;
+//CC_DEPRECATED_ATTRIBUTE typedef ProgressTo CCProgressTo;
+//CC_DEPRECATED_ATTRIBUTE typedef ProgressFromTo CCProgressFromTo;
 //CC_DEPRECATED_ATTRIBUTE typedef ShakyTiles3D CCShakyTiles3D;
 //CC_DEPRECATED_ATTRIBUTE typedef ShatteredTiles3D CCShatteredTiles3D;
 //CC_DEPRECATED_ATTRIBUTE typedef ShuffleTiles CCShuffleTiles;
@@ -733,10 +733,10 @@ CC_DEPRECATED_ATTRIBUTE typedef MenuItemSprite CCMenuItemSprite;
 CC_DEPRECATED_ATTRIBUTE typedef MenuItemImage CCMenuItemImage;
 CC_DEPRECATED_ATTRIBUTE typedef MenuItemToggle CCMenuItemToggle;
 CC_DEPRECATED_ATTRIBUTE typedef Menu CCMenu;
-CC_DEPRECATED_ATTRIBUTE typedef ClippingNode CCClippingNode;
-CC_DEPRECATED_ATTRIBUTE typedef MotionStreak CCMotionStreak;
-CC_DEPRECATED_ATTRIBUTE typedef ProgressTimer CCProgressTimer;
-CC_DEPRECATED_ATTRIBUTE typedef RenderTexture CCRenderTexture;
+//CC_DEPRECATED_ATTRIBUTE typedef ClippingNode CCClippingNode;
+//CC_DEPRECATED_ATTRIBUTE typedef MotionStreak CCMotionStreak;
+//CC_DEPRECATED_ATTRIBUTE typedef ProgressTimer CCProgressTimer;
+//CC_DEPRECATED_ATTRIBUTE typedef RenderTexture CCRenderTexture;
 //CC_DEPRECATED_ATTRIBUTE typedef ParticleBatchNode CCParticleBatchNode;
 //CC_DEPRECATED_ATTRIBUTE typedef ParticleSystem CCParticleSystem;
 //CC_DEPRECATED_ATTRIBUTE typedef ParticleSystemQuad CCParticleSystemQuad;
@@ -802,7 +802,7 @@ CC_DEPRECATED_ATTRIBUTE typedef FontDefinition ccFontDefinition;
 
 CC_DEPRECATED_ATTRIBUTE typedef TextVAlignment CCVerticalTextAlignment;
 CC_DEPRECATED_ATTRIBUTE typedef TextHAlignment CCTextAlignment;
-CC_DEPRECATED_ATTRIBUTE typedef ProgressTimer::Type CCProgressTimerType;
+//CC_DEPRECATED_ATTRIBUTE typedef ProgressTimer::Type CCProgressTimerType;
 
 CC_DEPRECATED_ATTRIBUTE typedef void* CCZone;
 
@@ -852,9 +852,9 @@ CC_DEPRECATED_ATTRIBUTE const int kCCVertexAttribFlag_Color = GL::VERTEX_ATTRIB_
 CC_DEPRECATED_ATTRIBUTE const int kCCVertexAttribFlag_TexCoords = GL::VERTEX_ATTRIB_FLAG_TEX_COORD;
 CC_DEPRECATED_ATTRIBUTE const int kCCVertexAttribFlag_PosColorTex = GL::VERTEX_ATTRIB_FLAG_POS_COLOR_TEX;
 
-CC_DEPRECATED_ATTRIBUTE const ProgressTimer::Type kCCProgressTimerTypeRadial = ProgressTimer::Type::RADIAL;
-CC_DEPRECATED_ATTRIBUTE const ProgressTimer::Type kCCProgressTimerTypeBar = ProgressTimer::Type::BAR;
-CC_DEPRECATED_ATTRIBUTE typedef ProgressTimer::Type ProgressTimerType;
+//CC_DEPRECATED_ATTRIBUTE const ProgressTimer::Type kCCProgressTimerTypeRadial = ProgressTimer::Type::RADIAL;
+//CC_DEPRECATED_ATTRIBUTE const ProgressTimer::Type kCCProgressTimerTypeBar = ProgressTimer::Type::BAR;
+//CC_DEPRECATED_ATTRIBUTE typedef ProgressTimer::Type ProgressTimerType;
 
 CC_DEPRECATED_ATTRIBUTE const Director::Projection kCCDirectorProjection2D = Director::Projection::_2D;
 CC_DEPRECATED_ATTRIBUTE const Director::Projection kCCDirectorProjection3D = Director::Projection::_3D;
