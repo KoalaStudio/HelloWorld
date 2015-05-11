@@ -33,16 +33,10 @@ THE SOFTWARE.
 #include "renderer/CCRenderer.h"
 #include "deprecated/CCString.h"
 
-#if CC_USE_PHYSICS
-#include "physics/CCPhysicsWorld.h"
-#endif
 
 NS_CC_BEGIN
 
 Scene::Scene()
-#if CC_USE_PHYSICS
-: _physicsWorld(nullptr)
-#endif
 {
     _ignoreAnchorPointForPosition = true;
     setAnchorPoint(Vec2(0.5f, 0.5f));
@@ -59,9 +53,7 @@ Scene::Scene()
 
 Scene::~Scene()
 {
-#if CC_USE_PHYSICS
-    CC_SAFE_DELETE(_physicsWorld);
-#endif
+
     Director::getInstance()->getEventDispatcher()->removeEventListener(_event);
     CC_SAFE_RELEASE(_event);
 }
@@ -174,76 +166,5 @@ void Scene::removeAllChildren()
         _defaultCamera->release();
     }
 }
-
-#if CC_USE_PHYSICS
-void Scene::addChild(Node* child, int zOrder, int tag)
-{
-    Node::addChild(child, zOrder, tag);
-    addChildToPhysicsWorld(child);
-}
-
-void Scene::addChild(Node* child, int zOrder, const std::string &name)
-{
-    Node::addChild(child, zOrder, name);
-    addChildToPhysicsWorld(child);
-}
-
-Scene* Scene::createWithPhysics()
-{
-    Scene *ret = new (std::nothrow) Scene();
-    if (ret && ret->initWithPhysics())
-    {
-        ret->autorelease();
-        return ret;
-    }
-    else
-    {
-        CC_SAFE_DELETE(ret);
-        return nullptr;
-    }
-}
-
-bool Scene::initWithPhysics()
-{
-    bool ret = false;
-    do
-    {
-        Director * director;
-        CC_BREAK_IF( ! (director = Director::getInstance()) );
-        
-        this->setContentSize(director->getWinSize());
-        CC_BREAK_IF(! (_physicsWorld = PhysicsWorld::construct(*this)));
-        
-        // success
-        ret = true;
-    } while (0);
-    return ret;
-}
-
-void Scene::addChildToPhysicsWorld(Node* child)
-{
-    if (_physicsWorld)
-    {
-        std::function<void(Node*)> addToPhysicsWorldFunc = nullptr;
-        addToPhysicsWorldFunc = [this, &addToPhysicsWorldFunc](Node* node) -> void
-        {
-            node->_physicsWorld = _physicsWorld;
-
-            if (node->getPhysicsBody())
-            {
-                _physicsWorld->addBody(node->getPhysicsBody());
-            }
-            
-            auto& children = node->getChildren();
-            for( const auto &n : children) {
-                addToPhysicsWorldFunc(n);
-            }
-        };
-        
-        addToPhysicsWorldFunc(child);
-    }
-}
-
-#endif
 
 NS_CC_END

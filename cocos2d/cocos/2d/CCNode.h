@@ -52,10 +52,6 @@ class Renderer;
 class Director;
 class GLProgram;
 class GLProgramState;
-#if CC_USE_PHYSICS
-class PhysicsBody;
-class PhysicsWorld;
-#endif
 
 /**
  * @addtogroup _2d
@@ -1641,39 +1637,6 @@ public:
      */
     virtual void removeAllComponents();
     /// @} end of component functions
-
-
-#if CC_USE_PHYSICS
-    /**
-     * Set the PhysicsBody that let the sprite effect with physics.
-     * @note This method will set anchor point to Vec2::ANCHOR_MIDDLE if body not null, and you cann't change anchor point if node has a physics body.
-     *
-     * @param body A given physics body.
-     */
-    void setPhysicsBody(PhysicsBody* body);
-
-    /**
-     * Get the PhysicsBody the sprite have.
-     *
-     * @return The PhysicsBody the sprite have.
-     */
-    PhysicsBody* getPhysicsBody() const { return _physicsBody; }
-    
-    /**
-     * Remove this node from physics world. it will remove all the physics bodies in it's children too.
-     */
-    void removeFromPhysicsWorld();
-    
-    /** 
-     * Update the transform matrix from physics.
-     */
-    void updateTransformFromPhysics(const Mat4& parentTransform, uint32_t parentFlags);
-
-    /** 
-     * Update physics body transform matrix.
-     */
-    virtual void updatePhysicsBodyTransform(const Mat4& parentTransform, uint32_t parentFlags, float parentScaleX, float parentScaleY);
-#endif
     
     // overrides
     virtual GLubyte getOpacity() const;
@@ -1832,18 +1795,6 @@ protected:
     
     ComponentContainer *_componentContainer;        ///< Dictionary of components
 
-#if CC_USE_PHYSICS
-    PhysicsBody* _physicsBody;        ///< the physicsBody the node have
-    float _physicsScaleStartX;         ///< the scale x value when setPhysicsBody
-    float _physicsScaleStartY;         ///< the scale y value when setPhysicsBody
-    float _physicsRotation;
-    bool _physicsTransformDirty;
-    bool _updateTransformFromPhysics;
-
-    PhysicsWorld* _physicsWorld; /** The PhysicsWorld associated with the node.*/
-    int _physicsBodyAssociatedWith;  /** The count of PhysicsBody associated with the node and children.*/
-    float _physicsRotationOffset;  /** Record the rotation value when invoke Node::setPhysicsBody.*/
-#endif
     
     // opacity controls
     GLubyte		_displayedOpacity;
@@ -1865,10 +1816,6 @@ protected:
 
 private:
     CC_DISALLOW_COPY_AND_ASSIGN(Node);
-    
-#if CC_USE_PHYSICS
-    friend class Scene;
-#endif //CC_USTPS
 };
 
 // NodeRGBA
