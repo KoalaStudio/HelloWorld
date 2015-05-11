@@ -252,7 +252,7 @@ THE SOFTWARE.
 #include "2d/CCSpriteFrameCache.h"
 
 // text_input_node
-#include "2d/CCTextFieldTTF.h"
+//#include "2d/CCTextFieldTTF.h"
 
 // textures
 #include "renderer/CCTextureAtlas.h"
