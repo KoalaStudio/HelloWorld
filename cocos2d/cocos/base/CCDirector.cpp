@@ -36,12 +36,12 @@ THE SOFTWARE.
 #include "platform/CCFileUtils.h"
 
 #include "2d/CCActionManager.h"
-#include "2d/CCFontFNT.h"
-#include "2d/CCFontAtlasCache.h"
+//#include "2d/CCFontFNT.h"
+//#include "2d/CCFontAtlasCache.h"
 #include "2d/CCAnimationCache.h"
 //#include "2d/CCTransition.h"
-#include "2d/CCFontFreeType.h"
-#include "2d/CCLabelAtlas.h"
+//#include "2d/CCFontFreeType.h"
+//#include "2d/CCLabelAtlas.h"
 #include "renderer/CCGLProgramCache.h"
 #include "renderer/CCGLProgramStateCache.h"
 #include "renderer/CCTextureCache.h"
@@ -126,7 +126,7 @@ bool Director::init(void)
     // FPS
     _accumDt = 0.0f;
     _frameRate = 0.0f;
-    _FPSLabel = _drawnBatchesLabel = _drawnVerticesLabel = nullptr;
+//    _FPSLabel = _drawnBatchesLabel = _drawnVerticesLabel = nullptr;
     _totalFrames = 0;
     _lastUpdate = new struct timeval;
     _secondsPerFrame = 1.0f;
@@ -178,9 +178,9 @@ Director::~Director(void)
 {
     CCLOGINFO("deallocing Director: %p", this);
 
-    CC_SAFE_RELEASE(_FPSLabel);
-    CC_SAFE_RELEASE(_drawnVerticesLabel);
-    CC_SAFE_RELEASE(_drawnBatchesLabel);
+//    CC_SAFE_RELEASE(_FPSLabel);
+//    CC_SAFE_RELEASE(_drawnVerticesLabel);
+//    CC_SAFE_RELEASE(_drawnBatchesLabel);
 
     CC_SAFE_RELEASE(_runningScene);
     CC_SAFE_RELEASE(_notificationNode);
@@ -664,8 +664,8 @@ void Director::setProjection(Projection projection)
 
 void Director::purgeCachedData(void)
 {
-    FontFNT::purgeCachedData();
-    FontAtlasCache::purgeCachedData();
+//    FontFNT::purgeCachedData();
+//    FontAtlasCache::purgeCachedData();
 
     if (s_SharedDirector->getOpenGLView())
     {
@@ -963,14 +963,14 @@ void Director::reset()
     
     stopAnimation();
     
-    CC_SAFE_RELEASE_NULL(_FPSLabel);
-    CC_SAFE_RELEASE_NULL(_drawnBatchesLabel);
-    CC_SAFE_RELEASE_NULL(_drawnVerticesLabel);
-    
-    // purge bitmap cache
-    FontFNT::purgeCachedData();
-    
-    FontFreeType::shutdownFreeType();
+//    CC_SAFE_RELEASE_NULL(_FPSLabel);
+//    CC_SAFE_RELEASE_NULL(_drawnBatchesLabel);
+//    CC_SAFE_RELEASE_NULL(_drawnVerticesLabel);
+//    
+//    // purge bitmap cache
+//    FontFNT::purgeCachedData();
+//    
+//    FontFreeType::shutdownFreeType();
     
     // purge all managed caches
     
@@ -1126,43 +1126,43 @@ void Director::showStats()
 
     _accumDt += _deltaTime;
     
-    if (_displayStats && _FPSLabel && _drawnBatchesLabel && _drawnVerticesLabel)
-    {
-        char buffer[30];
-
-        float dt = _deltaTime * FPS_FILTER + (1-FPS_FILTER) * prevDeltaTime;
-        prevDeltaTime = dt;
-        _frameRate = 1/dt;
-
-        // Probably we don't need this anymore since
-        // the framerate is using a low-pass filter
-        // to make the FPS stable
-        if (_accumDt > CC_DIRECTOR_STATS_INTERVAL)
-        {
-            sprintf(buffer, "%.1f / %.3f", _frameRate, _secondsPerFrame);
-            _FPSLabel->setString(buffer);
-            _accumDt = 0;
-        }
-
-        auto currentCalls = (unsigned long)_renderer->getDrawnBatches();
-        auto currentVerts = (unsigned long)_renderer->getDrawnVertices();
-        if( currentCalls != prevCalls ) {
-            sprintf(buffer, "GL calls:%6lu", currentCalls);
-            _drawnBatchesLabel->setString(buffer);
-            prevCalls = currentCalls;
-        }
-
-        if( currentVerts != prevVerts) {
-            sprintf(buffer, "GL verts:%6lu", currentVerts);
-            _drawnVerticesLabel->setString(buffer);
-            prevVerts = currentVerts;
-        }
-
-        const Mat4& identity = Mat4::IDENTITY;
-        _drawnVerticesLabel->visit(_renderer, identity, 0);
-        _drawnBatchesLabel->visit(_renderer, identity, 0);
-        _FPSLabel->visit(_renderer, identity, 0);
-    }
+//    if (_displayStats && _FPSLabel && _drawnBatchesLabel && _drawnVerticesLabel)
+//    {
+//        char buffer[30];
+//
+//        float dt = _deltaTime * FPS_FILTER + (1-FPS_FILTER) * prevDeltaTime;
+//        prevDeltaTime = dt;
+//        _frameRate = 1/dt;
+//
+//        // Probably we don't need this anymore since
+//        // the framerate is using a low-pass filter
+//        // to make the FPS stable
+//        if (_accumDt > CC_DIRECTOR_STATS_INTERVAL)
+//        {
+//            sprintf(buffer, "%.1f / %.3f", _frameRate, _secondsPerFrame);
+////            _FPSLabel->setString(buffer);
+//            _accumDt = 0;
+//        }
+//
+//        auto currentCalls = (unsigned long)_renderer->getDrawnBatches();
+//        auto currentVerts = (unsigned long)_renderer->getDrawnVertices();
+//        if( currentCalls != prevCalls ) {
+//            sprintf(buffer, "GL calls:%6lu", currentCalls);
+////            _drawnBatchesLabel->setString(buffer);
+//            prevCalls = currentCalls;
+//        }
+//
+//        if( currentVerts != prevVerts) {
+//            sprintf(buffer, "GL verts:%6lu", currentVerts);
+////            _drawnVerticesLabel->setString(buffer);
+//            prevVerts = currentVerts;
+//        }
+//
+//        const Mat4& identity = Mat4::IDENTITY;
+////        _drawnVerticesLabel->visit(_renderer, identity, 0);
+////        _drawnBatchesLabel->visit(_renderer, identity, 0);
+////        _FPSLabel->visit(_renderer, identity, 0);
+//    }
 }
 
 void Director::calculateMPF()
@@ -1193,18 +1193,18 @@ void Director::createStatsLabel()
     std::string fpsString = "00.0";
     std::string drawBatchString = "000";
     std::string drawVerticesString = "00000";
-    if (_FPSLabel)
-    {
-        fpsString = _FPSLabel->getString();
-        drawBatchString = _drawnBatchesLabel->getString();
-        drawVerticesString = _drawnVerticesLabel->getString();
-        
-        CC_SAFE_RELEASE_NULL(_FPSLabel);
-        CC_SAFE_RELEASE_NULL(_drawnBatchesLabel);
-        CC_SAFE_RELEASE_NULL(_drawnVerticesLabel);
-        _textureCache->removeTextureForKey("/cc_fps_images");
-        FileUtils::getInstance()->purgeCachedEntries();
-    }
+//    if (_FPSLabel)
+//    {
+////        fpsString = _FPSLabel->getString();
+////        drawBatchString = _drawnBatchesLabel->getString();
+////        drawVerticesString = _drawnVerticesLabel->getString();
+////        
+////        CC_SAFE_RELEASE_NULL(_FPSLabel);
+////        CC_SAFE_RELEASE_NULL(_drawnBatchesLabel);
+////        CC_SAFE_RELEASE_NULL(_drawnVerticesLabel);
+//        _textureCache->removeTextureForKey("/cc_fps_images");
+//        FileUtils::getInstance()->purgeCachedEntries();
+//    }
 
     Texture2D::PixelFormat currentFormat = Texture2D::getDefaultAlphaPixelFormat();
     Texture2D::setDefaultAlphaPixelFormat(Texture2D::PixelFormat::RGBA4444);
@@ -1232,31 +1232,31 @@ void Director::createStatsLabel()
      */
     float scaleFactor = 1 / CC_CONTENT_SCALE_FACTOR();
 
-    _FPSLabel = LabelAtlas::create();
-    _FPSLabel->retain();
-    _FPSLabel->setIgnoreContentScaleFactor(true);
-    _FPSLabel->initWithString(fpsString, texture, 12, 32 , '.');
-    _FPSLabel->setScale(scaleFactor);
-
-    _drawnBatchesLabel = LabelAtlas::create();
-    _drawnBatchesLabel->retain();
-    _drawnBatchesLabel->setIgnoreContentScaleFactor(true);
-    _drawnBatchesLabel->initWithString(drawBatchString, texture, 12, 32, '.');
-    _drawnBatchesLabel->setScale(scaleFactor);
-
-    _drawnVerticesLabel = LabelAtlas::create();
-    _drawnVerticesLabel->retain();
-    _drawnVerticesLabel->setIgnoreContentScaleFactor(true);
-    _drawnVerticesLabel->initWithString(drawVerticesString, texture, 12, 32, '.');
-    _drawnVerticesLabel->setScale(scaleFactor);
+//    _FPSLabel = LabelAtlas::create();
+//    _FPSLabel->retain();
+//    _FPSLabel->setIgnoreContentScaleFactor(true);
+//    _FPSLabel->initWithString(fpsString, texture, 12, 32 , '.');
+//    _FPSLabel->setScale(scaleFactor);
+//
+//    _drawnBatchesLabel = LabelAtlas::create();
+//    _drawnBatchesLabel->retain();
+//    _drawnBatchesLabel->setIgnoreContentScaleFactor(true);
+//    _drawnBatchesLabel->initWithString(drawBatchString, texture, 12, 32, '.');
+//    _drawnBatchesLabel->setScale(scaleFactor);
+//
+//    _drawnVerticesLabel = LabelAtlas::create();
+//    _drawnVerticesLabel->retain();
+//    _drawnVerticesLabel->setIgnoreContentScaleFactor(true);
+//    _drawnVerticesLabel->initWithString(drawVerticesString, texture, 12, 32, '.');
+//    _drawnVerticesLabel->setScale(scaleFactor);
 
 
     Texture2D::setDefaultAlphaPixelFormat(currentFormat);
 
     const int height_spacing = 22 / CC_CONTENT_SCALE_FACTOR();
-    _drawnVerticesLabel->setPosition(Vec2(0, height_spacing*2) + CC_DIRECTOR_STATS_POSITION);
-    _drawnBatchesLabel->setPosition(Vec2(0, height_spacing*1) + CC_DIRECTOR_STATS_POSITION);
-    _FPSLabel->setPosition(Vec2(0, height_spacing*0)+CC_DIRECTOR_STATS_POSITION);
+//    _drawnVerticesLabel->setPosition(Vec2(0, height_spacing*2) + CC_DIRECTOR_STATS_POSITION);
+//    _drawnBatchesLabel->setPosition(Vec2(0, height_spacing*1) + CC_DIRECTOR_STATS_POSITION);
+//    _FPSLabel->setPosition(Vec2(0, height_spacing*0)+CC_DIRECTOR_STATS_POSITION);
 }
 
 void Director::setContentScaleFactor(float scaleFactor)

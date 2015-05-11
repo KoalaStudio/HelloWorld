@@ -671,8 +671,8 @@ CC_DEPRECATED_ATTRIBUTE typedef TextureProtocol CCTextureProtocol;
 CC_DEPRECATED_ATTRIBUTE typedef BlendProtocol CCBlendProtocol;
 //CC_DEPRECATED_ATTRIBUTE typedef DrawNode CCDrawNode;
 CC_DEPRECATED_ATTRIBUTE typedef Camera CCCamera;
-CC_DEPRECATED_ATTRIBUTE typedef LabelAtlas CCLabelAtlas;
-CC_DEPRECATED_ATTRIBUTE typedef LabelProtocol CCLabelProtocol;
+//CC_DEPRECATED_ATTRIBUTE typedef LabelAtlas CCLabelAtlas;
+//CC_DEPRECATED_ATTRIBUTE typedef LabelProtocol CCLabelProtocol;
 CC_DEPRECATED_ATTRIBUTE typedef Director CCDirector;
 CC_DEPRECATED_ATTRIBUTE typedef GridBase CCGridBase;
 //CC_DEPRECATED_ATTRIBUTE typedef Grid3D CCGrid3D;
@@ -725,14 +725,14 @@ CC_DEPRECATED_ATTRIBUTE typedef Scene CCScene;
 //CC_DEPRECATED_ATTRIBUTE typedef TransitionProgressVertical CCTransitionProgressVertical;
 //CC_DEPRECATED_ATTRIBUTE typedef TransitionProgressInOut CCTransitionProgressInOut;
 //CC_DEPRECATED_ATTRIBUTE typedef TransitionProgressOutIn CCTransitionProgressOutIn;
-CC_DEPRECATED_ATTRIBUTE typedef MenuItem CCMenuItem;
-CC_DEPRECATED_ATTRIBUTE typedef MenuItemLabel CCMenuItemLabel;
-CC_DEPRECATED_ATTRIBUTE typedef MenuItemAtlasFont CCMenuItemAtlasFont;
-CC_DEPRECATED_ATTRIBUTE typedef MenuItemFont CCMenuItemFont;
-CC_DEPRECATED_ATTRIBUTE typedef MenuItemSprite CCMenuItemSprite;
-CC_DEPRECATED_ATTRIBUTE typedef MenuItemImage CCMenuItemImage;
-CC_DEPRECATED_ATTRIBUTE typedef MenuItemToggle CCMenuItemToggle;
-CC_DEPRECATED_ATTRIBUTE typedef Menu CCMenu;
+//CC_DEPRECATED_ATTRIBUTE typedef MenuItem CCMenuItem;
+//CC_DEPRECATED_ATTRIBUTE typedef MenuItemLabel CCMenuItemLabel;
+//CC_DEPRECATED_ATTRIBUTE typedef MenuItemAtlasFont CCMenuItemAtlasFont;
+//CC_DEPRECATED_ATTRIBUTE typedef MenuItemFont CCMenuItemFont;
+//CC_DEPRECATED_ATTRIBUTE typedef MenuItemSprite CCMenuItemSprite;
+//CC_DEPRECATED_ATTRIBUTE typedef MenuItemImage CCMenuItemImage;
+//CC_DEPRECATED_ATTRIBUTE typedef MenuItemToggle CCMenuItemToggle;
+//CC_DEPRECATED_ATTRIBUTE typedef Menu CCMenu;
 //CC_DEPRECATED_ATTRIBUTE typedef ClippingNode CCClippingNode;
 //CC_DEPRECATED_ATTRIBUTE typedef MotionStreak CCMotionStreak;
 //CC_DEPRECATED_ATTRIBUTE typedef ProgressTimer CCProgressTimer;
@@ -906,10 +906,10 @@ CC_DEPRECATED_ATTRIBUTE typedef Texture2D::PixelFormat CCTexture2DPixelFormat;
 #define kCCLabelAutomaticWidth  kLabelAutomaticWidth
 
 
-CC_DEPRECATED_ATTRIBUTE const Menu::State kCCMenuStateWaiting = Menu::State::WAITING;
-CC_DEPRECATED_ATTRIBUTE const Menu::State kCCMenuStateTrackingTouch = Menu::State::TRACKING_TOUCH;
-
-CC_DEPRECATED_ATTRIBUTE typedef Menu::State tMenuState;
+//CC_DEPRECATED_ATTRIBUTE const Menu::State kCCMenuStateWaiting = Menu::State::WAITING;
+//CC_DEPRECATED_ATTRIBUTE const Menu::State kCCMenuStateTrackingTouch = Menu::State::TRACKING_TOUCH;
+//
+//CC_DEPRECATED_ATTRIBUTE typedef Menu::State tMenuState;
 
 CC_DEPRECATED_ATTRIBUTE const Touch::DispatchMode kCCTouchesOneByOne = Touch::DispatchMode::ONE_BY_ONE;
 CC_DEPRECATED_ATTRIBUTE const Touch::DispatchMode kCCTouchesAllAtOnce = Touch::DispatchMode::ALL_AT_ONCE;
