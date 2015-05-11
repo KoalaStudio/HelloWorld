@@ -30,7 +30,7 @@
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 
-#include "extensions/ExtensionMacros.h"
+//#include "extensions/ExtensionMacros.h"
 #include "UIEditBoxImpl.h"
 
 #import <Foundation/Foundation.h>
