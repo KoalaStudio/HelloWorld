@@ -25,7 +25,7 @@ THE SOFTWARE.
 #define _CCCAMERA_H__
 
 #include "2d/CCNode.h"
-#include "3d/CCFrustum.h"
+//#include "3d/CCFrustum.h"
 
 NS_CC_BEGIN
 
@@ -153,7 +153,7 @@ public:
     /**
      * Is this aabb visible in frustum
      */
-    bool isVisibleInFrustum(const AABB* aabb) const;
+//    bool isVisibleInFrustum(const AABB* aabb) const;
     
     /**
      * Get object depth towards camera
@@ -217,7 +217,7 @@ protected:
     float _farPlane;
     mutable bool  _viewProjectionDirty;
     unsigned short _cameraFlag; // camera flag
-    mutable Frustum _frustum;   // camera frustum
+//    mutable Frustum _frustum;   // camera frustum
     mutable bool _frustumDirty;
     int  _depth;                 //camera depth, the depth of camera with CameraFlag::DEFAULT flag is 0 by default, a camera with larger depth is drawn on top of camera with smaller detph
     static Camera* _visitingCamera;
