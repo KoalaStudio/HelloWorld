@@ -26,8 +26,6 @@
  ****************************************************************************/
 
 #include "SpritePolygonCache.h"
-#include "3d/CCMesh.h"
-#include "3d/CCMeshVertexIndexData.h"
 
 #include "base/CCDirector.h"
 #include "renderer/CCRenderer.h"

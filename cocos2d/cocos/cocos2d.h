@@ -262,13 +262,6 @@ THE SOFTWARE.
 #include "3d/CCAABB.h"
 #include "3d/CCOBB.h"
 #include "3d/CCRay.h"
-#include "3d/CCSprite3D.h"
-#include "3d/CCMesh.h"
-#include "3d/CCMeshSkin.h"
-#include "3d/CCSprite3DMaterial.h"
-#include "3d/CCAttachNode.h"
-#include "3d/CCMeshVertexIndexData.h"
-#include "3d/CCSkeleton3D.h"
 #include "3d/CCFrustum.h"
 #include "3d/CCPlane.h"
 

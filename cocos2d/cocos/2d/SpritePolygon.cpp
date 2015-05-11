@@ -26,8 +26,6 @@
  ****************************************************************************/
 
 #include "SpritePolygon.h"
-#include "3d/CCMesh.h"
-#include "3d/CCMeshVertexIndexData.h"
 
 #include "MarchingSquare.h"
 
