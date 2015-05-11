@@ -40,8 +40,8 @@ THE SOFTWARE.
 #include "2d/CCCamera.h"
 #include "2d/CCActionManager.h"
 #include "2d/CCScene.h"
-#include "2d/CCComponent.h"
-#include "2d/CCComponentContainer.h"
+//#include "2d/CCComponent.h"
+//#include "2d/CCComponentContainer.h"
 #include "renderer/CCGLProgram.h"
 #include "renderer/CCGLProgramState.h"
 #include "math/TransformUtils.h"
@@ -189,9 +189,9 @@ Node::~Node()
         child->_parent = nullptr;
     }
 
-    removeAllComponents();
+//    removeAllComponents();
     
-    CC_SAFE_DELETE(_componentContainer);
+//    CC_SAFE_DELETE(_componentContainer);
     
 #if CC_USE_PHYSICS
     setPhysicsBody(nullptr);
@@ -1731,10 +1731,10 @@ void Node::update(float fDelta)
     }
 #endif
     
-    if (_componentContainer && !_componentContainer->isEmpty())
-    {
-        _componentContainer->visit(fDelta);
-    }
+//    if (_componentContainer && !_componentContainer->isEmpty())
+//    {
+//        _componentContainer->visit(fDelta);
+//    }
 }
 
 // MARK: coordinates
@@ -1990,46 +1990,46 @@ void Node::updateTransform()
 
 // MARK: components
 
-Component* Node::getComponent(const std::string& name)
-{
-    if (_componentContainer)
-        return _componentContainer->get(name);
-    
-    return nullptr;
-}
-
-bool Node::addComponent(Component *component)
-{
-    // lazy alloc
-    if (!_componentContainer)
-        _componentContainer = new (std::nothrow) ComponentContainer(this);
-    
-    return _componentContainer->add(component);
-}
-
-bool Node::removeComponent(const std::string& name)
-{
-    if (_componentContainer)
-        return _componentContainer->remove(name);
-    
-    return false;
-}
-
-bool Node::removeComponent(Component *component)
-{
-    if (_componentContainer)
-    {
-        return _componentContainer->remove(component);
-    }
-    
-    return false;
-}
-
-void Node::removeAllComponents()
-{
-    if (_componentContainer)
-        _componentContainer->removeAll();
-}
+//Component* Node::getComponent(const std::string& name)
+//{
+//    if (_componentContainer)
+//        return _componentContainer->get(name);
+//    
+//    return nullptr;
+//}
+//
+//bool Node::addComponent(Component *component)
+//{
+//    // lazy alloc
+//    if (!_componentContainer)
+//        _componentContainer = new (std::nothrow) ComponentContainer(this);
+//    
+//    return _componentContainer->add(component);
+//}
+//
+//bool Node::removeComponent(const std::string& name)
+//{
+//    if (_componentContainer)
+//        return _componentContainer->remove(name);
+//    
+//    return false;
+//}
+//
+//bool Node::removeComponent(Component *component)
+//{
+//    if (_componentContainer)
+//    {
+//        return _componentContainer->remove(component);
+//    }
+//    
+//    return false;
+//}
+//
+//void Node::removeAllComponents()
+//{
+//    if (_componentContainer)
+//        _componentContainer->removeAll();
+//}
 
 #if CC_USE_PHYSICS
 
