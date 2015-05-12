@@ -27,7 +27,7 @@ THE SOFTWARE.
 #define __CCGLVIEW_H__
 
 #include "base/ccTypes.h"
-#include "base/CCEventTouch.h"
+//#include "base/CCEventTouch.h"
 
 #include <vector>
 
@@ -305,41 +305,41 @@ public:
      */
     const std::string& getViewName() const;
 
-    /** Touch events are handled by default; if you want to customize your handlers, please override this function.
-     *
-     * @param num The number of touch.
-     * @param ids The identity of the touch.
-     * @param xs The points of x.
-     * @param ys The points of y.
-     */
-    virtual void handleTouchesBegin(int num, intptr_t ids[], float xs[], float ys[]);
-    
-    /** Touch events are handled by default; if you want to customize your handlers, please override this function.
-     *
-     * @param num The number of touch.
-     * @param ids The identity of the touch.
-     * @param xs The points of x.
-     * @param ys The points of y.
-     */
-    virtual void handleTouchesMove(int num, intptr_t ids[], float xs[], float ys[]);
-    
-    /** Touch events are handled by default; if you want to customize your handlers, please override this function.
-     *
-     * @param num The number of touch.
-     * @param ids The identity of the touch.
-     * @param xs The points of x.
-     * @param ys The points of y.
-     */
-    virtual void handleTouchesEnd(int num, intptr_t ids[], float xs[], float ys[]);
-    
-    /** Touch events are handled by default; if you want to customize your handlers, please override this function.
-     *
-     * @param num The number of touch.
-     * @param ids The identity of the touch.
-     * @param xs The points of x.
-     * @param ys The points of y.
-     */
-    virtual void handleTouchesCancel(int num, intptr_t ids[], float xs[], float ys[]);
+//    /** Touch events are handled by default; if you want to customize your handlers, please override this function.
+//     *
+//     * @param num The number of touch.
+//     * @param ids The identity of the touch.
+//     * @param xs The points of x.
+//     * @param ys The points of y.
+//     */
+//    virtual void handleTouchesBegin(int num, intptr_t ids[], float xs[], float ys[]);
+//    
+//    /** Touch events are handled by default; if you want to customize your handlers, please override this function.
+//     *
+//     * @param num The number of touch.
+//     * @param ids The identity of the touch.
+//     * @param xs The points of x.
+//     * @param ys The points of y.
+//     */
+//    virtual void handleTouchesMove(int num, intptr_t ids[], float xs[], float ys[]);
+//    
+//    /** Touch events are handled by default; if you want to customize your handlers, please override this function.
+//     *
+//     * @param num The number of touch.
+//     * @param ids The identity of the touch.
+//     * @param xs The points of x.
+//     * @param ys The points of y.
+//     */
+//    virtual void handleTouchesEnd(int num, intptr_t ids[], float xs[], float ys[]);
+//    
+//    /** Touch events are handled by default; if you want to customize your handlers, please override this function.
+//     *
+//     * @param num The number of touch.
+//     * @param ids The identity of the touch.
+//     * @param xs The points of x.
+//     * @param ys The points of y.
+//     */
+//    virtual void handleTouchesCancel(int num, intptr_t ids[], float xs[], float ys[]);
 
     /**
      * Get the opengl view port rectangle.
@@ -353,7 +353,7 @@ public:
      *
      * @return A list of all active touches.
      */
-    std::vector<Touch*> getAllTouches() const;
+//    std::vector<Touch*> getAllTouches() const;
 
     /**
      * Get scale factor of the horizontal direction.
@@ -386,7 +386,7 @@ public:
 protected:
     void updateDesignResolutionSize();
     
-    void handleTouchesOfEndOrCancel(EventTouch::EventCode eventCode, int num, intptr_t ids[], float xs[], float ys[]);
+//    void handleTouchesOfEndOrCancel(EventTouch::EventCode eventCode, int num, intptr_t ids[], float xs[], float ys[]);
 
     // real screen size
     Size _screenSize;

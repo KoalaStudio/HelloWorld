@@ -35,10 +35,10 @@
 //#include "base/CCScriptSupport.h"
 #include "math/CCAffineTransform.h"
 #include "math/CCMath.h"
-#include "base/CCTouch.h"
-#include "base/CCEvent.h"
+//#include "base/CCTouch.h"
+//#include "base/CCEvent.h"
 //#include "base/CCEventKeyboard.h"
-#include "base/CCEventTouch.h"
+//#include "base/CCEventTouch.h"
 
 NS_CC_BEGIN
 
@@ -1168,12 +1168,12 @@ public:
      *
      * @param dispatcher The event dispatcher of scene.
      */
-    virtual void setEventDispatcher(EventDispatcher* dispatcher);
+//    virtual void setEventDispatcher(EventDispatcher* dispatcher);
     /** Get the event dispatcher of scene.
      *
      * @return The event dispatcher of scene.
      */
-    virtual EventDispatcher* getEventDispatcher() const { return _eventDispatcher; };
+//    virtual EventDispatcher* getEventDispatcher() const { return _eventDispatcher; };
 
 //    /// @{
 //    /// @name Actions
@@ -1576,21 +1576,21 @@ public:
      */
     Vec2 convertToWorldSpaceAR(const Vec2& nodePoint) const;
 
-    /**
-     * convenience methods which take a Touch instead of Vec2.
-     *
-     * @param touch A given touch.
-     * @return A point in world space coordinates.
-     */
-    Vec2 convertTouchToNodeSpace(Touch * touch) const;
-
-    /**
-     * converts a Touch (world coordinates) into a local coordinate. This method is AR (Anchor Relative).
-     *
-     * @param touch A given touch.
-     * @return A point in world space coordinates, anchor relative.
-     */
-    Vec2 convertTouchToNodeSpaceAR(Touch * touch) const;
+//    /**
+//     * convenience methods which take a Touch instead of Vec2.
+//     *
+//     * @param touch A given touch.
+//     * @return A point in world space coordinates.
+//     */
+//    Vec2 convertTouchToNodeSpace(Touch * touch) const;
+//
+//    /**
+//     * converts a Touch (world coordinates) into a local coordinate. This method is AR (Anchor Relative).
+//     *
+//     * @param touch A given touch.
+//     * @return A point in world space coordinates, anchor relative.
+//     */
+//    Vec2 convertTouchToNodeSpaceAR(Touch * touch) const;
 
 	/**
      *  Sets an additional transform matrix to the node.
@@ -1816,7 +1816,7 @@ protected:
 
 //    ActionManager *_actionManager;  ///< a pointer to ActionManager singleton, which is used to handle all the actions
 
-    EventDispatcher* _eventDispatcher;  ///< event dispatcher used to dispatch all kinds of events
+//    EventDispatcher* _eventDispatcher;  ///< event dispatcher used to dispatch all kinds of events
 
     bool _running;                  ///< is running
 

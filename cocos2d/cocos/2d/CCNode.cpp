@@ -36,7 +36,7 @@ THE SOFTWARE.
 
 #include "base/CCDirector.h"
 //#include "base/CCScheduler.h"
-#include "base/CCEventDispatcher.h"
+//#include "base/CCEventDispatcher.h"
 #include "2d/CCCamera.h"
 //#include "2d/CCActionManager.h"
 #include "2d/CCScene.h"
@@ -142,8 +142,8 @@ Node::Node(void)
 //    _actionManager->retain();
 //    _scheduler = _director->getScheduler();
 //    _scheduler->retain();
-    _eventDispatcher = _director->getEventDispatcher();
-    _eventDispatcher->retain();
+//    _eventDispatcher = _director->getEventDispatcher();
+//    _eventDispatcher->retain();
     
 #if CC_ENABLE_SCRIPT_BINDING
     ScriptEngineProtocol* engine = ScriptEngineManager::getInstance()->getScriptEngine();
@@ -203,14 +203,14 @@ Node::~Node()
 //    CC_SAFE_RELEASE_NULL(_actionManager);
 //    CC_SAFE_RELEASE_NULL(_scheduler);
     
-    _eventDispatcher->removeEventListenersForTarget(this);
-    
-#if CC_NODE_DEBUG_VERIFY_EVENT_LISTENERS && COCOS2D_DEBUG > 0
-    _eventDispatcher->debugCheckNodeHasNoEventListenersOnDestruction(this);
-#endif
-
-    CCASSERT(!_running, "Node still marked as running on node destruction! Was base class onExit() called in derived class onExit() implementations?");
-    CC_SAFE_RELEASE(_eventDispatcher);
+//    _eventDispatcher->removeEventListenersForTarget(this);
+//    
+//#if CC_NODE_DEBUG_VERIFY_EVENT_LISTENERS && COCOS2D_DEBUG > 0
+//    _eventDispatcher->debugCheckNodeHasNoEventListenersOnDestruction(this);
+//#endif
+//
+//    CCASSERT(!_running, "Node still marked as running on node destruction! Was base class onExit() called in derived class onExit() implementations?");
+//    CC_SAFE_RELEASE(_eventDispatcher);
 }
 
 bool Node::init()
@@ -299,7 +299,7 @@ void Node::setLocalZOrder(int z)
         _parent->reorderChild(this, z);
     }
 
-    _eventDispatcher->setDirtyForNode(this);
+//    _eventDispatcher->setDirtyForNode(this);
 }
 
 /// zOrder setter : private method
@@ -314,7 +314,7 @@ void Node::setGlobalZOrder(float globalZOrder)
     if (_globalZOrder != globalZOrder)
     {
         _globalZOrder = globalZOrder;
-        _eventDispatcher->setDirtyForNode(this);
+//        _eventDispatcher->setDirtyForNode(this);
     }
 }
 
@@ -1511,16 +1511,16 @@ void Node::onExit()
 #endif
 }
 
-void Node::setEventDispatcher(EventDispatcher* dispatcher)
-{
-    if (dispatcher != _eventDispatcher)
-    {
-        _eventDispatcher->removeEventListenersForTarget(this);
-        CC_SAFE_RETAIN(dispatcher);
-        CC_SAFE_RELEASE(_eventDispatcher);
-        _eventDispatcher = dispatcher;
-    }
-}
+//void Node::setEventDispatcher(EventDispatcher* dispatcher)
+//{
+//    if (dispatcher != _eventDispatcher)
+//    {
+//        _eventDispatcher->removeEventListenersForTarget(this);
+//        CC_SAFE_RETAIN(dispatcher);
+//        CC_SAFE_RELEASE(_eventDispatcher);
+//        _eventDispatcher = dispatcher;
+//    }
+//}
 
 //void Node::setActionManager(ActionManager* actionManager)
 //{
@@ -1969,17 +1969,17 @@ Vec2 Node::convertToWindowSpace(const Vec2& nodePoint) const
     return _director->convertToUI(worldPoint);
 }
 
-// convenience methods which take a Touch instead of Vec2
-Vec2 Node::convertTouchToNodeSpace(Touch *touch) const
-{
-    return this->convertToNodeSpace(touch->getLocation());
-}
-
-Vec2 Node::convertTouchToNodeSpaceAR(Touch *touch) const
-{
-    Vec2 point = touch->getLocation();
-    return this->convertToNodeSpaceAR(point);
-}
+//// convenience methods which take a Touch instead of Vec2
+//Vec2 Node::convertTouchToNodeSpace(Touch *touch) const
+//{
+//    return this->convertToNodeSpace(touch->getLocation());
+//}
+//
+//Vec2 Node::convertTouchToNodeSpaceAR(Touch *touch) const
+//{
+//    Vec2 point = touch->getLocation();
+//    return this->convertToNodeSpaceAR(point);
+//}
 
 void Node::updateTransform()
 {

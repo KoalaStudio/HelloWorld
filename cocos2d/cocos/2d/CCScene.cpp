@@ -28,8 +28,8 @@ THE SOFTWARE.
 #include "2d/CCScene.h"
 #include "base/CCDirector.h"
 #include "2d/CCCamera.h"
-#include "base/CCEventDispatcher.h"
-#include "base/CCEventListenerCustom.h"
+//#include "base/CCEventDispatcher.h"
+//#include "base/CCEventListenerCustom.h"
 #include "renderer/CCRenderer.h"
 //#include "deprecated/CCString.h"
 #include "ccUTF8.h"
@@ -54,8 +54,8 @@ Scene::Scene()
     _defaultCamera = Camera::create();
     addChild(_defaultCamera);
     
-    _event = Director::getInstance()->getEventDispatcher()->addCustomEventListener(Director::EVENT_PROJECTION_CHANGED, std::bind(&Scene::onProjectionChanged, this, std::placeholders::_1));
-    _event->retain();
+//    _event = Director::getInstance()->getEventDispatcher()->addCustomEventListener(Director::EVENT_PROJECTION_CHANGED, std::bind(&Scene::onProjectionChanged, this, std::placeholders::_1));
+//    _event->retain();
 }
 
 Scene::~Scene()
@@ -63,8 +63,8 @@ Scene::~Scene()
 #if CC_USE_PHYSICS
     CC_SAFE_DELETE(_physicsWorld);
 #endif
-    Director::getInstance()->getEventDispatcher()->removeEventListener(_event);
-    CC_SAFE_RELEASE(_event);
+//    Director::getInstance()->getEventDispatcher()->removeEventListener(_event);
+//    CC_SAFE_RELEASE(_event);
 }
 
 bool Scene::init()

@@ -513,36 +513,6 @@
 		50ABBE421925AB6F00A911A9 /* CCDirector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDD21925AB6E00A911A9 /* CCDirector.cpp */; };
 		50ABBE431925AB6F00A911A9 /* CCDirector.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDD31925AB6E00A911A9 /* CCDirector.h */; };
 		50ABBE441925AB6F00A911A9 /* CCDirector.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDD31925AB6E00A911A9 /* CCDirector.h */; };
-		50ABBE451925AB6F00A911A9 /* CCEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDD41925AB6E00A911A9 /* CCEvent.cpp */; };
-		50ABBE461925AB6F00A911A9 /* CCEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDD41925AB6E00A911A9 /* CCEvent.cpp */; };
-		50ABBE471925AB6F00A911A9 /* CCEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDD51925AB6E00A911A9 /* CCEvent.h */; };
-		50ABBE481925AB6F00A911A9 /* CCEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDD51925AB6E00A911A9 /* CCEvent.h */; };
-		50ABBE4D1925AB6F00A911A9 /* CCEventCustom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDD81925AB6E00A911A9 /* CCEventCustom.cpp */; };
-		50ABBE4E1925AB6F00A911A9 /* CCEventCustom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDD81925AB6E00A911A9 /* CCEventCustom.cpp */; };
-		50ABBE4F1925AB6F00A911A9 /* CCEventCustom.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDD91925AB6E00A911A9 /* CCEventCustom.h */; };
-		50ABBE501925AB6F00A911A9 /* CCEventCustom.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDD91925AB6E00A911A9 /* CCEventCustom.h */; };
-		50ABBE511925AB6F00A911A9 /* CCEventDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDDA1925AB6E00A911A9 /* CCEventDispatcher.cpp */; };
-		50ABBE521925AB6F00A911A9 /* CCEventDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDDA1925AB6E00A911A9 /* CCEventDispatcher.cpp */; };
-		50ABBE531925AB6F00A911A9 /* CCEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDDB1925AB6E00A911A9 /* CCEventDispatcher.h */; };
-		50ABBE541925AB6F00A911A9 /* CCEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDDB1925AB6E00A911A9 /* CCEventDispatcher.h */; };
-		50ABBE5D1925AB6F00A911A9 /* CCEventListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDE01925AB6E00A911A9 /* CCEventListener.cpp */; };
-		50ABBE5E1925AB6F00A911A9 /* CCEventListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDE01925AB6E00A911A9 /* CCEventListener.cpp */; };
-		50ABBE5F1925AB6F00A911A9 /* CCEventListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDE11925AB6E00A911A9 /* CCEventListener.h */; };
-		50ABBE601925AB6F00A911A9 /* CCEventListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDE11925AB6E00A911A9 /* CCEventListener.h */; };
-		50ABBE651925AB6F00A911A9 /* CCEventListenerCustom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDE41925AB6E00A911A9 /* CCEventListenerCustom.cpp */; };
-		50ABBE661925AB6F00A911A9 /* CCEventListenerCustom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDE41925AB6E00A911A9 /* CCEventListenerCustom.cpp */; };
-		50ABBE671925AB6F00A911A9 /* CCEventListenerCustom.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDE51925AB6E00A911A9 /* CCEventListenerCustom.h */; };
-		50ABBE681925AB6F00A911A9 /* CCEventListenerCustom.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDE51925AB6E00A911A9 /* CCEventListenerCustom.h */; };
-		50ABBE751925AB6F00A911A9 /* CCEventListenerTouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDEC1925AB6E00A911A9 /* CCEventListenerTouch.cpp */; };
-		50ABBE761925AB6F00A911A9 /* CCEventListenerTouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDEC1925AB6E00A911A9 /* CCEventListenerTouch.cpp */; };
-		50ABBE771925AB6F00A911A9 /* CCEventListenerTouch.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDED1925AB6E00A911A9 /* CCEventListenerTouch.h */; };
-		50ABBE781925AB6F00A911A9 /* CCEventListenerTouch.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDED1925AB6E00A911A9 /* CCEventListenerTouch.h */; };
-		50ABBE7D1925AB6F00A911A9 /* CCEventTouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDF01925AB6E00A911A9 /* CCEventTouch.cpp */; };
-		50ABBE7E1925AB6F00A911A9 /* CCEventTouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDF01925AB6E00A911A9 /* CCEventTouch.cpp */; };
-		50ABBE7F1925AB6F00A911A9 /* CCEventTouch.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDF11925AB6E00A911A9 /* CCEventTouch.h */; };
-		50ABBE801925AB6F00A911A9 /* CCEventTouch.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDF11925AB6E00A911A9 /* CCEventTouch.h */; };
-		50ABBE811925AB6F00A911A9 /* CCEventType.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDF21925AB6E00A911A9 /* CCEventType.h */; };
-		50ABBE821925AB6F00A911A9 /* CCEventType.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDF21925AB6E00A911A9 /* CCEventType.h */; };
 		50ABBE871925AB6F00A911A9 /* ccMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDF51925AB6E00A911A9 /* ccMacros.h */; };
 		50ABBE881925AB6F00A911A9 /* ccMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDF51925AB6E00A911A9 /* ccMacros.h */; };
 		50ABBE891925AB6F00A911A9 /* CCMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDF61925AB6E00A911A9 /* CCMap.h */; };
@@ -557,10 +527,6 @@
 		50ABBE9A1925AB6F00A911A9 /* CCRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDFE1925AB6E00A911A9 /* CCRef.cpp */; };
 		50ABBE9B1925AB6F00A911A9 /* CCRef.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDFF1925AB6E00A911A9 /* CCRef.h */; };
 		50ABBE9C1925AB6F00A911A9 /* CCRef.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDFF1925AB6E00A911A9 /* CCRef.h */; };
-		50ABBEA71925AB6F00A911A9 /* CCTouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBE051925AB6E00A911A9 /* CCTouch.cpp */; };
-		50ABBEA81925AB6F00A911A9 /* CCTouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBE051925AB6E00A911A9 /* CCTouch.cpp */; };
-		50ABBEA91925AB6F00A911A9 /* CCTouch.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBE061925AB6E00A911A9 /* CCTouch.h */; };
-		50ABBEAA1925AB6F00A911A9 /* CCTouch.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBE061925AB6E00A911A9 /* CCTouch.h */; };
 		50ABBEAB1925AB6F00A911A9 /* ccTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBE071925AB6E00A911A9 /* ccTypes.cpp */; };
 		50ABBEAC1925AB6F00A911A9 /* ccTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBE071925AB6E00A911A9 /* ccTypes.cpp */; };
 		50ABBEAD1925AB6F00A911A9 /* ccTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBE081925AB6E00A911A9 /* ccTypes.h */; };
@@ -958,21 +924,6 @@
 		50ABBDCF1925AB6E00A911A9 /* CCData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCData.h; path = ../base/CCData.h; sourceTree = "<group>"; };
 		50ABBDD21925AB6E00A911A9 /* CCDirector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCDirector.cpp; path = ../base/CCDirector.cpp; sourceTree = "<group>"; };
 		50ABBDD31925AB6E00A911A9 /* CCDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCDirector.h; path = ../base/CCDirector.h; sourceTree = "<group>"; };
-		50ABBDD41925AB6E00A911A9 /* CCEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCEvent.cpp; path = ../base/CCEvent.cpp; sourceTree = "<group>"; };
-		50ABBDD51925AB6E00A911A9 /* CCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCEvent.h; path = ../base/CCEvent.h; sourceTree = "<group>"; };
-		50ABBDD81925AB6E00A911A9 /* CCEventCustom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCEventCustom.cpp; path = ../base/CCEventCustom.cpp; sourceTree = "<group>"; };
-		50ABBDD91925AB6E00A911A9 /* CCEventCustom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCEventCustom.h; path = ../base/CCEventCustom.h; sourceTree = "<group>"; };
-		50ABBDDA1925AB6E00A911A9 /* CCEventDispatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCEventDispatcher.cpp; path = ../base/CCEventDispatcher.cpp; sourceTree = "<group>"; };
-		50ABBDDB1925AB6E00A911A9 /* CCEventDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCEventDispatcher.h; path = ../base/CCEventDispatcher.h; sourceTree = "<group>"; };
-		50ABBDE01925AB6E00A911A9 /* CCEventListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCEventListener.cpp; path = ../base/CCEventListener.cpp; sourceTree = "<group>"; };
-		50ABBDE11925AB6E00A911A9 /* CCEventListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCEventListener.h; path = ../base/CCEventListener.h; sourceTree = "<group>"; };
-		50ABBDE41925AB6E00A911A9 /* CCEventListenerCustom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCEventListenerCustom.cpp; path = ../base/CCEventListenerCustom.cpp; sourceTree = "<group>"; };
-		50ABBDE51925AB6E00A911A9 /* CCEventListenerCustom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCEventListenerCustom.h; path = ../base/CCEventListenerCustom.h; sourceTree = "<group>"; };
-		50ABBDEC1925AB6E00A911A9 /* CCEventListenerTouch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCEventListenerTouch.cpp; path = ../base/CCEventListenerTouch.cpp; sourceTree = "<group>"; };
-		50ABBDED1925AB6E00A911A9 /* CCEventListenerTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCEventListenerTouch.h; path = ../base/CCEventListenerTouch.h; sourceTree = "<group>"; };
-		50ABBDF01925AB6E00A911A9 /* CCEventTouch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCEventTouch.cpp; path = ../base/CCEventTouch.cpp; sourceTree = "<group>"; };
-		50ABBDF11925AB6E00A911A9 /* CCEventTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCEventTouch.h; path = ../base/CCEventTouch.h; sourceTree = "<group>"; };
-		50ABBDF21925AB6E00A911A9 /* CCEventType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCEventType.h; path = ../base/CCEventType.h; sourceTree = "<group>"; };
 		50ABBDF51925AB6E00A911A9 /* ccMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ccMacros.h; path = ../base/ccMacros.h; sourceTree = "<group>"; };
 		50ABBDF61925AB6E00A911A9 /* CCMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCMap.h; path = ../base/CCMap.h; sourceTree = "<group>"; };
 		50ABBDFB1925AB6E00A911A9 /* CCProfiling.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCProfiling.cpp; path = ../base/CCProfiling.cpp; sourceTree = "<group>"; };
@@ -980,8 +931,6 @@
 		50ABBDFD1925AB6E00A911A9 /* CCProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCProtocols.h; path = ../base/CCProtocols.h; sourceTree = "<group>"; };
 		50ABBDFE1925AB6E00A911A9 /* CCRef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCRef.cpp; path = ../base/CCRef.cpp; sourceTree = "<group>"; };
 		50ABBDFF1925AB6E00A911A9 /* CCRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCRef.h; path = ../base/CCRef.h; sourceTree = "<group>"; };
-		50ABBE051925AB6E00A911A9 /* CCTouch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCTouch.cpp; path = ../base/CCTouch.cpp; sourceTree = "<group>"; };
-		50ABBE061925AB6E00A911A9 /* CCTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCTouch.h; path = ../base/CCTouch.h; sourceTree = "<group>"; };
 		50ABBE071925AB6E00A911A9 /* ccTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ccTypes.cpp; path = ../base/ccTypes.cpp; sourceTree = "<group>"; };
 		50ABBE081925AB6E00A911A9 /* ccTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ccTypes.h; path = ../base/ccTypes.h; sourceTree = "<group>"; };
 		50ABBE0D1925AB6F00A911A9 /* ccUTF8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ccUTF8.cpp; path = ../base/ccUTF8.cpp; sourceTree = "<group>"; };
@@ -1211,21 +1160,6 @@
 				50ABBDCF1925AB6E00A911A9 /* CCData.h */,
 				50ABBDD21925AB6E00A911A9 /* CCDirector.cpp */,
 				50ABBDD31925AB6E00A911A9 /* CCDirector.h */,
-				50ABBDD41925AB6E00A911A9 /* CCEvent.cpp */,
-				50ABBDD51925AB6E00A911A9 /* CCEvent.h */,
-				50ABBDD81925AB6E00A911A9 /* CCEventCustom.cpp */,
-				50ABBDD91925AB6E00A911A9 /* CCEventCustom.h */,
-				50ABBDDA1925AB6E00A911A9 /* CCEventDispatcher.cpp */,
-				50ABBDDB1925AB6E00A911A9 /* CCEventDispatcher.h */,
-				50ABBDE01925AB6E00A911A9 /* CCEventListener.cpp */,
-				50ABBDE11925AB6E00A911A9 /* CCEventListener.h */,
-				50ABBDE41925AB6E00A911A9 /* CCEventListenerCustom.cpp */,
-				50ABBDE51925AB6E00A911A9 /* CCEventListenerCustom.h */,
-				50ABBDEC1925AB6E00A911A9 /* CCEventListenerTouch.cpp */,
-				50ABBDED1925AB6E00A911A9 /* CCEventListenerTouch.h */,
-				50ABBDF01925AB6E00A911A9 /* CCEventTouch.cpp */,
-				50ABBDF11925AB6E00A911A9 /* CCEventTouch.h */,
-				50ABBDF21925AB6E00A911A9 /* CCEventType.h */,
 				50ABBDF51925AB6E00A911A9 /* ccMacros.h */,
 				50ABBDF61925AB6E00A911A9 /* CCMap.h */,
 				50ABBDFB1925AB6E00A911A9 /* CCProfiling.cpp */,
@@ -1233,8 +1167,6 @@
 				50ABBDFD1925AB6E00A911A9 /* CCProtocols.h */,
 				50ABBDFE1925AB6E00A911A9 /* CCRef.cpp */,
 				50ABBDFF1925AB6E00A911A9 /* CCRef.h */,
-				50ABBE051925AB6E00A911A9 /* CCTouch.cpp */,
-				50ABBE061925AB6E00A911A9 /* CCTouch.h */,
 				50ABBE071925AB6E00A911A9 /* ccTypes.cpp */,
 				50ABBE081925AB6E00A911A9 /* ccTypes.h */,
 				50ABBE0D1925AB6F00A911A9 /* ccUTF8.cpp */,
@@ -2091,7 +2023,6 @@
 				50ABBEC31925AB6F00A911A9 /* CCVector.h in Headers */,
 				50ABBD8D1925AB4100A911A9 /* CCGLProgram.h in Headers */,
 				50ABBDB71925AB4100A911A9 /* CCTexture2D.h in Headers */,
-				50ABBE811925AB6F00A911A9 /* CCEventType.h in Headers */,
 				50ABBD4A1925AB0000A911A9 /* Mat4.h in Headers */,
 				15AE1A6919AAD40300C27E9E /* b2WorldCallbacks.h in Headers */,
 				1A5700A0180BC5D20088DEC7 /* CCNode.h in Headers */,
@@ -2110,7 +2041,6 @@
 				15AE1A6519AAD40300C27E9E /* b2TimeStep.h in Headers */,
 				50ABBED91925AB6F00A911A9 /* ZipUtils.h in Headers */,
 				50643BDB19BFAF4400EF68ED /* CCStdC.h in Headers */,
-				50ABBE5F1925AB6F00A911A9 /* CCEventListener.h in Headers */,
 				5034CA37191D591100CE6051 /* ccShader_PositionColorLengthTexture.vert in Headers */,
 				15AE1A3319AAD3D500C27E9E /* b2CircleShape.h in Headers */,
 				1A5701E0180BCB8C0088DEC7 /* CCLayer.h in Headers */,
@@ -2132,7 +2062,6 @@
 				5034CA2F191D591100CE6051 /* ccShader_PositionTexture.vert in Headers */,
 				50ABBE951925AB6F00A911A9 /* CCProfiling.h in Headers */,
 				5034CA4B191D591100CE6051 /* ccShader_Label_df_glow.frag in Headers */,
-				50ABBE4F1925AB6F00A911A9 /* CCEventCustom.h in Headers */,
 				50ABBD521925AB0000A911A9 /* Quaternion.h in Headers */,
 				15FB20951AE7C57D00C31518 /* cdt.h in Headers */,
 				50643BE219BFCF1800EF68ED /* CCPlatformConfig.h in Headers */,
@@ -2189,7 +2118,6 @@
 				15AE1A8D19AAD40300C27E9E /* b2RevoluteJoint.h in Headers */,
 				50ABBE291925AB6F00A911A9 /* CCAutoreleasePool.h in Headers */,
 				15AE1A2F19AAD3D500C27E9E /* b2TimeOfImpact.h in Headers */,
-				50ABBE471925AB6F00A911A9 /* CCEvent.h in Headers */,
 				B257B4501989D5E800D9A687 /* CCPrimitive.h in Headers */,
 				50ABBDA51925AB4100A911A9 /* CCQuadCommand.h in Headers */,
 				15AE1A3519AAD3D500C27E9E /* b2EdgeShape.h in Headers */,
@@ -2202,13 +2130,11 @@
 				50ABC0231926664800A911A9 /* CCGLViewImpl-desktop.h in Headers */,
 				50ABBFFD1926664800A911A9 /* CCFileUtils-apple.h in Headers */,
 				5034CA41191D591100CE6051 /* ccShader_Position_uColor.frag in Headers */,
-				50ABBE7F1925AB6F00A911A9 /* CCEventTouch.h in Headers */,
 				50ABC00F1926664800A911A9 /* CCFileUtils.h in Headers */,
 				15AE1A3719AAD3D500C27E9E /* b2PolygonShape.h in Headers */,
 				50ABBE3B1925AB6F00A911A9 /* CCData.h in Headers */,
 				50ABBD9D1925AB4100A911A9 /* ccGLStateCache.h in Headers */,
 				50ABBEB91925AB6F00A911A9 /* ccUTF8.h in Headers */,
-				50ABBE671925AB6F00A911A9 /* CCEventListenerCustom.h in Headers */,
 				50ABBE2F1925AB6F00A911A9 /* ccConfig.h in Headers */,
 				50ABC0031926664800A911A9 /* CCLock-apple.h in Headers */,
 				50ABBE2D1925AB6F00A911A9 /* ccCArray.h in Headers */,
@@ -2219,19 +2145,16 @@
 				50ABBDB31925AB4100A911A9 /* ccShaders.h in Headers */,
 				50ABBDAB1925AB4100A911A9 /* CCRenderCommandPool.h in Headers */,
 				5034CA45191D591100CE6051 /* ccShader_Label_outline.frag in Headers */,
-				50ABBEA91925AB6F00A911A9 /* CCTouch.h in Headers */,
 				15AE1A5E19AAD40300C27E9E /* b2Body.h in Headers */,
 				50ABBE971925AB6F00A911A9 /* CCProtocols.h in Headers */,
 				50ABC0691926664800A911A9 /* CCStdC-mac.h in Headers */,
 				15AE1A2B19AAD3D500C27E9E /* b2Distance.h in Headers */,
 				3EACC9A219F5014D00EB3C5E /* CCCamera.h in Headers */,
-				50ABBE771925AB6F00A911A9 /* CCEventListenerTouch.h in Headers */,
 				5034CA33191D591100CE6051 /* ccShader_PositionTexture_uColor.frag in Headers */,
 				50ABC0171926664800A911A9 /* CCImage.h in Headers */,
 				50ABBDA91925AB4100A911A9 /* CCRenderCommand.h in Headers */,
 				50ABBD951925AB4100A911A9 /* CCGLProgramState.h in Headers */,
 				50ABC0091926664800A911A9 /* CCCommon.h in Headers */,
-				50ABBE531925AB6F00A911A9 /* CCEventDispatcher.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2268,11 +2191,9 @@
 				50643BD619BFAEDA00EF68ED /* CCPlatformDefine.h in Headers */,
 				5034CA3A191D591100CE6051 /* ccShader_PositionColorLengthTexture.frag in Headers */,
 				50ABBEC41925AB6F00A911A9 /* CCVector.h in Headers */,
-				50ABBE501925AB6F00A911A9 /* CCEventCustom.h in Headers */,
 				15AE1AD719AAD40300C27E9E /* b2WheelJoint.h in Headers */,
 				5034CA46191D591100CE6051 /* ccShader_Label_outline.frag in Headers */,
 				50ABBD631925AB0000A911A9 /* Vec4.h in Headers */,
-				50ABBE781925AB6F00A911A9 /* CCEventListenerTouch.h in Headers */,
 				50ABC0141926664800A911A9 /* CCGLView.h in Headers */,
 				50ABBD9E1925AB4100A911A9 /* ccGLStateCache.h in Headers */,
 				DA8C62A519E52C6400000516 /* ioapi_mem.h in Headers */,
@@ -2301,7 +2222,6 @@
 				15AE1AAD19AAD40300C27E9E /* b2WorldCallbacks.h in Headers */,
 				15AE1A4C19AAD3D500C27E9E /* b2EdgeShape.h in Headers */,
 				15AE1A4819AAD3D500C27E9E /* b2ChainShape.h in Headers */,
-				50ABBE681925AB6F00A911A9 /* CCEventListenerCustom.h in Headers */,
 				15AE1AA619AAD40300C27E9E /* b2Fixture.h in Headers */,
 				5034CA42191D591100CE6051 /* ccShader_Position_uColor.frag in Headers */,
 				50ABBDA61925AB4100A911A9 /* CCQuadCommand.h in Headers */,
@@ -2341,7 +2261,6 @@
 				15AE1AAB19AAD40300C27E9E /* b2World.h in Headers */,
 				50ABBE341925AB6F00A911A9 /* CCConfiguration.h in Headers */,
 				15AE1ABF19AAD40300C27E9E /* b2PolygonContact.h in Headers */,
-				50ABBEAA1925AB6F00A911A9 /* CCTouch.h in Headers */,
 				15AE1AC319AAD40300C27E9E /* b2DistanceJoint.h in Headers */,
 				15AE1AA019AAD40300C27E9E /* b2Timer.h in Headers */,
 				5034CA44191D591100CE6051 /* ccShader_Label.vert in Headers */,
@@ -2373,7 +2292,6 @@
 				50ABBE3C1925AB6F00A911A9 /* CCData.h in Headers */,
 				50ABBDB01925AB4100A911A9 /* CCRenderer.h in Headers */,
 				50ABBD861925AB4100A911A9 /* CCBatchCommand.h in Headers */,
-				50ABBE481925AB6F00A911A9 /* CCEvent.h in Headers */,
 				5027253B190BF1B900AAF4ED /* cocos2d.h in Headers */,
 				15AE1A9719AAD40300C27E9E /* b2Draw.h in Headers */,
 				50ABBD921925AB4100A911A9 /* CCGLProgramCache.h in Headers */,
@@ -2383,15 +2301,12 @@
 				50ABC0081926664800A911A9 /* CCApplicationProtocol.h in Headers */,
 				15AE1ACF19AAD40300C27E9E /* b2PulleyJoint.h in Headers */,
 				50ABBD4F1925AB0000A911A9 /* MathUtil.h in Headers */,
-				50ABBE801925AB6F00A911A9 /* CCEventTouch.h in Headers */,
 				50ABBDBC1925AB4100A911A9 /* CCTextureAtlas.h in Headers */,
-				50ABBE541925AB6F00A911A9 /* CCEventDispatcher.h in Headers */,
 				15AE1AD119AAD40300C27E9E /* b2RevoluteJoint.h in Headers */,
 				50643BD519BFAECF00EF68ED /* CCGL.h in Headers */,
 				15AE1AA419AAD40300C27E9E /* b2ContactManager.h in Headers */,
 				B276EF601988D1D500CD400F /* CCVertexIndexData.h in Headers */,
 				50ABBD5F1925AB0000A911A9 /* Vec3.h in Headers */,
-				50ABBE821925AB6F00A911A9 /* CCEventType.h in Headers */,
 				50ABBD471925AB0000A911A9 /* CCVertex.h in Headers */,
 				15AE1A4219AAD3D500C27E9E /* b2Distance.h in Headers */,
 				15AE1AC119AAD40300C27E9E /* b2MotorJoint.h in Headers */,
@@ -2411,7 +2326,6 @@
 				503DD8F11926736A00CD74DD /* OpenGL_Internal-ios.h in Headers */,
 				50ABBDAA1925AB4100A911A9 /* CCRenderCommand.h in Headers */,
 				15AE1A4619AAD3D500C27E9E /* b2TimeOfImpact.h in Headers */,
-				50ABBE601925AB6F00A911A9 /* CCEventListener.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2516,7 +2430,6 @@
 				50ABBEBF1925AB6F00A911A9 /* CCValue.cpp in Sources */,
 				1A57009E180BC5D20088DEC7 /* CCNode.cpp in Sources */,
 				B257B460198A353E00D9A687 /* CCPrimitiveCommand.cpp in Sources */,
-				50ABBE651925AB6F00A911A9 /* CCEventListenerCustom.cpp in Sources */,
 				50ABBE391925AB6F00A911A9 /* CCData.cpp in Sources */,
 				50ABBED71925AB6F00A911A9 /* ZipUtils.cpp in Sources */,
 				382383FA1A258FA7002C4610 /* idl_gen_go.cpp in Sources */,
@@ -2550,7 +2463,6 @@
 				50ABBE351925AB6F00A911A9 /* CCConsole.cpp in Sources */,
 				15AE1A2E19AAD3D500C27E9E /* b2TimeOfImpact.cpp in Sources */,
 				50ABC0111926664800A911A9 /* CCGLView.cpp in Sources */,
-				50ABBE7D1925AB6F00A911A9 /* CCEventTouch.cpp in Sources */,
 				50ABBD971925AB4100A911A9 /* CCGLProgramStateCache.cpp in Sources */,
 				15AE1AD819AAD41000C27E9E /* b2Rope.cpp in Sources */,
 				15AE1A7C19AAD40300C27E9E /* b2MotorJoint.cpp in Sources */,
@@ -2573,7 +2485,6 @@
 				1A570354180BD0B00088DEC7 /* ioapi.cpp in Sources */,
 				1A570358180BD0B00088DEC7 /* unzip.cpp in Sources */,
 				382383FC1A258FA7002C4610 /* idl_gen_text.cpp in Sources */,
-				50ABBEA71925AB6F00A911A9 /* CCTouch.cpp in Sources */,
 				15FB209B1AE7C57D00C31518 /* sweep_context.cc in Sources */,
 				15AE1A7619AAD40300C27E9E /* b2EdgeAndPolygonContact.cpp in Sources */,
 				50ABBD8B1925AB4100A911A9 /* CCGLProgram.cpp in Sources */,
@@ -2585,8 +2496,6 @@
 				50ABBD8F1925AB4100A911A9 /* CCGLProgramCache.cpp in Sources */,
 				50ABBD441925AB0000A911A9 /* CCVertex.cpp in Sources */,
 				B276EF611988D1D500CD400F /* CCVertexIndexData.cpp in Sources */,
-				50ABBE751925AB6F00A911A9 /* CCEventListenerTouch.cpp in Sources */,
-				50ABBE511925AB6F00A911A9 /* CCEventDispatcher.cpp in Sources */,
 				50ABC0051926664800A911A9 /* CCThread-apple.mm in Sources */,
 				50ABC0631926664800A911A9 /* CCDevice-mac.mm in Sources */,
 				15AE1A2819AAD3D500C27E9E /* b2Collision.cpp in Sources */,
@@ -2598,7 +2507,6 @@
 				50ABBD9B1925AB4100A911A9 /* ccGLStateCache.cpp in Sources */,
 				50ABBDB91925AB4100A911A9 /* CCTextureAtlas.cpp in Sources */,
 				15AE1A3219AAD3D500C27E9E /* b2CircleShape.cpp in Sources */,
-				50ABBE451925AB6F00A911A9 /* CCEvent.cpp in Sources */,
 				50ABBD9F1925AB4100A911A9 /* CCGroupCommand.cpp in Sources */,
 				15AE1A8E19AAD40300C27E9E /* b2RopeJoint.cpp in Sources */,
 				50ABBD871925AB4100A911A9 /* CCCustomCommand.cpp in Sources */,
@@ -2606,12 +2514,10 @@
 				15AE1A7E19AAD40300C27E9E /* b2DistanceJoint.cpp in Sources */,
 				50ABC0211926664800A911A9 /* CCGLViewImpl-desktop.cpp in Sources */,
 				50ABC00D1926664800A911A9 /* CCFileUtils.cpp in Sources */,
-				50ABBE4D1925AB6F00A911A9 /* CCEventCustom.cpp in Sources */,
 				15AE1A6819AAD40300C27E9E /* b2WorldCallbacks.cpp in Sources */,
 				50ABC0151926664800A911A9 /* CCImage.cpp in Sources */,
 				50ABBE231925AB6F00A911A9 /* base64.cpp in Sources */,
 				15AE1A2519AAD3D500C27E9E /* b2CollideCircle.cpp in Sources */,
-				50ABBE5D1925AB6F00A911A9 /* CCEventListener.cpp in Sources */,
 				15AE1A6319AAD40300C27E9E /* b2Island.cpp in Sources */,
 				15AE1A8419AAD40300C27E9E /* b2Joint.cpp in Sources */,
 				50ABBD601925AB0000A911A9 /* Vec4.cpp in Sources */,
@@ -2650,14 +2556,10 @@
 				382383FF1A258FA7002C4610 /* idl_parser.cpp in Sources */,
 				15AE1AB619AAD40300C27E9E /* b2ContactSolver.cpp in Sources */,
 				15AE1ACA19AAD40300C27E9E /* b2MouseJoint.cpp in Sources */,
-				50ABBE7E1925AB6F00A911A9 /* CCEventTouch.cpp in Sources */,
 				15AE1A3C19AAD3D500C27E9E /* b2CollideCircle.cpp in Sources */,
 				15AE1AC819AAD40300C27E9E /* b2Joint.cpp in Sources */,
-				50ABBE461925AB6F00A911A9 /* CCEvent.cpp in Sources */,
 				15FB20881AE7C57D00C31518 /* shapes.cc in Sources */,
 				15AE1A4119AAD3D500C27E9E /* b2Distance.cpp in Sources */,
-				50ABBE4E1925AB6F00A911A9 /* CCEventCustom.cpp in Sources */,
-				50ABBE761925AB6F00A911A9 /* CCEventListenerTouch.cpp in Sources */,
 				15AE1AD219AAD40300C27E9E /* b2RopeJoint.cpp in Sources */,
 				15AE1A4919AAD3D500C27E9E /* b2CircleShape.cpp in Sources */,
 				382383F51A258FA7002C4610 /* idl_gen_cpp.cpp in Sources */,
@@ -2731,15 +2633,11 @@
 				1A570359180BD0B00088DEC7 /* unzip.cpp in Sources */,
 				50ABBD881925AB4100A911A9 /* CCCustomCommand.cpp in Sources */,
 				50ABBE941925AB6F00A911A9 /* CCProfiling.cpp in Sources */,
-				50ABBE5E1925AB6F00A911A9 /* CCEventListener.cpp in Sources */,
-				50ABBEA81925AB6F00A911A9 /* CCTouch.cpp in Sources */,
 				15AE1A9619AAD40300C27E9E /* b2Draw.cpp in Sources */,
 				503DD8E91926736A00CD74DD /* CCES2Renderer-ios.m in Sources */,
 				5027253D190BF1B900AAF4ED /* cocos2d.cpp in Sources */,
-				50ABBE661925AB6F00A911A9 /* CCEventListenerCustom.cpp in Sources */,
 				50ABBDB21925AB4100A911A9 /* ccShaders.cpp in Sources */,
 				50ABBD451925AB0000A911A9 /* CCVertex.cpp in Sources */,
-				50ABBE521925AB6F00A911A9 /* CCEventDispatcher.cpp in Sources */,
 				50ABBD391925AB0000A911A9 /* CCAffineTransform.cpp in Sources */,
 				50ABBD841925AB4100A911A9 /* CCBatchCommand.cpp in Sources */,
 				50ABBDA81925AB4100A911A9 /* CCRenderCommand.cpp in Sources */,
