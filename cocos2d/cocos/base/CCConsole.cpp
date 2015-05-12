@@ -65,7 +65,7 @@
 #include "2d/CCScene.h"
 #include "platform/CCFileUtils.h"
 #include "renderer/CCTextureCache.h"
-#include "base/base64.h"
+//#include "base/base64.h"
 //#include "base/ccUtils.h"
 //#include "base/allocator/CCAllocatorDiagnostics.h"
 NS_CC_BEGIN
@@ -319,7 +319,7 @@ Console::Console()
 //        { "texture", "Flush or print the TextureCache info. Args: [flush | ] ", std::bind(&Console::commandTextures, this, std::placeholders::_1, std::placeholders::_2) },
 //        { "director", "director commands, type -h or [director help] to list supported directives", std::bind(&Console::commandDirector, this, std::placeholders::_1, std::placeholders::_2) },
 //        { "touch", "simulate touch event via console, type -h or [touch help] to list supported directives", std::bind(&Console::commandTouch, this, std::placeholders::_1, std::placeholders::_2) },
-        { "upload", "upload file. Args: [filename base64_encoded_data]", std::bind(&Console::commandUpload, this, std::placeholders::_1) },
+//        { "upload", "upload file. Args: [filename base64_encoded_data]", std::bind(&Console::commandUpload, this, std::placeholders::_1) },
         { "version", "print version string ", [](int fd, const std::string& args) {
             mydprintf(fd, "%s\n", cocos2dVersion());
         } },
@@ -438,7 +438,7 @@ bool Console::listenOnFileDescriptor(int fd)
     }
 
     _listenfd = fd;
-    _thread = std::thread( std::bind( &Console::loop, this) );
+//    _thread = std::thread( std::bind( &Console::loop, this) );
 
     return true;
 }
@@ -830,80 +830,80 @@ void Console::commandAllocator(int fd, const std::string& args)
 
 static char invalid_filename_char[] = {':', '/', '\\', '?', '%', '*', '<', '>', '"', '|', '\r', '\n', '\t'};
 
-void Console::commandUpload(int fd)
-{
-    ssize_t n, rc;
-    char buf[512], c;
-    char *ptr = buf;
-    //read file name
-    for( n = 0; n < sizeof(buf) - 1; n++ )
-    {
-        if( (rc = recv(fd, &c, 1, 0)) ==1 ) 
-        {
-            for(char x : invalid_filename_char)
-            {
-                if(c == x)
-                {
-                    const char err[] = "upload: invalid file name!\n";
-                    send(fd, err, sizeof(err),0);
-                    return;
-                }
-            }
-            if(c == ' ') 
-            {
-                break;
-            }
-            *ptr++ = c;
-        } 
-        else if( rc == 0 ) 
-        {
-            break;
-        } 
-        else if( errno == EINTR ) 
-        {
-            continue;
-        } 
-        else 
-        {
-            break;
-        }
-    }
-    *ptr = 0;
-
-    std::string filepath = _writablePath + std::string(buf);
-
-    FILE* fp = fopen(filepath.c_str(), "wb");
-    if(!fp)
-    {
-        const char err[] = "can't create file!\n";
-        send(fd, err, sizeof(err),0);
-        return;
-    }
-    
-    while (true) 
-    {
-        char data[4];
-        for(int i = 0; i < 4; i++)
-        {
-            data[i] = '=';
-        }
-        bool more_data;
-        readBytes(fd, data, 4, &more_data);
-        if(!more_data)
-        {
-            break;
-        }
-        unsigned char *decode;
-        unsigned char *in = (unsigned char *)data;
-        int dt = base64Decode(in, 4, &decode);
-        for(int i = 0; i < dt; i++)
-        {
-            fwrite(decode+i, 1, 1, fp);
-        }
-        free(decode);
-    }
-    fclose(fp);
-}
+//void Console::commandUpload(int fd)
+//{
+//    ssize_t n, rc;
+//    char buf[512], c;
+//    char *ptr = buf;
+//    //read file name
+//    for( n = 0; n < sizeof(buf) - 1; n++ )
+//    {
+//        if( (rc = recv(fd, &c, 1, 0)) ==1 ) 
+//        {
+//            for(char x : invalid_filename_char)
+//            {
+//                if(c == x)
+//                {
+//                    const char err[] = "upload: invalid file name!\n";
+//                    send(fd, err, sizeof(err),0);
+//                    return;
+//                }
+//            }
+//            if(c == ' ') 
+//            {
+//                break;
+//            }
+//            *ptr++ = c;
+//        } 
+//        else if( rc == 0 ) 
+//        {
+//            break;
+//        } 
+//        else if( errno == EINTR ) 
+//        {
+//            continue;
+//        } 
+//        else 
+//        {
+//            break;
+//        }
+//    }
+//    *ptr = 0;
+//
+//    std::string filepath = _writablePath + std::string(buf);
+//
+//    FILE* fp = fopen(filepath.c_str(), "wb");
+//    if(!fp)
+//    {
+//        const char err[] = "can't create file!\n";
+//        send(fd, err, sizeof(err),0);
+//        return;
+//    }
+//    
+//    while (true) 
+//    {
+//        char data[4];
+//        for(int i = 0; i < 4; i++)
+//        {
+//            data[i] = '=';
+//        }
+//        bool more_data;
+//        readBytes(fd, data, 4, &more_data);
+//        if(!more_data)
+//        {
+//            break;
+//        }
+//        unsigned char *decode;
+//        unsigned char *in = (unsigned char *)data;
+//        int dt = base64Decode(in, 4, &decode);
+//        for(int i = 0; i < dt; i++)
+//        {
+//            fwrite(decode+i, 1, 1, fp);
+//        }
+//        free(decode);
+//    }
+//    fclose(fp);
+//}
 
 ssize_t Console::readBytes(int fd, char* buffer, size_t maxlen, bool* more)
 {
@@ -928,87 +928,87 @@ ssize_t Console::readBytes(int fd, char* buffer, size_t maxlen, bool* more)
     return n;
 }
 
-bool Console::parseCommand(int fd)
-{
-    char buf[512];
-    bool more_data;
-    auto h = readBytes(fd, buf, 6, &more_data);
-    if( h < 0)
-    {
-        return false;
-    }
-    if(strncmp(buf, "upload", 6) == 0)
-    {
-        char c = '\0';
-        recv(fd, &c, 1, 0);
-        if(c == ' ')
-        {
-            commandUpload(fd);
-            sendPrompt(fd);
-            return true;
-        }
-        else
-        {
-            const char err[] = "upload: invalid args! Type 'help' for options\n";
-            send(fd, err, sizeof(err),0);
-            sendPrompt(fd);
-            return true;
-            
-        }
-    }
-    if(!more_data)
-    {
-        buf[h] = 0;
-    }
-    else
-    {
-        char *pb = buf + 6;
-        auto r = readline(fd, pb, sizeof(buf)-6);
-        if(r < 0)
-        {
-            const char err[] = "Unknown error!\n";
-            sendPrompt(fd);
-            send(fd, err, sizeof(err),0);
-            return false;
-        }
-    }
-    std::string cmdLine;
-
-    std::vector<std::string> args;
-    cmdLine = std::string(buf);
-   
-    args = split(cmdLine, ' ');
-    if(args.empty())
-    {
-        const char err[] = "Unknown command. Type 'help' for options\n";
-        send(fd, err, sizeof(err),0);
-        sendPrompt(fd);
-        return true;
-    }
-
-    auto it = _commands.find(trim(args[0]));
-    if(it != _commands.end())
-    {
-        std::string args2;
-        for(size_t i = 1; i < args.size(); ++i)
-        {   
-            if(i > 1)
-            {
-                args2 += ' ';
-            }
-            args2 += trim(args[i]);
-            
-        }
-        auto cmd = it->second;
-        cmd.callback(fd, args2);
-    }else if(strcmp(buf, "\r\n") != 0) {
-        const char err[] = "Unknown command. Type 'help' for options\n";
-        send(fd, err, sizeof(err),0);
-    }
-    sendPrompt(fd);
-
-    return true;
-}
+//bool Console::parseCommand(int fd)
+//{
+//    char buf[512];
+//    bool more_data;
+//    auto h = readBytes(fd, buf, 6, &more_data);
+//    if( h < 0)
+//    {
+//        return false;
+//    }
+//    if(strncmp(buf, "upload", 6) == 0)
+//    {
+//        char c = '\0';
+//        recv(fd, &c, 1, 0);
+//        if(c == ' ')
+//        {
+//            commandUpload(fd);
+//            sendPrompt(fd);
+//            return true;
+//        }
+//        else
+//        {
+//            const char err[] = "upload: invalid args! Type 'help' for options\n";
+//            send(fd, err, sizeof(err),0);
+//            sendPrompt(fd);
+//            return true;
+//            
+//        }
+//    }
+//    if(!more_data)
+//    {
+//        buf[h] = 0;
+//    }
+//    else
+//    {
+//        char *pb = buf + 6;
+//        auto r = readline(fd, pb, sizeof(buf)-6);
+//        if(r < 0)
+//        {
+//            const char err[] = "Unknown error!\n";
+//            sendPrompt(fd);
+//            send(fd, err, sizeof(err),0);
+//            return false;
+//        }
+//    }
+//    std::string cmdLine;
+//
+//    std::vector<std::string> args;
+//    cmdLine = std::string(buf);
+//   
+//    args = split(cmdLine, ' ');
+//    if(args.empty())
+//    {
+//        const char err[] = "Unknown command. Type 'help' for options\n";
+//        send(fd, err, sizeof(err),0);
+//        sendPrompt(fd);
+//        return true;
+//    }
+//
+//    auto it = _commands.find(trim(args[0]));
+//    if(it != _commands.end())
+//    {
+//        std::string args2;
+//        for(size_t i = 1; i < args.size(); ++i)
+//        {   
+//            if(i > 1)
+//            {
+//                args2 += ' ';
+//            }
+//            args2 += trim(args[i]);
+//            
+//        }
+//        auto cmd = it->second;
+//        cmd.callback(fd, args2);
+//    }else if(strcmp(buf, "\r\n") != 0) {
+//        const char err[] = "Unknown command. Type 'help' for options\n";
+//        send(fd, err, sizeof(err),0);
+//    }
+//    sendPrompt(fd);
+//
+//    return true;
+//}
 
 //
 // Helpers
@@ -1071,119 +1071,119 @@ void Console::log(const char* buf)
 //
 // Main Loop
 //
-void Console::loop()
-{
-    fd_set copy_set;
-    struct timeval timeout, timeout_copy;
-
-    _running = true;
-
-    FD_ZERO(&_read_set);
-    FD_SET(_listenfd, &_read_set);
-    _maxfd = _listenfd;
-
-    timeout.tv_sec = 0;
-
-    /* 0.016 seconds. Wake up once per frame at 60PFS */
-    timeout.tv_usec = 16000;
-
-    while(!_endThread) {
-
-        copy_set = _read_set;
-        timeout_copy = timeout;
-        
-        int nready = select(_maxfd+1, &copy_set, nullptr, nullptr, &timeout_copy);
-
-        if( nready == -1 )
-        {
-            /* error */
-            if(errno != EINTR)
-                log("Abnormal error in select()\n");
-            continue;
-        }
-        else if( nready == 0 )
-        {
-            /* timeout. do somethig ? */
-        }
-        else
-        {
-            /* new client */
-            if(FD_ISSET(_listenfd, &copy_set)) {
-                addClient();
-                if(--nready <= 0)
-                    continue;
-            }
-
-            /* data from client */
-            std::vector<int> to_remove;
-            for(const auto &fd: _fds) {
-                if(FD_ISSET(fd,&copy_set)) 
-                {
-                    //fix Bug #4302 Test case ConsoleTest--ConsoleUploadFile crashed on Linux
-                    //On linux, if you send data to a closed socket, the sending process will 
-                    //receive a SIGPIPE, which will cause linux system shutdown the sending process.
-                    //Add this ioctl code to check if the socket has been closed by peer.
-                    
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
-                    u_long n = 0;
-                    ioctlsocket(fd, FIONREAD, &n);
-#else
-                    int n = 0;
-                    ioctl(fd, FIONREAD, &n);
-#endif
-                    if(n == 0)
-                    {
-                        //no data received, or fd is closed
-                        continue;
-                    }
-
-                    if( ! parseCommand(fd) )
-                    {
-                        to_remove.push_back(fd);
-                    }
-                    if(--nready <= 0)
-                        break;
-                }
-            }
-
-            /* remove closed conections */
-            for(int fd: to_remove) {
-                FD_CLR(fd, &_read_set);
-                _fds.erase(std::remove(_fds.begin(), _fds.end(), fd), _fds.end());
-            }
-        }
-
-        /* Any message for the remote console ? send it! */
-        if( !_DebugStrings.empty() ) {
-            _DebugStringsMutex.lock();
-            for(const auto &str : _DebugStrings) {
-                for(const auto &fd : _fds) {
-                    send(fd, str.c_str(), str.length(),0);
-                }
-            }
-            _DebugStrings.clear();
-            _DebugStringsMutex.unlock();
-        }
-    }
-
-    // clean up: ignore stdin, stdout and stderr
-    for(const auto &fd: _fds )
-    {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
-        closesocket(fd);
-#else
-        close(fd);
-#endif
-    }
-    
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
-    closesocket(_listenfd);
-	WSACleanup();
-#else
-    close(_listenfd);
-#endif
-    _running = false;
-}
+//void Console::loop()
+//{
+//    fd_set copy_set;
+//    struct timeval timeout, timeout_copy;
+//
+//    _running = true;
+//
+//    FD_ZERO(&_read_set);
+//    FD_SET(_listenfd, &_read_set);
+//    _maxfd = _listenfd;
+//
+//    timeout.tv_sec = 0;
+//
+//    /* 0.016 seconds. Wake up once per frame at 60PFS */
+//    timeout.tv_usec = 16000;
+//
+//    while(!_endThread) {
+//
+//        copy_set = _read_set;
+//        timeout_copy = timeout;
+//        
+//        int nready = select(_maxfd+1, &copy_set, nullptr, nullptr, &timeout_copy);
+//
+//        if( nready == -1 )
+//        {
+//            /* error */
+//            if(errno != EINTR)
+//                log("Abnormal error in select()\n");
+//            continue;
+//        }
+//        else if( nready == 0 )
+//        {
+//            /* timeout. do somethig ? */
+//        }
+//        else
+//        {
+//            /* new client */
+//            if(FD_ISSET(_listenfd, &copy_set)) {
+//                addClient();
+//                if(--nready <= 0)
+//                    continue;
+//            }
+//
+//            /* data from client */
+//            std::vector<int> to_remove;
+//            for(const auto &fd: _fds) {
+//                if(FD_ISSET(fd,&copy_set)) 
+//                {
+//                    //fix Bug #4302 Test case ConsoleTest--ConsoleUploadFile crashed on Linux
+//                    //On linux, if you send data to a closed socket, the sending process will 
+//                    //receive a SIGPIPE, which will cause linux system shutdown the sending process.
+//                    //Add this ioctl code to check if the socket has been closed by peer.
+//                    
+//#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+//                    u_long n = 0;
+//                    ioctlsocket(fd, FIONREAD, &n);
+//#else
+//                    int n = 0;
+//                    ioctl(fd, FIONREAD, &n);
+//#endif
+//                    if(n == 0)
+//                    {
+//                        //no data received, or fd is closed
+//                        continue;
+//                    }
+//
+//                    if( ! parseCommand(fd) )
+//                    {
+//                        to_remove.push_back(fd);
+//                    }
+//                    if(--nready <= 0)
+//                        break;
+//                }
+//            }
+//
+//            /* remove closed conections */
+//            for(int fd: to_remove) {
+//                FD_CLR(fd, &_read_set);
+//                _fds.erase(std::remove(_fds.begin(), _fds.end(), fd), _fds.end());
+//            }
+//        }
+//
+//        /* Any message for the remote console ? send it! */
+//        if( !_DebugStrings.empty() ) {
+//            _DebugStringsMutex.lock();
+//            for(const auto &str : _DebugStrings) {
+//                for(const auto &fd : _fds) {
+//                    send(fd, str.c_str(), str.length(),0);
+//                }
+//            }
+//            _DebugStrings.clear();
+//            _DebugStringsMutex.unlock();
+//        }
+//    }
+//
+//    // clean up: ignore stdin, stdout and stderr
+//    for(const auto &fd: _fds )
+//    {
+//#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+//        closesocket(fd);
+//#else
+//        close(fd);
+//#endif
+//    }
+//    
+//#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+//    closesocket(_listenfd);
+//	WSACleanup();
+//#else
+//    close(_listenfd);
+//#endif
+//    _running = false;
+//}
 
 void Console::setBindAddress(const std::string &address)
 {
