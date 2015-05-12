@@ -395,12 +395,12 @@ public:
     /** Gets the Scheduler associated with this director.
      * @since v2.0
      */
-    Scheduler* getScheduler() const { return _scheduler; }
+//    Scheduler* getScheduler() const { return _scheduler; }
     
     /** Sets the Scheduler associated with this director.
      * @since v2.0
      */
-    void setScheduler(Scheduler* scheduler);
+//    void setScheduler(Scheduler* scheduler);
 
     /** Gets the ActionManager associated with this director.
      * @since v2.0
@@ -516,7 +516,7 @@ protected:
     /** Scheduler associated with this director
      @since v2.0
      */
-    Scheduler *_scheduler;
+//    Scheduler *_scheduler;
     
     /** ActionManager associated with this director
      @since v2.0

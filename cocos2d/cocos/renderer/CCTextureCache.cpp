@@ -35,9 +35,9 @@ THE SOFTWARE.
 #include "renderer/CCTexture2D.h"
 #include "base/ccMacros.h"
 #include "base/CCDirector.h"
-#include "base/CCScheduler.h"
+//#include "base/CCScheduler.h"
 #include "platform/CCFileUtils.h"
-#include "base/ccUtils.h"
+//#include "base/ccUtils.h"
 
 //#include "deprecated/CCString.h"
 #include "base/ccUTF8.h"
@@ -126,7 +126,7 @@ void TextureCache::addImageAsync(const std::string &path, const std::function<vo
 
     if (0 == _asyncRefCount)
     {
-        Director::getInstance()->getScheduler()->schedule(CC_SCHEDULE_SELECTOR(TextureCache::addImageAsyncCallBack), this, 0, false);
+//        Director::getInstance()->getScheduler()->schedule(CC_SCHEDULE_SELECTOR(TextureCache::addImageAsyncCallBack), this, 0, false);
     }
 
     ++_asyncRefCount;
@@ -309,7 +309,7 @@ void TextureCache::addImageAsyncCallBack(float dt)
         --_asyncRefCount;
         if (0 == _asyncRefCount)
         {
-            Director::getInstance()->getScheduler()->unschedule(CC_SCHEDULE_SELECTOR(TextureCache::addImageAsyncCallBack), this);
+//            Director::getInstance()->getScheduler()->unschedule(CC_SCHEDULE_SELECTOR(TextureCache::addImageAsyncCallBack), this);
         }
     }
 }

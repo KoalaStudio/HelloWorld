@@ -26,13 +26,13 @@
 
 #include "base/CCEventCustom.h"
 #include "base/CCEventListenerTouch.h"
-#include "base/CCEventListenerAcceleration.h"
-#include "base/CCEventListenerMouse.h"
-#include "base/CCEventListenerKeyboard.h"
+//#include "base/CCEventListenerAcceleration.h"
+//#include "base/CCEventListenerMouse.h"
+//#include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventListenerCustom.h"
-#include "base/CCEventListenerFocus.h"
+//#include "base/CCEventListenerFocus.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-#include "base/CCEventListenerController.h"
+//#include "base/CCEventListenerController.h"
 #endif
 #include "2d/CCScene.h"
 #include "base/CCDirector.h"
@@ -71,33 +71,33 @@ static EventListener::ListenerID __getListenerID(Event* event)
     EventListener::ListenerID ret;
     switch (event->getType())
     {
-        case Event::Type::ACCELERATION:
-            ret = EventListenerAcceleration::LISTENER_ID;
-            break;
+//        case Event::Type::ACCELERATION:
+//            ret = EventListenerAcceleration::LISTENER_ID;
+//            break;
         case Event::Type::CUSTOM:
             {
                 auto customEvent = static_cast<EventCustom*>(event);
                 ret = customEvent->getEventName();
             }
             break;
-        case Event::Type::KEYBOARD:
-            ret = EventListenerKeyboard::LISTENER_ID;
-            break;
-        case Event::Type::MOUSE:
-            ret = EventListenerMouse::LISTENER_ID;
-            break;
-        case Event::Type::FOCUS:
-            ret = EventListenerFocus::LISTENER_ID;
-            break;
+//        case Event::Type::KEYBOARD:
+//            ret = EventListenerKeyboard::LISTENER_ID;
+//            break;
+//        case Event::Type::MOUSE:
+//            ret = EventListenerMouse::LISTENER_ID;
+//            break;
+//        case Event::Type::FOCUS:
+//            ret = EventListenerFocus::LISTENER_ID;
+//            break;
         case Event::Type::TOUCH:
             // Touch listener is very special, it contains two kinds of listeners, EventListenerTouchOneByOne and EventListenerTouchAllAtOnce.
             // return UNKNOWN instead.
             CCASSERT(false, "Don't call this method if the event is for touch.");
             break;
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-        case Event::Type::GAME_CONTROLLER:
-            ret = EventListenerController::LISTENER_ID;
-            break;
+//        case Event::Type::GAME_CONTROLLER:
+//            ret = EventListenerController::LISTENER_ID;
+//            break;
 #endif
         default:
             CCASSERT(false, "Invalid type!");
@@ -1329,18 +1329,18 @@ void EventDispatcher::removeEventListenersForType(EventListener::Type listenerTy
     {
         removeEventListenersForListenerID(EventListenerTouchAllAtOnce::LISTENER_ID);
     }
-    else if (listenerType == EventListener::Type::MOUSE)
-    {
-        removeEventListenersForListenerID(EventListenerMouse::LISTENER_ID);
-    }
-    else if (listenerType == EventListener::Type::ACCELERATION)
-    {
-        removeEventListenersForListenerID(EventListenerAcceleration::LISTENER_ID);
-    }
-    else if (listenerType == EventListener::Type::KEYBOARD)
-    {
-        removeEventListenersForListenerID(EventListenerKeyboard::LISTENER_ID);
-    }
+//    else if (listenerType == EventListener::Type::MOUSE)
+//    {
+//        removeEventListenersForListenerID(EventListenerMouse::LISTENER_ID);
+//    }
+//    else if (listenerType == EventListener::Type::ACCELERATION)
+//    {
+//        removeEventListenersForListenerID(EventListenerAcceleration::LISTENER_ID);
+//    }
+//    else if (listenerType == EventListener::Type::KEYBOARD)
+//    {
+//        removeEventListenersForListenerID(EventListenerKeyboard::LISTENER_ID);
+//    }
     else
     {
         CCASSERT(false, "Invalid listener type!");

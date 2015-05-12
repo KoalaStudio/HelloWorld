@@ -56,11 +56,11 @@ public:
         UNKNOWN,
         TOUCH_ONE_BY_ONE,
         TOUCH_ALL_AT_ONCE,
-        KEYBOARD,
-        MOUSE,
-        ACCELERATION,
-        FOCUS,
-		GAME_CONTROLLER,
+//        KEYBOARD,
+//        MOUSE,
+//        ACCELERATION,
+//        FOCUS,
+//		GAME_CONTROLLER,
         CUSTOM
     };
 

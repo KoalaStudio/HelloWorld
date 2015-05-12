@@ -39,11 +39,11 @@ THE SOFTWARE.
 
 // base
 #include "base/CCRef.h"
-#include "base/CCRefPtr.h"
+//#include "base/CCRefPtr.h"
 #include "base/CCVector.h"
 #include "base/CCMap.h"
 #include "base/CCAutoreleasePool.h"
-#include "base/CCNS.h"
+//#include "base/CCNS.h"
 #include "base/CCData.h"
 #include "base/CCValue.h"
 #include "base/ccConfig.h"
@@ -51,7 +51,7 @@ THE SOFTWARE.
 #include "base/ccTypes.h"
 #include "base/CCConfiguration.h"
 #include "base/CCDirector.h"
-#include "base/CCScheduler.h"
+//#include "base/CCScheduler.h"
 #include "base/base64.h"
 #include "base/ZipUtils.h"
 #include "base/CCProfiling.h"
@@ -60,23 +60,23 @@ THE SOFTWARE.
 //#include "base/CCUserDefault.h"
 //#include "base/CCIMEDelegate.h"
 //#include "base/CCIMEDispatcher.h"
-#include "base/ccUtils.h"
+//#include "base/ccUtils.h"
 
 // EventDispatcher
 #include "base/CCEventType.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerTouch.h"
 #include "base/CCEventTouch.h"
-#include "base/CCEventListenerKeyboard.h"
-#include "base/CCEventKeyboard.h"
-#include "base/CCEventListenerMouse.h"
-#include "base/CCEventMouse.h"
-#include "base/CCEventAcceleration.h"
-#include "base/CCEventListenerAcceleration.h"
+//#include "base/CCEventListenerKeyboard.h"
+//#include "base/CCEventKeyboard.h"
+//#include "base/CCEventListenerMouse.h"
+//#include "base/CCEventMouse.h"
+//#include "base/CCEventAcceleration.h"
+//#include "base/CCEventListenerAcceleration.h"
 #include "base/CCEventCustom.h"
 #include "base/CCEventListenerCustom.h"
-#include "base/CCEventFocus.h"
-#include "base/CCEventListenerFocus.h"
+//#include "base/CCEventFocus.h"
+//#include "base/CCEventListenerFocus.h"
 
 // math
 #include "math/CCAffineTransform.h"
@@ -139,7 +139,7 @@ THE SOFTWARE.
 //#include "2d/CCGrid.h"
 
 #include "2d/CCCamera.h"
-#include "2d/CCLight.h"
+//#include "2d/CCLight.h"
 
 // include
 #include "base/CCProtocols.h"
@@ -241,7 +241,7 @@ THE SOFTWARE.
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_WP8
 
 // script_support
-#include "base/CCScriptSupport.h"
+//#include "base/CCScriptSupport.h"
 
 // sprite_nodes
 //#include "2d/CCAnimation.h"
@@ -302,7 +302,7 @@ THE SOFTWARE.
 //#include "deprecated/CCString.h"
 //#include "deprecated/CCNotificationCenter.h"
 // CCDeprecated.h must be included at the end
-#include "deprecated/CCDeprecated.h"
+//#include "deprecated/CCDeprecated.h"
 
 
 NS_CC_BEGIN

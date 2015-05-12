@@ -32,14 +32,18 @@
 #include "base/ccMacros.h"
 #include "base/CCVector.h"
 #include "base/CCProtocols.h"
-#include "base/CCScriptSupport.h"
+//#include "base/CCScriptSupport.h"
 #include "math/CCAffineTransform.h"
 #include "math/CCMath.h"
+#include "base/CCTouch.h"
+#include "base/CCEvent.h"
+//#include "base/CCEventKeyboard.h"
+#include "base/CCEventTouch.h"
 
 NS_CC_BEGIN
 
 //class GridBase;
-class Touch;
+//class Touch;
 //class Action;
 class LabelProtocol;
 class Scheduler;
@@ -1253,210 +1257,210 @@ public:
 //    /// @} end of Actions
 
 
-    /// @{
-    /// @name Scheduler and Timer
-
-    /**
-     * Sets a Scheduler object that is used to schedule all "updates" and timers.
-     *
-     * @warning If you set a new Scheduler, then previously created timers/update are going to be removed.
-     * @param scheduler     A Shdeduler object that is used to schedule all "update" and timers.
-     */
-    virtual void setScheduler(Scheduler* scheduler);
-    /**
-     * Gets a Sheduler object.
-     *
-     * @see setScheduler(Scheduler*)
-     * @return A Scheduler object.
-     */
-    virtual Scheduler* getScheduler() { return _scheduler; }
-    virtual const Scheduler* getScheduler() const { return _scheduler; }
-
-
-    /**
-     * Checks whether a selector is scheduled.
-     *
-     * @param selector      A function selector
-     * @return Whether the funcion selector is scheduled.
-     * @js NA
-     * @lua NA
-     */
-    bool isScheduled(SEL_SCHEDULE selector);
-
-    /**
-     * Checks whether a lambda function is scheduled.
-     *
-     * @param key      key of the callback
-     * @return Whether the lambda function selector is scheduled.
-     * @js NA
-     * @lua NA
-     */
-    bool isScheduled(const std::string &key);
-
-    /**
-     * Schedules the "update" method.
-     *
-     * It will use the order number 0. This method will be called every frame.
-     * Scheduled methods with a lower order value will be called before the ones that have a higher order value.
-     * Only one "update" method could be scheduled per node.
-     * @lua NA
-     */
-    void scheduleUpdate(void);
-
-    /**
-     * Schedules the "update" method with a custom priority.
-     *
-     * This selector will be called every frame.
-     * Scheduled methods with a lower priority will be called before the ones that have a higher value.
-     * Only one "update" selector could be scheduled per node (You can't have 2 'update' selectors).
-     * @lua NA
-     *
-     * @param priority A given priority value.
-     */
-    void scheduleUpdateWithPriority(int priority);
-
-    /*
-     * Unschedules the "update" method.
-     * @see scheduleUpdate();
-     */
-    void unscheduleUpdate(void);
-
-    /**
-     * Schedules a custom selector.
-     *
-     * If the selector is already scheduled, then the interval parameter will be updated without scheduling it again.
-     @code
-     // firstly, implement a schedule function
-     void MyNode::TickMe(float dt);
-     // wrap this function into a selector via schedule_selector marco.
-     this->schedule(CC_SCHEDULE_SELECTOR(MyNode::TickMe), 0, 0, 0);
-     @endcode
-     *
-     * @param selector  The SEL_SCHEDULE selector to be scheduled.
-     * @param interval  Tick interval in seconds. 0 means tick every frame. If interval = 0, it's recommended to use scheduleUpdate() instead.
-     * @param repeat    The selector will be excuted (repeat + 1) times, you can use CC_REPEAT_FOREVER for tick infinitely.
-     * @param delay     The amount of time that the first tick will wait before execution.
-     * @lua NA
-     */
-    void schedule(SEL_SCHEDULE selector, float interval, unsigned int repeat, float delay);
-
-    /**
-     * Schedules a custom selector with an interval time in seconds.
-     * @see `schedule(SEL_SCHEDULE, float, unsigned int, float)`
-     *
-     * @param selector      The SEL_SCHEDULE selector to be scheduled.
-     * @param interval      Callback interval time in seconds. 0 means tick every frame,
-     * @lua NA
-     */
-    void schedule(SEL_SCHEDULE selector, float interval);
-
-    /**
-     * Schedules a selector that runs only once, with a delay of 0 or larger
-     * @see `schedule(SEL_SCHEDULE, float, unsigned int, float)`
-     *
-     * @param selector      The SEL_SCHEDULE selector to be scheduled.
-     * @param delay         The amount of time that the first tick will wait before execution.
-     * @lua NA
-     */
-    void scheduleOnce(SEL_SCHEDULE selector, float delay);
-
-    /**
-     * Schedules a lambda function that runs only once, with a delay of 0 or larger
-     *
-     * @param callback      The lambda function to be scheduled.
-     * @param delay         The amount of time that the first tick will wait before execution.
-     * @param key           The key of the lambda function. To be used if you want to unschedule it.
-     * @lua NA
-     */
-    void scheduleOnce(const std::function<void(float)>& callback, float delay, const std::string &key);
-
-    /**
-     * Schedules a custom selector, the scheduled selector will be ticked every frame.
-     * @see schedule(SEL_SCHEDULE, float, unsigned int, float)
-     *
-     * @param selector      A function wrapped as a selector
-     * @lua NA
-     */
-    void schedule(SEL_SCHEDULE selector);
-
-    /**
-     * Schedules a lambda function. The scheduled lambda function will be called every frame.
-     *
-     * @param callback      The lambda function to be scheduled.
-     * @param key           The key of the lambda function. To be used if you want to unschedule it.
-     * @lua NA
-     */
-    void schedule(const std::function<void(float)>& callback, const std::string &key);
-
-    /**
-     * Schedules a lambda function. The scheduled lambda function will be called every "interval" seconds
-     *
-     * @param callback      The lambda function to be scheduled
-     * @param interval      Callback interval time in seconds. 0 means every frame,
-     * @param key           The key of the lambda function. To be used if you want to unschedule it
-     * @lua NA
-     */
-    void schedule(const std::function<void(float)>& callback, float interval, const std::string &key);
-
-    /**
-     * Schedules a lambda function.
-     *
-     * @param callback  The lambda function to be schedule.
-     * @param interval  Tick interval in seconds. 0 means tick every frame.
-     * @param repeat    The selector will be executed (repeat + 1) times, you can use CC_REPEAT_FOREVER for tick infinitely.
-     * @param delay     The amount of time that the first tick will wait before execution.
-     * @param key       The key of the lambda function. To be used if you want to unschedule it.
-     * @lua NA
-     */
-    void schedule(const std::function<void(float)>& callback, float interval, unsigned int repeat, float delay, const std::string &key);
-
-    /**
-     * Unschedules a custom selector.
-     * @see `schedule(SEL_SCHEDULE, float, unsigned int, float)`
-     *
-     * @param selector      A function wrapped as a selector.
-     * @lua NA
-     */
-    void unschedule(SEL_SCHEDULE selector);
-
-    /**
-     * Unschedules a lambda function.
-     *
-     * @param key      The key of the lambda function to be unscheduled.
-     * @lua NA
-     */
-    void unschedule(const std::string &key);
-
-    /**
-     * Unschedule all scheduled selectors and lambda functions: custom selectors, and the 'update' selector and lambda functions.
-     * Actions are not affected by this method.
-     * @lua NA
-     */
-    void unscheduleAllCallbacks();
-
-    CC_DEPRECATED_ATTRIBUTE void unscheduleAllSelectors() { unscheduleAllCallbacks(); }
-
-    /**
-     * Resumes all scheduled selectors, actions and event listeners.
-     * This method is called internally by onEnter.
-     */
-    virtual void resume(void);
-    /**
-     * Pauses all scheduled selectors, actions and event listeners.
-     * This method is called internally by onExit.
-     */
-    virtual void pause(void);
-
-    /**
-     * Resumes all scheduled selectors, actions and event listeners.
-     * This method is called internally by onEnter.
-     */
-    CC_DEPRECATED_ATTRIBUTE void resumeSchedulerAndActions();
-    /**
-     * Pauses all scheduled selectors, actions and event listeners.
-     * This method is called internally by onExit.
-     */
-    CC_DEPRECATED_ATTRIBUTE void pauseSchedulerAndActions();
+//    /// @{
+//    /// @name Scheduler and Timer
+//
+//    /**
+//     * Sets a Scheduler object that is used to schedule all "updates" and timers.
+//     *
+//     * @warning If you set a new Scheduler, then previously created timers/update are going to be removed.
+//     * @param scheduler     A Shdeduler object that is used to schedule all "update" and timers.
+//     */
+//    virtual void setScheduler(Scheduler* scheduler);
+//    /**
+//     * Gets a Sheduler object.
+//     *
+//     * @see setScheduler(Scheduler*)
+//     * @return A Scheduler object.
+//     */
+////    virtual Scheduler* getScheduler() { return _scheduler; }
+////    virtual const Scheduler* getScheduler() const { return _scheduler; }
+//
+//
+//    /**
+//     * Checks whether a selector is scheduled.
+//     *
+//     * @param selector      A function selector
+//     * @return Whether the funcion selector is scheduled.
+//     * @js NA
+//     * @lua NA
+//     */
+//    bool isScheduled(SEL_SCHEDULE selector);
+//
+//    /**
+//     * Checks whether a lambda function is scheduled.
+//     *
+//     * @param key      key of the callback
+//     * @return Whether the lambda function selector is scheduled.
+//     * @js NA
+//     * @lua NA
+//     */
+//    bool isScheduled(const std::string &key);
+//
+//    /**
+//     * Schedules the "update" method.
+//     *
+//     * It will use the order number 0. This method will be called every frame.
+//     * Scheduled methods with a lower order value will be called before the ones that have a higher order value.
+//     * Only one "update" method could be scheduled per node.
+//     * @lua NA
+//     */
+//    void scheduleUpdate(void);
+//
+//    /**
+//     * Schedules the "update" method with a custom priority.
+//     *
+//     * This selector will be called every frame.
+//     * Scheduled methods with a lower priority will be called before the ones that have a higher value.
+//     * Only one "update" selector could be scheduled per node (You can't have 2 'update' selectors).
+//     * @lua NA
+//     *
+//     * @param priority A given priority value.
+//     */
+//    void scheduleUpdateWithPriority(int priority);
+//
+//    /*
+//     * Unschedules the "update" method.
+//     * @see scheduleUpdate();
+//     */
+//    void unscheduleUpdate(void);
+//
+//    /**
+//     * Schedules a custom selector.
+//     *
+//     * If the selector is already scheduled, then the interval parameter will be updated without scheduling it again.
+//     @code
+//     // firstly, implement a schedule function
+//     void MyNode::TickMe(float dt);
+//     // wrap this function into a selector via schedule_selector marco.
+//     this->schedule(CC_SCHEDULE_SELECTOR(MyNode::TickMe), 0, 0, 0);
+//     @endcode
+//     *
+//     * @param selector  The SEL_SCHEDULE selector to be scheduled.
+//     * @param interval  Tick interval in seconds. 0 means tick every frame. If interval = 0, it's recommended to use scheduleUpdate() instead.
+//     * @param repeat    The selector will be excuted (repeat + 1) times, you can use CC_REPEAT_FOREVER for tick infinitely.
+//     * @param delay     The amount of time that the first tick will wait before execution.
+//     * @lua NA
+//     */
+//    void schedule(SEL_SCHEDULE selector, float interval, unsigned int repeat, float delay);
+//
+//    /**
+//     * Schedules a custom selector with an interval time in seconds.
+//     * @see `schedule(SEL_SCHEDULE, float, unsigned int, float)`
+//     *
+//     * @param selector      The SEL_SCHEDULE selector to be scheduled.
+//     * @param interval      Callback interval time in seconds. 0 means tick every frame,
+//     * @lua NA
+//     */
+//    void schedule(SEL_SCHEDULE selector, float interval);
+//
+//    /**
+//     * Schedules a selector that runs only once, with a delay of 0 or larger
+//     * @see `schedule(SEL_SCHEDULE, float, unsigned int, float)`
+//     *
+//     * @param selector      The SEL_SCHEDULE selector to be scheduled.
+//     * @param delay         The amount of time that the first tick will wait before execution.
+//     * @lua NA
+//     */
+//    void scheduleOnce(SEL_SCHEDULE selector, float delay);
+//
+//    /**
+//     * Schedules a lambda function that runs only once, with a delay of 0 or larger
+//     *
+//     * @param callback      The lambda function to be scheduled.
+//     * @param delay         The amount of time that the first tick will wait before execution.
+//     * @param key           The key of the lambda function. To be used if you want to unschedule it.
+//     * @lua NA
+//     */
+//    void scheduleOnce(const std::function<void(float)>& callback, float delay, const std::string &key);
+//
+//    /**
+//     * Schedules a custom selector, the scheduled selector will be ticked every frame.
+//     * @see schedule(SEL_SCHEDULE, float, unsigned int, float)
+//     *
+//     * @param selector      A function wrapped as a selector
+//     * @lua NA
+//     */
+//    void schedule(SEL_SCHEDULE selector);
+//
+//    /**
+//     * Schedules a lambda function. The scheduled lambda function will be called every frame.
+//     *
+//     * @param callback      The lambda function to be scheduled.
+//     * @param key           The key of the lambda function. To be used if you want to unschedule it.
+//     * @lua NA
+//     */
+//    void schedule(const std::function<void(float)>& callback, const std::string &key);
+//
+//    /**
+//     * Schedules a lambda function. The scheduled lambda function will be called every "interval" seconds
+//     *
+//     * @param callback      The lambda function to be scheduled
+//     * @param interval      Callback interval time in seconds. 0 means every frame,
+//     * @param key           The key of the lambda function. To be used if you want to unschedule it
+//     * @lua NA
+//     */
+//    void schedule(const std::function<void(float)>& callback, float interval, const std::string &key);
+//
+//    /**
+//     * Schedules a lambda function.
+//     *
+//     * @param callback  The lambda function to be schedule.
+//     * @param interval  Tick interval in seconds. 0 means tick every frame.
+//     * @param repeat    The selector will be executed (repeat + 1) times, you can use CC_REPEAT_FOREVER for tick infinitely.
+//     * @param delay     The amount of time that the first tick will wait before execution.
+//     * @param key       The key of the lambda function. To be used if you want to unschedule it.
+//     * @lua NA
+//     */
+//    void schedule(const std::function<void(float)>& callback, float interval, unsigned int repeat, float delay, const std::string &key);
+//
+//    /**
+//     * Unschedules a custom selector.
+//     * @see `schedule(SEL_SCHEDULE, float, unsigned int, float)`
+//     *
+//     * @param selector      A function wrapped as a selector.
+//     * @lua NA
+//     */
+//    void unschedule(SEL_SCHEDULE selector);
+//
+//    /**
+//     * Unschedules a lambda function.
+//     *
+//     * @param key      The key of the lambda function to be unscheduled.
+//     * @lua NA
+//     */
+//    void unschedule(const std::string &key);
+//
+//    /**
+//     * Unschedule all scheduled selectors and lambda functions: custom selectors, and the 'update' selector and lambda functions.
+//     * Actions are not affected by this method.
+//     * @lua NA
+//     */
+//    void unscheduleAllCallbacks();
+//
+//    CC_DEPRECATED_ATTRIBUTE void unscheduleAllSelectors() { unscheduleAllCallbacks(); }
+//
+//    /**
+//     * Resumes all scheduled selectors, actions and event listeners.
+//     * This method is called internally by onEnter.
+//     */
+//    virtual void resume(void);
+//    /**
+//     * Pauses all scheduled selectors, actions and event listeners.
+//     * This method is called internally by onExit.
+//     */
+//    virtual void pause(void);
+//
+//    /**
+//     * Resumes all scheduled selectors, actions and event listeners.
+//     * This method is called internally by onEnter.
+//     */
+//    CC_DEPRECATED_ATTRIBUTE void resumeSchedulerAndActions();
+//    /**
+//     * Pauses all scheduled selectors, actions and event listeners.
+//     * This method is called internally by onExit.
+//     */
+//    CC_DEPRECATED_ATTRIBUTE void pauseSchedulerAndActions();
 
     /**
      * Update method will be called automatically every frame if "scheduleUpdate" is called, and the node is "live".
@@ -1808,7 +1812,7 @@ protected:
 
     int _orderOfArrival;            ///< used to preserve sequence while sorting children with the same localZOrder
 
-    Scheduler *_scheduler;          ///< scheduler used to schedule timers and updates
+//    Scheduler *_scheduler;          ///< scheduler used to schedule timers and updates
 
 //    ActionManager *_actionManager;  ///< a pointer to ActionManager singleton, which is used to handle all the actions
 

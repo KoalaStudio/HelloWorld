@@ -296,7 +296,7 @@ THE SOFTWARE.
 
 /** Enable Script binding. */
 #ifndef CC_ENABLE_SCRIPT_BINDING
-#define CC_ENABLE_SCRIPT_BINDING 1
+#define CC_ENABLE_SCRIPT_BINDING 0
 #endif
 
 /** @def CC_CONSTRUCTOR_ACCESS

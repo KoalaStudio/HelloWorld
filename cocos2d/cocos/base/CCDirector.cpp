@@ -50,7 +50,7 @@ THE SOFTWARE.
 #include "2d/CCCamera.h"
 //#include "base/CCUserDefault.h"
 //#include "base/ccFPSImages.h"
-#include "base/CCScheduler.h"
+//#include "base/CCScheduler.h"
 #include "base/ccMacros.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventCustom.h"
@@ -149,7 +149,7 @@ bool Director::init(void)
     _console = new (std::nothrow) Console;
 
     // scheduler
-    _scheduler = new (std::nothrow) Scheduler();
+//    _scheduler = new (std::nothrow) Scheduler();
     // action manager
 //    _actionManager = new (std::nothrow) ActionManager();
 //    _scheduler->scheduleUpdate(_actionManager, Scheduler::PRIORITY_SYSTEM, false);
@@ -184,7 +184,7 @@ Director::~Director(void)
 
     CC_SAFE_RELEASE(_runningScene);
     CC_SAFE_RELEASE(_notificationNode);
-    CC_SAFE_RELEASE(_scheduler);
+//    CC_SAFE_RELEASE(_scheduler);
 //    CC_SAFE_RELEASE(_actionManager);
     
     delete _eventAfterUpdate;
@@ -267,7 +267,7 @@ void Director::drawScene()
     //tick before glClear: issue #533
     if (! _paused)
     {
-        _scheduler->update(_deltaTime);
+//        _scheduler->update(_deltaTime);
         _eventDispatcher->dispatchEvent(_eventAfterUpdate);
     }
 
@@ -949,7 +949,7 @@ void Director::reset()
     _nextScene = nullptr;
 
     // cleanup scheduler
-    getScheduler()->unscheduleAll();
+//    getScheduler()->unscheduleAll();
     
     // Remove all events
     if (_eventDispatcher)
@@ -1275,15 +1275,15 @@ void Director::setNotificationNode(Node *node)
     CC_SAFE_RETAIN(_notificationNode);
 }
 
-void Director::setScheduler(Scheduler* scheduler)
-{
-    if (_scheduler != scheduler)
-    {
-        CC_SAFE_RETAIN(scheduler);
-        CC_SAFE_RELEASE(_scheduler);
-        _scheduler = scheduler;
-    }
-}
+//void Director::setScheduler(Scheduler* scheduler)
+//{
+//    if (_scheduler != scheduler)
+//    {
+//        CC_SAFE_RETAIN(scheduler);
+//        CC_SAFE_RELEASE(_scheduler);
+//        _scheduler = scheduler;
+//    }
+//}
 
 //void Director::setActionManager(ActionManager* actionManager)
 //{

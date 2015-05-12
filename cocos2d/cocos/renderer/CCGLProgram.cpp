@@ -33,7 +33,7 @@ THE SOFTWARE.
 #endif
 
 #include "base/CCDirector.h"
-#include "base/uthash.h"
+//#include "base/uthash.h"
 #include "renderer/ccGLStateCache.h"
 #include "platform/CCFileUtils.h"
 
