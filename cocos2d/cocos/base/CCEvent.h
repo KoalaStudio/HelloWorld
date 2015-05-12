@@ -52,7 +52,7 @@ public:
         ACCELERATION,
         MOUSE,
         FOCUS,
-        GAME_CONTROLLER,
+//        GAME_CONTROLLER,
         CUSTOM
     };
     
