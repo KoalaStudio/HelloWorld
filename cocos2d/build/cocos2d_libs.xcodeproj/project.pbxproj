@@ -393,12 +393,6 @@
 		503DD8EF1926736A00CD74DD /* CCPlatformDefine-ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 503DD8DD1926736A00CD74DD /* CCPlatformDefine-ios.h */; };
 		503DD8F01926736A00CD74DD /* CCStdC-ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 503DD8DE1926736A00CD74DD /* CCStdC-ios.h */; };
 		503DD8F11926736A00CD74DD /* OpenGL_Internal-ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 503DD8DF1926736A00CD74DD /* OpenGL_Internal-ios.h */; };
-		503DD8F51926B0DB00CD74DD /* CCIMEDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 503DD8F21926B0DB00CD74DD /* CCIMEDelegate.h */; };
-		503DD8F61926B0DB00CD74DD /* CCIMEDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 503DD8F21926B0DB00CD74DD /* CCIMEDelegate.h */; };
-		503DD8F71926B0DB00CD74DD /* CCIMEDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 503DD8F31926B0DB00CD74DD /* CCIMEDispatcher.cpp */; };
-		503DD8F81926B0DB00CD74DD /* CCIMEDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 503DD8F31926B0DB00CD74DD /* CCIMEDispatcher.cpp */; };
-		503DD8F91926B0DB00CD74DD /* CCIMEDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 503DD8F41926B0DB00CD74DD /* CCIMEDispatcher.h */; };
-		503DD8FA1926B0DB00CD74DD /* CCIMEDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 503DD8F41926B0DB00CD74DD /* CCIMEDispatcher.h */; };
 		50643BD419BFAECF00EF68ED /* CCGL.h in Headers */ = {isa = PBXBuildFile; fileRef = 50643BD319BFAECF00EF68ED /* CCGL.h */; };
 		50643BD519BFAECF00EF68ED /* CCGL.h in Headers */ = {isa = PBXBuildFile; fileRef = 50643BD319BFAECF00EF68ED /* CCGL.h */; };
 		50643BD619BFAEDA00EF68ED /* CCPlatformDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5091A7A219BFABA800AC8789 /* CCPlatformDefine.h */; };
@@ -1004,9 +998,6 @@
 		503DD8DD1926736A00CD74DD /* CCPlatformDefine-ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCPlatformDefine-ios.h"; sourceTree = "<group>"; };
 		503DD8DE1926736A00CD74DD /* CCStdC-ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCStdC-ios.h"; sourceTree = "<group>"; };
 		503DD8DF1926736A00CD74DD /* OpenGL_Internal-ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OpenGL_Internal-ios.h"; sourceTree = "<group>"; };
-		503DD8F21926B0DB00CD74DD /* CCIMEDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCIMEDelegate.h; path = ../base/CCIMEDelegate.h; sourceTree = "<group>"; };
-		503DD8F31926B0DB00CD74DD /* CCIMEDispatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCIMEDispatcher.cpp; path = ../base/CCIMEDispatcher.cpp; sourceTree = "<group>"; };
-		503DD8F41926B0DB00CD74DD /* CCIMEDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCIMEDispatcher.h; path = ../base/CCIMEDispatcher.h; sourceTree = "<group>"; };
 		50643BD319BFAECF00EF68ED /* CCGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCGL.h; sourceTree = "<group>"; };
 		50643BD719BFAF4400EF68ED /* CCApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCApplication.h; sourceTree = "<group>"; };
 		50643BD819BFAF4400EF68ED /* CCStdC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCStdC.h; sourceTree = "<group>"; };
@@ -1447,9 +1438,6 @@
 				50ABBDF01925AB6E00A911A9 /* CCEventTouch.cpp */,
 				50ABBDF11925AB6E00A911A9 /* CCEventTouch.h */,
 				50ABBDF21925AB6E00A911A9 /* CCEventType.h */,
-				503DD8F21926B0DB00CD74DD /* CCIMEDelegate.h */,
-				503DD8F31926B0DB00CD74DD /* CCIMEDispatcher.cpp */,
-				503DD8F41926B0DB00CD74DD /* CCIMEDispatcher.h */,
 				50ABBDF51925AB6E00A911A9 /* ccMacros.h */,
 				50ABBDF61925AB6E00A911A9 /* CCMap.h */,
 				50ABBDF71925AB6E00A911A9 /* CCNS.cpp */,
@@ -2459,7 +2447,6 @@
 				B257B461198A353E00D9A687 /* CCPrimitiveCommand.h in Headers */,
 				5034CA31191D591100CE6051 /* ccShader_PositionTexture_uColor.vert in Headers */,
 				50ABBE7B1925AB6F00A911A9 /* CCEventMouse.h in Headers */,
-				503DD8F91926B0DB00CD74DD /* CCIMEDispatcher.h in Headers */,
 				15AE1A8519AAD40300C27E9E /* b2Joint.h in Headers */,
 				15AE1A8D19AAD40300C27E9E /* b2RevoluteJoint.h in Headers */,
 				50ABBE291925AB6F00A911A9 /* CCAutoreleasePool.h in Headers */,
@@ -2475,7 +2462,6 @@
 				50ABBE571925AB6F00A911A9 /* CCEventFocus.h in Headers */,
 				50ABBE251925AB6F00A911A9 /* base64.h in Headers */,
 				15AE1A7519AAD40300C27E9E /* b2EdgeAndCircleContact.h in Headers */,
-				503DD8F51926B0DB00CD74DD /* CCIMEDelegate.h in Headers */,
 				50ABBD5A1925AB0000A911A9 /* Vec2.h in Headers */,
 				50ABBEBD1925AB6F00A911A9 /* ccUtils.h in Headers */,
 				50ABC0231926664800A911A9 /* CCGLViewImpl-desktop.h in Headers */,
@@ -2620,7 +2606,6 @@
 				15FB20961AE7C57D00C31518 /* cdt.h in Headers */,
 				15AE1AC919AAD40300C27E9E /* b2Joint.h in Headers */,
 				382383EF1A258FA7002C4610 /* flatbuffers.h in Headers */,
-				503DD8F61926B0DB00CD74DD /* CCIMEDelegate.h in Headers */,
 				382383F31A258FA7002C4610 /* idl.h in Headers */,
 				15AE1AB919AAD40300C27E9E /* b2EdgeAndCircleContact.h in Headers */,
 				5034CA2C191D591100CE6051 /* ccShader_PositionTextureA8Color.vert in Headers */,
@@ -2672,7 +2657,6 @@
 				5034CA4C191D591100CE6051 /* ccShader_Label_df_glow.frag in Headers */,
 				503DD8EB1926736A00CD74DD /* CCGL-ios.h in Headers */,
 				50ABBE3C1925AB6F00A911A9 /* CCData.h in Headers */,
-				503DD8FA1926B0DB00CD74DD /* CCIMEDispatcher.h in Headers */,
 				50ABBDB01925AB4100A911A9 /* CCRenderer.h in Headers */,
 				B29594B71926D5EC003EEF37 /* CCMeshCommand.h in Headers */,
 				3E6176771960F89B00DE83F5 /* CCEventListenerController.h in Headers */,
@@ -2916,7 +2900,6 @@
 				50ABBD8F1925AB4100A911A9 /* CCGLProgramCache.cpp in Sources */,
 				50ABBD441925AB0000A911A9 /* CCVertex.cpp in Sources */,
 				B276EF611988D1D500CD400F /* CCVertexIndexData.cpp in Sources */,
-				503DD8F71926B0DB00CD74DD /* CCIMEDispatcher.cpp in Sources */,
 				50ABBE751925AB6F00A911A9 /* CCEventListenerTouch.cpp in Sources */,
 				50ABBE511925AB6F00A911A9 /* CCEventDispatcher.cpp in Sources */,
 				50ABC0051926664800A911A9 /* CCThread-apple.mm in Sources */,
@@ -3092,7 +3075,6 @@
 				5027253D190BF1B900AAF4ED /* cocos2d.cpp in Sources */,
 				50ABBE6A1925AB6F00A911A9 /* CCEventListenerFocus.cpp in Sources */,
 				50ABBE661925AB6F00A911A9 /* CCEventListenerCustom.cpp in Sources */,
-				503DD8F81926B0DB00CD74DD /* CCIMEDispatcher.cpp in Sources */,
 				50ABBDB21925AB4100A911A9 /* ccShaders.cpp in Sources */,
 				50ABBD451925AB0000A911A9 /* CCVertex.cpp in Sources */,
 				50ABBE521925AB6F00A911A9 /* CCEventDispatcher.cpp in Sources */,
