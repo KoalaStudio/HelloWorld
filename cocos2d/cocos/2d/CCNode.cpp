@@ -35,18 +35,12 @@ THE SOFTWARE.
 #include <regex>
 
 #include "base/CCDirector.h"
-//#include "base/CCScheduler.h"
-//#include "base/CCEventDispatcher.h"
 #include "2d/CCCamera.h"
-//#include "2d/CCActionManager.h"
 #include "2d/CCScene.h"
-//#include "2d/CCComponent.h"
-//#include "2d/CCComponentContainer.h"
 #include "renderer/CCGLProgram.h"
 #include "renderer/CCGLProgramState.h"
 #include "math/TransformUtils.h"
 #include "ccUTF8.h"
-//#include "deprecated/CCString.h"
 
 #if CC_NODE_RENDER_SUBPIXEL
 #define RENDER_IN_SUBPIXEL
@@ -107,7 +101,6 @@ Node::Node(void)
 , _ignoreAnchorPointForPosition(false)
 , _reorderChildDirty(false)
 , _isTransitionFinished(false)
-//, _componentContainer(nullptr)
 , _displayedOpacity(255)
 , _realOpacity(255)
 , _displayedColor(Color3B::WHITE)
@@ -210,8 +203,6 @@ void Node::setLocalZOrder(int z)
     {
         _parent->reorderChild(this, z);
     }
-
-//    _eventDispatcher->setDirtyForNode(this);
 }
 
 /// zOrder setter : private method
@@ -226,7 +217,6 @@ void Node::setGlobalZOrder(float globalZOrder)
     if (_globalZOrder != globalZOrder)
     {
         _globalZOrder = globalZOrder;
-//        _eventDispatcher->setDirtyForNode(this);
     }
 }
 

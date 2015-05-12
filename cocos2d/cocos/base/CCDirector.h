@@ -50,11 +50,6 @@ NS_CC_BEGIN
 //class GLView;
 class DirectorDelegate;
 class Node;
-class Scheduler;
-class ActionManager;
-class EventDispatcher;
-class EventCustom;
-class EventListenerCustom;
 class TextureCache;
 class Renderer;
 class Camera;
@@ -495,10 +490,7 @@ protected:
     
     void setNextScene();
     
-//    void showStats();
-//    void createStatsLabel();
     void calculateMPF();
-//    void getFPSImageData(unsigned char** datapointer, ssize_t* length);
     
     /** calculates delta time since last time it was called */    
     void calculateDeltaTime();
@@ -513,22 +505,6 @@ protected:
     std::stack<Mat4> _projectionMatrixStack;
     std::stack<Mat4> _textureMatrixStack;
 
-    /** Scheduler associated with this director
-     @since v2.0
-     */
-//    Scheduler *_scheduler;
-    
-    /** ActionManager associated with this director
-     @since v2.0
-     */
-//    ActionManager *_actionManager;
-    
-    /** EventDispatcher associated with this director
-     @since v3.0
-     */
-//    EventDispatcher* _eventDispatcher;
-//    EventCustom *_eventProjectionChanged, *_eventAfterDraw, *_eventAfterVisit, *_eventAfterUpdate;
-    
     /* delta time since last tick to main loop */
 	float _deltaTime;
     
@@ -548,10 +524,6 @@ protected:
     bool _displayStats;
     float _accumDt;
     float _frameRate;
-    
-//    LabelAtlas *_FPSLabel;
-//    LabelAtlas *_drawnBatchesLabel;
-//    LabelAtlas *_drawnVerticesLabel;
     
     /** Whether or not the Director is paused */
     bool _paused;

@@ -35,17 +35,6 @@ THE SOFTWARE.
  * cocos2d (cc) configuration file.
 */
 
-/** @def CC_ENABLE_STACKABLE_ACTIONS
- * If enabled, actions that alter the position property (eg: MoveBy, JumpBy, BezierBy, etc..) will be stacked.
- * If you run 2 or more 'position' actions at the same time on a node, then end position will be the sum of all the positions.
- * If disabled, only the last run action will take effect.
- * Enabled by default. Disable to be compatible with v2.0 and older versions.
- * @since v2.1
- */
-#ifndef CC_ENABLE_STACKABLE_ACTIONS
-#define CC_ENABLE_STACKABLE_ACTIONS 1
-#endif
-
 /** @def CC_ENABLE_GL_STATE_CACHE
  * If enabled, cocos2d will maintain an OpenGL state cache internally to avoid unnecessary switches.
  * In order to use them, you have to use the following functions, instead of the the GL ones:
@@ -90,51 +79,6 @@ THE SOFTWARE.
 #define CC_FIX_ARTIFACTS_BY_STRECHING_TEXEL 0
 #endif
 
-/** @def CC_DIRECTOR_STATS_INTERVAL
- * Seconds between FPS updates.
- * 0.5 seconds, means that the FPS number will be updated every 0.5 seconds.
- * Having a bigger number means a more reliable FPS.
- 
- * Default value: 0.1f
- */
-#ifndef CC_DIRECTOR_STATS_INTERVAL
-#define CC_DIRECTOR_STATS_INTERVAL (0.1f)
-#endif
-
-/** @def CC_DIRECTOR_FPS_POSITION
- * Position of the FPS.
-
- * Default: 0,0 (bottom-left corner).
- */
-#ifndef CC_DIRECTOR_FPS_POSITION
-#define CC_DIRECTOR_FPS_POSITION Vec2(0,0)
-#endif
-
-/** @def CC_DIRECTOR_DISPATCH_FAST_EVENTS
- * If enabled, and only when it is used with FastDirector, the main loop will wait 0.04 seconds to
- * dispatch all the events, even if there are not events to dispatch.
- * If your game uses lot's of events (eg: touches) it might be a good idea to enable this feature.
- * Otherwise, it is safe to leave it disabled.
- 
- * To enable set it to 1. Disabled by default.
- 
- * @warning This feature is experimental.
- */
-#ifndef CC_DIRECTOR_DISPATCH_FAST_EVENTS
- #define CC_DIRECTOR_DISPATCH_FAST_EVENTS 0
-#endif
-
-/** @def CC_DIRECTOR_MAC_USE_DISPLAY_LINK_THREAD
- * If enabled, cocos2d-mac will run on the Display Link thread. If disabled cocos2d-mac will run in its own thread.
- * If enabled, the images will be drawn at the "correct" time, but the events might not be very responsive.
- * If disabled, some frames might be skipped, but the events will be dispatched as they arrived.
- * To enable set it to a 1, to disable it set to 0. Enabled by default.
- * Only valid for cocos2d-mac. Not supported on cocos2d-ios.
- */
-#ifndef CC_DIRECTOR_MAC_USE_DISPLAY_LINK_THREAD
-#define CC_DIRECTOR_MAC_USE_DISPLAY_LINK_THREAD 1
-#endif
-
 /** @def CC_NODE_RENDER_SUBPIXEL
  * If enabled, the Node objects (Sprite, Label,etc) will be able to render in subpixels.
  * If disabled, integer pixels will be used.
@@ -171,18 +115,6 @@ THE SOFTWARE.
     #endif
 #endif
 
-
-/** @def CC_USE_LA88_LABELS
- * If enabled, it will use LA88 (Luminance Alpha 16-bit textures) for LabelTTF objects.
- * If it is disabled, it will use A8 (Alpha 8-bit textures).
- * LA88 textures are 6% faster than A8 textures, but they will consume 2x memory.
- * This feature is enabled by default.
- * @since v0.99.5
- */
-#ifndef CC_USE_LA88_LABELS
-#define CC_USE_LA88_LABELS 1
-#endif
-
 /** @def CC_SPRITE_DEBUG_DRAW
  * If enabled, all subclasses of Sprite will draw a bounding box.
  * Useful for debugging purposes only. It is recommended to leave it disabled.
@@ -193,43 +125,6 @@ THE SOFTWARE.
  */
 #ifndef CC_SPRITE_DEBUG_DRAW
 #define CC_SPRITE_DEBUG_DRAW 0
-#endif
-
-/** @def CC_SPRITEBATCHNODE_DEBUG_DRAW
- * If enabled, all subclasses of Sprite that are rendered using an SpriteBatchNode draw a bounding box.
- * Useful for debugging purposes only. It is recommended to leave it disabled.
- * To enable set it to a value different than 0. Disabled by default.
- */
-#ifndef CC_SPRITEBATCHNODE_DEBUG_DRAW
-#define CC_SPRITEBATCHNODE_DEBUG_DRAW 0
-#endif
-
-/** @def CC_LABELBMFONT_DEBUG_DRAW
- * If enabled, all subclasses of LabelBMFont will draw a bounding box.
- * Useful for debugging purposes only. It is recommended to leave it disabled.
- * To enable set it to a value different than 0. Disabled by default.
- */
-#ifndef CC_LABELBMFONT_DEBUG_DRAW
-#define CC_LABELBMFONT_DEBUG_DRAW 0
-#endif
-
-/** @def CC_LABELATLAS_DEBUG_DRAW
- * If enabled, all subclasses of LabeltAtlas will draw a bounding box
- * Useful for debugging purposes only. It is recommended to leave it disabled.
- * To enable set it to a value different than 0. Disabled by default.
- */
-#ifndef CC_LABELATLAS_DEBUG_DRAW
-#define CC_LABELATLAS_DEBUG_DRAW 0
-#endif
-
-/** @def CC_NODE_DEBUG_VERIFY_EVENT_LISTENERS
- * If enabled (in conjunction with assertion macros) will verify on Node destruction that the node being destroyed has no event
- * listeners still associated with it in the event dispatcher. This can be used to track down problems where the event dispatch
- * system has dangling pointers to destroyed nodes.
- * Note: event listener verification will always be disabled in builds where assertions are disabled regardless of this setting.
- */
-#ifndef CC_NODE_DEBUG_VERIFY_EVENT_LISTENERS
-#define CC_NODE_DEBUG_VERIFY_EVENT_LISTENERS 0
 #endif
 
 /** Enable Lua engine debug log. */

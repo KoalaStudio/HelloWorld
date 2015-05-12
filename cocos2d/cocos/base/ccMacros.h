@@ -59,18 +59,6 @@ simple macro that swaps 2 variables
     x = y; y = temp;        \
 }
 
-//#include "base/ccRandom.h"
-//
-///** @def CCRANDOM_MINUS1_1
-// returns a random float between -1 and 1
-// */
-//#define CCRANDOM_MINUS1_1() cocos2d::rand_minus1_1()
-//
-///** @def CCRANDOM_0_1
-// returns a random float between 0 and 1
-// */
-//#define CCRANDOM_0_1() cocos2d::rand_0_1()
-
 /** @def CC_DEGREES_TO_RADIANS
  converts degrees to radians
  */
@@ -89,33 +77,6 @@ default gl blend src function. Compatible with premultiplied alpha images.
 */
 #define CC_BLEND_SRC GL_ONE
 #define CC_BLEND_DST GL_ONE_MINUS_SRC_ALPHA
-
-
-/** @def CC_NODE_DRAW_SETUP
- Helpful macro that setups the GL server state, the correct GL program and sets the Model View Projection matrix
- @since v2.0
- */
-#define CC_NODE_DRAW_SETUP() \
-do { \
-    CCASSERT(getGLProgram(), "No shader program set for this node"); \
-    { \
-        getGLProgram()->use(); \
-        getGLProgram()->setUniformsForBuiltins(_modelViewTransform); \
-    } \
-} while(0)
-
-
- /** @def CC_DIRECTOR_END
-  Stops and removes the director from memory.
-  Removes the GLView from its parent
-
-  @since v0.99.4
-  */
-#define CC_DIRECTOR_END()                                       \
-do {                                                            \
-    Director *__director = cocos2d::Director::getInstance();             \
-    __director->end();                                          \
-} while(0)
 
 /** @def CC_CONTENT_SCALE_FACTOR
 On Mac it returns 1;
@@ -231,14 +192,6 @@ It should work same as apples CFSwapInt32LittleToHost(..)
         __renderer__->addDrawnBatches(__drawcalls__);                   \
         __renderer__->addDrawnVertices(__vertices__);                   \
     } while(0)
-
-/*******************/
-/** Notifications **/
-/*******************/
-/** @def AnimationFrameDisplayedNotification
- Notification name when a SpriteFrame is displayed
- */
-#define AnimationFrameDisplayedNotification "CCAnimationFrameDisplayedNotification"
 
 // new callbacks based on C++11
 #define CC_CALLBACK_0(__selector__,__target__, ...) std::bind(&__selector__,__target__, ##__VA_ARGS__)

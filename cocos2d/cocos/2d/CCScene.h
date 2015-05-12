@@ -34,10 +34,8 @@ THE SOFTWARE.
 NS_CC_BEGIN
 
 class Camera;
-class BaseLight;
 class Renderer;
-class EventListenerCustom;
-class EventCustom;
+
 /**
  * @addtogroup _2d
  * @{
@@ -88,12 +86,6 @@ public:
      * @return The default camera of scene.
      */
     Camera* getDefaultCamera() const { return _defaultCamera; }
-
-    /** Get lights.
-     * @return The vector of lights.
-     * @js NA
-     */
-    const std::vector<BaseLight*>& getLights() const { return _lights; }
     
     /** Render the scene.
      * @param renderer The renderer use to render the scene.
@@ -113,22 +105,15 @@ CC_CONSTRUCTOR_ACCESS:
     
     void setCameraOrderDirty() { _cameraOrderDirty = true; }
     
-    void onProjectionChanged(EventCustom* event);
-
 protected:
     friend class Node;
-    friend class ProtectedNode;
     friend class SpriteBatchNode;
     friend class Camera;
-    friend class BaseLight;
     friend class Renderer;
     
     std::vector<Camera*> _cameras; //weak ref to Camera
     Camera*              _defaultCamera; //weak ref, default camera created by scene, _cameras[0], Caution that the default camera can not be added to _cameras before onEnter is called
     bool                 _cameraOrderDirty; // order is dirty, need sort
-//    EventListenerCustom*       _event;
-
-    std::vector<BaseLight *> _lights;
     
 private:
     CC_DISALLOW_COPY_AND_ASSIGN(Scene);

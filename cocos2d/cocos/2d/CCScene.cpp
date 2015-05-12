@@ -28,10 +28,7 @@ THE SOFTWARE.
 #include "2d/CCScene.h"
 #include "base/CCDirector.h"
 #include "2d/CCCamera.h"
-//#include "base/CCEventDispatcher.h"
-//#include "base/CCEventListenerCustom.h"
 #include "renderer/CCRenderer.h"
-//#include "deprecated/CCString.h"
 #include "ccUTF8.h"
 
 NS_CC_BEGIN
@@ -46,9 +43,6 @@ Scene::Scene()
     //create default camera
     _defaultCamera = Camera::create();
     addChild(_defaultCamera);
-    
-//    _event = Director::getInstance()->getEventDispatcher()->addCustomEventListener(Director::EVENT_PROJECTION_CHANGED, std::bind(&Scene::onProjectionChanged, this, std::placeholders::_1));
-//    _event->retain();
 }
 
 Scene::~Scene()
@@ -100,14 +94,6 @@ Scene* Scene::createWithSize(const Size& size)
 std::string Scene::getDescription() const
 {
     return StringUtils::format("<Scene | tag = %d>", _tag);
-}
-
-void Scene::onProjectionChanged(EventCustom* event)
-{
-    if (_defaultCamera)
-    {
-        _defaultCamera->initDefault();
-    }
 }
 
 static bool camera_cmp(const Camera* a, const Camera* b)

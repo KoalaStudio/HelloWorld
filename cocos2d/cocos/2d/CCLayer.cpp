@@ -27,19 +27,11 @@ THE SOFTWARE.
 
 #include <stdarg.h>
 #include "2d/CCLayer.h"
-//#include "base/CCScriptSupport.h"
 #include "platform/CCDevice.h"
 #include "renderer/CCRenderer.h"
 #include "renderer/ccGLStateCache.h"
 #include "renderer/CCGLProgramState.h"
 #include "base/CCDirector.h"
-//#include "base/CCEventDispatcher.h"
-//#include "base/CCEventListenerTouch.h"
-//#include "base/CCEventTouch.h"
-//#include "base/CCEventKeyboard.h"
-//#include "base/CCEventListenerKeyboard.h"
-//#include "base/CCEventAcceleration.h"
-//#include "base/CCEventListenerAcceleration.h"
 
 
 //#include "deprecated/CCString.h"
@@ -49,14 +41,6 @@ NS_CC_BEGIN
 
 // Layer
 Layer::Layer()
-: _touchEnabled(false)
-, _accelerometerEnabled(false)
-, _keyboardEnabled(false)
-//, _touchListener(nullptr)
-//, _keyboardListener(nullptr)
-//, _accelerationListener(nullptr)
-//, _touchMode(Touch::DispatchMode::ALL_AT_ONCE)
-, _swallowsTouches(true)
 {
     _ignoreAnchorPointForPosition = true;
     setAnchorPoint(Vec2(0.5f, 0.5f));
