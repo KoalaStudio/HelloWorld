@@ -29,7 +29,7 @@ THE SOFTWARE.
 
 #include <set>
 #include "base/CCRef.h"
-#include "base/CCDataVisitor.h"
+//#include "base/CCDataVisitor.h"
 
 NS_CC_BEGIN
 
@@ -107,7 +107,7 @@ public:
      * @js NA
      * @lua NA
      */
-    virtual void acceptVisitor(DataVisitor &visitor);
+//    virtual void acceptVisitor(DataVisitor &visitor);
 
 private:
     std::set<Ref *> *_set;

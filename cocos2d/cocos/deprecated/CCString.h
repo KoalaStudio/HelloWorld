@@ -181,7 +181,7 @@ public:
      * @js NA
      * @lua NA
      */
-    virtual void acceptVisitor(DataVisitor &visitor);
+//    virtual void acceptVisitor(DataVisitor &visitor);
     /**
      * @js NA
      * @lua NA

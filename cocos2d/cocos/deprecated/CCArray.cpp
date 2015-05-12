@@ -368,10 +368,10 @@ __Array* __Array::clone() const
     return ret;
 }
 
-void __Array::acceptVisitor(DataVisitor &visitor)
-{
-    visitor.visit(this);
-}
+//void __Array::acceptVisitor(DataVisitor &visitor)
+//{
+//    visitor.visit(this);
+//}
 
 // ----------------------------------------------------------------------------------
 // ccArray implementation
@@ -754,10 +754,10 @@ __Array* __Array::clone() const
     return ret;
 }
 
-void __Array::acceptVisitor(DataVisitor &visitor)
-{
-    visitor.visit(this);
-}
+//void __Array::acceptVisitor(DataVisitor &visitor)
+//{
+//    visitor.visit(this);
+//}
 
 #endif // uses ccArray
 

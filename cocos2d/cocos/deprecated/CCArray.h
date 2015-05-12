@@ -39,7 +39,7 @@ THE SOFTWARE.
 #include "base/ccCArray.h"
 #endif
 
-#include "base/CCDataVisitor.h"
+//#include "base/CCDataVisitor.h"
 
 #if CC_USE_ARRAY_VECTOR
 /**
@@ -497,7 +497,7 @@ public:
     /* override functions 
      * @js NA
      */
-    virtual void acceptVisitor(DataVisitor &visitor);
+//    virtual void acceptVisitor(DataVisitor &visitor);
     /**
      * @js NA
      * @lua NA

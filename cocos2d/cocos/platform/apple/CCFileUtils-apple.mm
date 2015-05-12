@@ -32,7 +32,7 @@ THE SOFTWARE.
 
 #include "base/CCDirector.h"
 #include "deprecated/CCString.h"
-#include "deprecated/CCDictionary.h"
+//#include "deprecated/CCDictionary.h"
 #include "platform/CCFileUtils.h"
 #include "platform/CCSAXParser.h"
 

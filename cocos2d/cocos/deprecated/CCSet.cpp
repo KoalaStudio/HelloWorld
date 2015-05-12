@@ -57,10 +57,10 @@ __Set::~__Set(void)
     CC_SAFE_DELETE(_set);
 }
 
-void __Set::acceptVisitor(DataVisitor &visitor)
-{
-    visitor.visit(this);
-}
+//void __Set::acceptVisitor(DataVisitor &visitor)
+//{
+//    visitor.visit(this);
+//}
 
 __Set * __Set::create()
 {

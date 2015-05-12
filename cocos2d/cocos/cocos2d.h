@@ -292,15 +292,15 @@ THE SOFTWARE.
 //#include "3d/CCTerrain.h"
 
 // Deprecated include
-#include "deprecated/CCDictionary.h"
+//#include "deprecated/CCDictionary.h"
 #include "deprecated/CCArray.h"
 #include "deprecated/CCSet.h"
 #include "deprecated/CCInteger.h"
 #include "deprecated/CCFloat.h"
 #include "deprecated/CCDouble.h"
-#include "deprecated/CCBool.h"
+//#include "deprecated/CCBool.h"
 #include "deprecated/CCString.h"
-#include "deprecated/CCNotificationCenter.h"
+//#include "deprecated/CCNotificationCenter.h"
 // CCDeprecated.h must be included at the end
 #include "deprecated/CCDeprecated.h"
 

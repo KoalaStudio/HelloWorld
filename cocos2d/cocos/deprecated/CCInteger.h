@@ -28,7 +28,7 @@
 
 #include "base/CCRef.h"
 #include "base/CCConsole.h"
-#include "base/CCDataVisitor.h"
+//#include "base/CCDataVisitor.h"
 #include "platform/CCCommon.h"
 
 NS_CC_BEGIN
@@ -62,7 +62,7 @@ public:
     }
 
     /* override functions */
-    virtual void acceptVisitor(DataVisitor &visitor) { visitor.visit(this); }
+//    virtual void acceptVisitor(DataVisitor &visitor) { visitor.visit(this); }
 
     // overrides
     virtual __Integer* clone() const override

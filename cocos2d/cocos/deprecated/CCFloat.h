@@ -27,7 +27,7 @@
 /// @cond DO_NOT_SHOW
 
 #include "base/CCRef.h"
-#include "base/CCDataVisitor.h"
+//#include "base/CCDataVisitor.h"
 
 NS_CC_BEGIN
 
@@ -54,7 +54,7 @@ public:
     }
 
     /* override functions */
-    virtual void acceptVisitor(DataVisitor &visitor) { visitor.visit(this); }
+//    virtual void acceptVisitor(DataVisitor &visitor) { visitor.visit(this); }
     
     __Float* clone() const
     {
