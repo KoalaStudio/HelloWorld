@@ -30,7 +30,7 @@
 #include "CCDevice.h"
 #include "base/ccTypes.h"
 #include "base/CCEventDispatcher.h"
-#include "base/CCEventAcceleration.h"
+//#include "base/CCEventAcceleration.h"
 #include "base/CCDirector.h"
 #import <UIKit/UIKit.h>
 
@@ -135,9 +135,9 @@ static CCAccelerometerDispatcher* s_pAccelerometerDispatcher;
             NSAssert(false, @"unknow orientation");
     }
 
-    cocos2d::EventAcceleration event(*_acceleration);
-    auto dispatcher = cocos2d::Director::getInstance()->getEventDispatcher();
-    dispatcher->dispatchEvent(&event);
+//    cocos2d::EventAcceleration event(*_acceleration);
+//    auto dispatcher = cocos2d::Director::getInstance()->getEventDispatcher();
+//    dispatcher->dispatchEvent(&event);
 }
 
 @end

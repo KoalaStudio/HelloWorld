@@ -36,10 +36,10 @@ THE SOFTWARE.
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerTouch.h"
 #include "base/CCEventTouch.h"
-#include "base/CCEventKeyboard.h"
-#include "base/CCEventListenerKeyboard.h"
-#include "base/CCEventAcceleration.h"
-#include "base/CCEventListenerAcceleration.h"
+//#include "base/CCEventKeyboard.h"
+//#include "base/CCEventListenerKeyboard.h"
+//#include "base/CCEventAcceleration.h"
+//#include "base/CCEventListenerAcceleration.h"
 
 
 //#include "deprecated/CCString.h"
@@ -219,104 +219,104 @@ bool Layer::isSwallowsTouches() const
 }
 
 /// isAccelerometerEnabled getter
-bool Layer::isAccelerometerEnabled() const
-{
-    return _accelerometerEnabled;
-}
-/// isAccelerometerEnabled setter
-void Layer::setAccelerometerEnabled(bool enabled)
-{
-    if (enabled != _accelerometerEnabled)
-    {
-        _accelerometerEnabled = enabled;
+//bool Layer::isAccelerometerEnabled() const
+//{
+//    return _accelerometerEnabled;
+//}
+///// isAccelerometerEnabled setter
+//void Layer::setAccelerometerEnabled(bool enabled)
+//{
+//    if (enabled != _accelerometerEnabled)
+//    {
+//        _accelerometerEnabled = enabled;
+//
+//        Device::setAccelerometerEnabled(enabled);
+//
+//        _eventDispatcher->removeEventListener(_accelerationListener);
+//        _accelerationListener = nullptr;
+//
+//        if (enabled)
+//        {
+//            _accelerationListener = EventListenerAcceleration::create(CC_CALLBACK_2(Layer::onAcceleration, this));
+//            _eventDispatcher->addEventListenerWithSceneGraphPriority(_accelerationListener, this);
+//        }
+//    }
+//}
+//
+//void Layer::setAccelerometerInterval(double interval) {
+//    if (_accelerometerEnabled)
+//    {
+//        if (_running)
+//        {
+//            Device::setAccelerometerInterval(interval);
+//        }
+//    }
+//}
+//
+//void Layer::onAcceleration(Acceleration* acc, Event* unused_event)
+//{
+//    CC_UNUSED_PARAM(acc);
+//    CC_UNUSED_PARAM(unused_event);
+//#if CC_ENABLE_SCRIPT_BINDING
+//    if(kScriptTypeNone != _scriptType)
+//    {
+//        BasicScriptData data(this,(void*)acc);
+//        ScriptEvent event(kAccelerometerEvent,&data);
+//        ScriptEngineManager::getInstance()->getScriptEngine()->sendEvent(&event);
+//    }
+//#endif
+//}
 
-        Device::setAccelerometerEnabled(enabled);
-
-        _eventDispatcher->removeEventListener(_accelerationListener);
-        _accelerationListener = nullptr;
-
-        if (enabled)
-        {
-            _accelerationListener = EventListenerAcceleration::create(CC_CALLBACK_2(Layer::onAcceleration, this));
-            _eventDispatcher->addEventListenerWithSceneGraphPriority(_accelerationListener, this);
-        }
-    }
-}
-
-void Layer::setAccelerometerInterval(double interval) {
-    if (_accelerometerEnabled)
-    {
-        if (_running)
-        {
-            Device::setAccelerometerInterval(interval);
-        }
-    }
-}
-
-void Layer::onAcceleration(Acceleration* acc, Event* unused_event)
-{
-    CC_UNUSED_PARAM(acc);
-    CC_UNUSED_PARAM(unused_event);
-#if CC_ENABLE_SCRIPT_BINDING
-    if(kScriptTypeNone != _scriptType)
-    {
-        BasicScriptData data(this,(void*)acc);
-        ScriptEvent event(kAccelerometerEvent,&data);
-        ScriptEngineManager::getInstance()->getScriptEngine()->sendEvent(&event);
-    }
-#endif
-}
-
-void Layer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* unused_event)
-{
-    CC_UNUSED_PARAM(keyCode);
-    CC_UNUSED_PARAM(unused_event);
-}
-
-void Layer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* unused_event)
-{
-    CC_UNUSED_PARAM(unused_event);
-#if CC_ENABLE_SCRIPT_BINDING
-    if(kScriptTypeNone != _scriptType)
-    {
-        KeypadScriptData data(keyCode, this);
-        ScriptEvent event(kKeypadEvent,&data);
-        ScriptEngineManager::getInstance()->getScriptEngine()->sendEvent(&event);
-    }
-#endif
-}
+//void Layer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* unused_event)
+//{
+//    CC_UNUSED_PARAM(keyCode);
+//    CC_UNUSED_PARAM(unused_event);
+//}
+//
+//void Layer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* unused_event)
+//{
+//    CC_UNUSED_PARAM(unused_event);
+//#if CC_ENABLE_SCRIPT_BINDING
+//    if(kScriptTypeNone != _scriptType)
+//    {
+//        KeypadScriptData data(keyCode, this);
+//        ScriptEvent event(kKeypadEvent,&data);
+//        ScriptEngineManager::getInstance()->getScriptEngine()->sendEvent(&event);
+//    }
+//#endif
+//}
 
 /// isKeyboardEnabled getter
-bool Layer::isKeyboardEnabled() const
-{
-    return _keyboardEnabled;
-}
-/// isKeyboardEnabled setter
-void Layer::setKeyboardEnabled(bool enabled)
-{
-    if (enabled != _keyboardEnabled)
-    {
-        _keyboardEnabled = enabled;
-
-        _eventDispatcher->removeEventListener(_keyboardListener);
-        _keyboardListener = nullptr;
-
-        if (enabled)
-        {
-            auto listener = EventListenerKeyboard::create();
-            listener->onKeyPressed = CC_CALLBACK_2(Layer::onKeyPressed, this);
-            listener->onKeyReleased = CC_CALLBACK_2(Layer::onKeyReleased, this);
-
-            _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-            _keyboardListener = listener;
-        }
-    }
-}
-
-void Layer::setKeypadEnabled(bool enabled)
-{
-    setKeyboardEnabled(enabled);
-}
+//bool Layer::isKeyboardEnabled() const
+//{
+//    return _keyboardEnabled;
+//}
+///// isKeyboardEnabled setter
+//void Layer::setKeyboardEnabled(bool enabled)
+//{
+//    if (enabled != _keyboardEnabled)
+//    {
+//        _keyboardEnabled = enabled;
+//
+//        _eventDispatcher->removeEventListener(_keyboardListener);
+//        _keyboardListener = nullptr;
+//
+//        if (enabled)
+//        {
+//            auto listener = EventListenerKeyboard::create();
+//            listener->onKeyPressed = CC_CALLBACK_2(Layer::onKeyPressed, this);
+//            listener->onKeyReleased = CC_CALLBACK_2(Layer::onKeyReleased, this);
+//
+//            _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+//            _keyboardListener = listener;
+//        }
+//    }
+//}
+//
+//void Layer::setKeypadEnabled(bool enabled)
+//{
+//    setKeyboardEnabled(enabled);
+//}
 /// Callbacks
 
 bool Layer::onTouchBegan(Touch *touch, Event *event)

@@ -48,10 +48,10 @@ public:
     enum class Type
     {
         TOUCH,
-        KEYBOARD,
-        ACCELERATION,
-        MOUSE,
-        FOCUS,
+//        KEYBOARD,
+//        ACCELERATION,
+//        MOUSE,
+//        FOCUS,
 //        GAME_CONTROLLER,
         CUSTOM
     };

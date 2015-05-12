@@ -144,17 +144,17 @@ public:
       @deprecated Please override onAcceleration 
       @js NA
      */
-    CC_DEPRECATED_ATTRIBUTE virtual void didAccelerate(Acceleration* accelerationValue) final {};
-
-	/* Callback function should not be deprecated, it will generate lots of warnings.
-	Since 'setAccelerometerEnabled' was deprecated, it will make warnings if developer overrides onAcceleration and invokes setAccelerometerEnabled(true) instead of using EventDispatcher::addEventListenerWithXXX.
-    */
-    /** Callback funtion for acceleration.
-     * @param acc Acceleration information.
-     * @param unused_event Event information.
-     * @js NA
-     */
-    virtual void onAcceleration(Acceleration* acc, Event* unused_event);
+//    CC_DEPRECATED_ATTRIBUTE virtual void didAccelerate(Acceleration* accelerationValue) final {};
+//
+//	/* Callback function should not be deprecated, it will generate lots of warnings.
+//	Since 'setAccelerometerEnabled' was deprecated, it will make warnings if developer overrides onAcceleration and invokes setAccelerometerEnabled(true) instead of using EventDispatcher::addEventListenerWithXXX.
+//    */
+//    /** Callback funtion for acceleration.
+//     * @param acc Acceleration information.
+//     * @param unused_event Event information.
+//     * @js NA
+//     */
+//    virtual void onAcceleration(Acceleration* acc, Event* unused_event);
 
     /** If isTouchEnabled, this method is called onEnter. Override it to change the
     way Layer receives touch events.
@@ -193,30 +193,30 @@ public:
     @since v0.8.1
     @js NA
     */
-    CC_DEPRECATED_ATTRIBUTE virtual bool isAccelerometerEnabled() const;
-    CC_DEPRECATED_ATTRIBUTE virtual void setAccelerometerEnabled(bool value);
-    CC_DEPRECATED_ATTRIBUTE virtual void setAccelerometerInterval(double interval);
-
-    /** whether or not it will receive keyboard or keypad events
-    You can enable / disable accelerometer events with this property.
-    it's new in cocos2d-x
-    @js NA
-    */
-
-    CC_DEPRECATED_ATTRIBUTE virtual bool isKeyboardEnabled() const;
-    CC_DEPRECATED_ATTRIBUTE virtual void setKeyboardEnabled(bool value);
-
-    /** 
-      Please use onKeyPressed instead. 
-      @js NA
-     */
-    CC_DEPRECATED_ATTRIBUTE virtual void keyPressed(int keyCode) final {};
-    
-    /** 
-      Please use onKeyReleased instead. 
-      @js NA
-     */
-    CC_DEPRECATED_ATTRIBUTE virtual void keyReleased(int keyCode) final {};
+//    CC_DEPRECATED_ATTRIBUTE virtual bool isAccelerometerEnabled() const;
+//    CC_DEPRECATED_ATTRIBUTE virtual void setAccelerometerEnabled(bool value);
+//    CC_DEPRECATED_ATTRIBUTE virtual void setAccelerometerInterval(double interval);
+//
+//    /** whether or not it will receive keyboard or keypad events
+//    You can enable / disable accelerometer events with this property.
+//    it's new in cocos2d-x
+//    @js NA
+//    */
+//
+//    CC_DEPRECATED_ATTRIBUTE virtual bool isKeyboardEnabled() const;
+//    CC_DEPRECATED_ATTRIBUTE virtual void setKeyboardEnabled(bool value);
+//
+//    /** 
+//      Please use onKeyPressed instead. 
+//      @js NA
+//     */
+//    CC_DEPRECATED_ATTRIBUTE virtual void keyPressed(int keyCode) final {};
+//    
+//    /** 
+//      Please use onKeyReleased instead. 
+//      @js NA
+//     */
+//    CC_DEPRECATED_ATTRIBUTE virtual void keyReleased(int keyCode) final {};
 
 	/* Callback function should not be deprecated, it will generate lots of warnings.
 	Since 'setKeyboardEnabled' was deprecated, it will make warnings if developer overrides onKeyXXX and invokes setKeyboardEnabled(true) instead of using EventDispatcher::addEventListenerWithXXX.
@@ -226,23 +226,23 @@ public:
      * @param event Event information.
      * @js NA
      */
-    virtual void onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event);
-    /** Callback function for key released.
-    * @param keyCode KeyCode information.
-    * @param event Event information.
-    * @js NA
-    */
-    virtual void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event);
+//    virtual void onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event);
+//    /** Callback function for key released.
+//    * @param keyCode KeyCode information.
+//    * @param event Event information.
+//    * @js NA
+//    */
+//    virtual void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event);
 
-    CC_DEPRECATED_ATTRIBUTE virtual bool isKeypadEnabled() const final { return _keyboardEnabled; }
-    CC_DEPRECATED_ATTRIBUTE virtual void setKeypadEnabled(bool value);
+//    CC_DEPRECATED_ATTRIBUTE virtual bool isKeypadEnabled() const final { return _keyboardEnabled; }
+//    CC_DEPRECATED_ATTRIBUTE virtual void setKeypadEnabled(bool value);
 
     /** 
       @deprecated Please override onKeyReleased and check the keycode of KeyboardEvent::KeyCode::Menu(KEY_BACKSPACE) instead. 
       @js NA
      */
-    CC_DEPRECATED_ATTRIBUTE virtual void keyBackClicked() final {};
-    CC_DEPRECATED_ATTRIBUTE virtual void keyMenuClicked() final {};
+//    CC_DEPRECATED_ATTRIBUTE virtual void keyBackClicked() final {};
+//    CC_DEPRECATED_ATTRIBUTE virtual void keyMenuClicked() final {};
 
     // Overrides
     virtual std::string getDescription() const override;
