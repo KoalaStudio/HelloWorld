@@ -299,7 +299,7 @@ THE SOFTWARE.
 //#include "deprecated/CCFloat.h"
 //#include "deprecated/CCDouble.h"
 //#include "deprecated/CCBool.h"
-#include "deprecated/CCString.h"
+//#include "deprecated/CCString.h"
 //#include "deprecated/CCNotificationCenter.h"
 // CCDeprecated.h must be included at the end
 #include "deprecated/CCDeprecated.h"

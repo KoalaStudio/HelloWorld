@@ -37,7 +37,8 @@ THE SOFTWARE.
 #include "renderer/ccGLStateCache.h"
 #include "platform/CCFileUtils.h"
 
-#include "deprecated/CCString.h"
+//#include "deprecated/CCString.h"
+#include "base/ccUTF8.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || defined(WP8_SHADER_COMPILER)
 #include "CCPrecompiledShaders.h"

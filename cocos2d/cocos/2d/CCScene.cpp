@@ -31,7 +31,8 @@ THE SOFTWARE.
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerCustom.h"
 #include "renderer/CCRenderer.h"
-#include "deprecated/CCString.h"
+//#include "deprecated/CCString.h"
+#include "ccUTF8.h"
 
 #if CC_USE_PHYSICS
 #include "physics/CCPhysicsWorld.h"
