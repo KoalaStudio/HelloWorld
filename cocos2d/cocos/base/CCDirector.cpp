@@ -57,7 +57,7 @@ THE SOFTWARE.
 #include "base/CCConsole.h"
 #include "base/CCAutoreleasePool.h"
 #include "base/CCConfiguration.h"
-#include "base/CCAsyncTaskPool.h"
+//#include "base/CCAsyncTaskPool.h"
 #include "platform/CCApplication.h"
 //#include "platform/CCGLViewImpl.h"
 
@@ -994,7 +994,7 @@ void Director::reset()
     GLProgramCache::destroyInstance();
     GLProgramStateCache::destroyInstance();
     FileUtils::destroyInstance();
-    AsyncTaskPool::destoryInstance();
+//    AsyncTaskPool::destoryInstance();
     
     // cocos2d-x specific data structures
     UserDefault::destroyInstance();
