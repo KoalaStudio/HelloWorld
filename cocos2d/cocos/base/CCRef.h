@@ -148,16 +148,6 @@ protected:
 
     friend class AutoreleasePool;
 
-#if CC_ENABLE_SCRIPT_BINDING
-public:
-    /// object id, ScriptSupport need public _ID
-    unsigned int        _ID;
-    /// Lua reference id
-    int                 _luaID;
-    /// scriptObject, support for swift
-    void* _scriptObject;
-#endif
-
     // Memory leak diagnostic data (only included when CC_REF_LEAK_DETECTION is defined and its value isn't zero)
 #if CC_REF_LEAK_DETECTION
 public:

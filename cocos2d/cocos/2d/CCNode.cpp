@@ -113,9 +113,6 @@ Node::Node(void)
 , _ignoreAnchorPointForPosition(false)
 , _reorderChildDirty(false)
 , _isTransitionFinished(false)
-#if CC_ENABLE_SCRIPT_BINDING
-, _updateScriptHandler(0)
-#endif
 //, _componentContainer(nullptr)
 #if CC_USE_PHYSICS
 , _physicsBody(nullptr)
@@ -138,17 +135,7 @@ Node::Node(void)
 {
     // set default scheduler and actionManager
     _director = Director::getInstance();
-//    _actionManager = _director->getActionManager();
-//    _actionManager->retain();
-//    _scheduler = _director->getScheduler();
-//    _scheduler->retain();
-//    _eventDispatcher = _director->getEventDispatcher();
-//    _eventDispatcher->retain();
-    
-#if CC_ENABLE_SCRIPT_BINDING
-    ScriptEngineProtocol* engine = ScriptEngineManager::getInstance()->getScriptEngine();
-    _scriptType = engine != nullptr ? engine->getScriptType() : kScriptTypeNone;
-#endif
+
     _transform = _inverse = _additionalTransform = Mat4::IDENTITY;
 }
 
@@ -169,13 +156,6 @@ Node * Node::create()
 Node::~Node()
 {
     CCLOGINFO( "deallocing Node: %p - tag: %i", this, _tag );
-    
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_updateScriptHandler)
-    {
-        ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(_updateScriptHandler);
-    }
-#endif
 
     // User object has to be released before others, since userObject may have a weak reference of this node
     // It may invoke `node->stopAllAction();` while `_actionManager` is null if the next line is after `CC_SAFE_RELEASE_NULL(_actionManager)`.
@@ -220,20 +200,6 @@ bool Node::init()
 
 void Node::cleanup()
 {
-    // actions
-//    this->stopAllActions();
-//    this->unscheduleAllCallbacks();
-
-#if CC_ENABLE_SCRIPT_BINDING
-    if ( _scriptType != kScriptTypeNone)
-    {
-        int action = kNodeOnCleanup;
-        BasicScriptData data(this,(void*)&action);
-        ScriptEvent scriptEvent(kNodeEvent,(void*)&data);
-        ScriptEngineManager::getInstance()->getScriptEngine()->sendEvent(&scriptEvent);
-    }
-#endif // #if CC_ENABLE_SCRIPT_BINDING
-
     // timers
     for( const auto &child: _children)
         child->cleanup();
@@ -1408,55 +1374,23 @@ void Node::onEnter()
 {
     if (_onEnterCallback)
         _onEnterCallback();
-
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeJavascript)
-    {
-        if (ScriptEngineManager::sendNodeEventToJS(this, kNodeOnEnter))
-            return;
-    }
-#endif
     
     _isTransitionFinished = false;
     
     for( const auto &child: _children)
         child->onEnter();
     
-//    this->resume();
-    
     _running = true;
-    
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeLua)
-    {
-        ScriptEngineManager::sendNodeEventToLua(this, kNodeOnEnter);
-    }
-#endif
 }
 
 void Node::onEnterTransitionDidFinish()
 {
     if (_onEnterTransitionDidFinishCallback)
         _onEnterTransitionDidFinishCallback();
-        
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeJavascript)
-    {
-        if (ScriptEngineManager::sendNodeEventToJS(this, kNodeOnEnterTransitionDidFinish))
-            return;
-    }
-#endif
 
     _isTransitionFinished = true;
     for( const auto &child: _children)
         child->onEnterTransitionDidFinish();
-    
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeLua)
-    {
-        ScriptEngineManager::sendNodeEventToLua(this, kNodeOnEnterTransitionDidFinish);
-    }
-#endif
 }
 
 void Node::onExitTransitionDidStart()
@@ -1464,23 +1398,8 @@ void Node::onExitTransitionDidStart()
     if (_onExitTransitionDidStartCallback)
         _onExitTransitionDidStartCallback();
     
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeJavascript)
-    {
-        if (ScriptEngineManager::sendNodeEventToJS(this, kNodeOnExitTransitionDidStart))
-            return;
-    }
-#endif
-    
     for( const auto &child: _children)
         child->onExitTransitionDidStart();
-    
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeLua)
-    {
-        ScriptEngineManager::sendNodeEventToLua(this, kNodeOnExitTransitionDidStart);
-    }
-#endif
 }
 
 void Node::onExit()
@@ -1488,253 +1407,16 @@ void Node::onExit()
     if (_onExitCallback)
         _onExitCallback();
     
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeJavascript)
-    {
-        if (ScriptEngineManager::sendNodeEventToJS(this, kNodeOnExit))
-            return;
-    }
-#endif
-    
-//    this->pause();
-    
     _running = false;
     
     for( const auto &child: _children)
         child->onExit();
-    
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeLua)
-    {
-        ScriptEngineManager::sendNodeEventToLua(this, kNodeOnExit);
-    }
-#endif
 }
-
-//void Node::setEventDispatcher(EventDispatcher* dispatcher)
-//{
-//    if (dispatcher != _eventDispatcher)
-//    {
-//        _eventDispatcher->removeEventListenersForTarget(this);
-//        CC_SAFE_RETAIN(dispatcher);
-//        CC_SAFE_RELEASE(_eventDispatcher);
-//        _eventDispatcher = dispatcher;
-//    }
-//}
-
-//void Node::setActionManager(ActionManager* actionManager)
-//{
-//    if( actionManager != _actionManager )
-//    {
-//        this->stopAllActions();
-//        CC_SAFE_RETAIN(actionManager);
-//        CC_SAFE_RELEASE(_actionManager);
-//        _actionManager = actionManager;
-//    }
-//}
-//
-//// MARK: actions
-//
-//Action * Node::runAction(Action* action)
-//{
-//    CCASSERT( action != nullptr, "Argument must be non-nil");
-//    _actionManager->addAction(action, this, !_running);
-//    return action;
-//}
-//
-//void Node::stopAllActions()
-//{
-//    _actionManager->removeAllActionsFromTarget(this);
-//}
-//
-//void Node::stopAction(Action* action)
-//{
-//    _actionManager->removeAction(action);
-//}
-//
-//void Node::stopActionByTag(int tag)
-//{
-//    CCASSERT( tag != Action::INVALID_TAG, "Invalid tag");
-//    _actionManager->removeActionByTag(tag, this);
-//}
-//
-//void Node::stopAllActionsByTag(int tag)
-//{
-//    CCASSERT( tag != Action::INVALID_TAG, "Invalid tag");
-//    _actionManager->removeAllActionsByTag(tag, this);
-//}
-//
-//Action * Node::getActionByTag(int tag)
-//{
-//    CCASSERT( tag != Action::INVALID_TAG, "Invalid tag");
-//    return _actionManager->getActionByTag(tag, this);
-//}
-//
-//ssize_t Node::getNumberOfRunningActions() const
-//{
-//    return _actionManager->getNumberOfRunningActionsInTarget(this);
-//}
-
-// MARK: Callbacks
-
-//void Node::setScheduler(Scheduler* scheduler)
-//{
-//    if( scheduler != _scheduler )
-//    {
-//        this->unscheduleAllCallbacks();
-//        CC_SAFE_RETAIN(scheduler);
-//        CC_SAFE_RELEASE(_scheduler);
-//        _scheduler = scheduler;
-//    }
-//}
-//
-//bool Node::isScheduled(SEL_SCHEDULE selector)
-//{
-//    return _scheduler->isScheduled(selector, this);
-//}
-//
-//bool Node::isScheduled(const std::string &key)
-//{
-//    return _scheduler->isScheduled(key, this);
-//}
-//
-//void Node::scheduleUpdate()
-//{
-//    scheduleUpdateWithPriority(0);
-//}
-//
-//void Node::scheduleUpdateWithPriority(int priority)
-//{
-//    _scheduler->scheduleUpdate(this, priority, !_running);
-//}
-//
-//void Node::scheduleUpdateWithPriorityLua(int nHandler, int priority)
-//{
-//    unscheduleUpdate();
-//    
-//#if CC_ENABLE_SCRIPT_BINDING
-//    _updateScriptHandler = nHandler;
-//#endif
-//    
-//    _scheduler->scheduleUpdate(this, priority, !_running);
-//}
-//
-//void Node::unscheduleUpdate()
-//{
-//    _scheduler->unscheduleUpdate(this);
-//    
-//#if CC_ENABLE_SCRIPT_BINDING
-//    if (_updateScriptHandler)
-//    {
-//        ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(_updateScriptHandler);
-//        _updateScriptHandler = 0;
-//    }
-//#endif
-//}
-//
-//void Node::schedule(SEL_SCHEDULE selector)
-//{
-//    this->schedule(selector, 0.0f, CC_REPEAT_FOREVER, 0.0f);
-//}
-//
-//void Node::schedule(SEL_SCHEDULE selector, float interval)
-//{
-//    this->schedule(selector, interval, CC_REPEAT_FOREVER, 0.0f);
-//}
-//
-//void Node::schedule(SEL_SCHEDULE selector, float interval, unsigned int repeat, float delay)
-//{
-//    CCASSERT( selector, "Argument must be non-nil");
-//    CCASSERT( interval >=0, "Argument must be positive");
-//
-//    _scheduler->schedule(selector, this, interval , repeat, delay, !_running);
-//}
-//
-//void Node::schedule(const std::function<void(float)> &callback, const std::string &key)
-//{
-//    _scheduler->schedule(callback, this, 0, !_running, key);
-//}
-//
-//void Node::schedule(const std::function<void(float)> &callback, float interval, const std::string &key)
-//{
-//    _scheduler->schedule(callback, this, interval, !_running, key);
-//}
-//
-//void Node::schedule(const std::function<void(float)>& callback, float interval, unsigned int repeat, float delay, const std::string &key)
-//{
-//    _scheduler->schedule(callback, this, interval, repeat, delay, !_running, key);
-//}
-//
-//void Node::scheduleOnce(SEL_SCHEDULE selector, float delay)
-//{
-//    this->schedule(selector, 0.0f, 0, delay);
-//}
-//
-//void Node::scheduleOnce(const std::function<void(float)> &callback, float delay, const std::string &key)
-//{
-//    _scheduler->schedule(callback, this, 0, 0, delay, !_running, key);
-//}
-//
-//void Node::unschedule(SEL_SCHEDULE selector)
-//{
-//    // explicit null handling
-//    if (selector == nullptr)
-//        return;
-//    
-//    _scheduler->unschedule(selector, this);
-//}
-//
-//void Node::unschedule(const std::string &key)
-//{
-//    _scheduler->unschedule(key, this);
-//}
-//
-//void Node::unscheduleAllCallbacks()
-//{
-//    _scheduler->unscheduleAllForTarget(this);
-//}
-//
-//void Node::resume()
-//{
-//    _scheduler->resumeTarget(this);
-////    _actionManager->resumeTarget(this);
-//    _eventDispatcher->resumeEventListenersForTarget(this);
-//}
-//
-//void Node::pause()
-//{
-//    _scheduler->pauseTarget(this);
-////    _actionManager->pauseTarget(this);
-//    _eventDispatcher->pauseEventListenersForTarget(this);
-//}
-//
-//void Node::resumeSchedulerAndActions()
-//{
-//    resume();
-//}
-//
-//void Node::pauseSchedulerAndActions()
-//{
-//    pause();
-//}
 
 // override me
 void Node::update(float fDelta)
 {
-#if CC_ENABLE_SCRIPT_BINDING
-    if (0 != _updateScriptHandler)
-    {
-        //only lua use
-        SchedulerScriptData data(_updateScriptHandler,fDelta);
-        ScriptEvent event(kScheduleEvent,&data);
-        ScriptEngineManager::getInstance()->getScriptEngine()->sendEvent(&event);
-    }
-#endif
     
-//    if (_componentContainer && !_componentContainer->isEmpty())
-//    {
-//        _componentContainer->visit(fDelta);
-//    }
 }
 
 // MARK: coordinates

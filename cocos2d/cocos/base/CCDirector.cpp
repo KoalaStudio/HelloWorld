@@ -61,10 +61,6 @@ THE SOFTWARE.
 #include "platform/CCApplication.h"
 //#include "platform/CCGLViewImpl.h"
 
-#if CC_ENABLE_SCRIPT_BINDING
-#include "CCScriptSupport.h"
-#endif
-
 #if CC_USE_PHYSICS
 #include "physics/CCPhysicsWorld.h"
 #endif
@@ -1028,17 +1024,8 @@ void Director::restartDirector()
     // Texture cache need to be reinitialized
     initTextureCache();
     
-    // Reschedule for action manager
-//    getScheduler()->scheduleUpdate(getActionManager(), Scheduler::PRIORITY_SYSTEM, false);
-    
     // release the objects
     PoolManager::getInstance()->getCurrentPool()->clear();
-    
-    // Real restart in script level
-#if CC_ENABLE_SCRIPT_BINDING
-    ScriptEvent scriptEvent(kRestartGame, NULL);
-    ScriptEngineManager::getInstance()->getScriptEngine()->sendEvent(&scriptEvent);
-#endif
 }
 
 void Director::setNextScene()

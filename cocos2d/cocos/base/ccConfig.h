@@ -294,11 +294,6 @@ THE SOFTWARE.
 #endif
 #endif // CC_USE_WIC
 
-/** Enable Script binding. */
-#ifndef CC_ENABLE_SCRIPT_BINDING
-#define CC_ENABLE_SCRIPT_BINDING 0
-#endif
-
 /** @def CC_CONSTRUCTOR_ACCESS
  * Indicate the init functions access modifier. If value equals to protected, then these functions are protected.
  * If value equals to public, these functions are public,
