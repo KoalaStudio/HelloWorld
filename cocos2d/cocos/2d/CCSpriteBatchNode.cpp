@@ -32,8 +32,8 @@ THE SOFTWARE.
 #include "renderer/CCTextureCache.h"
 #include "renderer/CCRenderer.h"
 #include "renderer/CCQuadCommand.h"
-
-#include "deprecated/CCString.h" // For StringUtils::format
+#include "base/ccUTF8.h"
+//#include "deprecated/CCString.h" // For StringUtils::format
 
 
 NS_CC_BEGIN

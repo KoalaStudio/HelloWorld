@@ -48,8 +48,8 @@ THE SOFTWARE.
 #include "renderer/ccGLStateCache.h"
 #include "renderer/CCRenderer.h"
 #include "2d/CCCamera.h"
-#include "base/CCUserDefault.h"
-#include "base/ccFPSImages.h"
+//#include "base/CCUserDefault.h"
+//#include "base/ccFPSImages.h"
 #include "base/CCScheduler.h"
 #include "base/ccMacros.h"
 #include "base/CCEventDispatcher.h"
@@ -57,7 +57,7 @@ THE SOFTWARE.
 #include "base/CCConsole.h"
 #include "base/CCAutoreleasePool.h"
 #include "base/CCConfiguration.h"
-#include "base/CCAsyncTaskPool.h"
+//#include "base/CCAsyncTaskPool.h"
 #include "platform/CCApplication.h"
 //#include "platform/CCGLViewImpl.h"
 
@@ -309,7 +309,7 @@ void Director::drawScene()
 
     if (_displayStats)
     {
-        showStats();
+//        showStats();
     }
     _renderer->render();
 
@@ -994,10 +994,10 @@ void Director::reset()
     GLProgramCache::destroyInstance();
     GLProgramStateCache::destroyInstance();
     FileUtils::destroyInstance();
-    AsyncTaskPool::destoryInstance();
+//    AsyncTaskPool::destoryInstance();
     
     // cocos2d-x specific data structures
-    UserDefault::destroyInstance();
+//    UserDefault::destroyInstance();
     
     GL::invalidateStateCache();
     
@@ -1111,59 +1111,59 @@ void Director::resume()
 
 // display the FPS using a LabelAtlas
 // updates the FPS every frame
-void Director::showStats()
-{
-    if (_isStatusLabelUpdated)
-    {
-        createStatsLabel();
-        _isStatusLabelUpdated = false;
-    }
-
-    static unsigned long prevCalls = 0;
-    static unsigned long prevVerts = 0;
-    static float prevDeltaTime  = 0.016f; // 60FPS
-    static const float FPS_FILTER = 0.10f;
-
-    _accumDt += _deltaTime;
-    
-//    if (_displayStats && _FPSLabel && _drawnBatchesLabel && _drawnVerticesLabel)
+//void Director::showStats()
+//{
+//    if (_isStatusLabelUpdated)
 //    {
-//        char buffer[30];
-//
-//        float dt = _deltaTime * FPS_FILTER + (1-FPS_FILTER) * prevDeltaTime;
-//        prevDeltaTime = dt;
-//        _frameRate = 1/dt;
-//
-//        // Probably we don't need this anymore since
-//        // the framerate is using a low-pass filter
-//        // to make the FPS stable
-//        if (_accumDt > CC_DIRECTOR_STATS_INTERVAL)
-//        {
-//            sprintf(buffer, "%.1f / %.3f", _frameRate, _secondsPerFrame);
-////            _FPSLabel->setString(buffer);
-//            _accumDt = 0;
-//        }
-//
-//        auto currentCalls = (unsigned long)_renderer->getDrawnBatches();
-//        auto currentVerts = (unsigned long)_renderer->getDrawnVertices();
-//        if( currentCalls != prevCalls ) {
-//            sprintf(buffer, "GL calls:%6lu", currentCalls);
-////            _drawnBatchesLabel->setString(buffer);
-//            prevCalls = currentCalls;
-//        }
-//
-//        if( currentVerts != prevVerts) {
-//            sprintf(buffer, "GL verts:%6lu", currentVerts);
-////            _drawnVerticesLabel->setString(buffer);
-//            prevVerts = currentVerts;
-//        }
-//
-//        const Mat4& identity = Mat4::IDENTITY;
-////        _drawnVerticesLabel->visit(_renderer, identity, 0);
-////        _drawnBatchesLabel->visit(_renderer, identity, 0);
-////        _FPSLabel->visit(_renderer, identity, 0);
+////        createStatsLabel();
+//        _isStatusLabelUpdated = false;
 //    }
-}
+//
+//    static unsigned long prevCalls = 0;
+//    static unsigned long prevVerts = 0;
+//    static float prevDeltaTime  = 0.016f; // 60FPS
+//    static const float FPS_FILTER = 0.10f;
+//
+//    _accumDt += _deltaTime;
+//    
+////    if (_displayStats && _FPSLabel && _drawnBatchesLabel && _drawnVerticesLabel)
+////    {
+////        char buffer[30];
+////
+////        float dt = _deltaTime * FPS_FILTER + (1-FPS_FILTER) * prevDeltaTime;
+////        prevDeltaTime = dt;
+////        _frameRate = 1/dt;
+////
+////        // Probably we don't need this anymore since
+////        // the framerate is using a low-pass filter
+////        // to make the FPS stable
+////        if (_accumDt > CC_DIRECTOR_STATS_INTERVAL)
+////        {
+////            sprintf(buffer, "%.1f / %.3f", _frameRate, _secondsPerFrame);
+//////            _FPSLabel->setString(buffer);
+////            _accumDt = 0;
+////        }
+////
+////        auto currentCalls = (unsigned long)_renderer->getDrawnBatches();
+////        auto currentVerts = (unsigned long)_renderer->getDrawnVertices();
+////        if( currentCalls != prevCalls ) {
+////            sprintf(buffer, "GL calls:%6lu", currentCalls);
+//////            _drawnBatchesLabel->setString(buffer);
+////            prevCalls = currentCalls;
+////        }
+////
+////        if( currentVerts != prevVerts) {
+////            sprintf(buffer, "GL verts:%6lu", currentVerts);
+//////            _drawnVerticesLabel->setString(buffer);
+////            prevVerts = currentVerts;
+////        }
+////
+////        const Mat4& identity = Mat4::IDENTITY;
+//////        _drawnVerticesLabel->visit(_renderer, identity, 0);
+//////        _drawnBatchesLabel->visit(_renderer, identity, 0);
+//////        _FPSLabel->visit(_renderer, identity, 0);
+////    }
+//}
 
 void Director::calculateMPF()
 {
@@ -1180,84 +1180,84 @@ void Director::calculateMPF()
 }
 
 // returns the FPS image data pointer and len
-void Director::getFPSImageData(unsigned char** datapointer, ssize_t* length)
-{
-    // FIXME: fixed me if it should be used 
-    *datapointer = cc_fps_images_png;
-    *length = cc_fps_images_len();
-}
+//void Director::getFPSImageData(unsigned char** datapointer, ssize_t* length)
+//{
+//    // FIXME: fixed me if it should be used 
+////    *datapointer = cc_fps_images_png;
+////    *length = cc_fps_images_len();
+//}
 
-void Director::createStatsLabel()
-{
-    Texture2D *texture = nullptr;
-    std::string fpsString = "00.0";
-    std::string drawBatchString = "000";
-    std::string drawVerticesString = "00000";
-//    if (_FPSLabel)
-//    {
-////        fpsString = _FPSLabel->getString();
-////        drawBatchString = _drawnBatchesLabel->getString();
-////        drawVerticesString = _drawnVerticesLabel->getString();
-////        
-////        CC_SAFE_RELEASE_NULL(_FPSLabel);
-////        CC_SAFE_RELEASE_NULL(_drawnBatchesLabel);
-////        CC_SAFE_RELEASE_NULL(_drawnVerticesLabel);
-//        _textureCache->removeTextureForKey("/cc_fps_images");
-//        FileUtils::getInstance()->purgeCachedEntries();
-//    }
-
-    Texture2D::PixelFormat currentFormat = Texture2D::getDefaultAlphaPixelFormat();
-    Texture2D::setDefaultAlphaPixelFormat(Texture2D::PixelFormat::RGBA4444);
-    unsigned char *data = nullptr;
-    ssize_t dataLength = 0;
-    getFPSImageData(&data, &dataLength);
-
-    Image* image = new (std::nothrow) Image();
-    bool isOK = image->initWithImageData(data, dataLength);
-    if (! isOK) {
-        CCLOGERROR("%s", "Fails: init fps_images");
-        return;
-    }
-
-    texture = _textureCache->addImage(image, "/cc_fps_images");
-    CC_SAFE_RELEASE(image);
-
-    /*
-     We want to use an image which is stored in the file named ccFPSImage.c 
-     for any design resolutions and all resource resolutions. 
-     
-     To achieve this, we need to ignore 'contentScaleFactor' in 'AtlasNode' and 'LabelAtlas'.
-     So I added a new method called 'setIgnoreContentScaleFactor' for 'AtlasNode',
-     this is not exposed to game developers, it's only used for displaying FPS now.
-     */
-    float scaleFactor = 1 / CC_CONTENT_SCALE_FACTOR();
-
-//    _FPSLabel = LabelAtlas::create();
-//    _FPSLabel->retain();
-//    _FPSLabel->setIgnoreContentScaleFactor(true);
-//    _FPSLabel->initWithString(fpsString, texture, 12, 32 , '.');
-//    _FPSLabel->setScale(scaleFactor);
+//void Director::createStatsLabel()
+//{
+//    Texture2D *texture = nullptr;
+//    std::string fpsString = "00.0";
+//    std::string drawBatchString = "000";
+//    std::string drawVerticesString = "00000";
+////    if (_FPSLabel)
+////    {
+//////        fpsString = _FPSLabel->getString();
+//////        drawBatchString = _drawnBatchesLabel->getString();
+//////        drawVerticesString = _drawnVerticesLabel->getString();
+//////        
+//////        CC_SAFE_RELEASE_NULL(_FPSLabel);
+//////        CC_SAFE_RELEASE_NULL(_drawnBatchesLabel);
+//////        CC_SAFE_RELEASE_NULL(_drawnVerticesLabel);
+////        _textureCache->removeTextureForKey("/cc_fps_images");
+////        FileUtils::getInstance()->purgeCachedEntries();
+////    }
 //
-//    _drawnBatchesLabel = LabelAtlas::create();
-//    _drawnBatchesLabel->retain();
-//    _drawnBatchesLabel->setIgnoreContentScaleFactor(true);
-//    _drawnBatchesLabel->initWithString(drawBatchString, texture, 12, 32, '.');
-//    _drawnBatchesLabel->setScale(scaleFactor);
+//    Texture2D::PixelFormat currentFormat = Texture2D::getDefaultAlphaPixelFormat();
+//    Texture2D::setDefaultAlphaPixelFormat(Texture2D::PixelFormat::RGBA4444);
+////    unsigned char *data = nullptr;
+////    ssize_t dataLength = 0;
+//////    getFPSImageData(&data, &dataLength);
+////
+////    Image* image = new (std::nothrow) Image();
+////    bool isOK = image->initWithImageData(data, dataLength);
+////    if (! isOK) {
+////        CCLOGERROR("%s", "Fails: init fps_images");
+////        return;
+////    }
+////
+////    texture = _textureCache->addImage(image, "/cc_fps_images");
+////    CC_SAFE_RELEASE(image);
 //
-//    _drawnVerticesLabel = LabelAtlas::create();
-//    _drawnVerticesLabel->retain();
-//    _drawnVerticesLabel->setIgnoreContentScaleFactor(true);
-//    _drawnVerticesLabel->initWithString(drawVerticesString, texture, 12, 32, '.');
-//    _drawnVerticesLabel->setScale(scaleFactor);
-
-
-    Texture2D::setDefaultAlphaPixelFormat(currentFormat);
-
-    const int height_spacing = 22 / CC_CONTENT_SCALE_FACTOR();
-//    _drawnVerticesLabel->setPosition(Vec2(0, height_spacing*2) + CC_DIRECTOR_STATS_POSITION);
-//    _drawnBatchesLabel->setPosition(Vec2(0, height_spacing*1) + CC_DIRECTOR_STATS_POSITION);
-//    _FPSLabel->setPosition(Vec2(0, height_spacing*0)+CC_DIRECTOR_STATS_POSITION);
-}
+//    /*
+//     We want to use an image which is stored in the file named ccFPSImage.c 
+//     for any design resolutions and all resource resolutions. 
+//     
+//     To achieve this, we need to ignore 'contentScaleFactor' in 'AtlasNode' and 'LabelAtlas'.
+//     So I added a new method called 'setIgnoreContentScaleFactor' for 'AtlasNode',
+//     this is not exposed to game developers, it's only used for displaying FPS now.
+//     */
+//    float scaleFactor = 1 / CC_CONTENT_SCALE_FACTOR();
+//
+////    _FPSLabel = LabelAtlas::create();
+////    _FPSLabel->retain();
+////    _FPSLabel->setIgnoreContentScaleFactor(true);
+////    _FPSLabel->initWithString(fpsString, texture, 12, 32 , '.');
+////    _FPSLabel->setScale(scaleFactor);
+////
+////    _drawnBatchesLabel = LabelAtlas::create();
+////    _drawnBatchesLabel->retain();
+////    _drawnBatchesLabel->setIgnoreContentScaleFactor(true);
+////    _drawnBatchesLabel->initWithString(drawBatchString, texture, 12, 32, '.');
+////    _drawnBatchesLabel->setScale(scaleFactor);
+////
+////    _drawnVerticesLabel = LabelAtlas::create();
+////    _drawnVerticesLabel->retain();
+////    _drawnVerticesLabel->setIgnoreContentScaleFactor(true);
+////    _drawnVerticesLabel->initWithString(drawVerticesString, texture, 12, 32, '.');
+////    _drawnVerticesLabel->setScale(scaleFactor);
+//
+//
+//    Texture2D::setDefaultAlphaPixelFormat(currentFormat);
+//
+//    const int height_spacing = 22 / CC_CONTENT_SCALE_FACTOR();
+////    _drawnVerticesLabel->setPosition(Vec2(0, height_spacing*2) + CC_DIRECTOR_STATS_POSITION);
+////    _drawnBatchesLabel->setPosition(Vec2(0, height_spacing*1) + CC_DIRECTOR_STATS_POSITION);
+////    _FPSLabel->setPosition(Vec2(0, height_spacing*0)+CC_DIRECTOR_STATS_POSITION);
+//}
 
 void Director::setContentScaleFactor(float scaleFactor)
 {

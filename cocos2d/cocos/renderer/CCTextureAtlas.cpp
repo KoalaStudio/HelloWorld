@@ -41,9 +41,9 @@ THE SOFTWARE.
 #include "renderer/CCRenderer.h"
 #include "renderer/CCTexture2D.h"
 #include "platform/CCGL.h"
+#include "base/ccUTF8.h"
 
-
-#include "deprecated/CCString.h"
+//#include "deprecated/CCString.h"
 
 //According to some tests GL_TRIANGLE_STRIP is slower, MUCH slower. Probably I'm doing something very wrong
 

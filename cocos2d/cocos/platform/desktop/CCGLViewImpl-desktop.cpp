@@ -33,7 +33,7 @@ THE SOFTWARE.
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventKeyboard.h"
 #include "base/CCEventMouse.h"
-#include "base/CCIMEDispatcher.h"
+//#include "base/CCIMEDispatcher.h"
 #include "base/ccUtils.h"
 #include "base/ccUTF8.h"
 
@@ -681,7 +681,7 @@ void GLViewImpl::onGLFWKeyCallback(GLFWwindow *window, int key, int scancode, in
     
     if (GLFW_RELEASE != action && g_keyCodeMap[key] == EventKeyboard::KeyCode::KEY_BACKSPACE)
     {
-        IMEDispatcher::sharedDispatcher()->dispatchDeleteBackward();
+//        IMEDispatcher::sharedDispatcher()->dispatchDeleteBackward();
     }
 }
 
@@ -691,7 +691,7 @@ void GLViewImpl::onGLFWCharCallback(GLFWwindow *window, unsigned int character)
     std::string utf8String;
 
     StringUtils::UTF16ToUTF8( wcharString, utf8String );
-    IMEDispatcher::sharedDispatcher()->dispatchInsertText( utf8String.c_str(), utf8String.size() );
+//    IMEDispatcher::sharedDispatcher()->dispatchInsertText( utf8String.c_str(), utf8String.size() );
 }
 
 void GLViewImpl::onGLFWWindowPosCallback(GLFWwindow *windows, int x, int y)

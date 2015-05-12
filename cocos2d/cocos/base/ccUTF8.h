@@ -33,6 +33,9 @@
 NS_CC_BEGIN
 
 namespace StringUtils {
+    
+CC_DLL std::string format(const char* format, ...);
+
 
 /**
  *  @brief Converts utf8 string to utf16 string.

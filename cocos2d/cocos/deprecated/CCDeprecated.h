@@ -538,24 +538,24 @@ CC_DEPRECATED_ATTRIBUTE static inline AffineTransform CCAffineTransformIdentity(
 CC_DEPRECATED_ATTRIBUTE typedef Ref CCObject;
 CC_DEPRECATED_ATTRIBUTE typedef Ref Object;
 CC_DEPRECATED_ATTRIBUTE typedef Event CCEvent;
-CC_DEPRECATED_ATTRIBUTE typedef DataVisitor CCDataVisitor;
-CC_DEPRECATED_ATTRIBUTE typedef PrettyPrinter CCPrettyPrinter;
+//CC_DEPRECATED_ATTRIBUTE typedef DataVisitor CCDataVisitor;
+//CC_DEPRECATED_ATTRIBUTE typedef PrettyPrinter CCPrettyPrinter;
 CC_DEPRECATED_ATTRIBUTE typedef Acceleration CCAcceleration;
 CC_DEPRECATED_ATTRIBUTE typedef TextureAtlas CCTextureAtlas;
 CC_DEPRECATED_ATTRIBUTE typedef Configuration CCConfiguration;
 //CC_DEPRECATED_ATTRIBUTE typedef PointArray CCPointArray;
 //CC_DEPRECATED_ATTRIBUTE typedef RemoveSelf CCRemoveSelf;
-CC_DEPRECATED_ATTRIBUTE typedef IMEDelegate CCIMEDelegate;
-CC_DEPRECATED_ATTRIBUTE typedef IMEKeyboardNotificationInfo CCIMEKeyboardNotificationInfo;
+//CC_DEPRECATED_ATTRIBUTE typedef IMEDelegate CCIMEDelegate;
+//CC_DEPRECATED_ATTRIBUTE typedef IMEKeyboardNotificationInfo CCIMEKeyboardNotificationInfo;
 //CC_DEPRECATED_ATTRIBUTE typedef TextFieldDelegate CCTextFieldDelegate;
 //CC_DEPRECATED_ATTRIBUTE typedef TextFieldTTF CCTextFieldTTF;
-CC_DEPRECATED_ATTRIBUTE typedef __NotificationCenter CCNotificationCenter;
-CC_DEPRECATED_ATTRIBUTE typedef __NotificationCenter NotificationCenter;
+//CC_DEPRECATED_ATTRIBUTE typedef __NotificationCenter CCNotificationCenter;
+//CC_DEPRECATED_ATTRIBUTE typedef __NotificationCenter NotificationCenter;
 //CC_DEPRECATED_ATTRIBUTE typedef TargetedTouchDelegate CCTargetedTouchDelegate;
 //CC_DEPRECATED_ATTRIBUTE typedef StandardTouchDelegate CCStandardTouchDelegate;
 //CC_DEPRECATED_ATTRIBUTE typedef TouchDelegate CCTouchDelegate;
 CC_DEPRECATED_ATTRIBUTE typedef Image CCImage;
-CC_DEPRECATED_ATTRIBUTE typedef UserDefault CCUserDefault;
+//CC_DEPRECATED_ATTRIBUTE typedef UserDefault CCUserDefault;
 
 //CC_DEPRECATED_ATTRIBUTE typedef Action CCAction;
 //CC_DEPRECATED_ATTRIBUTE typedef FiniteTimeAction CCFiniteTimeAction;
@@ -1028,27 +1028,27 @@ CC_DEPRECATED_ATTRIBUTE inline void CC_DLL ccGLEnable( int flags ) { /* ignore *
 CC_DEPRECATED_ATTRIBUTE typedef int ccGLServerState;
 
 CC_DEPRECATED_ATTRIBUTE typedef Data CCData;
-CC_DEPRECATED_ATTRIBUTE typedef __Set CCSet;
-CC_DEPRECATED_ATTRIBUTE typedef __SetIterator CCSetIterator;
-CC_DEPRECATED_ATTRIBUTE typedef __Set Set;
-CC_DEPRECATED_ATTRIBUTE typedef __SetIterator SetIterator;
+//CC_DEPRECATED_ATTRIBUTE typedef __Set CCSet;
+//CC_DEPRECATED_ATTRIBUTE typedef __SetIterator CCSetIterator;
+//CC_DEPRECATED_ATTRIBUTE typedef __Set Set;
+//CC_DEPRECATED_ATTRIBUTE typedef __SetIterator SetIterator;
 
-CC_DEPRECATED_ATTRIBUTE typedef __Array CCArray;
-CC_DEPRECATED_ATTRIBUTE typedef __Array Array;
+//CC_DEPRECATED_ATTRIBUTE typedef __Array CCArray;
+//CC_DEPRECATED_ATTRIBUTE typedef __Array Array;
 
-CC_DEPRECATED_ATTRIBUTE typedef __Dictionary Dictionary;
-CC_DEPRECATED_ATTRIBUTE typedef __Dictionary CCDictionary;
+//CC_DEPRECATED_ATTRIBUTE typedef __Dictionary Dictionary;
+//CC_DEPRECATED_ATTRIBUTE typedef __Dictionary CCDictionary;
 
-CC_DEPRECATED_ATTRIBUTE typedef __Double Double;
-CC_DEPRECATED_ATTRIBUTE typedef __Double CCDouble;
-CC_DEPRECATED_ATTRIBUTE typedef __Float Float;
-CC_DEPRECATED_ATTRIBUTE typedef __Float CCFloat;
-CC_DEPRECATED_ATTRIBUTE typedef __Integer Integer;
-CC_DEPRECATED_ATTRIBUTE typedef __Integer CCInteger;
-CC_DEPRECATED_ATTRIBUTE typedef __Bool Bool;
-CC_DEPRECATED_ATTRIBUTE typedef __Bool CCBool;
-CC_DEPRECATED_ATTRIBUTE typedef __String CCString;
-CC_DEPRECATED_ATTRIBUTE typedef __String String;
+//CC_DEPRECATED_ATTRIBUTE typedef __Double Double;
+//CC_DEPRECATED_ATTRIBUTE typedef __Double CCDouble;
+//CC_DEPRECATED_ATTRIBUTE typedef __Float Float;
+//CC_DEPRECATED_ATTRIBUTE typedef __Float CCFloat;
+//CC_DEPRECATED_ATTRIBUTE typedef __Integer Integer;
+//CC_DEPRECATED_ATTRIBUTE typedef __Integer CCInteger;
+//CC_DEPRECATED_ATTRIBUTE typedef __Bool Bool;
+//CC_DEPRECATED_ATTRIBUTE typedef __Bool CCBool;
+//CC_DEPRECATED_ATTRIBUTE typedef __String CCString;
+//CC_DEPRECATED_ATTRIBUTE typedef __String String;
 
 CC_DEPRECATED_ATTRIBUTE typedef __RGBAProtocol RGBAProtocol;
 CC_DEPRECATED_ATTRIBUTE typedef __NodeRGBA NodeRGBA;

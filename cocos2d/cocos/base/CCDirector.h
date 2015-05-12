@@ -495,10 +495,10 @@ protected:
     
     void setNextScene();
     
-    void showStats();
-    void createStatsLabel();
+//    void showStats();
+//    void createStatsLabel();
     void calculateMPF();
-    void getFPSImageData(unsigned char** datapointer, ssize_t* length);
+//    void getFPSImageData(unsigned char** datapointer, ssize_t* length);
     
     /** calculates delta time since last time it was called */    
     void calculateDeltaTime();

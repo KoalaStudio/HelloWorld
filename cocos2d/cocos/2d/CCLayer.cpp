@@ -42,7 +42,8 @@ THE SOFTWARE.
 #include "base/CCEventListenerAcceleration.h"
 
 
-#include "deprecated/CCString.h"
+//#include "deprecated/CCString.h"
+#include "base/ccUTF8.h"
 
 #if CC_USE_PHYSICS
 #include "physics/CCPhysicsBody.h"
