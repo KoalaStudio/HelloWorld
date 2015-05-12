@@ -53,7 +53,7 @@ THE SOFTWARE.
 //#include "base/CCScheduler.h"
 #include "base/ccMacros.h"
 #include "base/CCEventDispatcher.h"
-#include "base/CCEventCustom.h"
+//#include "base/CCEventCustom.h"
 #include "base/CCConsole.h"
 #include "base/CCAutoreleasePool.h"
 #include "base/CCConfiguration.h"
@@ -154,15 +154,15 @@ bool Director::init(void)
 //    _actionManager = new (std::nothrow) ActionManager();
 //    _scheduler->scheduleUpdate(_actionManager, Scheduler::PRIORITY_SYSTEM, false);
 
-    _eventDispatcher = new (std::nothrow) EventDispatcher();
-    _eventAfterDraw = new (std::nothrow) EventCustom(EVENT_AFTER_DRAW);
-    _eventAfterDraw->setUserData(this);
-    _eventAfterVisit = new (std::nothrow) EventCustom(EVENT_AFTER_VISIT);
-    _eventAfterVisit->setUserData(this);
-    _eventAfterUpdate = new (std::nothrow) EventCustom(EVENT_AFTER_UPDATE);
-    _eventAfterUpdate->setUserData(this);
-    _eventProjectionChanged = new (std::nothrow) EventCustom(EVENT_PROJECTION_CHANGED);
-    _eventProjectionChanged->setUserData(this);
+//    _eventDispatcher = new (std::nothrow) EventDispatcher();
+//    _eventAfterDraw = new (std::nothrow) EventCustom(EVENT_AFTER_DRAW);
+//    _eventAfterDraw->setUserData(this);
+//    _eventAfterVisit = new (std::nothrow) EventCustom(EVENT_AFTER_VISIT);
+//    _eventAfterVisit->setUserData(this);
+//    _eventAfterUpdate = new (std::nothrow) EventCustom(EVENT_AFTER_UPDATE);
+//    _eventAfterUpdate->setUserData(this);
+//    _eventProjectionChanged = new (std::nothrow) EventCustom(EVENT_PROJECTION_CHANGED);
+//    _eventProjectionChanged->setUserData(this);
 
 
     //init TextureCache
@@ -187,17 +187,17 @@ Director::~Director(void)
 //    CC_SAFE_RELEASE(_scheduler);
 //    CC_SAFE_RELEASE(_actionManager);
     
-    delete _eventAfterUpdate;
-    delete _eventAfterDraw;
-    delete _eventAfterVisit;
-    delete _eventProjectionChanged;
+//    delete _eventAfterUpdate;
+//    delete _eventAfterDraw;
+//    delete _eventAfterVisit;
+//    delete _eventProjectionChanged;
 
     delete _renderer;
 
     delete _console;
 
 
-    CC_SAFE_RELEASE(_eventDispatcher);
+//    CC_SAFE_RELEASE(_eventDispatcher);
     
     // delete _lastUpdate
     CC_SAFE_DELETE(_lastUpdate);
@@ -268,7 +268,7 @@ void Director::drawScene()
     if (! _paused)
     {
 //        _scheduler->update(_deltaTime);
-        _eventDispatcher->dispatchEvent(_eventAfterUpdate);
+//        _eventDispatcher->dispatchEvent(_eventAfterUpdate);
     }
 
     _renderer->clear();
@@ -298,7 +298,7 @@ void Director::drawScene()
         //render the scene
         _runningScene->render(_renderer);
         
-        _eventDispatcher->dispatchEvent(_eventAfterVisit);
+//        _eventDispatcher->dispatchEvent(_eventAfterVisit);
     }
 
     // draw the notifications node
@@ -313,7 +313,7 @@ void Director::drawScene()
     }
     _renderer->render();
 
-    _eventDispatcher->dispatchEvent(_eventAfterDraw);
+//    _eventDispatcher->dispatchEvent(_eventAfterDraw);
 
     popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
 
@@ -398,10 +398,10 @@ void Director::setOpenGLView(GLView *openGLView)
 
         CHECK_GL_ERROR_DEBUG();
 
-        if (_eventDispatcher)
-        {
-            _eventDispatcher->setEnabled(true);
-        }
+//        if (_eventDispatcher)
+//        {
+//            _eventDispatcher->setEnabled(true);
+//        }
     }
 }
 
@@ -659,7 +659,7 @@ void Director::setProjection(Projection projection)
     _projection = projection;
     GL::setProjectionMatrixDirty();
 
-    _eventDispatcher->dispatchEvent(_eventProjectionChanged);
+//    _eventDispatcher->dispatchEvent(_eventProjectionChanged);
 }
 
 void Director::purgeCachedData(void)
@@ -952,10 +952,10 @@ void Director::reset()
 //    getScheduler()->unscheduleAll();
     
     // Remove all events
-    if (_eventDispatcher)
-    {
-        _eventDispatcher->removeAllEventListeners();
-    }
+//    if (_eventDispatcher)
+//    {
+//        _eventDispatcher->removeAllEventListeners();
+//    }
     
     // remove all objects, but don't release it.
     // runWithScene might be executed after 'end'.
@@ -1295,15 +1295,15 @@ void Director::setNotificationNode(Node *node)
 //    }    
 //}
 
-void Director::setEventDispatcher(EventDispatcher* dispatcher)
-{
-    if (_eventDispatcher != dispatcher)
-    {
-        CC_SAFE_RETAIN(dispatcher);
-        CC_SAFE_RELEASE(_eventDispatcher);
-        _eventDispatcher = dispatcher;
-    }
-}
+//void Director::setEventDispatcher(EventDispatcher* dispatcher)
+//{
+//    if (_eventDispatcher != dispatcher)
+//    {
+//        CC_SAFE_RETAIN(dispatcher);
+//        CC_SAFE_RELEASE(_eventDispatcher);
+//        _eventDispatcher = dispatcher;
+//    }
+//}
 
 /***************************************************
 * implementation of DisplayLinkDirector

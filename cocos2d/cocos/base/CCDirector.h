@@ -416,13 +416,13 @@ public:
      * @since v3.0
      * @js NA
      */
-    EventDispatcher* getEventDispatcher() const { return _eventDispatcher; }
+//    EventDispatcher* getEventDispatcher() const { return _eventDispatcher; }
     
     /** Sets the EventDispatcher associated with this director.
      * @since v3.0
      * @js NA
      */
-    void setEventDispatcher(EventDispatcher* dispatcher);
+//    void setEventDispatcher(EventDispatcher* dispatcher);
 
     /** Returns the Renderer associated with this director.
      * @since v3.0
@@ -526,9 +526,9 @@ protected:
     /** EventDispatcher associated with this director
      @since v3.0
      */
-    EventDispatcher* _eventDispatcher;
-    EventCustom *_eventProjectionChanged, *_eventAfterDraw, *_eventAfterVisit, *_eventAfterUpdate;
-        
+//    EventDispatcher* _eventDispatcher;
+//    EventCustom *_eventProjectionChanged, *_eventAfterDraw, *_eventAfterVisit, *_eventAfterUpdate;
+    
     /* delta time since last tick to main loop */
 	float _deltaTime;
     

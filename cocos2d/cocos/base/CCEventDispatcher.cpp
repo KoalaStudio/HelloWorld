@@ -24,12 +24,12 @@
 #include "base/CCEventDispatcher.h"
 #include <algorithm>
 
-#include "base/CCEventCustom.h"
+//#include "base/CCEventCustom.h"
 //#include "base/CCEventListenerTouch.h"
 //#include "base/CCEventListenerAcceleration.h"
 //#include "base/CCEventListenerMouse.h"
 //#include "base/CCEventListenerKeyboard.h"
-#include "base/CCEventListenerCustom.h"
+//#include "base/CCEventListenerCustom.h"
 //#include "base/CCEventListenerFocus.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 //#include "base/CCEventListenerController.h"
@@ -74,12 +74,12 @@ static EventListener::ListenerID __getListenerID(Event* event)
 //        case Event::Type::ACCELERATION:
 //            ret = EventListenerAcceleration::LISTENER_ID;
 //            break;
-        case Event::Type::CUSTOM:
-            {
-                auto customEvent = static_cast<EventCustom*>(event);
-                ret = customEvent->getEventName();
-            }
-            break;
+//        case Event::Type::CUSTOM:
+//            {
+//                auto customEvent = static_cast<EventCustom*>(event);
+//                ret = customEvent->getEventName();
+//            }
+//            break;
 //        case Event::Type::KEYBOARD:
 //            ret = EventListenerKeyboard::LISTENER_ID;
 //            break;
@@ -584,12 +584,12 @@ void EventDispatcher::addEventListenerWithFixedPriority(EventListener* listener,
     addEventListener(listener);
 }
 
-EventListenerCustom* EventDispatcher::addCustomEventListener(const std::string &eventName, const std::function<void(EventCustom*)>& callback)
-{
-    EventListenerCustom *listener = EventListenerCustom::create(eventName, callback);
-    addEventListenerWithFixedPriority(listener, 1);
-    return listener;
-}
+//EventListenerCustom* EventDispatcher::addCustomEventListener(const std::string &eventName, const std::function<void(EventCustom*)>& callback)
+//{
+//    EventListenerCustom *listener = EventListenerCustom::create(eventName, callback);
+//    addEventListenerWithFixedPriority(listener, 1);
+//    return listener;
+//}
 
 void EventDispatcher::removeEventListener(EventListener* listener)
 {
@@ -820,12 +820,12 @@ void EventDispatcher::dispatchEvent(Event* event)
     updateListeners(event);
 }
 
-void EventDispatcher::dispatchCustomEvent(const std::string &eventName, void *optionalUserData)
-{
-    EventCustom ev(eventName);
-    ev.setUserData(optionalUserData);
-    dispatchEvent(&ev);
-}
+//void EventDispatcher::dispatchCustomEvent(const std::string &eventName, void *optionalUserData)
+//{
+//    EventCustom ev(eventName);
+//    ev.setUserData(optionalUserData);
+//    dispatchEvent(&ev);
+//}
 
 
 //void EventDispatcher::dispatchTouchEvent(EventTouch* event)

@@ -86,7 +86,7 @@ public:
      * @param callback A given callback method that associated the event name.
      * @return the generated event. Needed in order to remove the event from the dispather
      */
-    EventListenerCustom* addCustomEventListener(const std::string &eventName, const std::function<void(EventCustom*)>& callback);
+//    EventListenerCustom* addCustomEventListener(const std::string &eventName, const std::function<void(EventCustom*)>& callback);
 
     /////////////////////////////////////////////
     
@@ -175,7 +175,7 @@ public:
      * @param eventName The name of the event which needs to be dispatched.
      * @param optionalUserData The optional user data, it's a void*, the default value is nullptr.
      */
-    void dispatchCustomEvent(const std::string &eventName, void *optionalUserData = nullptr);
+//    void dispatchCustomEvent(const std::string &eventName, void *optionalUserData = nullptr);
 
     /////////////////////////////////////////////
     

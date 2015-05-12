@@ -34,7 +34,7 @@ THE SOFTWARE.
 #include "base/CCDirector.h"
 #include "base/CCConfiguration.h"
 #include "base/CCEventDispatcher.h"
-#include "base/CCEventListenerCustom.h"
+//#include "base/CCEventListenerCustom.h"
 #include "renderer/CCTextureCache.h"
 #include "renderer/CCGLProgram.h"
 #include "renderer/ccGLStateCache.h"

@@ -1168,12 +1168,12 @@ public:
      *
      * @param dispatcher The event dispatcher of scene.
      */
-    virtual void setEventDispatcher(EventDispatcher* dispatcher);
+//    virtual void setEventDispatcher(EventDispatcher* dispatcher);
     /** Get the event dispatcher of scene.
      *
      * @return The event dispatcher of scene.
      */
-    virtual EventDispatcher* getEventDispatcher() const { return _eventDispatcher; };
+//    virtual EventDispatcher* getEventDispatcher() const { return _eventDispatcher; };
 
 //    /// @{
 //    /// @name Actions
@@ -1816,7 +1816,7 @@ protected:
 
 //    ActionManager *_actionManager;  ///< a pointer to ActionManager singleton, which is used to handle all the actions
 
-    EventDispatcher* _eventDispatcher;  ///< event dispatcher used to dispatch all kinds of events
+//    EventDispatcher* _eventDispatcher;  ///< event dispatcher used to dispatch all kinds of events
 
     bool _running;                  ///< is running
 

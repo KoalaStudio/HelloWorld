@@ -53,7 +53,7 @@ public:
 //        MOUSE,
 //        FOCUS,
 //        GAME_CONTROLLER,
-        CUSTOM
+//        CUSTOM
     };
     
 CC_CONSTRUCTOR_ACCESS:

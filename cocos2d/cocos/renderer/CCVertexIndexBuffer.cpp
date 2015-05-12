@@ -24,7 +24,7 @@
 
 #include "renderer/CCVertexIndexBuffer.h"
 #include "base/CCEventType.h"
-#include "base/CCEventListenerCustom.h"
+//#include "base/CCEventListenerCustom.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCDirector.h"
 

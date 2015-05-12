@@ -73,8 +73,8 @@ THE SOFTWARE.
 //#include "base/CCEventMouse.h"
 //#include "base/CCEventAcceleration.h"
 //#include "base/CCEventListenerAcceleration.h"
-#include "base/CCEventCustom.h"
-#include "base/CCEventListenerCustom.h"
+//#include "base/CCEventCustom.h"
+//#include "base/CCEventListenerCustom.h"
 //#include "base/CCEventFocus.h"
 //#include "base/CCEventListenerFocus.h"
 
