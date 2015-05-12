@@ -85,7 +85,7 @@ Camera::Camera()
 , _frustumDirty(true)
 , _depth(-1)
 {
-    _frustum.setClipZ(true);
+//    _frustum.setClipZ(true);
 }
 
 Camera::~Camera()
@@ -297,15 +297,15 @@ void Camera::unproject(const Size& viewport, const Vec3* src, Vec3* dst) const
     dst->set(screen.x, screen.y, screen.z);
 }
 
-bool Camera::isVisibleInFrustum(const AABB* aabb) const
-{
-    if (_frustumDirty)
-    {
-        _frustum.initFrustum(this);
-        _frustumDirty = false;
-    }
-    return !_frustum.isOutOfFrustum(*aabb);
-}
+//bool Camera::isVisibleInFrustum(const AABB* aabb) const
+//{
+//    if (_frustumDirty)
+//    {
+//        _frustum.initFrustum(this);
+//        _frustumDirty = false;
+//    }
+//    return !_frustum.isOutOfFrustum(*aabb);
+//}
 
 float Camera::getDepthInView(const Mat4& transform) const
 {

@@ -32,7 +32,7 @@
 #include "CCEventController.h"
 #include "CCEventListenerController.h"
 #include "CCDirector.h"
-#include "CCLabel.h"
+//#include "CCLabel.h"
 
 #import <GameController/GameController.h>
 
