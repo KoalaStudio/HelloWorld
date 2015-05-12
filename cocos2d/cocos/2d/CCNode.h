@@ -32,14 +32,18 @@
 #include "base/ccMacros.h"
 #include "base/CCVector.h"
 #include "base/CCProtocols.h"
-#include "base/CCScriptSupport.h"
+//#include "base/CCScriptSupport.h"
 #include "math/CCAffineTransform.h"
 #include "math/CCMath.h"
+#include "base/CCTouch.h"
+#include "base/CCEvent.h"
+#include "base/CCEventKeyboard.h"
+#include "base/CCEventTouch.h"
 
 NS_CC_BEGIN
 
 //class GridBase;
-class Touch;
+//class Touch;
 //class Action;
 class LabelProtocol;
 class Scheduler;

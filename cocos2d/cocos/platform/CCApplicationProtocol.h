@@ -27,7 +27,7 @@ THE SOFTWARE.
 #define __CC_APPLICATION_PROTOCOL_H__
 
 #include "platform/CCPlatformMacros.h"
-#include "base/CCScriptSupport.h"
+//#include "base/CCScriptSupport.h"
 #include "base/CCAutoreleasePool.h"
 
 NS_CC_BEGIN

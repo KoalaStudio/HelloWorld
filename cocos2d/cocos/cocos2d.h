@@ -241,7 +241,7 @@ THE SOFTWARE.
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_WP8
 
 // script_support
-#include "base/CCScriptSupport.h"
+//#include "base/CCScriptSupport.h"
 
 // sprite_nodes
 //#include "2d/CCAnimation.h"
