@@ -31,8 +31,8 @@ THE SOFTWARE.
 
 #include "2d/CCSpriteBatchNode.h"
 //#include "2d/CCAnimationCache.h"
-#include "2d/CCSpriteFrame.h"
-#include "2d/CCSpriteFrameCache.h"
+//#include "2d/CCSpriteFrame.h"
+//#include "2d/CCSpriteFrameCache.h"
 #include "renderer/CCTextureCache.h"
 #include "renderer/CCTexture2D.h"
 #include "renderer/CCRenderer.h"
@@ -98,30 +98,30 @@ Sprite* Sprite::create(const std::string& filename, const Rect& rect)
     return nullptr;
 }
 
-Sprite* Sprite::createWithSpriteFrame(SpriteFrame *spriteFrame)
-{
-    Sprite *sprite = new (std::nothrow) Sprite();
-    if (sprite && spriteFrame && sprite->initWithSpriteFrame(spriteFrame))
-    {
-        sprite->autorelease();
-        return sprite;
-    }
-    CC_SAFE_DELETE(sprite);
-    return nullptr;
-}
-
-Sprite* Sprite::createWithSpriteFrameName(const std::string& spriteFrameName)
-{
-    SpriteFrame *frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(spriteFrameName);
-    
-#if COCOS2D_DEBUG > 0
-    char msg[256] = {0};
-    sprintf(msg, "Invalid spriteFrameName: %s", spriteFrameName.c_str());
-    CCASSERT(frame != nullptr, msg);
-#endif
-    
-    return createWithSpriteFrame(frame);
-}
+//Sprite* Sprite::createWithSpriteFrame(SpriteFrame *spriteFrame)
+//{
+//    Sprite *sprite = new (std::nothrow) Sprite();
+//    if (sprite && spriteFrame && sprite->initWithSpriteFrame(spriteFrame))
+//    {
+//        sprite->autorelease();
+//        return sprite;
+//    }
+//    CC_SAFE_DELETE(sprite);
+//    return nullptr;
+//}
+//
+//Sprite* Sprite::createWithSpriteFrameName(const std::string& spriteFrameName)
+//{
+//    SpriteFrame *frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(spriteFrameName);
+//    
+//#if COCOS2D_DEBUG > 0
+//    char msg[256] = {0};
+//    sprintf(msg, "Invalid spriteFrameName: %s", spriteFrameName.c_str());
+//    CCASSERT(frame != nullptr, msg);
+//#endif
+//    
+//    return createWithSpriteFrame(frame);
+//}
 
 Sprite* Sprite::create()
 {
@@ -189,23 +189,23 @@ bool Sprite::initWithFile(const std::string &filename, const Rect& rect)
     return false;
 }
 
-bool Sprite::initWithSpriteFrameName(const std::string& spriteFrameName)
-{
-    CCASSERT(spriteFrameName.size() > 0, "Invalid spriteFrameName");
-
-    SpriteFrame *frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(spriteFrameName);
-    return initWithSpriteFrame(frame);
-}
-
-bool Sprite::initWithSpriteFrame(SpriteFrame *spriteFrame)
-{
-    CCASSERT(spriteFrame != nullptr, "");
-
-    bool bRet = initWithTexture(spriteFrame->getTexture(), spriteFrame->getRect());
-    setSpriteFrame(spriteFrame);
-
-    return bRet;
-}
+//bool Sprite::initWithSpriteFrameName(const std::string& spriteFrameName)
+//{
+//    CCASSERT(spriteFrameName.size() > 0, "Invalid spriteFrameName");
+//
+//    SpriteFrame *frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(spriteFrameName);
+//    return initWithSpriteFrame(frame);
+//}
+//
+//bool Sprite::initWithSpriteFrame(SpriteFrame *spriteFrame)
+//{
+//    CCASSERT(spriteFrame != nullptr, "");
+//
+//    bool bRet = initWithTexture(spriteFrame->getTexture(), spriteFrame->getRect());
+//    setSpriteFrame(spriteFrame);
+//
+//    return bRet;
+//}
 
 // designated initializer
 bool Sprite::initWithTexture(Texture2D *texture, const Rect& rect, bool rotated)
@@ -275,7 +275,7 @@ Sprite::Sprite(void)
 
 Sprite::~Sprite(void)
 {
-    CC_SAFE_RELEASE(_spriteFrame);
+//    CC_SAFE_RELEASE(_spriteFrame);
     CC_SAFE_RELEASE(_texture);
 }
 
@@ -933,39 +933,39 @@ bool Sprite::isOpacityModifyRGB(void) const
 
 // MARK: Frames
 
-void Sprite::setSpriteFrame(const std::string &spriteFrameName)
-{
-    SpriteFrameCache *cache = SpriteFrameCache::getInstance();
-    SpriteFrame *spriteFrame = cache->getSpriteFrameByName(spriteFrameName);
-
-    CCASSERT(spriteFrame, std::string("Invalid spriteFrameName :").append(spriteFrameName).c_str());
-
-    setSpriteFrame(spriteFrame);
-}
-
-void Sprite::setSpriteFrame(SpriteFrame *spriteFrame)
-{
-    // retain the sprite frame
-    // do not removed by SpriteFrameCache::removeUnusedSpriteFrames
-    if (_spriteFrame != spriteFrame)
-    {
-        CC_SAFE_RELEASE(_spriteFrame);
-        _spriteFrame = spriteFrame;
-        spriteFrame->retain();
-    }
-    _unflippedOffsetPositionFromCenter = spriteFrame->getOffset();
-
-    Texture2D *texture = spriteFrame->getTexture();
-    // update texture before updating texture rect
-    if (texture != _texture)
-    {
-        setTexture(texture);
-    }
-
-    // update rect
-    _rectRotated = spriteFrame->isRotated();
-    setTextureRect(spriteFrame->getRect(), _rectRotated, spriteFrame->getOriginalSize());
-}
+//void Sprite::setSpriteFrame(const std::string &spriteFrameName)
+//{
+//    SpriteFrameCache *cache = SpriteFrameCache::getInstance();
+//    SpriteFrame *spriteFrame = cache->getSpriteFrameByName(spriteFrameName);
+//
+//    CCASSERT(spriteFrame, std::string("Invalid spriteFrameName :").append(spriteFrameName).c_str());
+//
+//    setSpriteFrame(spriteFrame);
+//}
+//
+//void Sprite::setSpriteFrame(SpriteFrame *spriteFrame)
+//{
+//    // retain the sprite frame
+//    // do not removed by SpriteFrameCache::removeUnusedSpriteFrames
+//    if (_spriteFrame != spriteFrame)
+//    {
+//        CC_SAFE_RELEASE(_spriteFrame);
+//        _spriteFrame = spriteFrame;
+//        spriteFrame->retain();
+//    }
+//    _unflippedOffsetPositionFromCenter = spriteFrame->getOffset();
+//
+//    Texture2D *texture = spriteFrame->getTexture();
+//    // update texture before updating texture rect
+//    if (texture != _texture)
+//    {
+//        setTexture(texture);
+//    }
+//
+//    // update rect
+//    _rectRotated = spriteFrame->isRotated();
+//    setTextureRect(spriteFrame->getRect(), _rectRotated, spriteFrame->getOriginalSize());
+//}
 
 //void Sprite::setDisplayFrameWithAnimationName(const std::string& animationName, ssize_t frameIndex)
 //{
@@ -982,23 +982,23 @@ void Sprite::setSpriteFrame(SpriteFrame *spriteFrame)
 //    setSpriteFrame(frame->getSpriteFrame());
 //}
 
-bool Sprite::isFrameDisplayed(SpriteFrame *frame) const
-{
-    Rect r = frame->getRect();
-
-    return (r.equals(_rect) &&
-            frame->getTexture()->getName() == _texture->getName() &&
-            frame->getOffset().equals(_unflippedOffsetPositionFromCenter));
-}
-
-SpriteFrame* Sprite::getSpriteFrame() const
-{
-    return SpriteFrame::createWithTexture(_texture,
-                                           CC_RECT_POINTS_TO_PIXELS(_rect),
-                                           _rectRotated,
-                                           CC_POINT_POINTS_TO_PIXELS(_unflippedOffsetPositionFromCenter),
-                                           CC_SIZE_POINTS_TO_PIXELS(_contentSize));
-}
+//bool Sprite::isFrameDisplayed(SpriteFrame *frame) const
+//{
+//    Rect r = frame->getRect();
+//
+//    return (r.equals(_rect) &&
+//            frame->getTexture()->getName() == _texture->getName() &&
+//            frame->getOffset().equals(_unflippedOffsetPositionFromCenter));
+//}
+//
+//SpriteFrame* Sprite::getSpriteFrame() const
+//{
+//    return SpriteFrame::createWithTexture(_texture,
+//                                           CC_RECT_POINTS_TO_PIXELS(_rect),
+//                                           _rectRotated,
+//                                           CC_POINT_POINTS_TO_PIXELS(_unflippedOffsetPositionFromCenter),
+//                                           CC_SIZE_POINTS_TO_PIXELS(_contentSize));
+//}
 
 SpriteBatchNode* Sprite::getBatchNode() const
 {

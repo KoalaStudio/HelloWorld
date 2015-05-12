@@ -32,7 +32,7 @@ THE SOFTWARE.
 #include <string>
 
 //#include "2d/CCDrawingPrimitives.h"
-#include "2d/CCSpriteFrameCache.h"
+//#include "2d/CCSpriteFrameCache.h"
 #include "platform/CCFileUtils.h"
 
 //#include "2d/CCActionManager.h"
@@ -669,7 +669,7 @@ void Director::purgeCachedData(void)
 
     if (s_SharedDirector->getOpenGLView())
     {
-        SpriteFrameCache::getInstance()->removeUnusedSpriteFrames();
+//        SpriteFrameCache::getInstance()->removeUnusedSpriteFrames();
         _textureCache->removeUnusedTextures();
 
         // Note: some tests such as ActionsTest are leaking refcounted textures
@@ -990,7 +990,7 @@ void Director::reset()
 #pragma warning (pop)
 #endif
 //    AnimationCache::destroyInstance();
-    SpriteFrameCache::destroyInstance();
+//    SpriteFrameCache::destroyInstance();
     GLProgramCache::destroyInstance();
     GLProgramStateCache::destroyInstance();
     FileUtils::destroyInstance();

@@ -280,14 +280,6 @@
 		1A570283180BCC900088DEC7 /* CCSpriteBatchNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A570278180BCC900088DEC7 /* CCSpriteBatchNode.cpp */; };
 		1A570284180BCC900088DEC7 /* CCSpriteBatchNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A570279180BCC900088DEC7 /* CCSpriteBatchNode.h */; };
 		1A570285180BCC900088DEC7 /* CCSpriteBatchNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A570279180BCC900088DEC7 /* CCSpriteBatchNode.h */; };
-		1A570286180BCC900088DEC7 /* CCSpriteFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A57027A180BCC900088DEC7 /* CCSpriteFrame.cpp */; };
-		1A570287180BCC900088DEC7 /* CCSpriteFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A57027A180BCC900088DEC7 /* CCSpriteFrame.cpp */; };
-		1A570288180BCC900088DEC7 /* CCSpriteFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A57027B180BCC900088DEC7 /* CCSpriteFrame.h */; };
-		1A570289180BCC900088DEC7 /* CCSpriteFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A57027B180BCC900088DEC7 /* CCSpriteFrame.h */; };
-		1A57028A180BCC900088DEC7 /* CCSpriteFrameCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A57027C180BCC900088DEC7 /* CCSpriteFrameCache.cpp */; };
-		1A57028B180BCC900088DEC7 /* CCSpriteFrameCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A57027C180BCC900088DEC7 /* CCSpriteFrameCache.cpp */; };
-		1A57028C180BCC900088DEC7 /* CCSpriteFrameCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A57027D180BCC900088DEC7 /* CCSpriteFrameCache.h */; };
-		1A57028D180BCC900088DEC7 /* CCSpriteFrameCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A57027D180BCC900088DEC7 /* CCSpriteFrameCache.h */; };
 		1A570347180BD0850088DEC7 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A570346180BD0850088DEC7 /* libglfw3.a */; };
 		1A57034B180BD09B0088DEC7 /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A570349180BD09B0088DEC7 /* tinyxml2.cpp */; };
 		1A57034C180BD09B0088DEC7 /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A570349180BD09B0088DEC7 /* tinyxml2.cpp */; };
@@ -892,10 +884,6 @@
 		1A570277180BCC900088DEC7 /* CCSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSprite.h; sourceTree = "<group>"; };
 		1A570278180BCC900088DEC7 /* CCSpriteBatchNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSpriteBatchNode.cpp; sourceTree = "<group>"; };
 		1A570279180BCC900088DEC7 /* CCSpriteBatchNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSpriteBatchNode.h; sourceTree = "<group>"; };
-		1A57027A180BCC900088DEC7 /* CCSpriteFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSpriteFrame.cpp; sourceTree = "<group>"; };
-		1A57027B180BCC900088DEC7 /* CCSpriteFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSpriteFrame.h; sourceTree = "<group>"; };
-		1A57027C180BCC900088DEC7 /* CCSpriteFrameCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSpriteFrameCache.cpp; sourceTree = "<group>"; };
-		1A57027D180BCC900088DEC7 /* CCSpriteFrameCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSpriteFrameCache.h; sourceTree = "<group>"; };
 		1A570346180BD0850088DEC7 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = ../external/glfw3/prebuilt/mac/libglfw3.a; sourceTree = "<group>"; };
 		1A570349180BD09B0088DEC7 /* tinyxml2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml2.cpp; sourceTree = "<group>"; };
 		1A57034A180BD09B0088DEC7 /* tinyxml2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml2.h; sourceTree = "<group>"; };
@@ -1655,10 +1643,6 @@
 				1A570277180BCC900088DEC7 /* CCSprite.h */,
 				1A570278180BCC900088DEC7 /* CCSpriteBatchNode.cpp */,
 				1A570279180BCC900088DEC7 /* CCSpriteBatchNode.h */,
-				1A57027A180BCC900088DEC7 /* CCSpriteFrame.cpp */,
-				1A57027B180BCC900088DEC7 /* CCSpriteFrame.h */,
-				1A57027C180BCC900088DEC7 /* CCSpriteFrameCache.cpp */,
-				1A57027D180BCC900088DEC7 /* CCSpriteFrameCache.h */,
 			);
 			name = "sprite-nodes";
 			sourceTree = "<group>";
@@ -2597,8 +2581,6 @@
 				15AE1A5419AAD40300C27E9E /* b2GrowableStack.h in Headers */,
 				1A570284180BCC900088DEC7 /* CCSpriteBatchNode.h in Headers */,
 				5034CA2B191D591100CE6051 /* ccShader_PositionTextureA8Color.vert in Headers */,
-				1A570288180BCC900088DEC7 /* CCSpriteFrame.h in Headers */,
-				1A57028C180BCC900088DEC7 /* CCSpriteFrameCache.h in Headers */,
 				5027253A190BF1B900AAF4ED /* cocos2d.h in Headers */,
 				382384001A258FA7002C4610 /* util.h in Headers */,
 				50ABBD421925AB0000A911A9 /* CCMathBase.h in Headers */,
@@ -2839,10 +2821,8 @@
 				5034CA4A191D591100CE6051 /* ccShader_Label_df.frag in Headers */,
 				1A570281180BCC900088DEC7 /* CCSprite.h in Headers */,
 				1A570285180BCC900088DEC7 /* CCSpriteBatchNode.h in Headers */,
-				1A570289180BCC900088DEC7 /* CCSpriteFrame.h in Headers */,
 				50ABBE701925AB6F00A911A9 /* CCEventListenerKeyboard.h in Headers */,
 				15AE1A9819AAD40300C27E9E /* b2GrowableStack.h in Headers */,
-				1A57028D180BCC900088DEC7 /* CCSpriteFrameCache.h in Headers */,
 				50ABBDB81925AB4100A911A9 /* CCTexture2D.h in Headers */,
 				15AE1AAB19AAD40300C27E9E /* b2World.h in Headers */,
 				50ABBE341925AB6F00A911A9 /* CCConfiguration.h in Headers */,
@@ -3097,11 +3077,9 @@
 				1A57027E180BCC900088DEC7 /* CCSprite.cpp in Sources */,
 				15AE1A7419AAD40300C27E9E /* b2EdgeAndCircleContact.cpp in Sources */,
 				1A570282180BCC900088DEC7 /* CCSpriteBatchNode.cpp in Sources */,
-				1A570286180BCC900088DEC7 /* CCSpriteFrame.cpp in Sources */,
 				50ABC0191926664800A911A9 /* CCSAXParser.cpp in Sources */,
 				15AE1A2319AAD3D500C27E9E /* b2BroadPhase.cpp in Sources */,
 				382383F01A258FA7002C4610 /* flatc.cpp in Sources */,
-				1A57028A180BCC900088DEC7 /* CCSpriteFrameCache.cpp in Sources */,
 				50ABBE351925AB6F00A911A9 /* CCConsole.cpp in Sources */,
 				50ABBEAF1925AB6F00A911A9 /* CCUserDefault.cpp in Sources */,
 				50ABBE791925AB6F00A911A9 /* CCEventMouse.cpp in Sources */,
@@ -3308,8 +3286,6 @@
 				1A57027F180BCC900088DEC7 /* CCSprite.cpp in Sources */,
 				15AE1A4B19AAD3D500C27E9E /* b2EdgeShape.cpp in Sources */,
 				1A570283180BCC900088DEC7 /* CCSpriteBatchNode.cpp in Sources */,
-				1A570287180BCC900088DEC7 /* CCSpriteFrame.cpp in Sources */,
-				1A57028B180BCC900088DEC7 /* CCSpriteFrameCache.cpp in Sources */,
 				15FB209C1AE7C57D00C31518 /* sweep_context.cc in Sources */,
 				15AE1AAE19AAD40300C27E9E /* b2ChainAndCircleContact.cpp in Sources */,
 				15FB20901AE7C57D00C31518 /* advancing_front.cc in Sources */,
