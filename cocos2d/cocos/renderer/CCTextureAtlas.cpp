@@ -30,10 +30,10 @@ THE SOFTWARE.
 #include <stdlib.h>
 
 #include "base/ccMacros.h"
-#include "base/CCEventType.h"
+//#include "base/CCEventType.h"
 #include "base/CCDirector.h"
 #include "base/CCConfiguration.h"
-#include "base/CCEventDispatcher.h"
+//#include "base/CCEventDispatcher.h"
 //#include "base/CCEventListenerCustom.h"
 #include "renderer/CCTextureCache.h"
 #include "renderer/CCGLProgram.h"

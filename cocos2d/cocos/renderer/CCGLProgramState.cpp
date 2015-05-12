@@ -35,9 +35,9 @@ THE SOFTWARE.
 #include "renderer/CCTexture2D.h"
 //#include "base/CCEventCustom.h"
 //#include "base/CCEventListenerCustom.h"
-#include "base/CCEventType.h"
+//#include "base/CCEventType.h"
 #include "base/CCDirector.h"
-#include "base/CCEventDispatcher.h"
+//#include "base/CCEventDispatcher.h"
 
 NS_CC_BEGIN
 

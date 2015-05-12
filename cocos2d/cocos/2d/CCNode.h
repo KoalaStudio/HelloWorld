@@ -36,7 +36,7 @@
 #include "math/CCAffineTransform.h"
 #include "math/CCMath.h"
 //#include "base/CCTouch.h"
-#include "base/CCEvent.h"
+//#include "base/CCEvent.h"
 //#include "base/CCEventKeyboard.h"
 //#include "base/CCEventTouch.h"
 

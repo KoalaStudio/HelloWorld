@@ -29,7 +29,7 @@
 
 #include "CCDevice.h"
 #include "base/ccTypes.h"
-#include "base/CCEventDispatcher.h"
+//#include "base/CCEventDispatcher.h"
 //#include "base/CCEventAcceleration.h"
 #include "base/CCDirector.h"
 #import <UIKit/UIKit.h>

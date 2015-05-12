@@ -63,8 +63,8 @@ THE SOFTWARE.
 //#include "base/ccUtils.h"
 
 // EventDispatcher
-#include "base/CCEventType.h"
-#include "base/CCEventDispatcher.h"
+//#include "base/CCEventType.h"
+//#include "base/CCEventDispatcher.h"
 //#include "base/CCEventListenerTouch.h"
 //#include "base/CCEventTouch.h"
 //#include "base/CCEventListenerKeyboard.h"

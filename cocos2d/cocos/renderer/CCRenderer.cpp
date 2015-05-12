@@ -37,9 +37,9 @@
 //#include "renderer/CCMeshCommand.h"
 #include "base/CCConfiguration.h"
 #include "base/CCDirector.h"
-#include "base/CCEventDispatcher.h"
+//#include "base/CCEventDispatcher.h"
 //#include "base/CCEventListenerCustom.h"
-#include "base/CCEventType.h"
+//#include "base/CCEventType.h"
 #include "2d/CCCamera.h"
 #include "2d/CCScene.h"
 

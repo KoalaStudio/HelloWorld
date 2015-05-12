@@ -52,7 +52,7 @@ THE SOFTWARE.
 //#include "base/ccFPSImages.h"
 //#include "base/CCScheduler.h"
 #include "base/ccMacros.h"
-#include "base/CCEventDispatcher.h"
+//#include "base/CCEventDispatcher.h"
 //#include "base/CCEventCustom.h"
 #include "base/CCConsole.h"
 #include "base/CCAutoreleasePool.h"

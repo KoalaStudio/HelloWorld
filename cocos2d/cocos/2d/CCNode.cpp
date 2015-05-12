@@ -36,7 +36,7 @@ THE SOFTWARE.
 
 #include "base/CCDirector.h"
 //#include "base/CCScheduler.h"
-#include "base/CCEventDispatcher.h"
+//#include "base/CCEventDispatcher.h"
 #include "2d/CCCamera.h"
 //#include "2d/CCActionManager.h"
 #include "2d/CCScene.h"

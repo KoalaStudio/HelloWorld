@@ -33,7 +33,7 @@ THE SOFTWARE.
 #include "renderer/ccGLStateCache.h"
 #include "renderer/CCGLProgramState.h"
 #include "base/CCDirector.h"
-#include "base/CCEventDispatcher.h"
+//#include "base/CCEventDispatcher.h"
 //#include "base/CCEventListenerTouch.h"
 //#include "base/CCEventTouch.h"
 //#include "base/CCEventKeyboard.h"
