@@ -1028,10 +1028,10 @@ CC_DEPRECATED_ATTRIBUTE inline void CC_DLL ccGLEnable( int flags ) { /* ignore *
 CC_DEPRECATED_ATTRIBUTE typedef int ccGLServerState;
 
 CC_DEPRECATED_ATTRIBUTE typedef Data CCData;
-CC_DEPRECATED_ATTRIBUTE typedef __Set CCSet;
-CC_DEPRECATED_ATTRIBUTE typedef __SetIterator CCSetIterator;
-CC_DEPRECATED_ATTRIBUTE typedef __Set Set;
-CC_DEPRECATED_ATTRIBUTE typedef __SetIterator SetIterator;
+//CC_DEPRECATED_ATTRIBUTE typedef __Set CCSet;
+//CC_DEPRECATED_ATTRIBUTE typedef __SetIterator CCSetIterator;
+//CC_DEPRECATED_ATTRIBUTE typedef __Set Set;
+//CC_DEPRECATED_ATTRIBUTE typedef __SetIterator SetIterator;
 
 CC_DEPRECATED_ATTRIBUTE typedef __Array CCArray;
 CC_DEPRECATED_ATTRIBUTE typedef __Array Array;
@@ -1039,12 +1039,12 @@ CC_DEPRECATED_ATTRIBUTE typedef __Array Array;
 //CC_DEPRECATED_ATTRIBUTE typedef __Dictionary Dictionary;
 //CC_DEPRECATED_ATTRIBUTE typedef __Dictionary CCDictionary;
 
-CC_DEPRECATED_ATTRIBUTE typedef __Double Double;
-CC_DEPRECATED_ATTRIBUTE typedef __Double CCDouble;
-CC_DEPRECATED_ATTRIBUTE typedef __Float Float;
-CC_DEPRECATED_ATTRIBUTE typedef __Float CCFloat;
-CC_DEPRECATED_ATTRIBUTE typedef __Integer Integer;
-CC_DEPRECATED_ATTRIBUTE typedef __Integer CCInteger;
+//CC_DEPRECATED_ATTRIBUTE typedef __Double Double;
+//CC_DEPRECATED_ATTRIBUTE typedef __Double CCDouble;
+//CC_DEPRECATED_ATTRIBUTE typedef __Float Float;
+//CC_DEPRECATED_ATTRIBUTE typedef __Float CCFloat;
+//CC_DEPRECATED_ATTRIBUTE typedef __Integer Integer;
+//CC_DEPRECATED_ATTRIBUTE typedef __Integer CCInteger;
 //CC_DEPRECATED_ATTRIBUTE typedef __Bool Bool;
 //CC_DEPRECATED_ATTRIBUTE typedef __Bool CCBool;
 CC_DEPRECATED_ATTRIBUTE typedef __String CCString;

@@ -69,7 +69,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #import <QuartzCore/QuartzCore.h>
 
 #import "base/CCDirector.h"
-#import "deprecated/CCSet.h"
+//#import "deprecated/CCSet.h"
 #import "base/CCTouch.h"
 #import "base/CCIMEDispatcher.h"
 #import "CCGLViewImpl-ios.h"
