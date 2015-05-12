@@ -28,7 +28,7 @@ Copyright (c) 2013-2014 Chukong Technologies
 #include "base/ccMacros.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include "CCArray.h"
+//#include "CCArray.h"
 #include "base/ccUtils.h"
 
 NS_CC_BEGIN
@@ -182,27 +182,27 @@ void __String::appendWithFormat(const char* format, ...)
     
 }
 
-__Array* __String::componentsSeparatedByString(const char *delimiter)
-{
-    __Array* result = __Array::create();
-    std::string strTmp = _string;
-    size_t cutAt;
-    while( (cutAt = strTmp.find_first_of(delimiter)) != strTmp.npos )
-    {
-        if(cutAt > 0)
-        {
-            result->addObject(__String::create(strTmp.substr(0, cutAt)));
-        }
-        strTmp = strTmp.substr(cutAt + 1);
-    }
-    
-    if(strTmp.length() > 0)
-    {
-        result->addObject(__String::create(strTmp));
-    }
-    
-    return result;
-}
+//__Array* __String::componentsSeparatedByString(const char *delimiter)
+//{
+//    __Array* result = __Array::create();
+//    std::string strTmp = _string;
+//    size_t cutAt;
+//    while( (cutAt = strTmp.find_first_of(delimiter)) != strTmp.npos )
+//    {
+//        if(cutAt > 0)
+//        {
+//            result->addObject(__String::create(strTmp.substr(0, cutAt)));
+//        }
+//        strTmp = strTmp.substr(cutAt + 1);
+//    }
+//    
+//    if(strTmp.length() > 0)
+//    {
+//        result->addObject(__String::create(strTmp));
+//    }
+//    
+//    return result;
+//}
 
 bool __String::isEqual(const Ref* pObject)
 {

@@ -1033,8 +1033,8 @@ CC_DEPRECATED_ATTRIBUTE typedef Data CCData;
 //CC_DEPRECATED_ATTRIBUTE typedef __Set Set;
 //CC_DEPRECATED_ATTRIBUTE typedef __SetIterator SetIterator;
 
-CC_DEPRECATED_ATTRIBUTE typedef __Array CCArray;
-CC_DEPRECATED_ATTRIBUTE typedef __Array Array;
+//CC_DEPRECATED_ATTRIBUTE typedef __Array CCArray;
+//CC_DEPRECATED_ATTRIBUTE typedef __Array Array;
 
 //CC_DEPRECATED_ATTRIBUTE typedef __Dictionary Dictionary;
 //CC_DEPRECATED_ATTRIBUTE typedef __Dictionary CCDictionary;

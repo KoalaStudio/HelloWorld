@@ -35,7 +35,7 @@ THE SOFTWARE.
 #include <string>
 #include <functional>
 #include <sstream>
-#include "CCArray.h"
+//#include "CCArray.h"
 #include "base/CCRef.h"
 
 NS_CC_BEGIN
@@ -138,11 +138,11 @@ public:
      */
     void appendWithFormat(const char* format, ...);
 
-    /** split a string 
-     * @js NA
-     * @lua NA
-     */
-    __Array* componentsSeparatedByString(const char *delimiter);
+//    /** split a string 
+//     * @js NA
+//     * @lua NA
+//     */
+//    __Array* componentsSeparatedByString(const char *delimiter);
     
     /* override functions 
      * @js NA

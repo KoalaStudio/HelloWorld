@@ -293,7 +293,7 @@ THE SOFTWARE.
 
 // Deprecated include
 //#include "deprecated/CCDictionary.h"
-#include "deprecated/CCArray.h"
+//#include "deprecated/CCArray.h"
 //#include "deprecated/CCSet.h"
 //#include "deprecated/CCInteger.h"
 //#include "deprecated/CCFloat.h"
