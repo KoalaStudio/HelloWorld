@@ -44,6 +44,8 @@ THE SOFTWARE.
 #include "CCPrecompiledShaders.h"
 #endif
 
+#include <random>
+
 NS_CC_BEGIN
 
 const char* GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR = "ShaderPositionTextureColor";
@@ -932,7 +934,7 @@ void GLProgram::setUniformsForBuiltins(const Mat4 &matrixMV)
     }
 
     if(_flags.usesRandom)
-        setUniformLocationWith4f(_builtInUniforms[GLProgram::UNIFORM_RANDOM01], CCRANDOM_0_1(), CCRANDOM_0_1(), CCRANDOM_0_1(), CCRANDOM_0_1());
+        setUniformLocationWith4f(_builtInUniforms[GLProgram::UNIFORM_RANDOM01], std::rand()/(float)RAND_MAX, std::rand()/(float)RAND_MAX, std::rand()/(float)RAND_MAX, std::rand()/(float)RAND_MAX);
 }
 
 void GLProgram::reset()
