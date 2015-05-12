@@ -63,7 +63,7 @@ extern "C"
 #include "tiffio.h"
 #endif //CC_USE_TIFF
 
-#include "base/etc1.h"
+//#include "base/etc1.h"
     
 #if CC_USE_JPEG
 #include "jpeglib.h"
@@ -577,9 +577,9 @@ bool Image::initWithImageData(const unsigned char * data, ssize_t dataLen)
         case Format::PVR:
             ret = initWithPVRData(unpackedData, unpackedLen);
             break;
-        case Format::ETC:
-            ret = initWithETCData(unpackedData, unpackedLen);
-            break;
+//        case Format::ETC:
+//            ret = initWithETCData(unpackedData, unpackedLen);
+//            break;
         case Format::S3TC:
             ret = initWithS3TCData(unpackedData, unpackedLen);
             break;
@@ -627,10 +627,10 @@ bool Image::isPng(const unsigned char * data, ssize_t dataLen)
 }
 
 
-bool Image::isEtc(const unsigned char * data, ssize_t dataLen)
-{
-    return etc1_pkm_is_valid((etc1_byte*)data) ? true : false;
-}
+//bool Image::isEtc(const unsigned char * data, ssize_t dataLen)
+//{
+//    return etc1_pkm_is_valid((etc1_byte*)data) ? true : false;
+//}
 
 
 bool Image::isS3TC(const unsigned char * data, ssize_t dataLen)
@@ -731,10 +731,10 @@ Image::Format Image::detectFormat(const unsigned char * data, ssize_t dataLen)
     {
         return Format::PVR;
     }
-    else if (isEtc(data, dataLen))
-    {
-        return Format::ETC;
-    }
+//    else if (isEtc(data, dataLen))
+//    {
+//        return Format::ETC;
+//    }
     else if (isS3TC(data, dataLen))
     {
         return Format::S3TC;
@@ -1654,24 +1654,24 @@ bool Image::initWithPVRv3Data(const unsigned char * data, ssize_t dataLen)
                 widthBlocks = width / 4;
                 heightBlocks = height / 4;
                 break;
-            case PVR3TexturePixelFormat::ETC1:
-                if (!Configuration::getInstance()->supportsETC())
-                {
-                    CCLOG("cocos2d: Hardware ETC1 decoder not present. Using software decoder");
-                    int bytePerPixel = 3;
-                    unsigned int stride = width * bytePerPixel;
-                    _unpack = true;
-                    _mipmaps[i].len = width*height*bytePerPixel;
-                    _mipmaps[i].address = new unsigned char[width*height*bytePerPixel];
-                    if (etc1_decode_image(static_cast<const unsigned char*>(_data+dataOffset), static_cast<etc1_byte*>(_mipmaps[i].address), width, height, bytePerPixel, stride) != 0)
-                    {
-                        return false;
-                    }
-                }
-                blockSize = 4 * 4; // Pixel by pixel block size for 4bpp
-                widthBlocks = width / 4;
-                heightBlocks = height / 4;
-                break;
+//            case PVR3TexturePixelFormat::ETC1:
+//                if (!Configuration::getInstance()->supportsETC())
+//                {
+//                    CCLOG("cocos2d: Hardware ETC1 decoder not present. Using software decoder");
+//                    int bytePerPixel = 3;
+//                    unsigned int stride = width * bytePerPixel;
+//                    _unpack = true;
+//                    _mipmaps[i].len = width*height*bytePerPixel;
+//                    _mipmaps[i].address = new unsigned char[width*height*bytePerPixel];
+//                    if (etc1_decode_image(static_cast<const unsigned char*>(_data+dataOffset), static_cast<etc1_byte*>(_mipmaps[i].address), width, height, bytePerPixel, stride) != 0)
+//                    {
+//                        return false;
+//                    }
+//                }
+//                blockSize = 4 * 4; // Pixel by pixel block size for 4bpp
+//                widthBlocks = width / 4;
+//                heightBlocks = height / 4;
+//                break;
             case PVR3TexturePixelFormat::BGRA8888:
                 if (! Configuration::getInstance()->supportsBGRA8888())
                 {
@@ -1722,61 +1722,61 @@ bool Image::initWithPVRv3Data(const unsigned char * data, ssize_t dataLen)
 	return true;
 }
 
-bool Image::initWithETCData(const unsigned char * data, ssize_t dataLen)
-{
-    const etc1_byte* header = static_cast<const etc1_byte*>(data);
-    
-    //check the data
-    if (! etc1_pkm_is_valid(header))
-    {
-        return  false;
-    }
-
-    _width = etc1_pkm_get_width(header);
-    _height = etc1_pkm_get_height(header);
-
-    if (0 == _width || 0 == _height)
-    {
-        return false;
-    }
-
-    if (Configuration::getInstance()->supportsETC())
-    {
-        //old opengl version has no define for GL_ETC1_RGB8_OES, add macro to make compiler happy. 
-#ifdef GL_ETC1_RGB8_OES
-        _renderFormat = Texture2D::PixelFormat::ETC;
-        _dataLen = dataLen - ETC_PKM_HEADER_SIZE;
-        _data = static_cast<unsigned char*>(malloc(_dataLen * sizeof(unsigned char)));
-        memcpy(_data, static_cast<const unsigned char*>(data) + ETC_PKM_HEADER_SIZE, _dataLen);
-        return true;
-#endif
-    }
-    else
-    {
-        CCLOG("cocos2d: Hardware ETC1 decoder not present. Using software decoder");
-
-         //if it is not gles or device do not support ETC, decode texture by software
-        int bytePerPixel = 3;
-        unsigned int stride = _width * bytePerPixel;
-        _renderFormat = Texture2D::PixelFormat::RGB888;
-        
-        _dataLen =  _width * _height * bytePerPixel;
-        _data = static_cast<unsigned char*>(malloc(_dataLen * sizeof(unsigned char)));
-        
-        if (etc1_decode_image(static_cast<const unsigned char*>(data) + ETC_PKM_HEADER_SIZE, static_cast<etc1_byte*>(_data), _width, _height, bytePerPixel, stride) != 0)
-        {
-            _dataLen = 0;
-            if (_data != nullptr)
-            {
-                free(_data);
-            }
-            return false;
-        }
-        
-        return true;
-    }
-    return false;
-}
+//bool Image::initWithETCData(const unsigned char * data, ssize_t dataLen)
+//{
+//    const etc1_byte* header = static_cast<const etc1_byte*>(data);
+//    
+//    //check the data
+//    if (! etc1_pkm_is_valid(header))
+//    {
+//        return  false;
+//    }
+//
+//    _width = etc1_pkm_get_width(header);
+//    _height = etc1_pkm_get_height(header);
+//
+//    if (0 == _width || 0 == _height)
+//    {
+//        return false;
+//    }
+//
+//    if (Configuration::getInstance()->supportsETC())
+//    {
+//        //old opengl version has no define for GL_ETC1_RGB8_OES, add macro to make compiler happy. 
+//#ifdef GL_ETC1_RGB8_OES
+//        _renderFormat = Texture2D::PixelFormat::ETC;
+//        _dataLen = dataLen - ETC_PKM_HEADER_SIZE;
+//        _data = static_cast<unsigned char*>(malloc(_dataLen * sizeof(unsigned char)));
+//        memcpy(_data, static_cast<const unsigned char*>(data) + ETC_PKM_HEADER_SIZE, _dataLen);
+//        return true;
+//#endif
+//    }
+//    else
+//    {
+//        CCLOG("cocos2d: Hardware ETC1 decoder not present. Using software decoder");
+//
+//         //if it is not gles or device do not support ETC, decode texture by software
+//        int bytePerPixel = 3;
+//        unsigned int stride = _width * bytePerPixel;
+//        _renderFormat = Texture2D::PixelFormat::RGB888;
+//        
+//        _dataLen =  _width * _height * bytePerPixel;
+//        _data = static_cast<unsigned char*>(malloc(_dataLen * sizeof(unsigned char)));
+//        
+//        if (etc1_decode_image(static_cast<const unsigned char*>(data) + ETC_PKM_HEADER_SIZE, static_cast<etc1_byte*>(_data), _width, _height, bytePerPixel, stride) != 0)
+//        {
+//            _dataLen = 0;
+//            if (_data != nullptr)
+//            {
+//                free(_data);
+//            }
+//            return false;
+//        }
+//        
+//        return true;
+//    }
+//    return false;
+//}
 
 bool Image::initWithTGAData(tImageTGA* tgaData)
 {

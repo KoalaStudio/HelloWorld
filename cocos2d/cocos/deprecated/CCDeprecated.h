@@ -555,7 +555,7 @@ CC_DEPRECATED_ATTRIBUTE typedef Configuration CCConfiguration;
 //CC_DEPRECATED_ATTRIBUTE typedef StandardTouchDelegate CCStandardTouchDelegate;
 //CC_DEPRECATED_ATTRIBUTE typedef TouchDelegate CCTouchDelegate;
 CC_DEPRECATED_ATTRIBUTE typedef Image CCImage;
-CC_DEPRECATED_ATTRIBUTE typedef UserDefault CCUserDefault;
+//CC_DEPRECATED_ATTRIBUTE typedef UserDefault CCUserDefault;
 
 //CC_DEPRECATED_ATTRIBUTE typedef Action CCAction;
 //CC_DEPRECATED_ATTRIBUTE typedef FiniteTimeAction CCFiniteTimeAction;

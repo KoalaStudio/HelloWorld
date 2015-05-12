@@ -57,7 +57,7 @@ THE SOFTWARE.
 #include "base/CCProfiling.h"
 #include "base/CCConsole.h"
 #include "base/ccUTF8.h"
-#include "base/CCUserDefault.h"
+//#include "base/CCUserDefault.h"
 #include "base/CCIMEDelegate.h"
 #include "base/CCIMEDispatcher.h"
 #include "base/ccUtils.h"
