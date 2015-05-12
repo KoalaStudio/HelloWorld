@@ -205,7 +205,7 @@ protected:
     
     void flush2D();
     
-    void flush3D();
+//    void flush3D();
 
     void flushQuads();
     void flushTriangles();
@@ -225,7 +225,7 @@ protected:
 
     uint32_t _lastMaterialID;
 
-    MeshCommand*              _lastBatchedMeshCommand;
+//    MeshCommand*              _lastBatchedMeshCommand;
     std::vector<TrianglesCommand*> _batchedCommands;
     std::vector<QuadCommand*> _batchQuadCommands;
 
