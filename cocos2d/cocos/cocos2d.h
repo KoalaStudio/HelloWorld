@@ -52,7 +52,7 @@ THE SOFTWARE.
 #include "base/CCConfiguration.h"
 #include "base/CCDirector.h"
 //#include "base/CCScheduler.h"
-#include "base/base64.h"
+//#include "base/base64.h"
 #include "base/ZipUtils.h"
 //#include "base/CCProfiling.h"
 #include "base/CCConsole.h"

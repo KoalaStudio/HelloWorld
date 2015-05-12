@@ -483,10 +483,6 @@
 		50ABBDBE1925AB4100A911A9 /* CCTextureCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBD811925AB4100A911A9 /* CCTextureCache.cpp */; };
 		50ABBDBF1925AB4100A911A9 /* CCTextureCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBD821925AB4100A911A9 /* CCTextureCache.h */; };
 		50ABBDC01925AB4100A911A9 /* CCTextureCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBD821925AB4100A911A9 /* CCTextureCache.h */; };
-		50ABBE231925AB6F00A911A9 /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDC31925AB6E00A911A9 /* base64.cpp */; };
-		50ABBE241925AB6F00A911A9 /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDC31925AB6E00A911A9 /* base64.cpp */; };
-		50ABBE251925AB6F00A911A9 /* base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDC41925AB6E00A911A9 /* base64.h */; };
-		50ABBE261925AB6F00A911A9 /* base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDC41925AB6E00A911A9 /* base64.h */; };
 		50ABBE271925AB6F00A911A9 /* CCAutoreleasePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDC51925AB6E00A911A9 /* CCAutoreleasePool.cpp */; };
 		50ABBE281925AB6F00A911A9 /* CCAutoreleasePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBDC51925AB6E00A911A9 /* CCAutoreleasePool.cpp */; };
 		50ABBE291925AB6F00A911A9 /* CCAutoreleasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBDC61925AB6E00A911A9 /* CCAutoreleasePool.h */; };
@@ -905,8 +901,6 @@
 		50ABBD801925AB4100A911A9 /* CCTextureAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTextureAtlas.h; sourceTree = "<group>"; };
 		50ABBD811925AB4100A911A9 /* CCTextureCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTextureCache.cpp; sourceTree = "<group>"; };
 		50ABBD821925AB4100A911A9 /* CCTextureCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTextureCache.h; sourceTree = "<group>"; };
-		50ABBDC31925AB6E00A911A9 /* base64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = base64.cpp; path = ../base/base64.cpp; sourceTree = "<group>"; };
-		50ABBDC41925AB6E00A911A9 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = base64.h; path = ../base/base64.h; sourceTree = "<group>"; };
 		50ABBDC51925AB6E00A911A9 /* CCAutoreleasePool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCAutoreleasePool.cpp; path = ../base/CCAutoreleasePool.cpp; sourceTree = "<group>"; };
 		50ABBDC61925AB6E00A911A9 /* CCAutoreleasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCAutoreleasePool.h; path = ../base/CCAutoreleasePool.h; sourceTree = "<group>"; };
 		50ABBDC71925AB6E00A911A9 /* ccCArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ccCArray.cpp; path = ../base/ccCArray.cpp; sourceTree = "<group>"; };
@@ -1141,8 +1135,6 @@
 			children = (
 				85DCABA51B01E7890076769C /* CCConfiguration.cpp */,
 				85DCABA61B01E7890076769C /* CCConfiguration.h */,
-				50ABBDC31925AB6E00A911A9 /* base64.cpp */,
-				50ABBDC41925AB6E00A911A9 /* base64.h */,
 				50ABBDC51925AB6E00A911A9 /* CCAutoreleasePool.cpp */,
 				50ABBDC61925AB6E00A911A9 /* CCAutoreleasePool.h */,
 				50ABBDC71925AB6E00A911A9 /* ccCArray.cpp */,
@@ -2115,7 +2107,6 @@
 				50643BD919BFAF4400EF68ED /* CCApplication.h in Headers */,
 				15AE1A8919AAD40300C27E9E /* b2PrismaticJoint.h in Headers */,
 				50ABBD3A1925AB0000A911A9 /* CCAffineTransform.h in Headers */,
-				50ABBE251925AB6F00A911A9 /* base64.h in Headers */,
 				15AE1A7519AAD40300C27E9E /* b2EdgeAndCircleContact.h in Headers */,
 				50ABBD5A1925AB0000A911A9 /* Vec2.h in Headers */,
 				50ABC0231926664800A911A9 /* CCGLViewImpl-desktop.h in Headers */,
@@ -2302,7 +2293,6 @@
 				15AE1AC119AAD40300C27E9E /* b2MotorJoint.h in Headers */,
 				5034CA36191D591100CE6051 /* ccShader_PositionTexture.frag in Headers */,
 				50ABBEAE1925AB6F00A911A9 /* ccTypes.h in Headers */,
-				50ABBE261925AB6F00A911A9 /* base64.h in Headers */,
 				50ABBEDA1925AB6F00A911A9 /* ZipUtils.h in Headers */,
 				50ABBDC01925AB4100A911A9 /* CCTextureCache.h in Headers */,
 				B276EF641988D1D500CD400F /* CCVertexIndexBuffer.h in Headers */,
@@ -2506,7 +2496,6 @@
 				50ABC00D1926664800A911A9 /* CCFileUtils.cpp in Sources */,
 				15AE1A6819AAD40300C27E9E /* b2WorldCallbacks.cpp in Sources */,
 				50ABC0151926664800A911A9 /* CCImage.cpp in Sources */,
-				50ABBE231925AB6F00A911A9 /* base64.cpp in Sources */,
 				15AE1A2519AAD3D500C27E9E /* b2CollideCircle.cpp in Sources */,
 				15AE1A6319AAD40300C27E9E /* b2Island.cpp in Sources */,
 				15AE1A8419AAD40300C27E9E /* b2Joint.cpp in Sources */,
@@ -2573,7 +2562,6 @@
 				15AE1A4D19AAD3D500C27E9E /* b2PolygonShape.cpp in Sources */,
 				50ABC00E1926664800A911A9 /* CCFileUtils.cpp in Sources */,
 				DA8C62A319E52C6400000516 /* ioapi_mem.cpp in Sources */,
-				50ABBE241925AB6F00A911A9 /* base64.cpp in Sources */,
 				15AE1AAA19AAD40300C27E9E /* b2World.cpp in Sources */,
 				15AE1AB019AAD40300C27E9E /* b2ChainAndPolygonContact.cpp in Sources */,
 				50ABBEAC1925AB6F00A911A9 /* ccTypes.cpp in Sources */,

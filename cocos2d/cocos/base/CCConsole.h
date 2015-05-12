@@ -109,10 +109,10 @@ public:
     void setBindAddress(const std::string &address);
  
 protected:
-    void loop();
+//    void loop();
     ssize_t readline(int fd, char *buf, size_t maxlen);
     ssize_t readBytes(int fd, char* buffer, size_t maxlen, bool* more);
-    bool parseCommand(int fd);
+//    bool parseCommand(int fd);
     
     void addClient();
 
@@ -127,7 +127,7 @@ protected:
 //    void commandProjection(int fd, const std::string &args);
 //    void commandDirector(int fd, const std::string &args);
 //    void commandTouch(int fd, const std::string &args);
-    void commandUpload(int fd);
+//    void commandUpload(int fd);
     void commandAllocator(int fd, const std::string &args);
     // file descriptor: socket, console, etc.
     int _listenfd;
