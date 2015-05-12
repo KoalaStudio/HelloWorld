@@ -302,7 +302,7 @@ THE SOFTWARE.
 //#include "deprecated/CCString.h"
 //#include "deprecated/CCNotificationCenter.h"
 // CCDeprecated.h must be included at the end
-#include "deprecated/CCDeprecated.h"
+//#include "deprecated/CCDeprecated.h"
 
 
 NS_CC_BEGIN
