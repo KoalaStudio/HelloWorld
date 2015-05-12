@@ -66,7 +66,7 @@
 #include "platform/CCFileUtils.h"
 #include "renderer/CCTextureCache.h"
 #include "base/base64.h"
-#include "base/ccUtils.h"
+//#include "base/ccUtils.h"
 //#include "base/allocator/CCAllocatorDiagnostics.h"
 NS_CC_BEGIN
 
@@ -700,8 +700,8 @@ void Console::commandTouch(int fd, const std::string& args)
             if((argv.size() == 3) && (isFloat(argv[1]) && isFloat(argv[2])))
             {
                 
-                float x = utils::atof(argv[1].c_str());
-                float y = utils::atof(argv[2].c_str());
+                float x = atof(argv[1].c_str());
+                float y = atof(argv[2].c_str());
 
                 srand ((unsigned)time(nullptr));
                 _touchId = rand();
@@ -726,10 +726,10 @@ void Console::commandTouch(int fd, const std::string& args)
                 && (isFloat(argv[3])) && (isFloat(argv[4])))
             {
                 
-                float x1 = utils::atof(argv[1].c_str());
-                float y1 = utils::atof(argv[2].c_str());
-                float x2 = utils::atof(argv[3].c_str());
-                float y2 = utils::atof(argv[4].c_str());
+                float x1 = atof(argv[1].c_str());
+                float y1 = atof(argv[2].c_str());
+                float x2 = atof(argv[3].c_str());
+                float y2 = atof(argv[4].c_str());
 
                 srand ((unsigned)time(nullptr));
                 _touchId = rand();

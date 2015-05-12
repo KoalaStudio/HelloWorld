@@ -39,11 +39,11 @@ THE SOFTWARE.
 
 // base
 #include "base/CCRef.h"
-#include "base/CCRefPtr.h"
+//#include "base/CCRefPtr.h"
 #include "base/CCVector.h"
 #include "base/CCMap.h"
 #include "base/CCAutoreleasePool.h"
-#include "base/CCNS.h"
+//#include "base/CCNS.h"
 #include "base/CCData.h"
 #include "base/CCValue.h"
 #include "base/ccConfig.h"
@@ -60,7 +60,7 @@ THE SOFTWARE.
 //#include "base/CCUserDefault.h"
 //#include "base/CCIMEDelegate.h"
 //#include "base/CCIMEDispatcher.h"
-#include "base/ccUtils.h"
+//#include "base/ccUtils.h"
 
 // EventDispatcher
 #include "base/CCEventType.h"

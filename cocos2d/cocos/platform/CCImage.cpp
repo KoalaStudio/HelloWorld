@@ -83,7 +83,7 @@ extern "C"
 #include "CCStdC.h"
 #include "CCFileUtils.h"
 #include "base/CCConfiguration.h"
-#include "base/ccUtils.h"
+//#include "base/ccUtils.h"
 #include "base/ZipUtils.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "android/CCFileUtils-android.h"

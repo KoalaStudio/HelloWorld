@@ -34,7 +34,7 @@ THE SOFTWARE.
 #include "base/CCEventKeyboard.h"
 #include "base/CCEventMouse.h"
 //#include "base/CCIMEDispatcher.h"
-#include "base/ccUtils.h"
+//#include "base/ccUtils.h"
 #include "base/ccUTF8.h"
 
 
@@ -375,7 +375,7 @@ bool GLViewImpl::initWithRect(const std::string& viewName, Rect rect, float fram
     // check OpenGL version at first
     const GLubyte* glVersion = glGetString(GL_VERSION);
 
-    if ( utils::atof((const char*)glVersion) < 1.5 )
+    if ( atof((const char*)glVersion) < 1.5 )
     {
         char strComplain[256] = {0};
         sprintf(strComplain,

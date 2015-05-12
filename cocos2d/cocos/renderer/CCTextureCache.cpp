@@ -37,7 +37,7 @@ THE SOFTWARE.
 #include "base/CCDirector.h"
 #include "base/CCScheduler.h"
 #include "platform/CCFileUtils.h"
-#include "base/ccUtils.h"
+//#include "base/ccUtils.h"
 
 //#include "deprecated/CCString.h"
 #include "base/ccUTF8.h"

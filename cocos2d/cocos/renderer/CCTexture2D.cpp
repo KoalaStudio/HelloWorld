@@ -35,7 +35,7 @@ THE SOFTWARE.
 
 #include "platform/CCGL.h"
 #include "platform/CCImage.h"
-#include "base/ccUtils.h"
+//#include "base/ccUtils.h"
 #include "platform/CCDevice.h"
 #include "base/ccConfig.h"
 #include "base/ccMacros.h"
@@ -56,7 +56,16 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
-
+int ccNextPOT(int x)
+{
+    x = x - 1;
+    x = x | (x >> 1);
+    x = x | (x >> 2);
+    x = x | (x >> 4);
+    x = x | (x >> 8);
+    x = x | (x >>16);
+    return x + 1;
+}
 
 namespace {
     typedef Texture2D::PixelFormatInfoMap::value_type PixelFormatInfoMapValue;
