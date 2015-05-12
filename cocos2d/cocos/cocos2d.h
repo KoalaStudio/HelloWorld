@@ -51,7 +51,7 @@ THE SOFTWARE.
 #include "base/ccTypes.h"
 #include "base/CCConfiguration.h"
 #include "base/CCDirector.h"
-#include "base/CCScheduler.h"
+//#include "base/CCScheduler.h"
 #include "base/base64.h"
 #include "base/ZipUtils.h"
 #include "base/CCProfiling.h"

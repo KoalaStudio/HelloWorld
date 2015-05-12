@@ -35,7 +35,7 @@ THE SOFTWARE.
 #include <regex>
 
 #include "base/CCDirector.h"
-#include "base/CCScheduler.h"
+//#include "base/CCScheduler.h"
 #include "base/CCEventDispatcher.h"
 #include "2d/CCCamera.h"
 //#include "2d/CCActionManager.h"
@@ -140,8 +140,8 @@ Node::Node(void)
     _director = Director::getInstance();
 //    _actionManager = _director->getActionManager();
 //    _actionManager->retain();
-    _scheduler = _director->getScheduler();
-    _scheduler->retain();
+//    _scheduler = _director->getScheduler();
+//    _scheduler->retain();
     _eventDispatcher = _director->getEventDispatcher();
     _eventDispatcher->retain();
     
@@ -199,9 +199,9 @@ Node::~Node()
 #endif
     
 //    stopAllActions();
-    unscheduleAllCallbacks();
+//    unscheduleAllCallbacks();
 //    CC_SAFE_RELEASE_NULL(_actionManager);
-    CC_SAFE_RELEASE_NULL(_scheduler);
+//    CC_SAFE_RELEASE_NULL(_scheduler);
     
     _eventDispatcher->removeEventListenersForTarget(this);
     
@@ -222,7 +222,7 @@ void Node::cleanup()
 {
     // actions
 //    this->stopAllActions();
-    this->unscheduleAllCallbacks();
+//    this->unscheduleAllCallbacks();
 
 #if CC_ENABLE_SCRIPT_BINDING
     if ( _scriptType != kScriptTypeNone)
@@ -1422,7 +1422,7 @@ void Node::onEnter()
     for( const auto &child: _children)
         child->onEnter();
     
-    this->resume();
+//    this->resume();
     
     _running = true;
     
@@ -1496,7 +1496,7 @@ void Node::onExit()
     }
 #endif
     
-    this->pause();
+//    this->pause();
     
     _running = false;
     
@@ -1577,146 +1577,146 @@ void Node::setEventDispatcher(EventDispatcher* dispatcher)
 
 // MARK: Callbacks
 
-void Node::setScheduler(Scheduler* scheduler)
-{
-    if( scheduler != _scheduler )
-    {
-        this->unscheduleAllCallbacks();
-        CC_SAFE_RETAIN(scheduler);
-        CC_SAFE_RELEASE(_scheduler);
-        _scheduler = scheduler;
-    }
-}
-
-bool Node::isScheduled(SEL_SCHEDULE selector)
-{
-    return _scheduler->isScheduled(selector, this);
-}
-
-bool Node::isScheduled(const std::string &key)
-{
-    return _scheduler->isScheduled(key, this);
-}
-
-void Node::scheduleUpdate()
-{
-    scheduleUpdateWithPriority(0);
-}
-
-void Node::scheduleUpdateWithPriority(int priority)
-{
-    _scheduler->scheduleUpdate(this, priority, !_running);
-}
-
-void Node::scheduleUpdateWithPriorityLua(int nHandler, int priority)
-{
-    unscheduleUpdate();
-    
-#if CC_ENABLE_SCRIPT_BINDING
-    _updateScriptHandler = nHandler;
-#endif
-    
-    _scheduler->scheduleUpdate(this, priority, !_running);
-}
-
-void Node::unscheduleUpdate()
-{
-    _scheduler->unscheduleUpdate(this);
-    
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_updateScriptHandler)
-    {
-        ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(_updateScriptHandler);
-        _updateScriptHandler = 0;
-    }
-#endif
-}
-
-void Node::schedule(SEL_SCHEDULE selector)
-{
-    this->schedule(selector, 0.0f, CC_REPEAT_FOREVER, 0.0f);
-}
-
-void Node::schedule(SEL_SCHEDULE selector, float interval)
-{
-    this->schedule(selector, interval, CC_REPEAT_FOREVER, 0.0f);
-}
-
-void Node::schedule(SEL_SCHEDULE selector, float interval, unsigned int repeat, float delay)
-{
-    CCASSERT( selector, "Argument must be non-nil");
-    CCASSERT( interval >=0, "Argument must be positive");
-
-    _scheduler->schedule(selector, this, interval , repeat, delay, !_running);
-}
-
-void Node::schedule(const std::function<void(float)> &callback, const std::string &key)
-{
-    _scheduler->schedule(callback, this, 0, !_running, key);
-}
-
-void Node::schedule(const std::function<void(float)> &callback, float interval, const std::string &key)
-{
-    _scheduler->schedule(callback, this, interval, !_running, key);
-}
-
-void Node::schedule(const std::function<void(float)>& callback, float interval, unsigned int repeat, float delay, const std::string &key)
-{
-    _scheduler->schedule(callback, this, interval, repeat, delay, !_running, key);
-}
-
-void Node::scheduleOnce(SEL_SCHEDULE selector, float delay)
-{
-    this->schedule(selector, 0.0f, 0, delay);
-}
-
-void Node::scheduleOnce(const std::function<void(float)> &callback, float delay, const std::string &key)
-{
-    _scheduler->schedule(callback, this, 0, 0, delay, !_running, key);
-}
-
-void Node::unschedule(SEL_SCHEDULE selector)
-{
-    // explicit null handling
-    if (selector == nullptr)
-        return;
-    
-    _scheduler->unschedule(selector, this);
-}
-
-void Node::unschedule(const std::string &key)
-{
-    _scheduler->unschedule(key, this);
-}
-
-void Node::unscheduleAllCallbacks()
-{
-    _scheduler->unscheduleAllForTarget(this);
-}
-
-void Node::resume()
-{
-    _scheduler->resumeTarget(this);
-//    _actionManager->resumeTarget(this);
-    _eventDispatcher->resumeEventListenersForTarget(this);
-}
-
-void Node::pause()
-{
-    _scheduler->pauseTarget(this);
-//    _actionManager->pauseTarget(this);
-    _eventDispatcher->pauseEventListenersForTarget(this);
-}
-
-void Node::resumeSchedulerAndActions()
-{
-    resume();
-}
-
-void Node::pauseSchedulerAndActions()
-{
-    pause();
-}
+//void Node::setScheduler(Scheduler* scheduler)
+//{
+//    if( scheduler != _scheduler )
+//    {
+//        this->unscheduleAllCallbacks();
+//        CC_SAFE_RETAIN(scheduler);
+//        CC_SAFE_RELEASE(_scheduler);
+//        _scheduler = scheduler;
+//    }
+//}
+//
+//bool Node::isScheduled(SEL_SCHEDULE selector)
+//{
+//    return _scheduler->isScheduled(selector, this);
+//}
+//
+//bool Node::isScheduled(const std::string &key)
+//{
+//    return _scheduler->isScheduled(key, this);
+//}
+//
+//void Node::scheduleUpdate()
+//{
+//    scheduleUpdateWithPriority(0);
+//}
+//
+//void Node::scheduleUpdateWithPriority(int priority)
+//{
+//    _scheduler->scheduleUpdate(this, priority, !_running);
+//}
+//
+//void Node::scheduleUpdateWithPriorityLua(int nHandler, int priority)
+//{
+//    unscheduleUpdate();
+//    
+//#if CC_ENABLE_SCRIPT_BINDING
+//    _updateScriptHandler = nHandler;
+//#endif
+//    
+//    _scheduler->scheduleUpdate(this, priority, !_running);
+//}
+//
+//void Node::unscheduleUpdate()
+//{
+//    _scheduler->unscheduleUpdate(this);
+//    
+//#if CC_ENABLE_SCRIPT_BINDING
+//    if (_updateScriptHandler)
+//    {
+//        ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(_updateScriptHandler);
+//        _updateScriptHandler = 0;
+//    }
+//#endif
+//}
+//
+//void Node::schedule(SEL_SCHEDULE selector)
+//{
+//    this->schedule(selector, 0.0f, CC_REPEAT_FOREVER, 0.0f);
+//}
+//
+//void Node::schedule(SEL_SCHEDULE selector, float interval)
+//{
+//    this->schedule(selector, interval, CC_REPEAT_FOREVER, 0.0f);
+//}
+//
+//void Node::schedule(SEL_SCHEDULE selector, float interval, unsigned int repeat, float delay)
+//{
+//    CCASSERT( selector, "Argument must be non-nil");
+//    CCASSERT( interval >=0, "Argument must be positive");
+//
+//    _scheduler->schedule(selector, this, interval , repeat, delay, !_running);
+//}
+//
+//void Node::schedule(const std::function<void(float)> &callback, const std::string &key)
+//{
+//    _scheduler->schedule(callback, this, 0, !_running, key);
+//}
+//
+//void Node::schedule(const std::function<void(float)> &callback, float interval, const std::string &key)
+//{
+//    _scheduler->schedule(callback, this, interval, !_running, key);
+//}
+//
+//void Node::schedule(const std::function<void(float)>& callback, float interval, unsigned int repeat, float delay, const std::string &key)
+//{
+//    _scheduler->schedule(callback, this, interval, repeat, delay, !_running, key);
+//}
+//
+//void Node::scheduleOnce(SEL_SCHEDULE selector, float delay)
+//{
+//    this->schedule(selector, 0.0f, 0, delay);
+//}
+//
+//void Node::scheduleOnce(const std::function<void(float)> &callback, float delay, const std::string &key)
+//{
+//    _scheduler->schedule(callback, this, 0, 0, delay, !_running, key);
+//}
+//
+//void Node::unschedule(SEL_SCHEDULE selector)
+//{
+//    // explicit null handling
+//    if (selector == nullptr)
+//        return;
+//    
+//    _scheduler->unschedule(selector, this);
+//}
+//
+//void Node::unschedule(const std::string &key)
+//{
+//    _scheduler->unschedule(key, this);
+//}
+//
+//void Node::unscheduleAllCallbacks()
+//{
+//    _scheduler->unscheduleAllForTarget(this);
+//}
+//
+//void Node::resume()
+//{
+//    _scheduler->resumeTarget(this);
+////    _actionManager->resumeTarget(this);
+//    _eventDispatcher->resumeEventListenersForTarget(this);
+//}
+//
+//void Node::pause()
+//{
+//    _scheduler->pauseTarget(this);
+////    _actionManager->pauseTarget(this);
+//    _eventDispatcher->pauseEventListenersForTarget(this);
+//}
+//
+//void Node::resumeSchedulerAndActions()
+//{
+//    resume();
+//}
+//
+//void Node::pauseSchedulerAndActions()
+//{
+//    pause();
+//}
 
 // override me
 void Node::update(float fDelta)

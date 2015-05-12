@@ -59,7 +59,7 @@
 #endif
 
 #include "base/CCDirector.h"
-#include "base/CCScheduler.h"
+//#include "base/CCScheduler.h"
 #include "platform/CCPlatformConfig.h"
 #include "base/CCConfiguration.h"
 #include "2d/CCScene.h"
@@ -292,7 +292,7 @@ Console::Console()
     // VS2012 doesn't support initializer list, so we create a new array and assign its elements to '_command'.
 	Command commands[] = {     
         { "allocator", "Display allocator diagnostics for all allocators", std::bind(&Console::commandAllocator, this, std::placeholders::_1, std::placeholders::_2) },
-        { "config", "Print the Configuration object", std::bind(&Console::commandConfig, this, std::placeholders::_1, std::placeholders::_2) },
+//        { "config", "Print the Configuration object", std::bind(&Console::commandConfig, this, std::placeholders::_1, std::placeholders::_2) },
         { "debugmsg", "Whether or not to forward the debug messages on the console. Args: [on | off]", [&](int fd, const std::string& args) {
             if( args.compare("on")==0 || args.compare("off")==0) {
                 _sendDebugStrings = (args.compare("on") == 0);
@@ -301,24 +301,24 @@ Console::Console()
             }
         } },
         { "exit", "Close connection to the console", std::bind(&Console::commandExit, this, std::placeholders::_1, std::placeholders::_2) },
-        { "fileutils", "Flush or print the FileUtils info. Args: [flush | ] ", std::bind(&Console::commandFileUtils, this, std::placeholders::_1, std::placeholders::_2) },
+//        { "fileutils", "Flush or print the FileUtils info. Args: [flush | ] ", std::bind(&Console::commandFileUtils, this, std::placeholders::_1, std::placeholders::_2) },
         { "fps", "Turn on / off the FPS. Args: [on | off] ", [](int fd, const std::string& args) {
             if( args.compare("on")==0 || args.compare("off")==0) {
-                bool state = (args.compare("on") == 0);
-                Director *dir = Director::getInstance();
-                Scheduler *sched = dir->getScheduler();
-                sched->performFunctionInCocosThread( std::bind(&Director::setDisplayStats, dir, state));
+//                bool state = (args.compare("on") == 0);
+//                Director *dir = Director::getInstance();
+//                Scheduler *sched = dir->getScheduler();
+//                sched->performFunctionInCocosThread( std::bind(&Director::setDisplayStats, dir, state));
             } else {
                 mydprintf(fd, "FPS is: %s\n", Director::getInstance()->isDisplayStats() ? "on" : "off");
             }
         } },
         { "help", "Print this message", std::bind(&Console::commandHelp, this, std::placeholders::_1, std::placeholders::_2) },
-        { "projection", "Change or print the current projection. Args: [2d | 3d]", std::bind(&Console::commandProjection, this, std::placeholders::_1, std::placeholders::_2) },
-        { "resolution", "Change or print the window resolution. Args: [width height resolution_policy | ]", std::bind(&Console::commandResolution, this, std::placeholders::_1, std::placeholders::_2) },
-        { "scenegraph", "Print the scene graph", std::bind(&Console::commandSceneGraph, this, std::placeholders::_1, std::placeholders::_2) },
-        { "texture", "Flush or print the TextureCache info. Args: [flush | ] ", std::bind(&Console::commandTextures, this, std::placeholders::_1, std::placeholders::_2) },
-        { "director", "director commands, type -h or [director help] to list supported directives", std::bind(&Console::commandDirector, this, std::placeholders::_1, std::placeholders::_2) },
-        { "touch", "simulate touch event via console, type -h or [touch help] to list supported directives", std::bind(&Console::commandTouch, this, std::placeholders::_1, std::placeholders::_2) },
+//        { "projection", "Change or print the current projection. Args: [2d | 3d]", std::bind(&Console::commandProjection, this, std::placeholders::_1, std::placeholders::_2) },
+//        { "resolution", "Change or print the window resolution. Args: [width height resolution_policy | ]", std::bind(&Console::commandResolution, this, std::placeholders::_1, std::placeholders::_2) },
+//        { "scenegraph", "Print the scene graph", std::bind(&Console::commandSceneGraph, this, std::placeholders::_1, std::placeholders::_2) },
+//        { "texture", "Flush or print the TextureCache info. Args: [flush | ] ", std::bind(&Console::commandTextures, this, std::placeholders::_1, std::placeholders::_2) },
+//        { "director", "director commands, type -h or [director help] to list supported directives", std::bind(&Console::commandDirector, this, std::placeholders::_1, std::placeholders::_2) },
+//        { "touch", "simulate touch event via console, type -h or [touch help] to list supported directives", std::bind(&Console::commandTouch, this, std::placeholders::_1, std::placeholders::_2) },
         { "upload", "upload file. Args: [filename base64_encoded_data]", std::bind(&Console::commandUpload, this, std::placeholders::_1) },
         { "version", "print version string ", [](int fd, const std::string& args) {
             mydprintf(fd, "%s\n", cocos2dVersion());
@@ -488,335 +488,335 @@ void Console::commandExit(int fd, const std::string &args)
 #endif
 }
 
-void Console::commandSceneGraph(int fd, const std::string &args)
-{
-    Scheduler *sched = Director::getInstance()->getScheduler();
-    sched->performFunctionInCocosThread( std::bind(&printSceneGraphBoot, fd) );
-}
+//void Console::commandSceneGraph(int fd, const std::string &args)
+//{
+//    Scheduler *sched = Director::getInstance()->getScheduler();
+//    sched->performFunctionInCocosThread( std::bind(&printSceneGraphBoot, fd) );
+//}
+//
+//void Console::commandFileUtils(int fd, const std::string &args)
+//{
+//    Scheduler *sched = Director::getInstance()->getScheduler();
+//
+//    if( args.compare("flush") == 0 )
+//    {
+//        FileUtils::getInstance()->purgeCachedEntries();
+//    }
+//    else if( args.length()==0)
+//    {
+//        sched->performFunctionInCocosThread( std::bind(&printFileUtils, fd) );
+//    }
+//    else
+//    {
+//        mydprintf(fd, "Unsupported argument: '%s'. Supported arguments: 'flush' or nothing", args.c_str());
+//    }
+//}
+//
+//void Console::commandConfig(int fd, const std::string& args)
+//{
+//    Scheduler *sched = Director::getInstance()->getScheduler();
+//    sched->performFunctionInCocosThread( [=](){
+//        mydprintf(fd, "%s", Configuration::getInstance()->getInfo().c_str());
+//        sendPrompt(fd);
+//    }
+//                                        );
+//}
 
-void Console::commandFileUtils(int fd, const std::string &args)
-{
-    Scheduler *sched = Director::getInstance()->getScheduler();
+//void Console::commandResolution(int fd, const std::string& args)
+//{
+//    if(args.length()==0) {
+//        auto director = Director::getInstance();
+//        Size points = director->getWinSize();
+//        Size pixels = director->getWinSizeInPixels();
+//        auto glview = director->getOpenGLView();
+//        Size design = glview->getDesignResolutionSize();
+//        ResolutionPolicy res = glview->getResolutionPolicy();
+//        Rect visibleRect = glview->getVisibleRect();
+//
+//        mydprintf(fd, "Window Size:\n"
+//                        "\t%d x %d (points)\n"
+//                        "\t%d x %d (pixels)\n"
+//                        "\t%d x %d (design resolution)\n"
+//                        "Resolution Policy: %d\n"
+//                        "Visible Rect:\n"
+//                        "\torigin: %d x %d\n"
+//                        "\tsize: %d x %d\n",
+//                  (int)points.width, (int)points.height,
+//                  (int)pixels.width, (int)pixels.height,
+//                  (int)design.width, (int)design.height,
+//                  (int)res,
+//                  (int)visibleRect.origin.x, (int)visibleRect.origin.y,
+//                  (int)visibleRect.size.width, (int)visibleRect.size.height
+//                  );
+//
+//    } else {
+//        int width, height, policy;
+//
+//        std::istringstream stream( args );
+//        stream >> width >> height>> policy;
+//
+//        Scheduler *sched = Director::getInstance()->getScheduler();
+//        sched->performFunctionInCocosThread( [=](){
+//            Director::getInstance()->getOpenGLView()->setDesignResolutionSize(width, height, static_cast<ResolutionPolicy>(policy));
+//        } );
+//    }
+//}
+//
+//void Console::commandProjection(int fd, const std::string& args)
+//{
+//    auto director = Director::getInstance();
+//    Scheduler *sched = director->getScheduler();
+//
+//    if(args.length()==0)
+//    {
+//        char buf[20];
+//        auto proj = director->getProjection();
+//        switch (proj) {
+//            case cocos2d::Director::Projection::_2D:
+//                sprintf(buf,"2d");
+//                break;
+//            case cocos2d::Director::Projection::_3D:
+//                sprintf(buf,"3d");
+//                break;
+//            case cocos2d::Director::Projection::CUSTOM:
+//                sprintf(buf,"custom");
+//                break;
+//
+//            default:
+//                sprintf(buf,"unknown");
+//                break;
+//        }
+//        mydprintf(fd, "Current projection: %s\n", buf);
+//    }
+//    else if( args.compare("2d") == 0)
+//    {
+//        sched->performFunctionInCocosThread( [=](){
+//            director->setProjection(Director::Projection::_2D);
+//        } );
+//    }
+//    else if( args.compare("3d") == 0)
+//    {
+//        sched->performFunctionInCocosThread( [=](){
+//            director->setProjection(Director::Projection::_3D);
+//        } );
+//    }
+//    else
+//    {
+//        mydprintf(fd, "Unsupported argument: '%s'. Supported arguments: '2d' or '3d'\n", args.c_str());
+//    }
+//}
+//
+//void Console::commandTextures(int fd, const std::string& args)
+//{
+//    Scheduler *sched = Director::getInstance()->getScheduler();
+//
+//    if( args.compare("flush")== 0)
+//    {
+//        sched->performFunctionInCocosThread( [](){
+//            Director::getInstance()->getTextureCache()->removeAllTextures();
+//        }
+//                                            );
+//    }
+//    else if(args.length()==0)
+//    {
+//        sched->performFunctionInCocosThread( [=](){
+//            mydprintf(fd, "%s", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
+//            sendPrompt(fd);
+//        }
+//                                            );
+//    }
+//    else
+//    {
+//        mydprintf(fd, "Unsupported argument: '%s'. Supported arguments: 'flush' or nothing", args.c_str());
+//    }
+//}
+//
+//
+//void Console::commandDirector(int fd, const std::string& args)
+//{
+//     auto director = Director::getInstance();
+//    if(args =="help" || args == "-h")
+//    {
+//        const char help[] = "available director directives:\n"
+//                            "\tpause, pause all scheduled timers, the draw rate will be 4 FPS to reduce CPU consumption\n"
+//                            "\tend, exit this app.\n"
+//                            "\tresume, resume all scheduled timers\n"
+//                            "\tstop, Stops the animation. Nothing will be drawn.\n"
+//                            "\tstart, Restart the animation again, Call this function only if [director stop] was called earlier\n";
+//         send(fd, help, sizeof(help) - 1,0);
+//    }
+//    else if(args == "pause")
+//    {
+//        Scheduler *sched = director->getScheduler();
+//            sched->performFunctionInCocosThread( [](){
+//            Director::getInstance()->pause();
+//        }
+//                                        );
+//
+//    }
+//    else if(args == "resume")
+//    {
+//        director->resume();
+//    }
+//    else if(args == "stop")
+//    {
+//        Scheduler *sched = director->getScheduler();
+//        sched->performFunctionInCocosThread( [](){
+//            Director::getInstance()->stopAnimation();
+//        }
+//                                        );
+//    }
+//    else if(args == "start")
+//    {
+//        director->startAnimation();
+//    }
+//    else if(args == "end")
+//    {
+//        director->end();
+//    }
+//
+//}
 
-    if( args.compare("flush") == 0 )
-    {
-        FileUtils::getInstance()->purgeCachedEntries();
-    }
-    else if( args.length()==0)
-    {
-        sched->performFunctionInCocosThread( std::bind(&printFileUtils, fd) );
-    }
-    else
-    {
-        mydprintf(fd, "Unsupported argument: '%s'. Supported arguments: 'flush' or nothing", args.c_str());
-    }
-}
-
-void Console::commandConfig(int fd, const std::string& args)
-{
-    Scheduler *sched = Director::getInstance()->getScheduler();
-    sched->performFunctionInCocosThread( [=](){
-        mydprintf(fd, "%s", Configuration::getInstance()->getInfo().c_str());
-        sendPrompt(fd);
-    }
-                                        );
-}
-
-void Console::commandResolution(int fd, const std::string& args)
-{
-    if(args.length()==0) {
-        auto director = Director::getInstance();
-        Size points = director->getWinSize();
-        Size pixels = director->getWinSizeInPixels();
-        auto glview = director->getOpenGLView();
-        Size design = glview->getDesignResolutionSize();
-        ResolutionPolicy res = glview->getResolutionPolicy();
-        Rect visibleRect = glview->getVisibleRect();
-
-        mydprintf(fd, "Window Size:\n"
-                        "\t%d x %d (points)\n"
-                        "\t%d x %d (pixels)\n"
-                        "\t%d x %d (design resolution)\n"
-                        "Resolution Policy: %d\n"
-                        "Visible Rect:\n"
-                        "\torigin: %d x %d\n"
-                        "\tsize: %d x %d\n",
-                  (int)points.width, (int)points.height,
-                  (int)pixels.width, (int)pixels.height,
-                  (int)design.width, (int)design.height,
-                  (int)res,
-                  (int)visibleRect.origin.x, (int)visibleRect.origin.y,
-                  (int)visibleRect.size.width, (int)visibleRect.size.height
-                  );
-
-    } else {
-        int width, height, policy;
-
-        std::istringstream stream( args );
-        stream >> width >> height>> policy;
-
-        Scheduler *sched = Director::getInstance()->getScheduler();
-        sched->performFunctionInCocosThread( [=](){
-            Director::getInstance()->getOpenGLView()->setDesignResolutionSize(width, height, static_cast<ResolutionPolicy>(policy));
-        } );
-    }
-}
-
-void Console::commandProjection(int fd, const std::string& args)
-{
-    auto director = Director::getInstance();
-    Scheduler *sched = director->getScheduler();
-
-    if(args.length()==0)
-    {
-        char buf[20];
-        auto proj = director->getProjection();
-        switch (proj) {
-            case cocos2d::Director::Projection::_2D:
-                sprintf(buf,"2d");
-                break;
-            case cocos2d::Director::Projection::_3D:
-                sprintf(buf,"3d");
-                break;
-            case cocos2d::Director::Projection::CUSTOM:
-                sprintf(buf,"custom");
-                break;
-
-            default:
-                sprintf(buf,"unknown");
-                break;
-        }
-        mydprintf(fd, "Current projection: %s\n", buf);
-    }
-    else if( args.compare("2d") == 0)
-    {
-        sched->performFunctionInCocosThread( [=](){
-            director->setProjection(Director::Projection::_2D);
-        } );
-    }
-    else if( args.compare("3d") == 0)
-    {
-        sched->performFunctionInCocosThread( [=](){
-            director->setProjection(Director::Projection::_3D);
-        } );
-    }
-    else
-    {
-        mydprintf(fd, "Unsupported argument: '%s'. Supported arguments: '2d' or '3d'\n", args.c_str());
-    }
-}
-
-void Console::commandTextures(int fd, const std::string& args)
-{
-    Scheduler *sched = Director::getInstance()->getScheduler();
-
-    if( args.compare("flush")== 0)
-    {
-        sched->performFunctionInCocosThread( [](){
-            Director::getInstance()->getTextureCache()->removeAllTextures();
-        }
-                                            );
-    }
-    else if(args.length()==0)
-    {
-        sched->performFunctionInCocosThread( [=](){
-            mydprintf(fd, "%s", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
-            sendPrompt(fd);
-        }
-                                            );
-    }
-    else
-    {
-        mydprintf(fd, "Unsupported argument: '%s'. Supported arguments: 'flush' or nothing", args.c_str());
-    }
-}
-
-
-void Console::commandDirector(int fd, const std::string& args)
-{
-     auto director = Director::getInstance();
-    if(args =="help" || args == "-h")
-    {
-        const char help[] = "available director directives:\n"
-                            "\tpause, pause all scheduled timers, the draw rate will be 4 FPS to reduce CPU consumption\n"
-                            "\tend, exit this app.\n"
-                            "\tresume, resume all scheduled timers\n"
-                            "\tstop, Stops the animation. Nothing will be drawn.\n"
-                            "\tstart, Restart the animation again, Call this function only if [director stop] was called earlier\n";
-         send(fd, help, sizeof(help) - 1,0);
-    }
-    else if(args == "pause")
-    {
-        Scheduler *sched = director->getScheduler();
-            sched->performFunctionInCocosThread( [](){
-            Director::getInstance()->pause();
-        }
-                                        );
-
-    }
-    else if(args == "resume")
-    {
-        director->resume();
-    }
-    else if(args == "stop")
-    {
-        Scheduler *sched = director->getScheduler();
-        sched->performFunctionInCocosThread( [](){
-            Director::getInstance()->stopAnimation();
-        }
-                                        );
-    }
-    else if(args == "start")
-    {
-        director->startAnimation();
-    }
-    else if(args == "end")
-    {
-        director->end();
-    }
-
-}
-
-void Console::commandTouch(int fd, const std::string& args)
-{
-    if(args =="help" || args == "-h")
-    {
-        const char help[] = "available touch directives:\n"
-                            "\ttap x y: simulate touch tap at (x,y)\n"
-                            "\tswipe x1 y1 x2 y2: simulate touch swipe from (x1,y1) to (x2,y2).\n";
-         send(fd, help, sizeof(help) - 1,0);
-    }
-    else
-    {
-        auto argv = split(args,' ');
-        
-        if(argv.size() == 0)
-        {
-            return;
-        }
-
-        if(argv[0]=="tap")
-        {
-            if((argv.size() == 3) && (isFloat(argv[1]) && isFloat(argv[2])))
-            {
-                
-                float x = atof(argv[1].c_str());
-                float y = atof(argv[2].c_str());
-
-                srand ((unsigned)time(nullptr));
-                _touchId = rand();
-                Scheduler *sched = Director::getInstance()->getScheduler();
-                sched->performFunctionInCocosThread( [&](){
-                    Director::getInstance()->getOpenGLView()->handleTouchesBegin(1, &_touchId, &x, &y);
-                    Director::getInstance()->getOpenGLView()->handleTouchesEnd(1, &_touchId, &x, &y);
-                });
-            }
-            else 
-            {
-                const char msg[] = "touch: invalid arguments.\n";
-                send(fd, msg, sizeof(msg) - 1, 0);
-            }
-            return;
-        }
-
-        if(argv[0]=="swipe")
-        {
-            if((argv.size() == 5) 
-                && (isFloat(argv[1])) && (isFloat(argv[2]))
-                && (isFloat(argv[3])) && (isFloat(argv[4])))
-            {
-                
-                float x1 = atof(argv[1].c_str());
-                float y1 = atof(argv[2].c_str());
-                float x2 = atof(argv[3].c_str());
-                float y2 = atof(argv[4].c_str());
-
-                srand ((unsigned)time(nullptr));
-                _touchId = rand();
-
-                Scheduler *sched = Director::getInstance()->getScheduler();
-                sched->performFunctionInCocosThread( [=](){
-                    float tempx = x1, tempy = y1;
-                    Director::getInstance()->getOpenGLView()->handleTouchesBegin(1, &_touchId, &tempx, &tempy);
-                });
-
-                float dx = std::abs(x1 - x2);
-                float dy = std::abs(y1 - y2);
-                float _x_ = x1, _y_ = y1;
-                if(dx > dy)
-                {
-                    while(dx > 1)
-                    {
-                        
-                        if(x1 < x2)
-                        {
-                            _x_ += 1;
-                        }
-                        if(x1 > x2)
-                        {
-                            _x_ -= 1;
-                        }
-                        if(y1 < y2)
-                        {
-                            _y_ += dy/dx;
-                        }
-                        if(y1 > y2)
-                        {
-                            _y_ -= dy/dx;
-                        }
-                        sched->performFunctionInCocosThread( [=](){
-                            float tempx = _x_, tempy = _y_;
-                            Director::getInstance()->getOpenGLView()->handleTouchesMove(1, &_touchId, &tempx, &tempy);
-                        });
-                        dx -= 1;
-                    }
-                    
-                }
-                else
-                {
-                    while(dy > 1)
-                    {
-                        if(x1 < x2)
-                        {
-                            _x_ += dx/dy;
-                        }
-                        if(x1 > x2)
-                        {
-                            _x_ -= dx/dy;
-                        }
-                        if(y1 < y2)
-                        {
-                            _y_ += 1;
-                        }
-                        if(y1 > y2)
-                        {
-                            _y_ -= 1;
-                        }
-                        sched->performFunctionInCocosThread( [=](){
-                            float tempx = _x_, tempy = _y_;
-                            Director::getInstance()->getOpenGLView()->handleTouchesMove(1, &_touchId, &tempx, &tempy);
-                        });
-                       dy -= 1;
-                    }
-                    
-                }
-
-                sched->performFunctionInCocosThread( [=](){
-                    float tempx = x2, tempy = y2;
-                    Director::getInstance()->getOpenGLView()->handleTouchesEnd(1, &_touchId, &tempx, &tempy);
-                });
-
-            }
-            else 
-            {
-                const char msg[] = "touch: invalid arguments.\n";
-                send(fd, msg, sizeof(msg) - 1, 0);
-            }
-            
-        }
-
-    }
-}
+//void Console::commandTouch(int fd, const std::string& args)
+//{
+//    if(args =="help" || args == "-h")
+//    {
+//        const char help[] = "available touch directives:\n"
+//                            "\ttap x y: simulate touch tap at (x,y)\n"
+//                            "\tswipe x1 y1 x2 y2: simulate touch swipe from (x1,y1) to (x2,y2).\n";
+//         send(fd, help, sizeof(help) - 1,0);
+//    }
+//    else
+//    {
+//        auto argv = split(args,' ');
+//        
+//        if(argv.size() == 0)
+//        {
+//            return;
+//        }
+//
+//        if(argv[0]=="tap")
+//        {
+//            if((argv.size() == 3) && (isFloat(argv[1]) && isFloat(argv[2])))
+//            {
+//                
+//                float x = atof(argv[1].c_str());
+//                float y = atof(argv[2].c_str());
+//
+//                srand ((unsigned)time(nullptr));
+//                _touchId = rand();
+//                Scheduler *sched = Director::getInstance()->getScheduler();
+//                sched->performFunctionInCocosThread( [&](){
+//                    Director::getInstance()->getOpenGLView()->handleTouchesBegin(1, &_touchId, &x, &y);
+//                    Director::getInstance()->getOpenGLView()->handleTouchesEnd(1, &_touchId, &x, &y);
+//                });
+//            }
+//            else 
+//            {
+//                const char msg[] = "touch: invalid arguments.\n";
+//                send(fd, msg, sizeof(msg) - 1, 0);
+//            }
+//            return;
+//        }
+//
+//        if(argv[0]=="swipe")
+//        {
+//            if((argv.size() == 5) 
+//                && (isFloat(argv[1])) && (isFloat(argv[2]))
+//                && (isFloat(argv[3])) && (isFloat(argv[4])))
+//            {
+//                
+//                float x1 = atof(argv[1].c_str());
+//                float y1 = atof(argv[2].c_str());
+//                float x2 = atof(argv[3].c_str());
+//                float y2 = atof(argv[4].c_str());
+//
+//                srand ((unsigned)time(nullptr));
+//                _touchId = rand();
+//
+//                Scheduler *sched = Director::getInstance()->getScheduler();
+//                sched->performFunctionInCocosThread( [=](){
+//                    float tempx = x1, tempy = y1;
+//                    Director::getInstance()->getOpenGLView()->handleTouchesBegin(1, &_touchId, &tempx, &tempy);
+//                });
+//
+//                float dx = std::abs(x1 - x2);
+//                float dy = std::abs(y1 - y2);
+//                float _x_ = x1, _y_ = y1;
+//                if(dx > dy)
+//                {
+//                    while(dx > 1)
+//                    {
+//                        
+//                        if(x1 < x2)
+//                        {
+//                            _x_ += 1;
+//                        }
+//                        if(x1 > x2)
+//                        {
+//                            _x_ -= 1;
+//                        }
+//                        if(y1 < y2)
+//                        {
+//                            _y_ += dy/dx;
+//                        }
+//                        if(y1 > y2)
+//                        {
+//                            _y_ -= dy/dx;
+//                        }
+//                        sched->performFunctionInCocosThread( [=](){
+//                            float tempx = _x_, tempy = _y_;
+//                            Director::getInstance()->getOpenGLView()->handleTouchesMove(1, &_touchId, &tempx, &tempy);
+//                        });
+//                        dx -= 1;
+//                    }
+//                    
+//                }
+//                else
+//                {
+//                    while(dy > 1)
+//                    {
+//                        if(x1 < x2)
+//                        {
+//                            _x_ += dx/dy;
+//                        }
+//                        if(x1 > x2)
+//                        {
+//                            _x_ -= dx/dy;
+//                        }
+//                        if(y1 < y2)
+//                        {
+//                            _y_ += 1;
+//                        }
+//                        if(y1 > y2)
+//                        {
+//                            _y_ -= 1;
+//                        }
+//                        sched->performFunctionInCocosThread( [=](){
+//                            float tempx = _x_, tempy = _y_;
+//                            Director::getInstance()->getOpenGLView()->handleTouchesMove(1, &_touchId, &tempx, &tempy);
+//                        });
+//                       dy -= 1;
+//                    }
+//                    
+//                }
+//
+//                sched->performFunctionInCocosThread( [=](){
+//                    float tempx = x2, tempy = y2;
+//                    Director::getInstance()->getOpenGLView()->handleTouchesEnd(1, &_touchId, &tempx, &tempy);
+//                });
+//
+//            }
+//            else 
+//            {
+//                const char msg[] = "touch: invalid arguments.\n";
+//                send(fd, msg, sizeof(msg) - 1, 0);
+//            }
+//            
+//        }
+//
+//    }
+//}
 
 void Console::commandAllocator(int fd, const std::string& args)
 {
