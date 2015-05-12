@@ -107,8 +107,8 @@ THE SOFTWARE.
 
 // 2d nodes
 #include "2d/CCNode.h"
-#include "2d/CCProtectedNode.h"
-#include "2d/CCAtlasNode.h"
+//#include "2d/CCProtectedNode.h"
+//#include "2d/CCAtlasNode.h"
 //#include "2d/CCDrawingPrimitives.h"
 //#include "2d/CCDrawNode.h"
 //#include "2d/CCLabelAtlas.h"

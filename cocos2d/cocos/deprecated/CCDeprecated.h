@@ -666,7 +666,7 @@ CC_DEPRECATED_ATTRIBUTE typedef SpriteFrame CCSpriteFrame;
 //CC_DEPRECATED_ATTRIBUTE typedef CardinalSplineBy CCCardinalSplineBy;
 //CC_DEPRECATED_ATTRIBUTE typedef CatmullRomTo CCCatmullRomTo;
 //CC_DEPRECATED_ATTRIBUTE typedef CatmullRomBy CCCatmullRomBy;
-CC_DEPRECATED_ATTRIBUTE typedef AtlasNode CCAtlasNode;
+//CC_DEPRECATED_ATTRIBUTE typedef AtlasNode CCAtlasNode;
 CC_DEPRECATED_ATTRIBUTE typedef TextureProtocol CCTextureProtocol;
 CC_DEPRECATED_ATTRIBUTE typedef BlendProtocol CCBlendProtocol;
 //CC_DEPRECATED_ATTRIBUTE typedef DrawNode CCDrawNode;
