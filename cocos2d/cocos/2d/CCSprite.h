@@ -39,8 +39,6 @@ THE SOFTWARE.
 NS_CC_BEGIN
 
 class SpriteBatchNode;
-class SpriteFrame;
-class Animation;
 class Rect;
 class Size;
 class Texture2D;
@@ -131,25 +129,6 @@ public:
      */
     static Sprite* createWithTexture(Texture2D *texture, const Rect& rect, bool rotated=false);
 
-//    /**
-//     * Creates a sprite with an sprite frame.
-//     *
-//     * @param   spriteFrame    A sprite frame which involves a texture and a rect.
-//     * @return  An autoreleased sprite object.
-//     */
-//    static Sprite* createWithSpriteFrame(SpriteFrame *spriteFrame);
-//
-//    /**
-//     * Creates a sprite with an sprite frame name.
-//     *
-//     * A SpriteFrame will be fetched from the SpriteFrameCache by spriteFrameName param.
-//     * If the SpriteFrame doesn't exist it will raise an exception.
-//     *
-//     * @param   spriteFrameName A null terminated string which indicates the sprite frame name.
-//     * @return  An autoreleased sprite object.
-//     */
-//    static Sprite* createWithSpriteFrameName(const std::string& spriteFrameName);
-
     //  end of creators group
     /// @}
 
@@ -224,45 +203,6 @@ public:
      * Do not call it manually. Use setTextureRect instead.
      */
     virtual void setVertexRect(const Rect& rect);
-
-//    /** @{
-//     * Sets a new SpriteFrame to the Sprite.
-//     */
-//    virtual void setSpriteFrame(const std::string &spriteFrameName);
-//    virtual void setSpriteFrame(SpriteFrame* newFrame);
-//    /** @} */
-//
-//    /** @deprecated Use `setSpriteFrame()` instead. */
-//    CC_DEPRECATED_ATTRIBUTE virtual void setDisplayFrame(SpriteFrame *newFrame) { setSpriteFrame(newFrame); }
-//
-//    /**
-//     * Returns whether or not a SpriteFrame is being displayed.
-//     */
-//    virtual bool isFrameDisplayed(SpriteFrame *frame) const;
-//
-//    /**
-//     * Returns the current displayed frame.
-//     */
-//    virtual SpriteFrame* getSpriteFrame() const;
-//    /** @deprecated Use `getSpriteFrame()` instead.
-//     * @js NA
-//     */
-//    CC_DEPRECATED_ATTRIBUTE virtual SpriteFrame* getDisplayFrame() const { return getSpriteFrame(); }
-//    /** @deprecated Use `getSpriteFrame()` instead. */
-//    CC_DEPRECATED_ATTRIBUTE virtual SpriteFrame* displayFrame() const { return getSpriteFrame(); };
-//
-//    /// @} End of frames methods
-
-
-    /// @{
-    /// @name Animation methods
-    /**
-     * Changes the display frame with animation name and index.
-     * The animation name will be get from the AnimationCache.
-     */
-//    virtual void setDisplayFrameWithAnimationName(const std::string& animationName, ssize_t frameIndex);
-    /// @}
-
 
     /// @{
     /// @name Sprite Properties' setter/getters.
@@ -484,26 +424,7 @@ CC_CONSTRUCTOR_ACCESS:
      * @return  True if the sprite is initialized properly, false otherwise.
      */
     virtual bool initWithTexture(Texture2D *texture, const Rect& rect, bool rotated);
-
-//    /**
-//     * Initializes a sprite with an SpriteFrame. The texture and rect in SpriteFrame will be applied on this sprite.
-//     *
-//     * @param   spriteFrame  A SpriteFrame object. It should includes a valid texture and a rect.
-//     * @return  True if the sprite is initialized properly, false otherwise.
-//     */
-//    virtual bool initWithSpriteFrame(SpriteFrame *spriteFrame);
-//
-//    /**
-//     * Initializes a sprite with an sprite frame name.
-//     *
-//     * A SpriteFrame will be fetched from the SpriteFrameCache by name.
-//     * If the SpriteFrame doesn't exist it will raise an exception.
-//     *
-//     * @param   spriteFrameName  A key string that can fected a volid SpriteFrame from SpriteFrameCache.
-//     * @return  True if the sprite is initialized properly, false otherwise.
-//     */
-//    virtual bool initWithSpriteFrameName(const std::string& spriteFrameName);
-
+    
     /**
      * Initializes a sprite with an image filename.
      *
@@ -556,7 +477,6 @@ protected:
     //
     BlendFunc        _blendFunc;            /// It's required for TextureProtocol inheritance
     Texture2D*       _texture;              /// Texture2D object that is used to render the sprite
-    SpriteFrame*     _spriteFrame;
     QuadCommand      _quadCommand;          /// quad command
 #if CC_SPRITE_DEBUG_DRAW
     DrawNode *_debugDrawNode;

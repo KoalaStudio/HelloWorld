@@ -35,24 +35,12 @@ THE SOFTWARE.
 #include <regex>
 
 #include "base/CCDirector.h"
-//#include "base/CCScheduler.h"
-//#include "base/CCEventDispatcher.h"
 #include "2d/CCCamera.h"
-//#include "2d/CCActionManager.h"
 #include "2d/CCScene.h"
-//#include "2d/CCComponent.h"
-//#include "2d/CCComponentContainer.h"
 #include "renderer/CCGLProgram.h"
 #include "renderer/CCGLProgramState.h"
 #include "math/TransformUtils.h"
 #include "ccUTF8.h"
-//#include "deprecated/CCString.h"
-
-#if CC_USE_PHYSICS
-#include "physics/CCPhysicsBody.h"
-#include "physics/CCPhysicsWorld.h"
-#endif
-
 
 #if CC_NODE_RENDER_SUBPIXEL
 #define RENDER_IN_SUBPIXEL
@@ -113,21 +101,6 @@ Node::Node(void)
 , _ignoreAnchorPointForPosition(false)
 , _reorderChildDirty(false)
 , _isTransitionFinished(false)
-#if CC_ENABLE_SCRIPT_BINDING
-, _updateScriptHandler(0)
-#endif
-//, _componentContainer(nullptr)
-#if CC_USE_PHYSICS
-, _physicsBody(nullptr)
-, _physicsScaleStartX(1.0f)
-, _physicsScaleStartY(1.0f)
-, _physicsRotation(0.0f)
-, _physicsTransformDirty(true)
-, _updateTransformFromPhysics(true)
-, _physicsWorld(nullptr)
-, _physicsBodyAssociatedWith(0)
-, _physicsRotationOffset(0.0f)
-#endif
 , _displayedOpacity(255)
 , _realOpacity(255)
 , _displayedColor(Color3B::WHITE)
@@ -138,17 +111,7 @@ Node::Node(void)
 {
     // set default scheduler and actionManager
     _director = Director::getInstance();
-//    _actionManager = _director->getActionManager();
-//    _actionManager->retain();
-//    _scheduler = _director->getScheduler();
-//    _scheduler->retain();
-//    _eventDispatcher = _director->getEventDispatcher();
-//    _eventDispatcher->retain();
-    
-#if CC_ENABLE_SCRIPT_BINDING
-    ScriptEngineProtocol* engine = ScriptEngineManager::getInstance()->getScriptEngine();
-    _scriptType = engine != nullptr ? engine->getScriptType() : kScriptTypeNone;
-#endif
+
     _transform = _inverse = _additionalTransform = Mat4::IDENTITY;
 }
 
@@ -169,13 +132,6 @@ Node * Node::create()
 Node::~Node()
 {
     CCLOGINFO( "deallocing Node: %p - tag: %i", this, _tag );
-    
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_updateScriptHandler)
-    {
-        ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(_updateScriptHandler);
-    }
-#endif
 
     // User object has to be released before others, since userObject may have a weak reference of this node
     // It may invoke `node->stopAllAction();` while `_actionManager` is null if the next line is after `CC_SAFE_RELEASE_NULL(_actionManager)`.
@@ -188,29 +144,6 @@ Node::~Node()
     {
         child->_parent = nullptr;
     }
-
-//    removeAllComponents();
-    
-//    CC_SAFE_DELETE(_componentContainer);
-    
-#if CC_USE_PHYSICS
-    setPhysicsBody(nullptr);
-
-#endif
-    
-//    stopAllActions();
-//    unscheduleAllCallbacks();
-//    CC_SAFE_RELEASE_NULL(_actionManager);
-//    CC_SAFE_RELEASE_NULL(_scheduler);
-    
-//    _eventDispatcher->removeEventListenersForTarget(this);
-//    
-//#if CC_NODE_DEBUG_VERIFY_EVENT_LISTENERS && COCOS2D_DEBUG > 0
-//    _eventDispatcher->debugCheckNodeHasNoEventListenersOnDestruction(this);
-//#endif
-//
-//    CCASSERT(!_running, "Node still marked as running on node destruction! Was base class onExit() called in derived class onExit() implementations?");
-//    CC_SAFE_RELEASE(_eventDispatcher);
 }
 
 bool Node::init()
@@ -220,20 +153,6 @@ bool Node::init()
 
 void Node::cleanup()
 {
-    // actions
-//    this->stopAllActions();
-//    this->unscheduleAllCallbacks();
-
-#if CC_ENABLE_SCRIPT_BINDING
-    if ( _scriptType != kScriptTypeNone)
-    {
-        int action = kNodeOnCleanup;
-        BasicScriptData data(this,(void*)&action);
-        ScriptEvent scriptEvent(kNodeEvent,(void*)&data);
-        ScriptEngineManager::getInstance()->getScriptEngine()->sendEvent(&scriptEvent);
-    }
-#endif // #if CC_ENABLE_SCRIPT_BINDING
-
     // timers
     for( const auto &child: _children)
         child->cleanup();
@@ -256,13 +175,6 @@ void Node::setSkewX(float skewX)
     if (_skewX == skewX)
         return;
     
-#if CC_USE_PHYSICS
-    if (_physicsBody != nullptr)
-    {
-        CCLOG("Node WARNING: PhysicsBody doesn't support setSkewX");
-    }
-#endif
-    
     _skewX = skewX;
     _transformUpdated = _transformDirty = _inverseDirty = true;
 }
@@ -276,13 +188,6 @@ void Node::setSkewY(float skewY)
 {
     if (_skewY == skewY)
         return;
-    
-#if CC_USE_PHYSICS
-    if (_physicsBody != nullptr)
-    {
-        CCLOG("Node WARNING: PhysicsBody doesn't support setSkewY");
-    }
-#endif
     
     _skewY = skewY;
     _transformUpdated = _transformDirty = _inverseDirty = true;
@@ -298,8 +203,6 @@ void Node::setLocalZOrder(int z)
     {
         _parent->reorderChild(this, z);
     }
-
-//    _eventDispatcher->setDirtyForNode(this);
 }
 
 /// zOrder setter : private method
@@ -314,7 +217,6 @@ void Node::setGlobalZOrder(float globalZOrder)
     if (_globalZOrder != globalZOrder)
     {
         _globalZOrder = globalZOrder;
-//        _eventDispatcher->setDirtyForNode(this);
     }
 }
 
@@ -333,13 +235,7 @@ void Node::setRotation(float rotation)
     
     _rotationZ_X = _rotationZ_Y = rotation;
     _transformUpdated = _transformDirty = _inverseDirty = true;
-#if CC_USE_PHYSICS
-    if (_physicsWorld && _physicsBodyAssociatedWith > 0)
-    {
-        _physicsWorld->_updateBodyTransform = true;
-    }
-#endif
-    
+
     updateRotationQuat();
 }
 
@@ -364,13 +260,6 @@ void Node::setRotation3D(const Vec3& rotation)
     _rotationZ_Y = _rotationZ_X = rotation.z;
     
     updateRotationQuat();
-
-#if CC_USE_PHYSICS
-    if (_physicsBody != nullptr)
-    {
-        CCLOG("Node WARNING: PhysicsBody doesn't support setRotation3D");
-    }
-#endif
 }
 
 Vec3 Node::getRotation3D() const
@@ -424,13 +313,6 @@ void Node::setRotationSkewX(float rotationX)
     if (_rotationZ_X == rotationX)
         return;
     
-#if CC_USE_PHYSICS
-    if (_physicsBody != nullptr)
-    {
-        CCLOG("Node WARNING: PhysicsBody doesn't support setRotationSkewX");
-    }
-#endif
-    
     _rotationZ_X = rotationX;
     _transformUpdated = _transformDirty = _inverseDirty = true;
     
@@ -446,13 +328,6 @@ void Node::setRotationSkewY(float rotationY)
 {
     if (_rotationZ_Y == rotationY)
         return;
-    
-#if CC_USE_PHYSICS
-    if (_physicsBody != nullptr)
-    {
-        CCLOG("Node WARNING: PhysicsBody doesn't support setRotationSkewY");
-    }
-#endif
     
     _rotationZ_Y = rotationY;
     _transformUpdated = _transformDirty = _inverseDirty = true;
@@ -475,12 +350,6 @@ void Node::setScale(float scale)
     
     _scaleX = _scaleY = _scaleZ = scale;
     _transformUpdated = _transformDirty = _inverseDirty = true;
-#if CC_USE_PHYSICS
-    if (_physicsWorld && _physicsBodyAssociatedWith > 0)
-    {
-        _physicsWorld->_updateBodyTransform = true;
-    }
-#endif
 }
 
 /// scaleX getter
@@ -498,12 +367,6 @@ void Node::setScale(float scaleX,float scaleY)
     _scaleX = scaleX;
     _scaleY = scaleY;
     _transformUpdated = _transformDirty = _inverseDirty = true;
-#if CC_USE_PHYSICS
-    if (_physicsWorld && _physicsBodyAssociatedWith > 0)
-    {
-        _physicsWorld->_updateBodyTransform = true;
-    }
-#endif
 }
 
 /// scaleX setter
@@ -514,12 +377,6 @@ void Node::setScaleX(float scaleX)
     
     _scaleX = scaleX;
     _transformUpdated = _transformDirty = _inverseDirty = true;
-#if CC_USE_PHYSICS
-    if (_physicsWorld && _physicsBodyAssociatedWith > 0)
-    {
-        _physicsWorld->_updateBodyTransform = true;
-    }
-#endif
 }
 
 /// scaleY getter
@@ -533,13 +390,6 @@ void Node::setScaleZ(float scaleZ)
 {
     if (_scaleZ == scaleZ)
         return;
-    
-#if CC_USE_PHYSICS
-    if (_physicsBody != nullptr)
-    {
-        CCLOG("Node WARNING: PhysicsBody doesn't support setScaleZ");
-    }
-#endif
     
     _scaleZ = scaleZ;
     _transformUpdated = _transformDirty = _inverseDirty = true;
@@ -559,12 +409,6 @@ void Node::setScaleY(float scaleY)
     
     _scaleY = scaleY;
     _transformUpdated = _transformDirty = _inverseDirty = true;
-#if CC_USE_PHYSICS
-    if (_physicsWorld && _physicsBodyAssociatedWith > 0)
-    {
-        _physicsWorld->_updateBodyTransform = true;
-    }
-#endif
 }
 
 
@@ -596,12 +440,6 @@ void Node::setPosition(float x, float y)
     
     _transformUpdated = _transformDirty = _inverseDirty = true;
     _usingNormalizedPosition = false;
-#if CC_USE_PHYSICS
-    if (_physicsWorld && _physicsBodyAssociatedWith > 0)
-    {
-        _physicsWorld->_updateBodyTransform = true;
-    }
-#endif
 }
 
 void Node::setPosition3D(const Vec3& position)
@@ -666,12 +504,6 @@ void Node::setNormalizedPosition(const Vec2& position)
     _usingNormalizedPosition = true;
     _normalizedPositionDirty = true;
     _transformUpdated = _transformDirty = _inverseDirty = true;
-#if CC_USE_PHYSICS
-    if (_physicsWorld && _physicsBodyAssociatedWith > 0)
-    {
-        _physicsWorld->_updateBodyTransform = true;
-    }
-#endif
 }
 
 ssize_t Node::getChildrenCount() const
@@ -709,14 +541,6 @@ const Vec2& Node::getAnchorPoint() const
 
 void Node::setAnchorPoint(const Vec2& point)
 {
-#if CC_USE_PHYSICS
-    if (_physicsBody != nullptr && !point.equals(Vec2::ANCHOR_MIDDLE))
-    {
-        CCLOG("Node warning: This node has a physics body, the anchor must be in the middle, you cann't change this to other value.");
-        return;
-    }
-#endif
-    
     if (! point.equals(_anchorPoint))
     {
         _anchorPoint = point;
@@ -1056,24 +880,6 @@ void Node::addChildHelper(Node* child, int localZOrder, int tag, const std::stri
     child->setParent(this);
     child->setOrderOfArrival(s_globalOrderOfArrival++);
     
-#if CC_USE_PHYSICS
-    _physicsBodyAssociatedWith += child->_physicsBodyAssociatedWith;
-    auto parentNode = this;
-    while (parentNode->_parent)
-    {
-        parentNode = parentNode->_parent;
-        parentNode->_physicsBodyAssociatedWith += child->_physicsBodyAssociatedWith;
-    }
-
-    auto scene = dynamic_cast<Scene*>(parentNode);
-
-    // Recursive add children with which have physics body.
-    if (scene && scene->getPhysicsWorld())
-    {
-        scene->addChildToPhysicsWorld(child);
-    }
-#endif
-    
     if( _running )
     {
         child->onEnter();
@@ -1174,21 +980,6 @@ void Node::removeAllChildren()
     this->removeAllChildrenWithCleanup(true);
 }
 
-#if CC_USE_PHYSICS
-void Node::removeFromPhysicsWorld()
-{
-    if (_physicsBody != nullptr)
-    {
-        _physicsBody->removeFromWorld();
-    }
-
-    for (auto child : _children)
-    {
-        child->removeFromPhysicsWorld();
-    }
-}
-#endif
-
 void Node::removeAllChildrenWithCleanup(bool cleanup)
 {
     // not using detachChild improves speed here
@@ -1202,10 +993,6 @@ void Node::removeAllChildrenWithCleanup(bool cleanup)
             child->onExitTransitionDidStart();
             child->onExit();
         }
-
-#if CC_USE_PHYSICS
-        child->removeFromPhysicsWorld();
-#endif
 
         if (cleanup)
         {
@@ -1228,10 +1015,6 @@ void Node::detachChild(Node *child, ssize_t childIndex, bool doCleanup)
         child->onExitTransitionDidStart();
         child->onExit();
     }
-    
-#if CC_USE_PHYSICS
-    child->removeFromPhysicsWorld();
-#endif
 
     // If you don't do cleanup, the child's actions will not get removed and the
     // its scheduledSelectors_ dict will not get released!
@@ -1294,12 +1077,6 @@ void Node::visit()
 
 uint32_t Node::processParentFlags(const Mat4& parentTransform, uint32_t parentFlags)
 {
-#if CC_USE_PHYSICS
-    if (_physicsBody && _updateTransformFromPhysics)
-    {
-        updateTransformFromPhysics(parentTransform, parentFlags);
-    }
-#endif
     if(_usingNormalizedPosition)
     {
         CCASSERT(_parent, "setNormalizedPosition() doesn't work with orphan nodes");
@@ -1324,15 +1101,8 @@ uint32_t Node::processParentFlags(const Mat4& parentTransform, uint32_t parentFl
     if(flags & FLAGS_DIRTY_MASK)
         _modelViewTransform = this->transform(parentTransform);
     
-#if CC_USE_PHYSICS
-    if (_updateTransformFromPhysics) {
-        _transformUpdated = false;
-        _contentSizeDirty = false;
-    }
-#else
     _transformUpdated = false;
     _contentSizeDirty = false;
-#endif
 
     return flags;
 }
@@ -1408,55 +1178,23 @@ void Node::onEnter()
 {
     if (_onEnterCallback)
         _onEnterCallback();
-
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeJavascript)
-    {
-        if (ScriptEngineManager::sendNodeEventToJS(this, kNodeOnEnter))
-            return;
-    }
-#endif
     
     _isTransitionFinished = false;
     
     for( const auto &child: _children)
         child->onEnter();
     
-//    this->resume();
-    
     _running = true;
-    
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeLua)
-    {
-        ScriptEngineManager::sendNodeEventToLua(this, kNodeOnEnter);
-    }
-#endif
 }
 
 void Node::onEnterTransitionDidFinish()
 {
     if (_onEnterTransitionDidFinishCallback)
         _onEnterTransitionDidFinishCallback();
-        
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeJavascript)
-    {
-        if (ScriptEngineManager::sendNodeEventToJS(this, kNodeOnEnterTransitionDidFinish))
-            return;
-    }
-#endif
 
     _isTransitionFinished = true;
     for( const auto &child: _children)
         child->onEnterTransitionDidFinish();
-    
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeLua)
-    {
-        ScriptEngineManager::sendNodeEventToLua(this, kNodeOnEnterTransitionDidFinish);
-    }
-#endif
 }
 
 void Node::onExitTransitionDidStart()
@@ -1464,23 +1202,8 @@ void Node::onExitTransitionDidStart()
     if (_onExitTransitionDidStartCallback)
         _onExitTransitionDidStartCallback();
     
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeJavascript)
-    {
-        if (ScriptEngineManager::sendNodeEventToJS(this, kNodeOnExitTransitionDidStart))
-            return;
-    }
-#endif
-    
     for( const auto &child: _children)
         child->onExitTransitionDidStart();
-    
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeLua)
-    {
-        ScriptEngineManager::sendNodeEventToLua(this, kNodeOnExitTransitionDidStart);
-    }
-#endif
 }
 
 void Node::onExit()
@@ -1488,253 +1211,16 @@ void Node::onExit()
     if (_onExitCallback)
         _onExitCallback();
     
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeJavascript)
-    {
-        if (ScriptEngineManager::sendNodeEventToJS(this, kNodeOnExit))
-            return;
-    }
-#endif
-    
-//    this->pause();
-    
     _running = false;
     
     for( const auto &child: _children)
         child->onExit();
-    
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeLua)
-    {
-        ScriptEngineManager::sendNodeEventToLua(this, kNodeOnExit);
-    }
-#endif
 }
-
-//void Node::setEventDispatcher(EventDispatcher* dispatcher)
-//{
-//    if (dispatcher != _eventDispatcher)
-//    {
-//        _eventDispatcher->removeEventListenersForTarget(this);
-//        CC_SAFE_RETAIN(dispatcher);
-//        CC_SAFE_RELEASE(_eventDispatcher);
-//        _eventDispatcher = dispatcher;
-//    }
-//}
-
-//void Node::setActionManager(ActionManager* actionManager)
-//{
-//    if( actionManager != _actionManager )
-//    {
-//        this->stopAllActions();
-//        CC_SAFE_RETAIN(actionManager);
-//        CC_SAFE_RELEASE(_actionManager);
-//        _actionManager = actionManager;
-//    }
-//}
-//
-//// MARK: actions
-//
-//Action * Node::runAction(Action* action)
-//{
-//    CCASSERT( action != nullptr, "Argument must be non-nil");
-//    _actionManager->addAction(action, this, !_running);
-//    return action;
-//}
-//
-//void Node::stopAllActions()
-//{
-//    _actionManager->removeAllActionsFromTarget(this);
-//}
-//
-//void Node::stopAction(Action* action)
-//{
-//    _actionManager->removeAction(action);
-//}
-//
-//void Node::stopActionByTag(int tag)
-//{
-//    CCASSERT( tag != Action::INVALID_TAG, "Invalid tag");
-//    _actionManager->removeActionByTag(tag, this);
-//}
-//
-//void Node::stopAllActionsByTag(int tag)
-//{
-//    CCASSERT( tag != Action::INVALID_TAG, "Invalid tag");
-//    _actionManager->removeAllActionsByTag(tag, this);
-//}
-//
-//Action * Node::getActionByTag(int tag)
-//{
-//    CCASSERT( tag != Action::INVALID_TAG, "Invalid tag");
-//    return _actionManager->getActionByTag(tag, this);
-//}
-//
-//ssize_t Node::getNumberOfRunningActions() const
-//{
-//    return _actionManager->getNumberOfRunningActionsInTarget(this);
-//}
-
-// MARK: Callbacks
-
-//void Node::setScheduler(Scheduler* scheduler)
-//{
-//    if( scheduler != _scheduler )
-//    {
-//        this->unscheduleAllCallbacks();
-//        CC_SAFE_RETAIN(scheduler);
-//        CC_SAFE_RELEASE(_scheduler);
-//        _scheduler = scheduler;
-//    }
-//}
-//
-//bool Node::isScheduled(SEL_SCHEDULE selector)
-//{
-//    return _scheduler->isScheduled(selector, this);
-//}
-//
-//bool Node::isScheduled(const std::string &key)
-//{
-//    return _scheduler->isScheduled(key, this);
-//}
-//
-//void Node::scheduleUpdate()
-//{
-//    scheduleUpdateWithPriority(0);
-//}
-//
-//void Node::scheduleUpdateWithPriority(int priority)
-//{
-//    _scheduler->scheduleUpdate(this, priority, !_running);
-//}
-//
-//void Node::scheduleUpdateWithPriorityLua(int nHandler, int priority)
-//{
-//    unscheduleUpdate();
-//    
-//#if CC_ENABLE_SCRIPT_BINDING
-//    _updateScriptHandler = nHandler;
-//#endif
-//    
-//    _scheduler->scheduleUpdate(this, priority, !_running);
-//}
-//
-//void Node::unscheduleUpdate()
-//{
-//    _scheduler->unscheduleUpdate(this);
-//    
-//#if CC_ENABLE_SCRIPT_BINDING
-//    if (_updateScriptHandler)
-//    {
-//        ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(_updateScriptHandler);
-//        _updateScriptHandler = 0;
-//    }
-//#endif
-//}
-//
-//void Node::schedule(SEL_SCHEDULE selector)
-//{
-//    this->schedule(selector, 0.0f, CC_REPEAT_FOREVER, 0.0f);
-//}
-//
-//void Node::schedule(SEL_SCHEDULE selector, float interval)
-//{
-//    this->schedule(selector, interval, CC_REPEAT_FOREVER, 0.0f);
-//}
-//
-//void Node::schedule(SEL_SCHEDULE selector, float interval, unsigned int repeat, float delay)
-//{
-//    CCASSERT( selector, "Argument must be non-nil");
-//    CCASSERT( interval >=0, "Argument must be positive");
-//
-//    _scheduler->schedule(selector, this, interval , repeat, delay, !_running);
-//}
-//
-//void Node::schedule(const std::function<void(float)> &callback, const std::string &key)
-//{
-//    _scheduler->schedule(callback, this, 0, !_running, key);
-//}
-//
-//void Node::schedule(const std::function<void(float)> &callback, float interval, const std::string &key)
-//{
-//    _scheduler->schedule(callback, this, interval, !_running, key);
-//}
-//
-//void Node::schedule(const std::function<void(float)>& callback, float interval, unsigned int repeat, float delay, const std::string &key)
-//{
-//    _scheduler->schedule(callback, this, interval, repeat, delay, !_running, key);
-//}
-//
-//void Node::scheduleOnce(SEL_SCHEDULE selector, float delay)
-//{
-//    this->schedule(selector, 0.0f, 0, delay);
-//}
-//
-//void Node::scheduleOnce(const std::function<void(float)> &callback, float delay, const std::string &key)
-//{
-//    _scheduler->schedule(callback, this, 0, 0, delay, !_running, key);
-//}
-//
-//void Node::unschedule(SEL_SCHEDULE selector)
-//{
-//    // explicit null handling
-//    if (selector == nullptr)
-//        return;
-//    
-//    _scheduler->unschedule(selector, this);
-//}
-//
-//void Node::unschedule(const std::string &key)
-//{
-//    _scheduler->unschedule(key, this);
-//}
-//
-//void Node::unscheduleAllCallbacks()
-//{
-//    _scheduler->unscheduleAllForTarget(this);
-//}
-//
-//void Node::resume()
-//{
-//    _scheduler->resumeTarget(this);
-////    _actionManager->resumeTarget(this);
-//    _eventDispatcher->resumeEventListenersForTarget(this);
-//}
-//
-//void Node::pause()
-//{
-//    _scheduler->pauseTarget(this);
-////    _actionManager->pauseTarget(this);
-//    _eventDispatcher->pauseEventListenersForTarget(this);
-//}
-//
-//void Node::resumeSchedulerAndActions()
-//{
-//    resume();
-//}
-//
-//void Node::pauseSchedulerAndActions()
-//{
-//    pause();
-//}
 
 // override me
 void Node::update(float fDelta)
 {
-#if CC_ENABLE_SCRIPT_BINDING
-    if (0 != _updateScriptHandler)
-    {
-        //only lua use
-        SchedulerScriptData data(_updateScriptHandler,fDelta);
-        ScriptEvent event(kScheduleEvent,&data);
-        ScriptEngineManager::getInstance()->getScriptEngine()->sendEvent(&event);
-    }
-#endif
     
-//    if (_componentContainer && !_componentContainer->isEmpty())
-//    {
-//        _componentContainer->visit(fDelta);
-//    }
 }
 
 // MARK: coordinates
@@ -1987,165 +1473,6 @@ void Node::updateTransform()
     for( const auto &child: _children)
         child->updateTransform();
 }
-
-// MARK: components
-
-//Component* Node::getComponent(const std::string& name)
-//{
-//    if (_componentContainer)
-//        return _componentContainer->get(name);
-//    
-//    return nullptr;
-//}
-//
-//bool Node::addComponent(Component *component)
-//{
-//    // lazy alloc
-//    if (!_componentContainer)
-//        _componentContainer = new (std::nothrow) ComponentContainer(this);
-//    
-//    return _componentContainer->add(component);
-//}
-//
-//bool Node::removeComponent(const std::string& name)
-//{
-//    if (_componentContainer)
-//        return _componentContainer->remove(name);
-//    
-//    return false;
-//}
-//
-//bool Node::removeComponent(Component *component)
-//{
-//    if (_componentContainer)
-//    {
-//        return _componentContainer->remove(component);
-//    }
-//    
-//    return false;
-//}
-//
-//void Node::removeAllComponents()
-//{
-//    if (_componentContainer)
-//        _componentContainer->removeAll();
-//}
-
-#if CC_USE_PHYSICS
-
-// MARK: Physics
-
-void Node::setPhysicsBody(PhysicsBody* body)
-{
-    if (_physicsBody == body)
-    {
-        return;
-    }
-    
-    if (_physicsBody)
-    {
-        _physicsBody->removeFromWorld();
-        _physicsBody->_node = nullptr;
-        _physicsBody->release();
-        _physicsBody = nullptr;
-
-        _physicsBodyAssociatedWith--;
-        auto parentNode = this;
-        while (parentNode->_parent)
-        {
-            parentNode = parentNode->_parent;
-            parentNode->_physicsBodyAssociatedWith--;
-        }
-    }
-
-    if (body)
-    {
-        if (body->getNode())
-        {
-            body->getNode()->setPhysicsBody(nullptr);
-        }
-        
-        body->_node = this;
-        body->retain();
-        
-        // physics rotation based on body position, but node rotation based on node anthor point
-        // it cann't support both of them, so I clear the anthor point to default.
-        if (!getAnchorPoint().equals(Vec2::ANCHOR_MIDDLE))
-        {
-            CCLOG("Node warning: setPhysicsBody sets anchor point to Vec2::ANCHOR_MIDDLE.");
-            setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-        }
-
-        _physicsBody = body;
-        _physicsScaleStartX = _scaleX;
-        _physicsScaleStartY = _scaleY;
-        _physicsRotationOffset = _rotationZ_X;
-
-        _physicsBodyAssociatedWith++;
-        auto parentNode = this;
-        while (parentNode->_parent)
-        {
-            parentNode = parentNode->_parent;
-            parentNode->_physicsBodyAssociatedWith++;
-        }
-
-        auto scene = dynamic_cast<Scene*>(parentNode);
-        if (scene && scene->getPhysicsWorld())
-        {
-            _physicsTransformDirty = true;
-            scene->getPhysicsWorld()->addBody(body);
-        }
-    }
-}
-
-void Node::updatePhysicsBodyTransform(const Mat4& parentTransform, uint32_t parentFlags, float parentScaleX, float parentScaleY)
-{
-    _updateTransformFromPhysics = false;
-    auto flags = processParentFlags(parentTransform, parentFlags);
-    _updateTransformFromPhysics = true;
-    auto scaleX = parentScaleX * _scaleX;
-    auto scaleY = parentScaleY * _scaleY;
-    
-    if (_parent)
-    {
-        _physicsRotation = _parent->_physicsRotation + _rotationZ_X;
-    }
-    if (_physicsBody && ((flags & FLAGS_DIRTY_MASK) || _physicsTransformDirty))
-    {
-        _physicsTransformDirty = false;
-        Vec3 vec3(_position.x, _position.y, 0);
-        Vec3 ret;
-        parentTransform.transformPoint(vec3, &ret);
-        _physicsBody->setPosition(Vec2(ret.x, ret.y));
-        _physicsBody->setScale(scaleX / _physicsScaleStartX, scaleY / _physicsScaleStartY);
-        _physicsBody->setRotation(_physicsRotation - _physicsRotationOffset);
-    }
-
-    for (auto node : _children)
-    {
-        node->updatePhysicsBodyTransform(_modelViewTransform, flags, scaleX, scaleY);
-    }
-}
-
-void Node::updateTransformFromPhysics(const Mat4& parentTransform, uint32_t parentFlags)
-{
-    auto& newPosition = _physicsBody->getPosition();
-    auto& recordedPosition = _physicsBody->_recordedPosition;
-    auto updateBodyTransform = _physicsWorld->_updateBodyTransform;
-    if (parentFlags || recordedPosition.x != newPosition.x || recordedPosition.y != newPosition.y)
-    {
-        recordedPosition = newPosition;
-        Vec3 vec3(newPosition.x, newPosition.y, 0);
-        Vec3 ret;
-        parentTransform.getInversed().transformPoint(vec3, &ret);
-        setPosition(ret.x, ret.y);
-    }
-    _physicsRotation = _physicsBody->getRotation();
-    setRotation(_physicsRotation - _parent->_physicsRotation + _physicsRotationOffset);
-    _physicsWorld->_updateBodyTransform = updateBodyTransform;
-}
-
-#endif //CC_USE_PHYSICS
 
 // MARK: Opacity and Color
 

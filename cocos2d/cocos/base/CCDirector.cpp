@@ -61,14 +61,6 @@ THE SOFTWARE.
 #include "platform/CCApplication.h"
 //#include "platform/CCGLViewImpl.h"
 
-#if CC_ENABLE_SCRIPT_BINDING
-#include "CCScriptSupport.h"
-#endif
-
-#if CC_USE_PHYSICS
-#include "physics/CCPhysicsWorld.h"
-#endif
-
 /**
  Position of the FPS
  
@@ -126,7 +118,6 @@ bool Director::init(void)
     // FPS
     _accumDt = 0.0f;
     _frameRate = 0.0f;
-//    _FPSLabel = _drawnBatchesLabel = _drawnVerticesLabel = nullptr;
     _totalFrames = 0;
     _lastUpdate = new struct timeval;
     _secondsPerFrame = 1.0f;
@@ -147,24 +138,7 @@ bool Director::init(void)
     _contentScaleFactor = 1.0f;
 
     _console = new (std::nothrow) Console;
-
-    // scheduler
-//    _scheduler = new (std::nothrow) Scheduler();
-    // action manager
-//    _actionManager = new (std::nothrow) ActionManager();
-//    _scheduler->scheduleUpdate(_actionManager, Scheduler::PRIORITY_SYSTEM, false);
-
-//    _eventDispatcher = new (std::nothrow) EventDispatcher();
-//    _eventAfterDraw = new (std::nothrow) EventCustom(EVENT_AFTER_DRAW);
-//    _eventAfterDraw->setUserData(this);
-//    _eventAfterVisit = new (std::nothrow) EventCustom(EVENT_AFTER_VISIT);
-//    _eventAfterVisit->setUserData(this);
-//    _eventAfterUpdate = new (std::nothrow) EventCustom(EVENT_AFTER_UPDATE);
-//    _eventAfterUpdate->setUserData(this);
-//    _eventProjectionChanged = new (std::nothrow) EventCustom(EVENT_PROJECTION_CHANGED);
-//    _eventProjectionChanged->setUserData(this);
-
-
+    
     //init TextureCache
     initTextureCache();
     initMatrixStack();
@@ -177,20 +151,9 @@ bool Director::init(void)
 Director::~Director(void)
 {
     CCLOGINFO("deallocing Director: %p", this);
-
-//    CC_SAFE_RELEASE(_FPSLabel);
-//    CC_SAFE_RELEASE(_drawnVerticesLabel);
-//    CC_SAFE_RELEASE(_drawnBatchesLabel);
-
+    
     CC_SAFE_RELEASE(_runningScene);
     CC_SAFE_RELEASE(_notificationNode);
-//    CC_SAFE_RELEASE(_scheduler);
-//    CC_SAFE_RELEASE(_actionManager);
-    
-//    delete _eventAfterUpdate;
-//    delete _eventAfterDraw;
-//    delete _eventAfterVisit;
-//    delete _eventProjectionChanged;
 
     delete _renderer;
 
@@ -264,13 +227,6 @@ void Director::drawScene()
         _openGLView->pollEvents();
     }
 
-    //tick before glClear: issue #533
-    if (! _paused)
-    {
-//        _scheduler->update(_deltaTime);
-//        _eventDispatcher->dispatchEvent(_eventAfterUpdate);
-    }
-
     _renderer->clear();
 
     /* to avoid flickr, nextScene MUST be here: after tick and before draw.
@@ -285,20 +241,11 @@ void Director::drawScene()
     
     if (_runningScene)
     {
-#if CC_USE_PHYSICS
-        auto physicsWorld = _runningScene->getPhysicsWorld();
-        if (physicsWorld && physicsWorld->isAutoStep())
-        {
-            physicsWorld->update(_deltaTime, false);
-        }
-#endif
         //clear draw stats
         _renderer->clearDrawStats();
         
         //render the scene
         _runningScene->render(_renderer);
-        
-//        _eventDispatcher->dispatchEvent(_eventAfterVisit);
     }
 
     // draw the notifications node
@@ -307,13 +254,7 @@ void Director::drawScene()
         _notificationNode->visit(_renderer, Mat4::IDENTITY, 0);
     }
 
-    if (_displayStats)
-    {
-//        showStats();
-    }
     _renderer->render();
-
-//    _eventDispatcher->dispatchEvent(_eventAfterDraw);
 
     popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
 
@@ -397,11 +338,6 @@ void Director::setOpenGLView(GLView *openGLView)
         _renderer->initGLView();
 
         CHECK_GL_ERROR_DEBUG();
-
-//        if (_eventDispatcher)
-//        {
-//            _eventDispatcher->setEnabled(true);
-//        }
     }
 }
 
@@ -658,18 +594,12 @@ void Director::setProjection(Projection projection)
 
     _projection = projection;
     GL::setProjectionMatrixDirty();
-
-//    _eventDispatcher->dispatchEvent(_eventProjectionChanged);
 }
 
 void Director::purgeCachedData(void)
 {
-//    FontFNT::purgeCachedData();
-//    FontAtlasCache::purgeCachedData();
-
     if (s_SharedDirector->getOpenGLView())
     {
-//        SpriteFrameCache::getInstance()->removeUnusedSpriteFrames();
         _textureCache->removeUnusedTextures();
 
         // Note: some tests such as ActionsTest are leaking refcounted textures
@@ -948,29 +878,11 @@ void Director::reset()
     _runningScene = nullptr;
     _nextScene = nullptr;
 
-    // cleanup scheduler
-//    getScheduler()->unscheduleAll();
-    
-    // Remove all events
-//    if (_eventDispatcher)
-//    {
-//        _eventDispatcher->removeAllEventListeners();
-//    }
-    
     // remove all objects, but don't release it.
     // runWithScene might be executed after 'end'.
     _scenesStack.clear();
     
     stopAnimation();
-    
-//    CC_SAFE_RELEASE_NULL(_FPSLabel);
-//    CC_SAFE_RELEASE_NULL(_drawnBatchesLabel);
-//    CC_SAFE_RELEASE_NULL(_drawnVerticesLabel);
-//    
-//    // purge bitmap cache
-//    FontFNT::purgeCachedData();
-//    
-//    FontFreeType::shutdownFreeType();
     
     // purge all managed caches
     
@@ -989,15 +901,9 @@ void Director::reset()
 #elif _MSC_VER >= 1400 //vs 2005 or higher
 #pragma warning (pop)
 #endif
-//    AnimationCache::destroyInstance();
-//    SpriteFrameCache::destroyInstance();
     GLProgramCache::destroyInstance();
     GLProgramStateCache::destroyInstance();
     FileUtils::destroyInstance();
-//    AsyncTaskPool::destoryInstance();
-    
-    // cocos2d-x specific data structures
-//    UserDefault::destroyInstance();
     
     GL::invalidateStateCache();
     
@@ -1028,17 +934,8 @@ void Director::restartDirector()
     // Texture cache need to be reinitialized
     initTextureCache();
     
-    // Reschedule for action manager
-//    getScheduler()->scheduleUpdate(getActionManager(), Scheduler::PRIORITY_SYSTEM, false);
-    
     // release the objects
     PoolManager::getInstance()->getCurrentPool()->clear();
-    
-    // Real restart in script level
-#if CC_ENABLE_SCRIPT_BINDING
-    ScriptEvent scriptEvent(kRestartGame, NULL);
-    ScriptEngineManager::getInstance()->getScriptEngine()->sendEvent(&scriptEvent);
-#endif
 }
 
 void Director::setNextScene()
@@ -1109,62 +1006,6 @@ void Director::resume()
     setNextDeltaTimeZero(true);
 }
 
-// display the FPS using a LabelAtlas
-// updates the FPS every frame
-//void Director::showStats()
-//{
-//    if (_isStatusLabelUpdated)
-//    {
-////        createStatsLabel();
-//        _isStatusLabelUpdated = false;
-//    }
-//
-//    static unsigned long prevCalls = 0;
-//    static unsigned long prevVerts = 0;
-//    static float prevDeltaTime  = 0.016f; // 60FPS
-//    static const float FPS_FILTER = 0.10f;
-//
-//    _accumDt += _deltaTime;
-//    
-////    if (_displayStats && _FPSLabel && _drawnBatchesLabel && _drawnVerticesLabel)
-////    {
-////        char buffer[30];
-////
-////        float dt = _deltaTime * FPS_FILTER + (1-FPS_FILTER) * prevDeltaTime;
-////        prevDeltaTime = dt;
-////        _frameRate = 1/dt;
-////
-////        // Probably we don't need this anymore since
-////        // the framerate is using a low-pass filter
-////        // to make the FPS stable
-////        if (_accumDt > CC_DIRECTOR_STATS_INTERVAL)
-////        {
-////            sprintf(buffer, "%.1f / %.3f", _frameRate, _secondsPerFrame);
-//////            _FPSLabel->setString(buffer);
-////            _accumDt = 0;
-////        }
-////
-////        auto currentCalls = (unsigned long)_renderer->getDrawnBatches();
-////        auto currentVerts = (unsigned long)_renderer->getDrawnVertices();
-////        if( currentCalls != prevCalls ) {
-////            sprintf(buffer, "GL calls:%6lu", currentCalls);
-//////            _drawnBatchesLabel->setString(buffer);
-////            prevCalls = currentCalls;
-////        }
-////
-////        if( currentVerts != prevVerts) {
-////            sprintf(buffer, "GL verts:%6lu", currentVerts);
-//////            _drawnVerticesLabel->setString(buffer);
-////            prevVerts = currentVerts;
-////        }
-////
-////        const Mat4& identity = Mat4::IDENTITY;
-//////        _drawnVerticesLabel->visit(_renderer, identity, 0);
-//////        _drawnBatchesLabel->visit(_renderer, identity, 0);
-//////        _FPSLabel->visit(_renderer, identity, 0);
-////    }
-//}
-
 void Director::calculateMPF()
 {
     static float prevSecondsPerFrame = 0;
@@ -1178,86 +1019,6 @@ void Director::calculateMPF()
     _secondsPerFrame = _secondsPerFrame * MPF_FILTER + (1-MPF_FILTER) * prevSecondsPerFrame;
     prevSecondsPerFrame = _secondsPerFrame;
 }
-
-// returns the FPS image data pointer and len
-//void Director::getFPSImageData(unsigned char** datapointer, ssize_t* length)
-//{
-//    // FIXME: fixed me if it should be used 
-////    *datapointer = cc_fps_images_png;
-////    *length = cc_fps_images_len();
-//}
-
-//void Director::createStatsLabel()
-//{
-//    Texture2D *texture = nullptr;
-//    std::string fpsString = "00.0";
-//    std::string drawBatchString = "000";
-//    std::string drawVerticesString = "00000";
-////    if (_FPSLabel)
-////    {
-//////        fpsString = _FPSLabel->getString();
-//////        drawBatchString = _drawnBatchesLabel->getString();
-//////        drawVerticesString = _drawnVerticesLabel->getString();
-//////        
-//////        CC_SAFE_RELEASE_NULL(_FPSLabel);
-//////        CC_SAFE_RELEASE_NULL(_drawnBatchesLabel);
-//////        CC_SAFE_RELEASE_NULL(_drawnVerticesLabel);
-////        _textureCache->removeTextureForKey("/cc_fps_images");
-////        FileUtils::getInstance()->purgeCachedEntries();
-////    }
-//
-//    Texture2D::PixelFormat currentFormat = Texture2D::getDefaultAlphaPixelFormat();
-//    Texture2D::setDefaultAlphaPixelFormat(Texture2D::PixelFormat::RGBA4444);
-////    unsigned char *data = nullptr;
-////    ssize_t dataLength = 0;
-//////    getFPSImageData(&data, &dataLength);
-////
-////    Image* image = new (std::nothrow) Image();
-////    bool isOK = image->initWithImageData(data, dataLength);
-////    if (! isOK) {
-////        CCLOGERROR("%s", "Fails: init fps_images");
-////        return;
-////    }
-////
-////    texture = _textureCache->addImage(image, "/cc_fps_images");
-////    CC_SAFE_RELEASE(image);
-//
-//    /*
-//     We want to use an image which is stored in the file named ccFPSImage.c 
-//     for any design resolutions and all resource resolutions. 
-//     
-//     To achieve this, we need to ignore 'contentScaleFactor' in 'AtlasNode' and 'LabelAtlas'.
-//     So I added a new method called 'setIgnoreContentScaleFactor' for 'AtlasNode',
-//     this is not exposed to game developers, it's only used for displaying FPS now.
-//     */
-//    float scaleFactor = 1 / CC_CONTENT_SCALE_FACTOR();
-//
-////    _FPSLabel = LabelAtlas::create();
-////    _FPSLabel->retain();
-////    _FPSLabel->setIgnoreContentScaleFactor(true);
-////    _FPSLabel->initWithString(fpsString, texture, 12, 32 , '.');
-////    _FPSLabel->setScale(scaleFactor);
-////
-////    _drawnBatchesLabel = LabelAtlas::create();
-////    _drawnBatchesLabel->retain();
-////    _drawnBatchesLabel->setIgnoreContentScaleFactor(true);
-////    _drawnBatchesLabel->initWithString(drawBatchString, texture, 12, 32, '.');
-////    _drawnBatchesLabel->setScale(scaleFactor);
-////
-////    _drawnVerticesLabel = LabelAtlas::create();
-////    _drawnVerticesLabel->retain();
-////    _drawnVerticesLabel->setIgnoreContentScaleFactor(true);
-////    _drawnVerticesLabel->initWithString(drawVerticesString, texture, 12, 32, '.');
-////    _drawnVerticesLabel->setScale(scaleFactor);
-//
-//
-//    Texture2D::setDefaultAlphaPixelFormat(currentFormat);
-//
-//    const int height_spacing = 22 / CC_CONTENT_SCALE_FACTOR();
-////    _drawnVerticesLabel->setPosition(Vec2(0, height_spacing*2) + CC_DIRECTOR_STATS_POSITION);
-////    _drawnBatchesLabel->setPosition(Vec2(0, height_spacing*1) + CC_DIRECTOR_STATS_POSITION);
-////    _FPSLabel->setPosition(Vec2(0, height_spacing*0)+CC_DIRECTOR_STATS_POSITION);
-//}
 
 void Director::setContentScaleFactor(float scaleFactor)
 {
@@ -1274,36 +1035,6 @@ void Director::setNotificationNode(Node *node)
     _notificationNode = node;
     CC_SAFE_RETAIN(_notificationNode);
 }
-
-//void Director::setScheduler(Scheduler* scheduler)
-//{
-//    if (_scheduler != scheduler)
-//    {
-//        CC_SAFE_RETAIN(scheduler);
-//        CC_SAFE_RELEASE(_scheduler);
-//        _scheduler = scheduler;
-//    }
-//}
-
-//void Director::setActionManager(ActionManager* actionManager)
-//{
-//    if (_actionManager != actionManager)
-//    {
-//        CC_SAFE_RETAIN(actionManager);
-//        CC_SAFE_RELEASE(_actionManager);
-//        _actionManager = actionManager;
-//    }    
-//}
-
-//void Director::setEventDispatcher(EventDispatcher* dispatcher)
-//{
-//    if (_eventDispatcher != dispatcher)
-//    {
-//        CC_SAFE_RETAIN(dispatcher);
-//        CC_SAFE_RELEASE(_eventDispatcher);
-//        _eventDispatcher = dispatcher;
-//    }
-//}
 
 /***************************************************
 * implementation of DisplayLinkDirector

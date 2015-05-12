@@ -32,34 +32,17 @@
 #include "base/ccMacros.h"
 #include "base/CCVector.h"
 #include "base/CCProtocols.h"
-//#include "base/CCScriptSupport.h"
 #include "math/CCAffineTransform.h"
 #include "math/CCMath.h"
-//#include "base/CCTouch.h"
-//#include "base/CCEvent.h"
-//#include "base/CCEventKeyboard.h"
-//#include "base/CCEventTouch.h"
 
 NS_CC_BEGIN
 
-//class GridBase;
-//class Touch;
-//class Action;
 class LabelProtocol;
-class Scheduler;
-//class ActionManager;
-//class Component;
-//class ComponentContainer;
-class EventDispatcher;
 class Scene;
 class Renderer;
 class Director;
 class GLProgram;
 class GLProgramState;
-#if CC_USE_PHYSICS
-class PhysicsBody;
-class PhysicsWorld;
-#endif
 
 /**
  * @addtogroup _2d
@@ -1164,304 +1147,6 @@ public:
     /** @deprecated Use getBoundingBox instead */
     CC_DEPRECATED_ATTRIBUTE inline virtual Rect boundingBox() const { return getBoundingBox(); }
 
-    /** Set event dispatcher for scene.
-     *
-     * @param dispatcher The event dispatcher of scene.
-     */
-//    virtual void setEventDispatcher(EventDispatcher* dispatcher);
-    /** Get the event dispatcher of scene.
-     *
-     * @return The event dispatcher of scene.
-     */
-//    virtual EventDispatcher* getEventDispatcher() const { return _eventDispatcher; };
-
-//    /// @{
-//    /// @name Actions
-//
-//    /**
-//     * Sets the ActionManager object that is used by all actions.
-//     *
-//     * @warning If you set a new ActionManager, then previously created actions will be removed.
-//     *
-//     * @param actionManager     A ActionManager object that is used by all actions.
-//     */
-//    virtual void setActionManager(ActionManager* actionManager);
-//    /**
-//     * Gets the ActionManager object that is used by all actions.
-//     * @see setActionManager(ActionManager*)
-//     * @return A ActionManager object.
-//     */
-//    virtual ActionManager* getActionManager() { return _actionManager; }
-//    virtual const ActionManager* getActionManager() const { return _actionManager; }
-//
-//    /**
-//     * Executes an action, and returns the action that is executed.
-//     *
-//     * This node becomes the action's target. Refer to Action::getTarget().
-//     * @warning Actions don't retain their target.
-//     *
-//     * @param action An Action pointer.
-//     */
-//    virtual Action* runAction(Action* action);
-//
-//    /**
-//     * Stops and removes all actions from the running action list .
-//     */
-//    void stopAllActions();
-//
-//    /**
-//     * Stops and removes an action from the running action list.
-//     *
-//     * @param action    The action object to be removed.
-//     */
-//    void stopAction(Action* action);
-//
-//    /**
-//     * Removes an action from the running action list by its tag.
-//     *
-//     * @param tag   A tag that indicates the action to be removed.
-//     */
-//    void stopActionByTag(int tag);
-//    
-//    /**
-//     * Removes all actions from the running action list by its tag.
-//     *
-//     * @param tag   A tag that indicates the action to be removed.
-//     */
-//    void stopAllActionsByTag(int tag);
-//
-//    /**
-//     * Gets an action from the running action list by its tag.
-//     *
-//     * @see `setTag(int)`, `getTag()`.
-//     *
-//     * @return The action object with the given tag.
-//     */
-//    Action* getActionByTag(int tag);
-//
-//    /**
-//     * Returns the numbers of actions that are running plus the ones that are schedule to run (actions in actionsToAdd and actions arrays).
-//     *
-//     * Composable actions are counted as 1 action. Example:
-//     *    If you are running 1 Sequence of 7 actions, it will return 1.
-//     *    If you are running 7 Sequences of 2 actions, it will return 7.
-//     * @todo Rename to getNumberOfRunningActions()
-//     *
-//     * @return The number of actions that are running plus the ones that are schedule to run.
-//     */
-//    ssize_t getNumberOfRunningActions() const;
-//
-//    /** @deprecated Use getNumberOfRunningActions() instead */
-//    CC_DEPRECATED_ATTRIBUTE ssize_t numberOfRunningActions() const { return getNumberOfRunningActions(); };
-//
-//    /// @} end of Actions
-
-
-//    /// @{
-//    /// @name Scheduler and Timer
-//
-//    /**
-//     * Sets a Scheduler object that is used to schedule all "updates" and timers.
-//     *
-//     * @warning If you set a new Scheduler, then previously created timers/update are going to be removed.
-//     * @param scheduler     A Shdeduler object that is used to schedule all "update" and timers.
-//     */
-//    virtual void setScheduler(Scheduler* scheduler);
-//    /**
-//     * Gets a Sheduler object.
-//     *
-//     * @see setScheduler(Scheduler*)
-//     * @return A Scheduler object.
-//     */
-////    virtual Scheduler* getScheduler() { return _scheduler; }
-////    virtual const Scheduler* getScheduler() const { return _scheduler; }
-//
-//
-//    /**
-//     * Checks whether a selector is scheduled.
-//     *
-//     * @param selector      A function selector
-//     * @return Whether the funcion selector is scheduled.
-//     * @js NA
-//     * @lua NA
-//     */
-//    bool isScheduled(SEL_SCHEDULE selector);
-//
-//    /**
-//     * Checks whether a lambda function is scheduled.
-//     *
-//     * @param key      key of the callback
-//     * @return Whether the lambda function selector is scheduled.
-//     * @js NA
-//     * @lua NA
-//     */
-//    bool isScheduled(const std::string &key);
-//
-//    /**
-//     * Schedules the "update" method.
-//     *
-//     * It will use the order number 0. This method will be called every frame.
-//     * Scheduled methods with a lower order value will be called before the ones that have a higher order value.
-//     * Only one "update" method could be scheduled per node.
-//     * @lua NA
-//     */
-//    void scheduleUpdate(void);
-//
-//    /**
-//     * Schedules the "update" method with a custom priority.
-//     *
-//     * This selector will be called every frame.
-//     * Scheduled methods with a lower priority will be called before the ones that have a higher value.
-//     * Only one "update" selector could be scheduled per node (You can't have 2 'update' selectors).
-//     * @lua NA
-//     *
-//     * @param priority A given priority value.
-//     */
-//    void scheduleUpdateWithPriority(int priority);
-//
-//    /*
-//     * Unschedules the "update" method.
-//     * @see scheduleUpdate();
-//     */
-//    void unscheduleUpdate(void);
-//
-//    /**
-//     * Schedules a custom selector.
-//     *
-//     * If the selector is already scheduled, then the interval parameter will be updated without scheduling it again.
-//     @code
-//     // firstly, implement a schedule function
-//     void MyNode::TickMe(float dt);
-//     // wrap this function into a selector via schedule_selector marco.
-//     this->schedule(CC_SCHEDULE_SELECTOR(MyNode::TickMe), 0, 0, 0);
-//     @endcode
-//     *
-//     * @param selector  The SEL_SCHEDULE selector to be scheduled.
-//     * @param interval  Tick interval in seconds. 0 means tick every frame. If interval = 0, it's recommended to use scheduleUpdate() instead.
-//     * @param repeat    The selector will be excuted (repeat + 1) times, you can use CC_REPEAT_FOREVER for tick infinitely.
-//     * @param delay     The amount of time that the first tick will wait before execution.
-//     * @lua NA
-//     */
-//    void schedule(SEL_SCHEDULE selector, float interval, unsigned int repeat, float delay);
-//
-//    /**
-//     * Schedules a custom selector with an interval time in seconds.
-//     * @see `schedule(SEL_SCHEDULE, float, unsigned int, float)`
-//     *
-//     * @param selector      The SEL_SCHEDULE selector to be scheduled.
-//     * @param interval      Callback interval time in seconds. 0 means tick every frame,
-//     * @lua NA
-//     */
-//    void schedule(SEL_SCHEDULE selector, float interval);
-//
-//    /**
-//     * Schedules a selector that runs only once, with a delay of 0 or larger
-//     * @see `schedule(SEL_SCHEDULE, float, unsigned int, float)`
-//     *
-//     * @param selector      The SEL_SCHEDULE selector to be scheduled.
-//     * @param delay         The amount of time that the first tick will wait before execution.
-//     * @lua NA
-//     */
-//    void scheduleOnce(SEL_SCHEDULE selector, float delay);
-//
-//    /**
-//     * Schedules a lambda function that runs only once, with a delay of 0 or larger
-//     *
-//     * @param callback      The lambda function to be scheduled.
-//     * @param delay         The amount of time that the first tick will wait before execution.
-//     * @param key           The key of the lambda function. To be used if you want to unschedule it.
-//     * @lua NA
-//     */
-//    void scheduleOnce(const std::function<void(float)>& callback, float delay, const std::string &key);
-//
-//    /**
-//     * Schedules a custom selector, the scheduled selector will be ticked every frame.
-//     * @see schedule(SEL_SCHEDULE, float, unsigned int, float)
-//     *
-//     * @param selector      A function wrapped as a selector
-//     * @lua NA
-//     */
-//    void schedule(SEL_SCHEDULE selector);
-//
-//    /**
-//     * Schedules a lambda function. The scheduled lambda function will be called every frame.
-//     *
-//     * @param callback      The lambda function to be scheduled.
-//     * @param key           The key of the lambda function. To be used if you want to unschedule it.
-//     * @lua NA
-//     */
-//    void schedule(const std::function<void(float)>& callback, const std::string &key);
-//
-//    /**
-//     * Schedules a lambda function. The scheduled lambda function will be called every "interval" seconds
-//     *
-//     * @param callback      The lambda function to be scheduled
-//     * @param interval      Callback interval time in seconds. 0 means every frame,
-//     * @param key           The key of the lambda function. To be used if you want to unschedule it
-//     * @lua NA
-//     */
-//    void schedule(const std::function<void(float)>& callback, float interval, const std::string &key);
-//
-//    /**
-//     * Schedules a lambda function.
-//     *
-//     * @param callback  The lambda function to be schedule.
-//     * @param interval  Tick interval in seconds. 0 means tick every frame.
-//     * @param repeat    The selector will be executed (repeat + 1) times, you can use CC_REPEAT_FOREVER for tick infinitely.
-//     * @param delay     The amount of time that the first tick will wait before execution.
-//     * @param key       The key of the lambda function. To be used if you want to unschedule it.
-//     * @lua NA
-//     */
-//    void schedule(const std::function<void(float)>& callback, float interval, unsigned int repeat, float delay, const std::string &key);
-//
-//    /**
-//     * Unschedules a custom selector.
-//     * @see `schedule(SEL_SCHEDULE, float, unsigned int, float)`
-//     *
-//     * @param selector      A function wrapped as a selector.
-//     * @lua NA
-//     */
-//    void unschedule(SEL_SCHEDULE selector);
-//
-//    /**
-//     * Unschedules a lambda function.
-//     *
-//     * @param key      The key of the lambda function to be unscheduled.
-//     * @lua NA
-//     */
-//    void unschedule(const std::string &key);
-//
-//    /**
-//     * Unschedule all scheduled selectors and lambda functions: custom selectors, and the 'update' selector and lambda functions.
-//     * Actions are not affected by this method.
-//     * @lua NA
-//     */
-//    void unscheduleAllCallbacks();
-//
-//    CC_DEPRECATED_ATTRIBUTE void unscheduleAllSelectors() { unscheduleAllCallbacks(); }
-//
-//    /**
-//     * Resumes all scheduled selectors, actions and event listeners.
-//     * This method is called internally by onEnter.
-//     */
-//    virtual void resume(void);
-//    /**
-//     * Pauses all scheduled selectors, actions and event listeners.
-//     * This method is called internally by onExit.
-//     */
-//    virtual void pause(void);
-//
-//    /**
-//     * Resumes all scheduled selectors, actions and event listeners.
-//     * This method is called internally by onEnter.
-//     */
-//    CC_DEPRECATED_ATTRIBUTE void resumeSchedulerAndActions();
-//    /**
-//     * Pauses all scheduled selectors, actions and event listeners.
-//     * This method is called internally by onExit.
-//     */
-//    CC_DEPRECATED_ATTRIBUTE void pauseSchedulerAndActions();
-
     /**
      * Update method will be called automatically every frame if "scheduleUpdate" is called, and the node is "live".
      * @param delta In seconds.
@@ -1604,80 +1289,6 @@ public:
      */
     void setAdditionalTransform(Mat4* additionalTransform);
     void setAdditionalTransform(const AffineTransform& additionalTransform);
-
-    /// @} end of Coordinate Converters
-
-//      /// @{
-//    /// @name component functions
-//    /**
-//     * Gets a component by its name.
-//     *
-//     * @param name A given name of component.
-//     * @return The Component by name.
-//     */
-//    Component* getComponent(const std::string& name);
-//
-//    /**
-//     * Adds a component.
-//     *
-//     * @param component A given component.
-//     * @return True if added success.
-//     */
-//    virtual bool addComponent(Component *component);
-//
-//    /**
-//     * Removes a component by its name.
-//     *
-//     * @param name A given name of component.
-//     * @return True if removed success.
-//     */
-//    virtual bool removeComponent(const std::string& name);
-//
-//    /** 
-//     * Removes a component by its pointer.
-//     *
-//     * @param component A given component.
-//     * @return True if removed success.
-//     */
-//    virtual bool removeComponent(Component *component);
-//    /**
-//     * Removes all components
-//     */
-//    virtual void removeAllComponents();
-//    /// @} end of component functions
-//
-
-#if CC_USE_PHYSICS
-    /**
-     * Set the PhysicsBody that let the sprite effect with physics.
-     * @note This method will set anchor point to Vec2::ANCHOR_MIDDLE if body not null, and you cann't change anchor point if node has a physics body.
-     *
-     * @param body A given physics body.
-     */
-    void setPhysicsBody(PhysicsBody* body);
-
-    /**
-     * Get the PhysicsBody the sprite have.
-     *
-     * @return The PhysicsBody the sprite have.
-     */
-    PhysicsBody* getPhysicsBody() const { return _physicsBody; }
-    
-    /**
-     * Remove this node from physics world. it will remove all the physics bodies in it's children too.
-     */
-    void removeFromPhysicsWorld();
-    
-    /** 
-     * Update the transform matrix from physics.
-     */
-    void updateTransformFromPhysics(const Mat4& parentTransform, uint32_t parentFlags);
-
-    /** 
-     * Update physics body transform matrix.
-     */
-    virtual void updatePhysicsBodyTransform(const Mat4& parentTransform, uint32_t parentFlags, float parentScaleX, float parentScaleY);
-#endif
     
     // overrides
     virtual GLubyte getOpacity() const;
@@ -1828,27 +1439,6 @@ protected:
     bool _reorderChildDirty;          ///< children order dirty flag
     bool _isTransitionFinished;       ///< flag to indicate whether the transition was finished
 
-#if CC_ENABLE_SCRIPT_BINDING
-    int _scriptHandler;               ///< script handler for onEnter() & onExit(), used in Javascript binding and Lua binding.
-    int _updateScriptHandler;         ///< script handler for update() callback per frame, which is invoked from lua & javascript.
-    ccScriptType _scriptType;         ///< type of script binding, lua or javascript
-#endif
-    
-//    ComponentContainer *_componentContainer;        ///< Dictionary of components
-
-#if CC_USE_PHYSICS
-    PhysicsBody* _physicsBody;        ///< the physicsBody the node have
-    float _physicsScaleStartX;         ///< the scale x value when setPhysicsBody
-    float _physicsScaleStartY;         ///< the scale y value when setPhysicsBody
-    float _physicsRotation;
-    bool _physicsTransformDirty;
-    bool _updateTransformFromPhysics;
-
-    PhysicsWorld* _physicsWorld; /** The PhysicsWorld associated with the node.*/
-    int _physicsBodyAssociatedWith;  /** The count of PhysicsBody associated with the node and children.*/
-    float _physicsRotationOffset;  /** Record the rotation value when invoke Node::setPhysicsBody.*/
-#endif
-    
     // opacity controls
     GLubyte		_displayedOpacity;
     GLubyte     _realOpacity;
@@ -1869,10 +1459,6 @@ protected:
 
 private:
     CC_DISALLOW_COPY_AND_ASSIGN(Node);
-    
-#if CC_USE_PHYSICS
-    friend class Scene;
-#endif //CC_USTPS
 };
 
 // NodeRGBA
