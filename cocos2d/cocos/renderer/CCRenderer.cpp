@@ -34,7 +34,6 @@
 #include "renderer/CCPrimitiveCommand.h"
 #include "renderer/CCGLProgramCache.h"
 #include "renderer/ccGLStateCache.h"
-#include "renderer/CCMeshCommand.h"
 #include "base/CCConfiguration.h"
 #include "base/CCDirector.h"
 #include "base/CCEventDispatcher.h"
@@ -459,31 +458,6 @@ void Renderer::processRenderCommand(RenderCommand* command)
         if(cmd->isSkipBatching())
         {
             drawBatchedQuads();
-        }
-    }
-    else if (RenderCommand::Type::MESH_COMMAND == commandType)
-    {
-        flush2D();
-        auto cmd = static_cast<MeshCommand*>(command);
-        
-        if (cmd->isSkipBatching() || _lastBatchedMeshCommand == nullptr || _lastBatchedMeshCommand->getMaterialID() != cmd->getMaterialID())
-        {
-            flush3D();
-            
-            if(cmd->isSkipBatching())
-            {
-                cmd->execute();
-            }
-            else
-            {
-                cmd->preBatchDraw();
-                cmd->batchDraw();
-                _lastBatchedMeshCommand = cmd;
-            }
-        }
-        else
-        {
-            cmd->batchDraw();
         }
     }
     else if(RenderCommand::Type::GROUP_COMMAND == commandType)
@@ -949,11 +923,11 @@ void Renderer::flush2D()
 
 void Renderer::flush3D()
 {
-    if (_lastBatchedMeshCommand)
-    {
-        _lastBatchedMeshCommand->postBatchDraw();
-        _lastBatchedMeshCommand = nullptr;
-    }
+//    if (_lastBatchedMeshCommand)
+//    {
+//        _lastBatchedMeshCommand->postBatchDraw();
+//        _lastBatchedMeshCommand = nullptr;
+//    }
 }
 
 void Renderer::flushQuads()

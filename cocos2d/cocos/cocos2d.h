@@ -139,7 +139,7 @@ THE SOFTWARE.
 //#include "2d/CCGrid.h"
 
 #include "2d/CCCamera.h"
-#include "2d/CCLight.h"
+//#include "2d/CCLight.h"
 
 // include
 #include "base/CCProtocols.h"
