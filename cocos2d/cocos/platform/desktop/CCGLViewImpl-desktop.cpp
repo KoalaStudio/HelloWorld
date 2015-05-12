@@ -29,7 +29,7 @@ THE SOFTWARE.
 
 #include "platform/CCApplication.h"
 #include "base/CCDirector.h"
-#include "base/CCTouch.h"
+//#include "base/CCTouch.h"
 #include "base/CCEventDispatcher.h"
 //#include "base/CCEventKeyboard.h"
 //#include "base/CCEventMouse.h"

@@ -70,7 +70,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 #import "base/CCDirector.h"
 //#import "deprecated/CCSet.h"
-#import "base/CCTouch.h"
+//#import "base/CCTouch.h"
 //#import "base/CCIMEDispatcher.h"
 #import "CCGLViewImpl-ios.h"
 #import "CCES2Renderer-ios.h"
@@ -410,8 +410,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
         ++i;
     }
 
-    auto glview = cocos2d::Director::getInstance()->getOpenGLView();
-    glview->handleTouchesBegin(i, (intptr_t*)ids, xs, ys);
+//    auto glview = cocos2d::Director::getInstance()->getOpenGLView();
+//    glview->handleTouchesBegin(i, (intptr_t*)ids, xs, ys);
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -428,8 +428,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
         ++i;
     }
 
-    auto glview = cocos2d::Director::getInstance()->getOpenGLView();
-    glview->handleTouchesMove(i, (intptr_t*)ids, xs, ys);
+//    auto glview = cocos2d::Director::getInstance()->getOpenGLView();
+//    glview->handleTouchesMove(i, (intptr_t*)ids, xs, ys);
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -446,8 +446,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
         ++i;
     }
 
-    auto glview = cocos2d::Director::getInstance()->getOpenGLView();
-    glview->handleTouchesEnd(i, (intptr_t*)ids, xs, ys);
+//    auto glview = cocos2d::Director::getInstance()->getOpenGLView();
+//    glview->handleTouchesEnd(i, (intptr_t*)ids, xs, ys);
 }
     
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
@@ -464,8 +464,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
         ++i;
     }
 
-    auto glview = cocos2d::Director::getInstance()->getOpenGLView();
-    glview->handleTouchesCancel(i, (intptr_t*)ids, xs, ys);
+//    auto glview = cocos2d::Director::getInstance()->getOpenGLView();
+//    glview->handleTouchesCancel(i, (intptr_t*)ids, xs, ys);
 }
 
 #pragma mark - UIView - Responder

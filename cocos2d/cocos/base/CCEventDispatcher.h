@@ -265,7 +265,7 @@ protected:
     void updateListeners(Event* event);
 
     /** Touch event needs to be processed different with other events since it needs support ALL_AT_ONCE and ONE_BY_NONE mode. */
-    void dispatchTouchEvent(EventTouch* event);
+//    void dispatchTouchEvent(EventTouch* event);
     
     /** Associates node with event listener */
     void associateNodeAndEventListener(Node* node, EventListener* listener);

@@ -43,9 +43,9 @@ NS_CC_BEGIN
 class __Set;
 class TouchScriptHandlerEntry;
 
-class EventListenerTouch;
-class EventListenerKeyboard;
-class EventListenerAcceleration;
+//class EventListenerTouch;
+//class EventListenerKeyboard;
+//class EventListenerAcceleration;
 
 class Touch;
 
@@ -89,58 +89,58 @@ public:
      * @return if return false, onTouchMoved, onTouchEnded, onTouchCancelled will never called.
      * @js NA
      */
-    virtual bool onTouchBegan(Touch *touch, Event *unused_event);
-    /** Callback function for touch moved.
-    *
-    * @param touch Touch infomation.
-    * @param unused_event Event information.
-    * @js NA
-    */
-    virtual void onTouchMoved(Touch *touch, Event *unused_event);
-    /** Callback function for touch ended.
-    *
-    * @param touch Touch infomation.
-    * @param unused_event Event information.
-    * @js NA
-    */
-    virtual void onTouchEnded(Touch *touch, Event *unused_event);
-    /** Callback function for touch cancelled.
-    *
-    * @param touch Touch infomation.
-    * @param unused_event Event information.
-    * @js NA
-    */
-    virtual void onTouchCancelled(Touch *touch, Event *unused_event);
-
-    /** Callback function for multiple touches began.
-    *
-    * @param touches Touches information.
-    * @param unused_event Event information.
-    * @js NA
-    */
-    virtual void onTouchesBegan(const std::vector<Touch*>& touches, Event *unused_event);
-    /** Callback function for multiple touches moved.
-    *
-    * @param touches Touches information.
-    * @param unused_event Event information.
-    * @js NA
-    */
-    virtual void onTouchesMoved(const std::vector<Touch*>& touches, Event *unused_event);
-    /** Callback function for multiple touches ended.
-    *
-    * @param touches Touches information.
-    * @param unused_event Event information.
-    * @js NA
-    */
-    virtual void onTouchesEnded(const std::vector<Touch*>& touches, Event *unused_event);
-    /** Callback function for multiple touches cancelled.
-    *
-    * @param touches Touches information.
-    * @param unused_event Event information.
-    * @js NA
-    */
-    virtual void onTouchesCancelled(const std::vector<Touch*>&touches, Event *unused_event);
-    /** 
+//    virtual bool onTouchBegan(Touch *touch, Event *unused_event);
+//    /** Callback function for touch moved.
+//    *
+//    * @param touch Touch infomation.
+//    * @param unused_event Event information.
+//    * @js NA
+//    */
+//    virtual void onTouchMoved(Touch *touch, Event *unused_event);
+//    /** Callback function for touch ended.
+//    *
+//    * @param touch Touch infomation.
+//    * @param unused_event Event information.
+//    * @js NA
+//    */
+//    virtual void onTouchEnded(Touch *touch, Event *unused_event);
+//    /** Callback function for touch cancelled.
+//    *
+//    * @param touch Touch infomation.
+//    * @param unused_event Event information.
+//    * @js NA
+//    */
+//    virtual void onTouchCancelled(Touch *touch, Event *unused_event);
+//
+//    /** Callback function for multiple touches began.
+//    *
+//    * @param touches Touches information.
+//    * @param unused_event Event information.
+//    * @js NA
+//    */
+//    virtual void onTouchesBegan(const std::vector<Touch*>& touches, Event *unused_event);
+//    /** Callback function for multiple touches moved.
+//    *
+//    * @param touches Touches information.
+//    * @param unused_event Event information.
+//    * @js NA
+//    */
+//    virtual void onTouchesMoved(const std::vector<Touch*>& touches, Event *unused_event);
+//    /** Callback function for multiple touches ended.
+//    *
+//    * @param touches Touches information.
+//    * @param unused_event Event information.
+//    * @js NA
+//    */
+//    virtual void onTouchesEnded(const std::vector<Touch*>& touches, Event *unused_event);
+//    /** Callback function for multiple touches cancelled.
+//    *
+//    * @param touches Touches information.
+//    * @param unused_event Event information.
+//    * @js NA
+//    */
+//    virtual void onTouchesCancelled(const std::vector<Touch*>&touches, Event *unused_event);
+    /**
       @deprecated Please override onAcceleration 
       @js NA
      */
@@ -175,18 +175,18 @@ public:
     @since v0.8.1
     @js NA
     */
-    CC_DEPRECATED_ATTRIBUTE bool isTouchEnabled() const;
-    CC_DEPRECATED_ATTRIBUTE void setTouchEnabled(bool value);
-    
-    CC_DEPRECATED_ATTRIBUTE virtual void setTouchMode(Touch::DispatchMode mode);
-    CC_DEPRECATED_ATTRIBUTE virtual Touch::DispatchMode getTouchMode() const;
+//    CC_DEPRECATED_ATTRIBUTE bool isTouchEnabled() const;
+//    CC_DEPRECATED_ATTRIBUTE void setTouchEnabled(bool value);
+
+//    CC_DEPRECATED_ATTRIBUTE virtual void setTouchMode(Touch::DispatchMode mode);
+//    CC_DEPRECATED_ATTRIBUTE virtual Touch::DispatchMode getTouchMode() const;
 
     /** 
       swallowsTouches of the touch events. Default is true 
       @js NA
      */
-    CC_DEPRECATED_ATTRIBUTE virtual void setSwallowsTouches(bool swallowsTouches);
-    CC_DEPRECATED_ATTRIBUTE virtual bool isSwallowsTouches() const;
+//    CC_DEPRECATED_ATTRIBUTE virtual void setSwallowsTouches(bool swallowsTouches);
+//    CC_DEPRECATED_ATTRIBUTE virtual bool isSwallowsTouches() const;
 
     /** whether or not it will receive Accelerometer events
     You can enable / disable accelerometer events with this property.
@@ -255,20 +255,20 @@ CC_CONSTRUCTOR_ACCESS:
 
 protected:
     //add the api for avoid use deprecated api
-    CC_DEPRECATED_ATTRIBUTE void _addTouchListener() {}
-
-    CC_DEPRECATED_ATTRIBUTE void addTouchListener() {}
-    CC_DEPRECATED_ATTRIBUTE int executeScriptTouchHandler(EventTouch::EventCode eventType, Touch* touch, Event* event);
-    CC_DEPRECATED_ATTRIBUTE int executeScriptTouchesHandler(EventTouch::EventCode eventType, const std::vector<Touch*>& touches, Event* event);
+//    CC_DEPRECATED_ATTRIBUTE void _addTouchListener() {}
+//
+//    CC_DEPRECATED_ATTRIBUTE void addTouchListener() {}
+//    CC_DEPRECATED_ATTRIBUTE int executeScriptTouchHandler(EventTouch::EventCode eventType, Touch* touch, Event* event);
+//    CC_DEPRECATED_ATTRIBUTE int executeScriptTouchesHandler(EventTouch::EventCode eventType, const std::vector<Touch*>& touches, Event* event);
 
     bool _touchEnabled;
     bool _accelerometerEnabled;
     bool _keyboardEnabled;
-    EventListener* _touchListener;
-    EventListenerKeyboard* _keyboardListener;
-    EventListenerAcceleration* _accelerationListener;
+//    EventListener* _touchListener;
+//    EventListenerKeyboard* _keyboardListener;
+//    EventListenerAcceleration* _accelerationListener;
 
-    Touch::DispatchMode _touchMode;
+//    Touch::DispatchMode _touchMode;
     bool _swallowsTouches;
 
 private:

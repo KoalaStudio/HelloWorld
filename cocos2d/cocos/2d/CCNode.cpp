@@ -1969,17 +1969,17 @@ Vec2 Node::convertToWindowSpace(const Vec2& nodePoint) const
     return _director->convertToUI(worldPoint);
 }
 
-// convenience methods which take a Touch instead of Vec2
-Vec2 Node::convertTouchToNodeSpace(Touch *touch) const
-{
-    return this->convertToNodeSpace(touch->getLocation());
-}
-
-Vec2 Node::convertTouchToNodeSpaceAR(Touch *touch) const
-{
-    Vec2 point = touch->getLocation();
-    return this->convertToNodeSpaceAR(point);
-}
+//// convenience methods which take a Touch instead of Vec2
+//Vec2 Node::convertTouchToNodeSpace(Touch *touch) const
+//{
+//    return this->convertToNodeSpace(touch->getLocation());
+//}
+//
+//Vec2 Node::convertTouchToNodeSpaceAR(Touch *touch) const
+//{
+//    Vec2 point = touch->getLocation();
+//    return this->convertToNodeSpaceAR(point);
+//}
 
 void Node::updateTransform()
 {

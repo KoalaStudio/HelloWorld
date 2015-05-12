@@ -47,7 +47,7 @@ public:
     /** Type Event type.*/
     enum class Type
     {
-        TOUCH,
+//        TOUCH,
 //        KEYBOARD,
 //        ACCELERATION,
 //        MOUSE,

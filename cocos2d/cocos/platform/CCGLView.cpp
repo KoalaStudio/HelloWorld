@@ -25,7 +25,7 @@ THE SOFTWARE.
 
 #include "platform/CCGLView.h"
 
-#include "base/CCTouch.h"
+//#include "base/CCTouch.h"
 #include "base/CCDirector.h"
 #include "base/CCEventDispatcher.h"
 
@@ -33,55 +33,55 @@ NS_CC_BEGIN
 
 namespace {
     
-    static Touch* g_touches[EventTouch::MAX_TOUCHES] = { nullptr };
-    static unsigned int g_indexBitsUsed = 0;
-    // System touch pointer ID (It may not be ascending order number) <-> Ascending order number from 0
-    static std::map<intptr_t, int> g_touchIdReorderMap;
+//    static Touch* g_touches[EventTouch::MAX_TOUCHES] = { nullptr };
+//    static unsigned int g_indexBitsUsed = 0;
+//    // System touch pointer ID (It may not be ascending order number) <-> Ascending order number from 0
+//    static std::map<intptr_t, int> g_touchIdReorderMap;
+//    
+//    static int getUnUsedIndex()
+//    {
+//        int i;
+//        int temp = g_indexBitsUsed;
+//        
+//        for (i = 0; i < EventTouch::MAX_TOUCHES; i++) {
+//            if (! (temp & 0x00000001)) {
+//                g_indexBitsUsed |= (1 <<  i);
+//                return i;
+//            }
+//            
+//            temp >>= 1;
+//        }
+//        
+//        // all bits are used
+//        return -1;
+//    }
     
-    static int getUnUsedIndex()
-    {
-        int i;
-        int temp = g_indexBitsUsed;
-        
-        for (i = 0; i < EventTouch::MAX_TOUCHES; i++) {
-            if (! (temp & 0x00000001)) {
-                g_indexBitsUsed |= (1 <<  i);
-                return i;
-            }
-            
-            temp >>= 1;
-        }
-        
-        // all bits are used
-        return -1;
-    }
+//    static std::vector<Touch*> getAllTouchesVector()
+//    {
+//        std::vector<Touch*> ret;
+//        int i;
+//        int temp = g_indexBitsUsed;
+//        
+//        for (i = 0; i < EventTouch::MAX_TOUCHES; i++) {
+//            if ( temp & 0x00000001) {
+//                ret.push_back(g_touches[i]);
+//            }
+//            temp >>= 1;
+//        }
+//        return ret;
+//    }
     
-    static std::vector<Touch*> getAllTouchesVector()
-    {
-        std::vector<Touch*> ret;
-        int i;
-        int temp = g_indexBitsUsed;
-        
-        for (i = 0; i < EventTouch::MAX_TOUCHES; i++) {
-            if ( temp & 0x00000001) {
-                ret.push_back(g_touches[i]);
-            }
-            temp >>= 1;
-        }
-        return ret;
-    }
-    
-    static void removeUsedIndexBit(int index)
-    {
-        if (index < 0 || index >= EventTouch::MAX_TOUCHES)
-        {
-            return;
-        }
-        
-        unsigned int temp = 1 << index;
-        temp = ~temp;
-        g_indexBitsUsed &= temp;
-    }
+//    static void removeUsedIndexBit(int index)
+//    {
+//        if (index < 0 || index >= EventTouch::MAX_TOUCHES)
+//        {
+//            return;
+//        }
+//        
+//        unsigned int temp = 1 << index;
+//        temp = ~temp;
+//        g_indexBitsUsed &= temp;
+//    }
     
 }
 
@@ -266,182 +266,182 @@ const std::string& GLView::getViewName() const
     return _viewName;
 }
 
-void GLView::handleTouchesBegin(int num, intptr_t ids[], float xs[], float ys[])
-{
-    intptr_t id = 0;
-    float x = 0.0f;
-    float y = 0.0f;
-    int unusedIndex = 0;
-    EventTouch touchEvent;
-    
-    for (int i = 0; i < num; ++i)
-    {
-        id = ids[i];
-        x = xs[i];
-        y = ys[i];
+//void GLView::handleTouchesBegin(int num, intptr_t ids[], float xs[], float ys[])
+//{
+//    intptr_t id = 0;
+//    float x = 0.0f;
+//    float y = 0.0f;
+//    int unusedIndex = 0;
+//    EventTouch touchEvent;
+//    
+//    for (int i = 0; i < num; ++i)
+//    {
+//        id = ids[i];
+//        x = xs[i];
+//        y = ys[i];
+//
+//        auto iter = g_touchIdReorderMap.find(id);
+//
+//        // it is a new touch
+//        if (iter == g_touchIdReorderMap.end())
+//        {
+//            unusedIndex = getUnUsedIndex();
+//
+//            // The touches is more than MAX_TOUCHES ?
+//            if (unusedIndex == -1) {
+//                CCLOG("The touches is more than MAX_TOUCHES, unusedIndex = %d", unusedIndex);
+//                continue;
+//            }
+//
+//            Touch* touch = g_touches[unusedIndex] = new (std::nothrow) Touch();
+//			touch->setTouchInfo(unusedIndex, (x - _viewPortRect.origin.x) / _scaleX,
+//                                     (y - _viewPortRect.origin.y) / _scaleY);
+//            
+//            CCLOGINFO("x = %f y = %f", touch->getLocationInView().x, touch->getLocationInView().y);
+//            
+//            g_touchIdReorderMap.insert(std::make_pair(id, unusedIndex));
+//            touchEvent._touches.push_back(touch);
+//        }
+//    }
+//
+//    if (touchEvent._touches.size() == 0)
+//    {
+//        CCLOG("touchesBegan: size = 0");
+//        return;
+//    }
+//    
+//    touchEvent._eventCode = EventTouch::EventCode::BEGAN;
+//    auto dispatcher = Director::getInstance()->getEventDispatcher();
+//    dispatcher->dispatchEvent(&touchEvent);
+//}
+//
+//void GLView::handleTouchesMove(int num, intptr_t ids[], float xs[], float ys[])
+//{
+//    intptr_t id = 0;
+//    float x = 0.0f;
+//    float y = 0.0f;
+//    EventTouch touchEvent;
+//    
+//    for (int i = 0; i < num; ++i)
+//    {
+//        id = ids[i];
+//        x = xs[i];
+//        y = ys[i];
+//
+//        auto iter = g_touchIdReorderMap.find(id);
+//        if (iter == g_touchIdReorderMap.end())
+//        {
+//            CCLOG("if the index doesn't exist, it is an error");
+//            continue;
+//        }
+//
+//        CCLOGINFO("Moving touches with id: %d, x=%f, y=%f", id, x, y);
+//        Touch* touch = g_touches[iter->second];
+//        if (touch)
+//        {
+//			touch->setTouchInfo(iter->second, (x - _viewPortRect.origin.x) / _scaleX,
+//								(y - _viewPortRect.origin.y) / _scaleY);
+//            
+//            touchEvent._touches.push_back(touch);
+//        }
+//        else
+//        {
+//            // It is error, should return.
+//            CCLOG("Moving touches with id: %ld error", (long int)id);
+//            return;
+//        }
+//    }
+//
+//    if (touchEvent._touches.size() == 0)
+//    {
+//        CCLOG("touchesMoved: size = 0");
+//        return;
+//    }
+//    
+//    touchEvent._eventCode = EventTouch::EventCode::MOVED;
+//    auto dispatcher = Director::getInstance()->getEventDispatcher();
+//    dispatcher->dispatchEvent(&touchEvent);
+//}
 
-        auto iter = g_touchIdReorderMap.find(id);
-
-        // it is a new touch
-        if (iter == g_touchIdReorderMap.end())
-        {
-            unusedIndex = getUnUsedIndex();
-
-            // The touches is more than MAX_TOUCHES ?
-            if (unusedIndex == -1) {
-                CCLOG("The touches is more than MAX_TOUCHES, unusedIndex = %d", unusedIndex);
-                continue;
-            }
-
-            Touch* touch = g_touches[unusedIndex] = new (std::nothrow) Touch();
-			touch->setTouchInfo(unusedIndex, (x - _viewPortRect.origin.x) / _scaleX,
-                                     (y - _viewPortRect.origin.y) / _scaleY);
-            
-            CCLOGINFO("x = %f y = %f", touch->getLocationInView().x, touch->getLocationInView().y);
-            
-            g_touchIdReorderMap.insert(std::make_pair(id, unusedIndex));
-            touchEvent._touches.push_back(touch);
-        }
-    }
-
-    if (touchEvent._touches.size() == 0)
-    {
-        CCLOG("touchesBegan: size = 0");
-        return;
-    }
-    
-    touchEvent._eventCode = EventTouch::EventCode::BEGAN;
-    auto dispatcher = Director::getInstance()->getEventDispatcher();
-    dispatcher->dispatchEvent(&touchEvent);
-}
-
-void GLView::handleTouchesMove(int num, intptr_t ids[], float xs[], float ys[])
-{
-    intptr_t id = 0;
-    float x = 0.0f;
-    float y = 0.0f;
-    EventTouch touchEvent;
-    
-    for (int i = 0; i < num; ++i)
-    {
-        id = ids[i];
-        x = xs[i];
-        y = ys[i];
-
-        auto iter = g_touchIdReorderMap.find(id);
-        if (iter == g_touchIdReorderMap.end())
-        {
-            CCLOG("if the index doesn't exist, it is an error");
-            continue;
-        }
-
-        CCLOGINFO("Moving touches with id: %d, x=%f, y=%f", id, x, y);
-        Touch* touch = g_touches[iter->second];
-        if (touch)
-        {
-			touch->setTouchInfo(iter->second, (x - _viewPortRect.origin.x) / _scaleX,
-								(y - _viewPortRect.origin.y) / _scaleY);
-            
-            touchEvent._touches.push_back(touch);
-        }
-        else
-        {
-            // It is error, should return.
-            CCLOG("Moving touches with id: %ld error", (long int)id);
-            return;
-        }
-    }
-
-    if (touchEvent._touches.size() == 0)
-    {
-        CCLOG("touchesMoved: size = 0");
-        return;
-    }
-    
-    touchEvent._eventCode = EventTouch::EventCode::MOVED;
-    auto dispatcher = Director::getInstance()->getEventDispatcher();
-    dispatcher->dispatchEvent(&touchEvent);
-}
-
-void GLView::handleTouchesOfEndOrCancel(EventTouch::EventCode eventCode, int num, intptr_t ids[], float xs[], float ys[])
-{
-    intptr_t id = 0;
-    float x = 0.0f;
-    float y = 0.0f;
-    EventTouch touchEvent;
-    
-    for (int i = 0; i < num; ++i)
-    {
-        id = ids[i];
-        x = xs[i];
-        y = ys[i];
-
-        auto iter = g_touchIdReorderMap.find(id);
-        if (iter == g_touchIdReorderMap.end())
-        {
-            CCLOG("if the index doesn't exist, it is an error");
-            continue;
-        }
-        
-        /* Add to the set to send to the director */
-        Touch* touch = g_touches[iter->second];
-        if (touch)
-        {
-            CCLOGINFO("Ending touches with id: %d, x=%f, y=%f", id, x, y);
-			touch->setTouchInfo(iter->second, (x - _viewPortRect.origin.x) / _scaleX,
-								(y - _viewPortRect.origin.y) / _scaleY);
-
-            touchEvent._touches.push_back(touch);
-            
-            g_touches[iter->second] = nullptr;
-            removeUsedIndexBit(iter->second);
-
-            g_touchIdReorderMap.erase(id);
-        } 
-        else
-        {
-            CCLOG("Ending touches with id: %ld error", static_cast<long>(id));
-            return;
-        } 
-
-    }
-
-    if (touchEvent._touches.size() == 0)
-    {
-        CCLOG("touchesEnded or touchesCancel: size = 0");
-        return;
-    }
-    
-    touchEvent._eventCode = eventCode;
-    auto dispatcher = Director::getInstance()->getEventDispatcher();
-    dispatcher->dispatchEvent(&touchEvent);
-    
-    for (auto& touch : touchEvent._touches)
-    {
-        // release the touch object.
-        touch->release();
-    }
-}
-
-void GLView::handleTouchesEnd(int num, intptr_t ids[], float xs[], float ys[])
-{
-    handleTouchesOfEndOrCancel(EventTouch::EventCode::ENDED, num, ids, xs, ys);
-}
-
-void GLView::handleTouchesCancel(int num, intptr_t ids[], float xs[], float ys[])
-{
-    handleTouchesOfEndOrCancel(EventTouch::EventCode::CANCELLED, num, ids, xs, ys);
-}
+//void GLView::handleTouchesOfEndOrCancel(EventTouch::EventCode eventCode, int num, intptr_t ids[], float xs[], float ys[])
+//{
+//    intptr_t id = 0;
+//    float x = 0.0f;
+//    float y = 0.0f;
+//    EventTouch touchEvent;
+//    
+//    for (int i = 0; i < num; ++i)
+//    {
+//        id = ids[i];
+//        x = xs[i];
+//        y = ys[i];
+//
+//        auto iter = g_touchIdReorderMap.find(id);
+//        if (iter == g_touchIdReorderMap.end())
+//        {
+//            CCLOG("if the index doesn't exist, it is an error");
+//            continue;
+//        }
+//        
+//        /* Add to the set to send to the director */
+//        Touch* touch = g_touches[iter->second];
+//        if (touch)
+//        {
+//            CCLOGINFO("Ending touches with id: %d, x=%f, y=%f", id, x, y);
+//			touch->setTouchInfo(iter->second, (x - _viewPortRect.origin.x) / _scaleX,
+//								(y - _viewPortRect.origin.y) / _scaleY);
+//
+//            touchEvent._touches.push_back(touch);
+//            
+//            g_touches[iter->second] = nullptr;
+//            removeUsedIndexBit(iter->second);
+//
+//            g_touchIdReorderMap.erase(id);
+//        } 
+//        else
+//        {
+//            CCLOG("Ending touches with id: %ld error", static_cast<long>(id));
+//            return;
+//        } 
+//
+//    }
+//
+//    if (touchEvent._touches.size() == 0)
+//    {
+//        CCLOG("touchesEnded or touchesCancel: size = 0");
+//        return;
+//    }
+//    
+//    touchEvent._eventCode = eventCode;
+//    auto dispatcher = Director::getInstance()->getEventDispatcher();
+//    dispatcher->dispatchEvent(&touchEvent);
+//    
+//    for (auto& touch : touchEvent._touches)
+//    {
+//        // release the touch object.
+//        touch->release();
+//    }
+//}
+//
+//void GLView::handleTouchesEnd(int num, intptr_t ids[], float xs[], float ys[])
+//{
+//    handleTouchesOfEndOrCancel(EventTouch::EventCode::ENDED, num, ids, xs, ys);
+//}
+//
+//void GLView::handleTouchesCancel(int num, intptr_t ids[], float xs[], float ys[])
+//{
+//    handleTouchesOfEndOrCancel(EventTouch::EventCode::CANCELLED, num, ids, xs, ys);
+//}
 
 const Rect& GLView::getViewPortRect() const
 {
     return _viewPortRect;
 }
 
-std::vector<Touch*> GLView::getAllTouches() const
-{
-    return getAllTouchesVector();
-}
+//std::vector<Touch*> GLView::getAllTouches() const
+//{
+//    return getAllTouchesVector();
+//}
 
 float GLView::getScaleX() const
 {

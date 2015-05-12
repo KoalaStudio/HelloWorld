@@ -34,8 +34,8 @@ THE SOFTWARE.
 #include "renderer/CCGLProgramState.h"
 #include "base/CCDirector.h"
 #include "base/CCEventDispatcher.h"
-#include "base/CCEventListenerTouch.h"
-#include "base/CCEventTouch.h"
+//#include "base/CCEventListenerTouch.h"
+//#include "base/CCEventTouch.h"
 //#include "base/CCEventKeyboard.h"
 //#include "base/CCEventListenerKeyboard.h"
 //#include "base/CCEventAcceleration.h"
@@ -56,10 +56,10 @@ Layer::Layer()
 : _touchEnabled(false)
 , _accelerometerEnabled(false)
 , _keyboardEnabled(false)
-, _touchListener(nullptr)
-, _keyboardListener(nullptr)
-, _accelerationListener(nullptr)
-, _touchMode(Touch::DispatchMode::ALL_AT_ONCE)
+//, _touchListener(nullptr)
+//, _keyboardListener(nullptr)
+//, _accelerationListener(nullptr)
+//, _touchMode(Touch::DispatchMode::ALL_AT_ONCE)
 , _swallowsTouches(true)
 {
     _ignoreAnchorPointForPosition = true;
@@ -93,32 +93,32 @@ Layer *Layer::create()
     }
 }
 
-int Layer::executeScriptTouchHandler(EventTouch::EventCode eventType, Touch* touch, Event* event)
-{
-#if CC_ENABLE_SCRIPT_BINDING
-    if (kScriptTypeLua == _scriptType)
-    {
-        TouchScriptData data(eventType, this, touch, event);
-        ScriptEvent scriptEvent(kTouchEvent, &data);
-        return ScriptEngineManager::getInstance()->getScriptEngine()->sendEvent(&scriptEvent);
-    }
-#endif
-    //can not reach it
-    return 0;
-}
-
-int Layer::executeScriptTouchesHandler(EventTouch::EventCode eventType, const std::vector<Touch*>& touches, Event* event)
-{
-#if CC_ENABLE_SCRIPT_BINDING
-    if (kScriptTypeLua == _scriptType)
-    {
-        TouchesScriptData data(eventType, this, touches, event);
-        ScriptEvent scriptEvent(kTouchesEvent, &data);
-        return ScriptEngineManager::getInstance()->getScriptEngine()->sendEvent(&scriptEvent);
-    }
-#endif
-    return 0;
-}
+//int Layer::executeScriptTouchHandler(EventTouch::EventCode eventType, Touch* touch, Event* event)
+//{
+//#if CC_ENABLE_SCRIPT_BINDING
+//    if (kScriptTypeLua == _scriptType)
+//    {
+//        TouchScriptData data(eventType, this, touch, event);
+//        ScriptEvent scriptEvent(kTouchEvent, &data);
+//        return ScriptEngineManager::getInstance()->getScriptEngine()->sendEvent(&scriptEvent);
+//    }
+//#endif
+//    //can not reach it
+//    return 0;
+//}
+//
+//int Layer::executeScriptTouchesHandler(EventTouch::EventCode eventType, const std::vector<Touch*>& touches, Event* event)
+//{
+//#if CC_ENABLE_SCRIPT_BINDING
+//    if (kScriptTypeLua == _scriptType)
+//    {
+//        TouchesScriptData data(eventType, this, touches, event);
+//        ScriptEvent scriptEvent(kTouchesEvent, &data);
+//        return ScriptEngineManager::getInstance()->getScriptEngine()->sendEvent(&scriptEvent);
+//    }
+//#endif
+//    return 0;
+//}
 
 #if defined(__GNUC__) && ((__GNUC__ >= 4) || ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 1)))
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
@@ -127,96 +127,96 @@ int Layer::executeScriptTouchesHandler(EventTouch::EventCode eventType, const st
 #pragma warning (disable: 4996)
 #endif
 
-/// isTouchEnabled getter
-bool Layer::isTouchEnabled() const
-{
-    return _touchEnabled;
-}
-
-/// isTouchEnabled setter
-void Layer::setTouchEnabled(bool enabled)
-{
-    if (_touchEnabled != enabled)
-    {
-        _touchEnabled = enabled;
-        if (enabled)
-        {
-            if (_touchListener != nullptr)
-                return;
-
-            if( _touchMode == Touch::DispatchMode::ALL_AT_ONCE )
-            {
-                // Register Touch Event
-                auto listener = EventListenerTouchAllAtOnce::create();
-
-                listener->onTouchesBegan = CC_CALLBACK_2(Layer::onTouchesBegan, this);
-                listener->onTouchesMoved = CC_CALLBACK_2(Layer::onTouchesMoved, this);
-                listener->onTouchesEnded = CC_CALLBACK_2(Layer::onTouchesEnded, this);
-                listener->onTouchesCancelled = CC_CALLBACK_2(Layer::onTouchesCancelled, this);
-
-                _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-                _touchListener = listener;
-            }
-            else
-            {
-                // Register Touch Event
-                auto listener = EventListenerTouchOneByOne::create();
-                listener->setSwallowTouches(_swallowsTouches);
-
-                listener->onTouchBegan = CC_CALLBACK_2(Layer::onTouchBegan, this);
-                listener->onTouchMoved = CC_CALLBACK_2(Layer::onTouchMoved, this);
-                listener->onTouchEnded = CC_CALLBACK_2(Layer::onTouchEnded, this);
-                listener->onTouchCancelled = CC_CALLBACK_2(Layer::onTouchCancelled, this);
-
-                _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-                _touchListener = listener;
-            }
-        }
-        else
-        {
-            _eventDispatcher->removeEventListener(_touchListener);
-            _touchListener = nullptr;
-        }
-    }
-}
-
-void Layer::setTouchMode(Touch::DispatchMode mode)
-{
-    if(_touchMode != mode)
-    {
-        _touchMode = mode;
-
-        if( _touchEnabled)
-        {
-            setTouchEnabled(false);
-            setTouchEnabled(true);
-        }
-    }
-}
-
-void Layer::setSwallowsTouches(bool swallowsTouches)
-{
-    if (_swallowsTouches != swallowsTouches)
-    {
-        _swallowsTouches = swallowsTouches;
-
-        if( _touchEnabled)
-        {
-            setTouchEnabled(false);
-            setTouchEnabled(true);
-        }
-    }
-}
-
-Touch::DispatchMode Layer::getTouchMode() const
-{
-    return _touchMode;
-}
-
-bool Layer::isSwallowsTouches() const
-{
-    return _swallowsTouches;
-}
+///// isTouchEnabled getter
+//bool Layer::isTouchEnabled() const
+//{
+//    return _touchEnabled;
+//}
+//
+///// isTouchEnabled setter
+//void Layer::setTouchEnabled(bool enabled)
+//{
+//    if (_touchEnabled != enabled)
+//    {
+//        _touchEnabled = enabled;
+//        if (enabled)
+//        {
+//            if (_touchListener != nullptr)
+//                return;
+//
+//            if( _touchMode == Touch::DispatchMode::ALL_AT_ONCE )
+//            {
+//                // Register Touch Event
+//                auto listener = EventListenerTouchAllAtOnce::create();
+//
+//                listener->onTouchesBegan = CC_CALLBACK_2(Layer::onTouchesBegan, this);
+//                listener->onTouchesMoved = CC_CALLBACK_2(Layer::onTouchesMoved, this);
+//                listener->onTouchesEnded = CC_CALLBACK_2(Layer::onTouchesEnded, this);
+//                listener->onTouchesCancelled = CC_CALLBACK_2(Layer::onTouchesCancelled, this);
+//
+//                _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+//                _touchListener = listener;
+//            }
+//            else
+//            {
+//                // Register Touch Event
+//                auto listener = EventListenerTouchOneByOne::create();
+//                listener->setSwallowTouches(_swallowsTouches);
+//
+//                listener->onTouchBegan = CC_CALLBACK_2(Layer::onTouchBegan, this);
+//                listener->onTouchMoved = CC_CALLBACK_2(Layer::onTouchMoved, this);
+//                listener->onTouchEnded = CC_CALLBACK_2(Layer::onTouchEnded, this);
+//                listener->onTouchCancelled = CC_CALLBACK_2(Layer::onTouchCancelled, this);
+//
+//                _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+//                _touchListener = listener;
+//            }
+//        }
+//        else
+//        {
+//            _eventDispatcher->removeEventListener(_touchListener);
+//            _touchListener = nullptr;
+//        }
+//    }
+//}
+//
+//void Layer::setTouchMode(Touch::DispatchMode mode)
+//{
+//    if(_touchMode != mode)
+//    {
+//        _touchMode = mode;
+//
+//        if( _touchEnabled)
+//        {
+//            setTouchEnabled(false);
+//            setTouchEnabled(true);
+//        }
+//    }
+//}
+//
+//void Layer::setSwallowsTouches(bool swallowsTouches)
+//{
+//    if (_swallowsTouches != swallowsTouches)
+//    {
+//        _swallowsTouches = swallowsTouches;
+//
+//        if( _touchEnabled)
+//        {
+//            setTouchEnabled(false);
+//            setTouchEnabled(true);
+//        }
+//    }
+//}
+//
+//Touch::DispatchMode Layer::getTouchMode() const
+//{
+//    return _touchMode;
+//}
+//
+//bool Layer::isSwallowsTouches() const
+//{
+//    return _swallowsTouches;
+//}
 
 /// isAccelerometerEnabled getter
 //bool Layer::isAccelerometerEnabled() const
@@ -319,106 +319,106 @@ bool Layer::isSwallowsTouches() const
 //}
 /// Callbacks
 
-bool Layer::onTouchBegan(Touch *touch, Event *event)
-{
-#if CC_ENABLE_SCRIPT_BINDING
-    if (kScriptTypeLua == _scriptType)
-    {
-        return executeScriptTouchHandler(EventTouch::EventCode::BEGAN, touch, event) == 0 ? false : true;
-    }
-#endif
-    CC_UNUSED_PARAM(event);
-    CCASSERT(false, "Layer#ccTouchBegan override me");
-    return true;
-}
-
-void Layer::onTouchMoved(Touch *touch, Event *event)
-{
-#if CC_ENABLE_SCRIPT_BINDING
-    if (kScriptTypeLua == _scriptType)
-    {
-        executeScriptTouchHandler(EventTouch::EventCode::MOVED, touch, event);
-        return;
-    }
-#endif
-    
-    CC_UNUSED_PARAM(event);
-}
-
-void Layer::onTouchEnded(Touch *touch, Event *event)
-{
-#if CC_ENABLE_SCRIPT_BINDING
-    if (kScriptTypeLua == _scriptType)
-    {
-        executeScriptTouchHandler(EventTouch::EventCode::ENDED, touch, event);
-        return;
-    }
-#endif
-    
-    CC_UNUSED_PARAM(event);
-}
-
-void Layer::onTouchCancelled(Touch *touch, Event *event)
-{
-#if CC_ENABLE_SCRIPT_BINDING
-    if (kScriptTypeLua == _scriptType)
-    {
-        executeScriptTouchHandler(EventTouch::EventCode::CANCELLED, touch, event);
-        return;
-    }
-#endif
-    
-    CC_UNUSED_PARAM(event);
-}    
-
-void Layer::onTouchesBegan(const std::vector<Touch*>& touches, Event *event)
-{
-#if CC_ENABLE_SCRIPT_BINDING
-    if (kScriptTypeLua == _scriptType)
-    {
-        executeScriptTouchesHandler(EventTouch::EventCode::BEGAN, touches, event);
-        return;
-    }
-#endif
-    CC_UNUSED_PARAM(event);
-}
-
-void Layer::onTouchesMoved(const std::vector<Touch*>& touches, Event *event)
-{
-#if CC_ENABLE_SCRIPT_BINDING
-    if (kScriptTypeLua == _scriptType)
-    {
-        executeScriptTouchesHandler(EventTouch::EventCode::MOVED, touches, event);
-        return;
-    }
-#endif
-    
-    CC_UNUSED_PARAM(event);
-}
-
-void Layer::onTouchesEnded(const std::vector<Touch*>& touches, Event *event)
-{
-#if CC_ENABLE_SCRIPT_BINDING
-    if (kScriptTypeLua == _scriptType)
-    {
-        executeScriptTouchesHandler(EventTouch::EventCode::ENDED, touches, event);
-        return;
-    }
-#endif
-    CC_UNUSED_PARAM(event);
-}
-
-void Layer::onTouchesCancelled(const std::vector<Touch*>& touches, Event *event)
-{
-#if CC_ENABLE_SCRIPT_BINDING
-    if (kScriptTypeLua == _scriptType)
-    {
-        executeScriptTouchesHandler(EventTouch::EventCode::CANCELLED, touches, event);
-        return;
-    }
-#endif
-    CC_UNUSED_PARAM(event);
-}
+//bool Layer::onTouchBegan(Touch *touch, Event *event)
+//{
+//#if CC_ENABLE_SCRIPT_BINDING
+//    if (kScriptTypeLua == _scriptType)
+//    {
+//        return executeScriptTouchHandler(EventTouch::EventCode::BEGAN, touch, event) == 0 ? false : true;
+//    }
+//#endif
+//    CC_UNUSED_PARAM(event);
+//    CCASSERT(false, "Layer#ccTouchBegan override me");
+//    return true;
+//}
+//
+//void Layer::onTouchMoved(Touch *touch, Event *event)
+//{
+//#if CC_ENABLE_SCRIPT_BINDING
+//    if (kScriptTypeLua == _scriptType)
+//    {
+//        executeScriptTouchHandler(EventTouch::EventCode::MOVED, touch, event);
+//        return;
+//    }
+//#endif
+//    
+//    CC_UNUSED_PARAM(event);
+//}
+//
+//void Layer::onTouchEnded(Touch *touch, Event *event)
+//{
+//#if CC_ENABLE_SCRIPT_BINDING
+//    if (kScriptTypeLua == _scriptType)
+//    {
+//        executeScriptTouchHandler(EventTouch::EventCode::ENDED, touch, event);
+//        return;
+//    }
+//#endif
+//    
+//    CC_UNUSED_PARAM(event);
+//}
+//
+//void Layer::onTouchCancelled(Touch *touch, Event *event)
+//{
+//#if CC_ENABLE_SCRIPT_BINDING
+//    if (kScriptTypeLua == _scriptType)
+//    {
+//        executeScriptTouchHandler(EventTouch::EventCode::CANCELLED, touch, event);
+//        return;
+//    }
+//#endif
+//    
+//    CC_UNUSED_PARAM(event);
+//}    
+//
+//void Layer::onTouchesBegan(const std::vector<Touch*>& touches, Event *event)
+//{
+//#if CC_ENABLE_SCRIPT_BINDING
+//    if (kScriptTypeLua == _scriptType)
+//    {
+//        executeScriptTouchesHandler(EventTouch::EventCode::BEGAN, touches, event);
+//        return;
+//    }
+//#endif
+//    CC_UNUSED_PARAM(event);
+//}
+//
+//void Layer::onTouchesMoved(const std::vector<Touch*>& touches, Event *event)
+//{
+//#if CC_ENABLE_SCRIPT_BINDING
+//    if (kScriptTypeLua == _scriptType)
+//    {
+//        executeScriptTouchesHandler(EventTouch::EventCode::MOVED, touches, event);
+//        return;
+//    }
+//#endif
+//    
+//    CC_UNUSED_PARAM(event);
+//}
+//
+//void Layer::onTouchesEnded(const std::vector<Touch*>& touches, Event *event)
+//{
+//#if CC_ENABLE_SCRIPT_BINDING
+//    if (kScriptTypeLua == _scriptType)
+//    {
+//        executeScriptTouchesHandler(EventTouch::EventCode::ENDED, touches, event);
+//        return;
+//    }
+//#endif
+//    CC_UNUSED_PARAM(event);
+//}
+//
+//void Layer::onTouchesCancelled(const std::vector<Touch*>& touches, Event *event)
+//{
+//#if CC_ENABLE_SCRIPT_BINDING
+//    if (kScriptTypeLua == _scriptType)
+//    {
+//        executeScriptTouchesHandler(EventTouch::EventCode::CANCELLED, touches, event);
+//        return;
+//    }
+//#endif
+//    CC_UNUSED_PARAM(event);
+//}
 
 std::string Layer::getDescription() const
 {
