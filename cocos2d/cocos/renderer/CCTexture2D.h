@@ -190,7 +190,7 @@ public:
 
      @since v0.99.5
      */
-    CC_DEPRECATED_ATTRIBUTE static void PVRImagesHavePremultipliedAlpha(bool haveAlphaPremultiplied);
+//    CC_DEPRECATED_ATTRIBUTE static void PVRImagesHavePremultipliedAlpha(bool haveAlphaPremultiplied);
     
 public:
     /**

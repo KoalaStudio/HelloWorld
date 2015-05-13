@@ -1217,10 +1217,10 @@ void Texture2D::drawInRect(const Rect& rect)
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
-void Texture2D::PVRImagesHavePremultipliedAlpha(bool haveAlphaPremultiplied)
-{
-    Image::setPVRImagesHavePremultipliedAlpha(haveAlphaPremultiplied);
-}
+//void Texture2D::PVRImagesHavePremultipliedAlpha(bool haveAlphaPremultiplied)
+//{
+//    Image::setPVRImagesHavePremultipliedAlpha(haveAlphaPremultiplied);
+//}
 
 
 //
