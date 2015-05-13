@@ -120,8 +120,6 @@ bool Director::init(void)
     _openGLView = nullptr;
 
     _contentScaleFactor = 1.0f;
-
-    _console = new (std::nothrow) Console;
     
     //init TextureCache
     initTextureCache();
@@ -140,8 +138,6 @@ Director::~Director(void)
     CC_SAFE_RELEASE(_notificationNode);
 
     delete _renderer;
-
-    delete _console;
 
     // delete _lastUpdate
     CC_SAFE_DELETE(_lastUpdate);
