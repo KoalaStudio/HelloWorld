@@ -424,12 +424,6 @@ public:
      */
     Renderer* getRenderer() const { return _renderer; }
 
-    /** Returns the Console associated with this director.
-     * @since v3.0
-     * @js NA
-     */
-    Console* getConsole() const { return _console; }
-
     /* Gets delta time since last tick to main loop. */
 	float getDeltaTime() const;
     
@@ -565,9 +559,6 @@ protected:
 
     /* Renderer for the Director */
     Renderer *_renderer;
-
-    /* Console for the director */
-    Console *_console;
 
     bool _isStatusLabelUpdated;
 

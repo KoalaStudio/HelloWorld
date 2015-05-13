@@ -80,10 +80,10 @@ public:
         JPG,
         //! PNG
         PNG,
-        //! TIFF
-        TIFF,
-        //! WebP
-        WEBP,
+//        //! TIFF
+//        TIFF,
+//        //! WebP
+//        WEBP,
 //        //! PVR
 //        PVR,
 //        //! ETC
@@ -145,13 +145,13 @@ public:
     bool saveToFile(const std::string &filename, bool isToRGB = true);
     
     
-    /** treats (or not) PVR files as if they have alpha premultiplied.
-     Since it is impossible to know at runtime if the PVR images have the alpha channel premultiplied, it is
-     possible load them as if they have (or not) the alpha channel premultiplied.
-     
-     By default it is disabled.
-     */
-    static void setPVRImagesHavePremultipliedAlpha(bool haveAlphaPremultiplied);
+//    /** treats (or not) PVR files as if they have alpha premultiplied.
+//     Since it is impossible to know at runtime if the PVR images have the alpha channel premultiplied, it is
+//     possible load them as if they have (or not) the alpha channel premultiplied.
+//     
+//     By default it is disabled.
+//     */
+//    static void setPVRImagesHavePremultipliedAlpha(bool haveAlphaPremultiplied);
 
 protected:
 #if defined(CC_USE_WIC)
@@ -160,8 +160,8 @@ protected:
 #endif
     bool initWithJpgData(const unsigned char *  data, ssize_t dataLen);
     bool initWithPngData(const unsigned char * data, ssize_t dataLen);
-    bool initWithTiffData(const unsigned char * data, ssize_t dataLen);
-    bool initWithWebpData(const unsigned char * data, ssize_t dataLen);
+//    bool initWithTiffData(const unsigned char * data, ssize_t dataLen);
+//    bool initWithWebpData(const unsigned char * data, ssize_t dataLen);
 //    bool initWithPVRData(const unsigned char * data, ssize_t dataLen);
 //    bool initWithPVRv2Data(const unsigned char * data, ssize_t dataLen);
 //    bool initWithPVRv3Data(const unsigned char * data, ssize_t dataLen);
@@ -213,8 +213,8 @@ protected:
     Format detectFormat(const unsigned char * data, ssize_t dataLen);
     bool isPng(const unsigned char * data, ssize_t dataLen);
     bool isJpg(const unsigned char * data, ssize_t dataLen);
-    bool isTiff(const unsigned char * data, ssize_t dataLen);
-    bool isWebp(const unsigned char * data, ssize_t dataLen);
+//    bool isTiff(const unsigned char * data, ssize_t dataLen);
+//    bool isWebp(const unsigned char * data, ssize_t dataLen);
 //    bool isPvr(const unsigned char * data, ssize_t dataLen);
 //    bool isEtc(const unsigned char * data, ssize_t dataLen);
 //    bool isS3TC(const unsigned char * data,ssize_t dataLen);

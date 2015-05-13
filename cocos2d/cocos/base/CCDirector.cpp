@@ -31,35 +31,19 @@ THE SOFTWARE.
 // standard includes
 #include <string>
 
-//#include "2d/CCDrawingPrimitives.h"
-//#include "2d/CCSpriteFrameCache.h"
 #include "platform/CCFileUtils.h"
 
-//#include "2d/CCActionManager.h"
-//#include "2d/CCFontFNT.h"
-//#include "2d/CCFontAtlasCache.h"
-//#include "2d/CCAnimationCache.h"
-//#include "2d/CCTransition.h"
-//#include "2d/CCFontFreeType.h"
-//#include "2d/CCLabelAtlas.h"
 #include "renderer/CCGLProgramCache.h"
 #include "renderer/CCGLProgramStateCache.h"
 #include "renderer/CCTextureCache.h"
 #include "renderer/ccGLStateCache.h"
 #include "renderer/CCRenderer.h"
 #include "2d/CCCamera.h"
-//#include "base/CCUserDefault.h"
-//#include "base/ccFPSImages.h"
-//#include "base/CCScheduler.h"
 #include "base/ccMacros.h"
-//#include "base/CCEventDispatcher.h"
-//#include "base/CCEventCustom.h"
 #include "base/CCConsole.h"
 #include "base/CCAutoreleasePool.h"
 #include "base/CCConfiguration.h"
-//#include "base/CCAsyncTaskPool.h"
 #include "platform/CCApplication.h"
-//#include "platform/CCGLViewImpl.h"
 
 /**
  Position of the FPS
@@ -136,8 +120,6 @@ bool Director::init(void)
     _openGLView = nullptr;
 
     _contentScaleFactor = 1.0f;
-
-    _console = new (std::nothrow) Console;
     
     //init TextureCache
     initTextureCache();
@@ -157,11 +139,6 @@ Director::~Director(void)
 
     delete _renderer;
 
-    delete _console;
-
-
-//    CC_SAFE_RELEASE(_eventDispatcher);
-    
     // delete _lastUpdate
     CC_SAFE_DELETE(_lastUpdate);
 
@@ -201,9 +178,9 @@ void Director::setDefaultValues(void)
     else if(pixel_format == "rgba5551")
         Texture2D::setDefaultAlphaPixelFormat(Texture2D::PixelFormat::RGB5A1);
 
-    // PVR v2 has alpha premultiplied ?
-    bool pvr_alpha_premultipled = conf->getValue("cocos2d.x.texture.pvrv2_has_alpha_premultiplied", Value(false)).asBool();
-    Image::setPVRImagesHavePremultipliedAlpha(pvr_alpha_premultipled);
+//    // PVR v2 has alpha premultiplied ?
+//    bool pvr_alpha_premultipled = conf->getValue("cocos2d.x.texture.pvrv2_has_alpha_premultiplied", Value(false)).asBool();
+//    Image::setPVRImagesHavePremultipliedAlpha(pvr_alpha_premultipled);
 }
 
 void Director::setGLDefaultValues()

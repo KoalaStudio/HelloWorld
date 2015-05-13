@@ -60,7 +60,7 @@ extern "C"
 #endif //CC_USE_PNG
 
 #if CC_USE_TIFF
-#include "tiffio.h"
+//#include "tiffio.h"
 #endif //CC_USE_TIFF
 
 //#include "base/etc1.h"
@@ -75,7 +75,7 @@ extern "C"
 //#include "base/TGAlib.h"
 
 #if CC_USE_WEBP
-#include "decode.h"
+//#include "decode.h"
 #endif // CC_USE_WEBP
 
 #include "base/ccMacros.h"
@@ -95,314 +95,314 @@ extern "C"
 
 NS_CC_BEGIN
 
-//////////////////////////////////////////////////////////////////////////
-//struct and data for pvr structure
+////////////////////////////////////////////////////////////////////////////
+////struct and data for pvr structure
+//
+//namespace
+//{
+//    static const int PVR_TEXTURE_FLAG_TYPE_MASK = 0xff;
+//    
+//    static bool _PVRHaveAlphaPremultiplied = false;
+//    
+//    // Values taken from PVRTexture.h from http://www.imgtec.com
+//    enum class PVR2TextureFlag
+//    {
+//        Mipmap         = (1<<8),        // has mip map levels
+//        Twiddle        = (1<<9),        // is twiddled
+//        Bumpmap        = (1<<10),       // has normals encoded for a bump map
+//        Tiling         = (1<<11),       // is bordered for tiled pvr
+//        Cubemap        = (1<<12),       // is a cubemap/skybox
+//        FalseMipCol    = (1<<13),       // are there false colored MIP levels
+//        Volume         = (1<<14),       // is this a volume texture
+//        Alpha          = (1<<15),       // v2.1 is there transparency info in the texture
+//        VerticalFlip   = (1<<16),       // v2.1 is the texture vertically flipped
+//    };
+//    
+//    enum class PVR3TextureFlag
+//    {
+//        PremultipliedAlpha	= (1<<1)	// has premultiplied alpha
+//    };
+//    
+//    static const char gPVRTexIdentifier[5] = "PVR!";
+//    
+//    // v2
+//    enum class PVR2TexturePixelFormat : unsigned char
+//    {
+//        RGBA4444 = 0x10,
+//        RGBA5551,
+//        RGBA8888,
+//        RGB565,
+//        RGB555,          // unsupported
+//        RGB888,
+//        I8,
+//        AI88,
+//        PVRTC2BPP_RGBA,
+//        PVRTC4BPP_RGBA,
+//        BGRA8888,
+//        A8,
+//    };
+//        
+//    // v3
+//    enum class PVR3TexturePixelFormat : uint64_t
+//    {
+//        PVRTC2BPP_RGB  = 0ULL,
+//        PVRTC2BPP_RGBA = 1ULL,
+//        PVRTC4BPP_RGB  = 2ULL,
+//        PVRTC4BPP_RGBA = 3ULL,
+//        PVRTC2_2BPP_RGBA = 4ULL,
+//        PVRTC2_4BPP_RGBA  = 5ULL,
+//        ETC1 = 6ULL,
+//        DXT1 = 7ULL,
+//        DXT2 = 8ULL,
+//        DXT3 = 9ULL,
+//        DXT4 = 10ULL,
+//        DXT5 = 11ULL,
+//        BC1 = 7ULL,
+//        BC2 = 9ULL,
+//        BC3 = 11ULL,
+//        BC4 = 12ULL,
+//        BC5 = 13ULL,
+//        BC6 = 14ULL,
+//        BC7 = 15ULL,
+//        UYVY = 16ULL,
+//        YUY2 = 17ULL,
+//        BW1bpp = 18ULL,
+//        R9G9B9E5 = 19ULL,
+//        RGBG8888 = 20ULL,
+//        GRGB8888 = 21ULL,
+//        ETC2_RGB = 22ULL,
+//        ETC2_RGBA = 23ULL,
+//        ETC2_RGBA1 = 24ULL,
+//        EAC_R11_Unsigned = 25ULL,
+//        EAC_R11_Signed = 26ULL,
+//        EAC_RG11_Unsigned = 27ULL,
+//        EAC_RG11_Signed = 28ULL,
+//            
+//        BGRA8888       = 0x0808080861726762ULL,
+//        RGBA8888       = 0x0808080861626772ULL,
+//        RGBA4444       = 0x0404040461626772ULL,
+//        RGBA5551       = 0x0105050561626772ULL,
+//        RGB565         = 0x0005060500626772ULL,
+//        RGB888         = 0x0008080800626772ULL,
+//        A8             = 0x0000000800000061ULL,
+//        L8             = 0x000000080000006cULL,
+//        LA88           = 0x000008080000616cULL,
+//    };
+//        
+//        
+//    // v2
+//    typedef const std::map<PVR2TexturePixelFormat, Texture2D::PixelFormat> _pixel2_formathash;
+//    
+//    static const _pixel2_formathash::value_type v2_pixel_formathash_value[] =
+//    {
+//        _pixel2_formathash::value_type(PVR2TexturePixelFormat::BGRA8888,	    Texture2D::PixelFormat::BGRA8888),
+//        _pixel2_formathash::value_type(PVR2TexturePixelFormat::RGBA8888,	    Texture2D::PixelFormat::RGBA8888),
+//        _pixel2_formathash::value_type(PVR2TexturePixelFormat::RGBA4444,	    Texture2D::PixelFormat::RGBA4444),
+//        _pixel2_formathash::value_type(PVR2TexturePixelFormat::RGBA5551,	    Texture2D::PixelFormat::RGB5A1),
+//        _pixel2_formathash::value_type(PVR2TexturePixelFormat::RGB565,	    Texture2D::PixelFormat::RGB565),
+//        _pixel2_formathash::value_type(PVR2TexturePixelFormat::RGB888,	    Texture2D::PixelFormat::RGB888),
+//        _pixel2_formathash::value_type(PVR2TexturePixelFormat::A8,	        Texture2D::PixelFormat::A8),
+//        _pixel2_formathash::value_type(PVR2TexturePixelFormat::I8,	        Texture2D::PixelFormat::I8),
+//        _pixel2_formathash::value_type(PVR2TexturePixelFormat::AI88,	        Texture2D::PixelFormat::AI88),
+//            
+//        _pixel2_formathash::value_type(PVR2TexturePixelFormat::PVRTC2BPP_RGBA,	    Texture2D::PixelFormat::PVRTC2A),
+//        _pixel2_formathash::value_type(PVR2TexturePixelFormat::PVRTC4BPP_RGBA,	    Texture2D::PixelFormat::PVRTC4A),
+//    };
+//        
+//    static const int PVR2_MAX_TABLE_ELEMENTS = sizeof(v2_pixel_formathash_value) / sizeof(v2_pixel_formathash_value[0]);
+//    static const _pixel2_formathash v2_pixel_formathash(v2_pixel_formathash_value, v2_pixel_formathash_value + PVR2_MAX_TABLE_ELEMENTS);
+//        
+//    // v3
+//    typedef const std::map<PVR3TexturePixelFormat, Texture2D::PixelFormat> _pixel3_formathash;
+//    static _pixel3_formathash::value_type v3_pixel_formathash_value[] =
+//    {
+//        _pixel3_formathash::value_type(PVR3TexturePixelFormat::BGRA8888,	Texture2D::PixelFormat::BGRA8888),
+//        _pixel3_formathash::value_type(PVR3TexturePixelFormat::RGBA8888,	Texture2D::PixelFormat::RGBA8888),
+//        _pixel3_formathash::value_type(PVR3TexturePixelFormat::RGBA4444,	Texture2D::PixelFormat::RGBA4444),
+//        _pixel3_formathash::value_type(PVR3TexturePixelFormat::RGBA5551,	Texture2D::PixelFormat::RGB5A1),
+//        _pixel3_formathash::value_type(PVR3TexturePixelFormat::RGB565,	    Texture2D::PixelFormat::RGB565),
+//        _pixel3_formathash::value_type(PVR3TexturePixelFormat::RGB888,	    Texture2D::PixelFormat::RGB888),
+//        _pixel3_formathash::value_type(PVR3TexturePixelFormat::A8,	        Texture2D::PixelFormat::A8),
+//        _pixel3_formathash::value_type(PVR3TexturePixelFormat::L8,	        Texture2D::PixelFormat::I8),
+//        _pixel3_formathash::value_type(PVR3TexturePixelFormat::LA88,	    Texture2D::PixelFormat::AI88),
+//            
+//        _pixel3_formathash::value_type(PVR3TexturePixelFormat::PVRTC2BPP_RGB,	    Texture2D::PixelFormat::PVRTC2),
+//        _pixel3_formathash::value_type(PVR3TexturePixelFormat::PVRTC2BPP_RGBA,	    Texture2D::PixelFormat::PVRTC2A),
+//        _pixel3_formathash::value_type(PVR3TexturePixelFormat::PVRTC4BPP_RGB,	    Texture2D::PixelFormat::PVRTC4),
+//        _pixel3_formathash::value_type(PVR3TexturePixelFormat::PVRTC4BPP_RGBA,	    Texture2D::PixelFormat::PVRTC4A),
+//
+//        _pixel3_formathash::value_type(PVR3TexturePixelFormat::ETC1,	    Texture2D::PixelFormat::ETC),
+//    };
+//        
+//    static const int PVR3_MAX_TABLE_ELEMENTS = sizeof(v3_pixel_formathash_value) / sizeof(v3_pixel_formathash_value[0]);
+//        
+//    static const _pixel3_formathash v3_pixel_formathash(v3_pixel_formathash_value, v3_pixel_formathash_value + PVR3_MAX_TABLE_ELEMENTS);
+//        
+//    typedef struct _PVRTexHeader
+//    {
+//        unsigned int headerLength;
+//        unsigned int height;
+//        unsigned int width;
+//        unsigned int numMipmaps;
+//        unsigned int flags;
+//        unsigned int dataLength;
+//        unsigned int bpp;
+//        unsigned int bitmaskRed;
+//        unsigned int bitmaskGreen;
+//        unsigned int bitmaskBlue;
+//        unsigned int bitmaskAlpha;
+//        unsigned int pvrTag;
+//        unsigned int numSurfs;
+//    } PVRv2TexHeader;
+//        
+//#ifdef _MSC_VER
+//#pragma pack(push,1)
+//#endif
+//    typedef struct
+//    {
+//        uint32_t version;
+//        uint32_t flags;
+//        uint64_t pixelFormat;
+//        uint32_t colorSpace;
+//        uint32_t channelType;
+//        uint32_t height;
+//        uint32_t width;
+//        uint32_t depth;
+//        uint32_t numberOfSurfaces;
+//        uint32_t numberOfFaces;
+//        uint32_t numberOfMipmaps;
+//        uint32_t metadataLength;
+//#ifdef _MSC_VER
+//    } PVRv3TexHeader;
+//#pragma pack(pop)
+//#else
+//    } __attribute__((packed)) PVRv3TexHeader;
+//#endif
+//}
+////pvr structure end
+//
+////////////////////////////////////////////////////////////////////////////
 
-namespace
-{
-    static const int PVR_TEXTURE_FLAG_TYPE_MASK = 0xff;
-    
-    static bool _PVRHaveAlphaPremultiplied = false;
-    
-    // Values taken from PVRTexture.h from http://www.imgtec.com
-    enum class PVR2TextureFlag
-    {
-        Mipmap         = (1<<8),        // has mip map levels
-        Twiddle        = (1<<9),        // is twiddled
-        Bumpmap        = (1<<10),       // has normals encoded for a bump map
-        Tiling         = (1<<11),       // is bordered for tiled pvr
-        Cubemap        = (1<<12),       // is a cubemap/skybox
-        FalseMipCol    = (1<<13),       // are there false colored MIP levels
-        Volume         = (1<<14),       // is this a volume texture
-        Alpha          = (1<<15),       // v2.1 is there transparency info in the texture
-        VerticalFlip   = (1<<16),       // v2.1 is the texture vertically flipped
-    };
-    
-    enum class PVR3TextureFlag
-    {
-        PremultipliedAlpha	= (1<<1)	// has premultiplied alpha
-    };
-    
-    static const char gPVRTexIdentifier[5] = "PVR!";
-    
-    // v2
-    enum class PVR2TexturePixelFormat : unsigned char
-    {
-        RGBA4444 = 0x10,
-        RGBA5551,
-        RGBA8888,
-        RGB565,
-        RGB555,          // unsupported
-        RGB888,
-        I8,
-        AI88,
-        PVRTC2BPP_RGBA,
-        PVRTC4BPP_RGBA,
-        BGRA8888,
-        A8,
-    };
-        
-    // v3
-    enum class PVR3TexturePixelFormat : uint64_t
-    {
-        PVRTC2BPP_RGB  = 0ULL,
-        PVRTC2BPP_RGBA = 1ULL,
-        PVRTC4BPP_RGB  = 2ULL,
-        PVRTC4BPP_RGBA = 3ULL,
-        PVRTC2_2BPP_RGBA = 4ULL,
-        PVRTC2_4BPP_RGBA  = 5ULL,
-        ETC1 = 6ULL,
-        DXT1 = 7ULL,
-        DXT2 = 8ULL,
-        DXT3 = 9ULL,
-        DXT4 = 10ULL,
-        DXT5 = 11ULL,
-        BC1 = 7ULL,
-        BC2 = 9ULL,
-        BC3 = 11ULL,
-        BC4 = 12ULL,
-        BC5 = 13ULL,
-        BC6 = 14ULL,
-        BC7 = 15ULL,
-        UYVY = 16ULL,
-        YUY2 = 17ULL,
-        BW1bpp = 18ULL,
-        R9G9B9E5 = 19ULL,
-        RGBG8888 = 20ULL,
-        GRGB8888 = 21ULL,
-        ETC2_RGB = 22ULL,
-        ETC2_RGBA = 23ULL,
-        ETC2_RGBA1 = 24ULL,
-        EAC_R11_Unsigned = 25ULL,
-        EAC_R11_Signed = 26ULL,
-        EAC_RG11_Unsigned = 27ULL,
-        EAC_RG11_Signed = 28ULL,
-            
-        BGRA8888       = 0x0808080861726762ULL,
-        RGBA8888       = 0x0808080861626772ULL,
-        RGBA4444       = 0x0404040461626772ULL,
-        RGBA5551       = 0x0105050561626772ULL,
-        RGB565         = 0x0005060500626772ULL,
-        RGB888         = 0x0008080800626772ULL,
-        A8             = 0x0000000800000061ULL,
-        L8             = 0x000000080000006cULL,
-        LA88           = 0x000008080000616cULL,
-    };
-        
-        
-    // v2
-    typedef const std::map<PVR2TexturePixelFormat, Texture2D::PixelFormat> _pixel2_formathash;
-    
-    static const _pixel2_formathash::value_type v2_pixel_formathash_value[] =
-    {
-        _pixel2_formathash::value_type(PVR2TexturePixelFormat::BGRA8888,	    Texture2D::PixelFormat::BGRA8888),
-        _pixel2_formathash::value_type(PVR2TexturePixelFormat::RGBA8888,	    Texture2D::PixelFormat::RGBA8888),
-        _pixel2_formathash::value_type(PVR2TexturePixelFormat::RGBA4444,	    Texture2D::PixelFormat::RGBA4444),
-        _pixel2_formathash::value_type(PVR2TexturePixelFormat::RGBA5551,	    Texture2D::PixelFormat::RGB5A1),
-        _pixel2_formathash::value_type(PVR2TexturePixelFormat::RGB565,	    Texture2D::PixelFormat::RGB565),
-        _pixel2_formathash::value_type(PVR2TexturePixelFormat::RGB888,	    Texture2D::PixelFormat::RGB888),
-        _pixel2_formathash::value_type(PVR2TexturePixelFormat::A8,	        Texture2D::PixelFormat::A8),
-        _pixel2_formathash::value_type(PVR2TexturePixelFormat::I8,	        Texture2D::PixelFormat::I8),
-        _pixel2_formathash::value_type(PVR2TexturePixelFormat::AI88,	        Texture2D::PixelFormat::AI88),
-            
-        _pixel2_formathash::value_type(PVR2TexturePixelFormat::PVRTC2BPP_RGBA,	    Texture2D::PixelFormat::PVRTC2A),
-        _pixel2_formathash::value_type(PVR2TexturePixelFormat::PVRTC4BPP_RGBA,	    Texture2D::PixelFormat::PVRTC4A),
-    };
-        
-    static const int PVR2_MAX_TABLE_ELEMENTS = sizeof(v2_pixel_formathash_value) / sizeof(v2_pixel_formathash_value[0]);
-    static const _pixel2_formathash v2_pixel_formathash(v2_pixel_formathash_value, v2_pixel_formathash_value + PVR2_MAX_TABLE_ELEMENTS);
-        
-    // v3
-    typedef const std::map<PVR3TexturePixelFormat, Texture2D::PixelFormat> _pixel3_formathash;
-    static _pixel3_formathash::value_type v3_pixel_formathash_value[] =
-    {
-        _pixel3_formathash::value_type(PVR3TexturePixelFormat::BGRA8888,	Texture2D::PixelFormat::BGRA8888),
-        _pixel3_formathash::value_type(PVR3TexturePixelFormat::RGBA8888,	Texture2D::PixelFormat::RGBA8888),
-        _pixel3_formathash::value_type(PVR3TexturePixelFormat::RGBA4444,	Texture2D::PixelFormat::RGBA4444),
-        _pixel3_formathash::value_type(PVR3TexturePixelFormat::RGBA5551,	Texture2D::PixelFormat::RGB5A1),
-        _pixel3_formathash::value_type(PVR3TexturePixelFormat::RGB565,	    Texture2D::PixelFormat::RGB565),
-        _pixel3_formathash::value_type(PVR3TexturePixelFormat::RGB888,	    Texture2D::PixelFormat::RGB888),
-        _pixel3_formathash::value_type(PVR3TexturePixelFormat::A8,	        Texture2D::PixelFormat::A8),
-        _pixel3_formathash::value_type(PVR3TexturePixelFormat::L8,	        Texture2D::PixelFormat::I8),
-        _pixel3_formathash::value_type(PVR3TexturePixelFormat::LA88,	    Texture2D::PixelFormat::AI88),
-            
-        _pixel3_formathash::value_type(PVR3TexturePixelFormat::PVRTC2BPP_RGB,	    Texture2D::PixelFormat::PVRTC2),
-        _pixel3_formathash::value_type(PVR3TexturePixelFormat::PVRTC2BPP_RGBA,	    Texture2D::PixelFormat::PVRTC2A),
-        _pixel3_formathash::value_type(PVR3TexturePixelFormat::PVRTC4BPP_RGB,	    Texture2D::PixelFormat::PVRTC4),
-        _pixel3_formathash::value_type(PVR3TexturePixelFormat::PVRTC4BPP_RGBA,	    Texture2D::PixelFormat::PVRTC4A),
+////struct and data for s3tc(dds) struct
+//namespace
+//{
+//    struct DDColorKey
+//    {
+//        uint32_t colorSpaceLowValue;
+//        uint32_t colorSpaceHighValue;
+//    };
+//    
+//    struct DDSCaps
+//    {
+//        uint32_t caps;
+//        uint32_t caps2;
+//        uint32_t caps3;
+//        uint32_t caps4;
+//    };
+//    
+//    struct DDPixelFormat
+//    {
+//        uint32_t size;
+//        uint32_t flags;
+//        uint32_t fourCC;
+//        uint32_t RGBBitCount;
+//        uint32_t RBitMask;
+//        uint32_t GBitMask;
+//        uint32_t BBitMask;
+//        uint32_t ABitMask;
+//    };
+//    
+//    
+//    struct DDSURFACEDESC2
+//    {
+//        uint32_t size;
+//        uint32_t flags;
+//        uint32_t height;
+//        uint32_t width;
+//        
+//        union
+//        {
+//            uint32_t pitch;
+//            uint32_t linearSize;
+//        } DUMMYUNIONNAMEN1;
+//        
+//        union
+//        {
+//            uint32_t backBufferCount;
+//            uint32_t depth;
+//        } DUMMYUNIONNAMEN5;
+//        
+//        union
+//        {
+//            uint32_t mipMapCount;
+//            uint32_t refreshRate;
+//            uint32_t srcVBHandle;
+//        } DUMMYUNIONNAMEN2;
+//        
+//        uint32_t alphaBitDepth;
+//        uint32_t reserved;
+//        uint32_t surface;
+//        
+//        union
+//        {
+//            DDColorKey ddckCKDestOverlay;
+//            uint32_t emptyFaceColor;
+//        } DUMMYUNIONNAMEN3;
+//        
+//        DDColorKey ddckCKDestBlt;
+//        DDColorKey ddckCKSrcOverlay;
+//        DDColorKey ddckCKSrcBlt;
+//        
+//        union
+//        {
+//            DDPixelFormat ddpfPixelFormat;
+//            uint32_t FVF;
+//        } DUMMYUNIONNAMEN4;
+//        
+//        DDSCaps ddsCaps;
+//        uint32_t textureStage;
+//    } ;
+//    
+//#pragma pack(push,1)
+//    
+//    struct S3TCTexHeader
+//    {
+//        char fileCode[4];
+//        DDSURFACEDESC2 ddsd;
+//    };
+//    
+//#pragma pack(pop)
+//
+//}
+////s3tc struct end
 
-        _pixel3_formathash::value_type(PVR3TexturePixelFormat::ETC1,	    Texture2D::PixelFormat::ETC),
-    };
-        
-    static const int PVR3_MAX_TABLE_ELEMENTS = sizeof(v3_pixel_formathash_value) / sizeof(v3_pixel_formathash_value[0]);
-        
-    static const _pixel3_formathash v3_pixel_formathash(v3_pixel_formathash_value, v3_pixel_formathash_value + PVR3_MAX_TABLE_ELEMENTS);
-        
-    typedef struct _PVRTexHeader
-    {
-        unsigned int headerLength;
-        unsigned int height;
-        unsigned int width;
-        unsigned int numMipmaps;
-        unsigned int flags;
-        unsigned int dataLength;
-        unsigned int bpp;
-        unsigned int bitmaskRed;
-        unsigned int bitmaskGreen;
-        unsigned int bitmaskBlue;
-        unsigned int bitmaskAlpha;
-        unsigned int pvrTag;
-        unsigned int numSurfs;
-    } PVRv2TexHeader;
-        
-#ifdef _MSC_VER
-#pragma pack(push,1)
-#endif
-    typedef struct
-    {
-        uint32_t version;
-        uint32_t flags;
-        uint64_t pixelFormat;
-        uint32_t colorSpace;
-        uint32_t channelType;
-        uint32_t height;
-        uint32_t width;
-        uint32_t depth;
-        uint32_t numberOfSurfaces;
-        uint32_t numberOfFaces;
-        uint32_t numberOfMipmaps;
-        uint32_t metadataLength;
-#ifdef _MSC_VER
-    } PVRv3TexHeader;
-#pragma pack(pop)
-#else
-    } __attribute__((packed)) PVRv3TexHeader;
-#endif
-}
-//pvr structure end
-
-//////////////////////////////////////////////////////////////////////////
-
-//struct and data for s3tc(dds) struct
-namespace
-{
-    struct DDColorKey
-    {
-        uint32_t colorSpaceLowValue;
-        uint32_t colorSpaceHighValue;
-    };
-    
-    struct DDSCaps
-    {
-        uint32_t caps;
-        uint32_t caps2;
-        uint32_t caps3;
-        uint32_t caps4;
-    };
-    
-    struct DDPixelFormat
-    {
-        uint32_t size;
-        uint32_t flags;
-        uint32_t fourCC;
-        uint32_t RGBBitCount;
-        uint32_t RBitMask;
-        uint32_t GBitMask;
-        uint32_t BBitMask;
-        uint32_t ABitMask;
-    };
-    
-    
-    struct DDSURFACEDESC2
-    {
-        uint32_t size;
-        uint32_t flags;
-        uint32_t height;
-        uint32_t width;
-        
-        union
-        {
-            uint32_t pitch;
-            uint32_t linearSize;
-        } DUMMYUNIONNAMEN1;
-        
-        union
-        {
-            uint32_t backBufferCount;
-            uint32_t depth;
-        } DUMMYUNIONNAMEN5;
-        
-        union
-        {
-            uint32_t mipMapCount;
-            uint32_t refreshRate;
-            uint32_t srcVBHandle;
-        } DUMMYUNIONNAMEN2;
-        
-        uint32_t alphaBitDepth;
-        uint32_t reserved;
-        uint32_t surface;
-        
-        union
-        {
-            DDColorKey ddckCKDestOverlay;
-            uint32_t emptyFaceColor;
-        } DUMMYUNIONNAMEN3;
-        
-        DDColorKey ddckCKDestBlt;
-        DDColorKey ddckCKSrcOverlay;
-        DDColorKey ddckCKSrcBlt;
-        
-        union
-        {
-            DDPixelFormat ddpfPixelFormat;
-            uint32_t FVF;
-        } DUMMYUNIONNAMEN4;
-        
-        DDSCaps ddsCaps;
-        uint32_t textureStage;
-    } ;
-    
-#pragma pack(push,1)
-    
-    struct S3TCTexHeader
-    {
-        char fileCode[4];
-        DDSURFACEDESC2 ddsd;
-    };
-    
-#pragma pack(pop)
-
-}
-//s3tc struct end
-
-//////////////////////////////////////////////////////////////////////////
-
-//struct and data for atitc(ktx) struct
-namespace
-{
-    struct ATITCTexHeader
-    {
-        //HEADER
-        char identifier[12];
-        uint32_t endianness;
-        uint32_t glType;
-        uint32_t glTypeSize;
-        uint32_t glFormat;
-        uint32_t glInternalFormat;
-        uint32_t glBaseInternalFormat;
-        uint32_t pixelWidth;
-        uint32_t pixelHeight;
-        uint32_t pixelDepth;
-        uint32_t numberOfArrayElements;
-        uint32_t numberOfFaces;
-        uint32_t numberOfMipmapLevels;
-        uint32_t bytesOfKeyValueData;
-    };
-}
-//atittc struct end
-
-//////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+//
+////struct and data for atitc(ktx) struct
+//namespace
+//{
+//    struct ATITCTexHeader
+//    {
+//        //HEADER
+//        char identifier[12];
+//        uint32_t endianness;
+//        uint32_t glType;
+//        uint32_t glTypeSize;
+//        uint32_t glFormat;
+//        uint32_t glInternalFormat;
+//        uint32_t glBaseInternalFormat;
+//        uint32_t pixelWidth;
+//        uint32_t pixelHeight;
+//        uint32_t pixelDepth;
+//        uint32_t numberOfArrayElements;
+//        uint32_t numberOfFaces;
+//        uint32_t numberOfMipmapLevels;
+//        uint32_t bytesOfKeyValueData;
+//    };
+//}
+////atittc struct end
+//
+////////////////////////////////////////////////////////////////////////////
 
 namespace
 {
@@ -568,15 +568,15 @@ bool Image::initWithImageData(const unsigned char * data, ssize_t dataLen)
         case Format::JPG:
             ret = initWithJpgData(unpackedData, unpackedLen);
             break;
-        case Format::TIFF:
-            ret = initWithTiffData(unpackedData, unpackedLen);
-            break;
-        case Format::WEBP:
-            ret = initWithWebpData(unpackedData, unpackedLen);
-            break;
+//        case Format::TIFF:
+//            ret = initWithTiffData(unpackedData, unpackedLen);
+//            break;
+//        case Format::WEBP:
+//            ret = initWithWebpData(unpackedData, unpackedLen);
+//            break;
 //        case Format::PVR:
 //            ret = initWithPVRData(unpackedData, unpackedLen);
-            break;
+//            break;
 //        case Format::ETC:
 //            ret = initWithETCData(unpackedData, unpackedLen);
 //            break;
@@ -596,9 +596,9 @@ bool Image::initWithImageData(const unsigned char * data, ssize_t dataLen)
 //                    ret = initWithTGAData(tgaData);
 //                }
 //                else
-                {
+//                {
                     CCAssert(false, "unsupport image format!");
-                }
+//                }
                 
 //                free(tgaData);
                 break;
@@ -668,33 +668,33 @@ bool Image::isJpg(const unsigned char * data, ssize_t dataLen)
     return memcmp(data, JPG_SOI, 2) == 0;
 }
 
-bool Image::isTiff(const unsigned char * data, ssize_t dataLen)
-{
-    if (dataLen <= 4)
-    {
-        return false;
-    }
+//bool Image::isTiff(const unsigned char * data, ssize_t dataLen)
+//{
+//    if (dataLen <= 4)
+//    {
+//        return false;
+//    }
+//
+//    static const char* TIFF_II = "II";
+//    static const char* TIFF_MM = "MM";
+//
+//    return (memcmp(data, TIFF_II, 2) == 0 && *(static_cast<const unsigned char*>(data) + 2) == 42 && *(static_cast<const unsigned char*>(data) + 3) == 0) ||
+//        (memcmp(data, TIFF_MM, 2) == 0 && *(static_cast<const unsigned char*>(data) + 2) == 0 && *(static_cast<const unsigned char*>(data) + 3) == 42);
+//}
 
-    static const char* TIFF_II = "II";
-    static const char* TIFF_MM = "MM";
-
-    return (memcmp(data, TIFF_II, 2) == 0 && *(static_cast<const unsigned char*>(data) + 2) == 42 && *(static_cast<const unsigned char*>(data) + 3) == 0) ||
-        (memcmp(data, TIFF_MM, 2) == 0 && *(static_cast<const unsigned char*>(data) + 2) == 0 && *(static_cast<const unsigned char*>(data) + 3) == 42);
-}
-
-bool Image::isWebp(const unsigned char * data, ssize_t dataLen)
-{
-    if (dataLen <= 12)
-    {
-        return false;
-    }
-
-    static const char* WEBP_RIFF = "RIFF";
-    static const char* WEBP_WEBP = "WEBP";
-
-    return memcmp(data, WEBP_RIFF, 4) == 0 
-        && memcmp(static_cast<const unsigned char*>(data) + 8, WEBP_WEBP, 4) == 0;
-}
+//bool Image::isWebp(const unsigned char * data, ssize_t dataLen)
+//{
+//    if (dataLen <= 12)
+//    {
+//        return false;
+//    }
+//
+//    static const char* WEBP_RIFF = "RIFF";
+//    static const char* WEBP_WEBP = "WEBP";
+//
+//    return memcmp(data, WEBP_RIFF, 4) == 0 
+//        && memcmp(static_cast<const unsigned char*>(data) + 8, WEBP_WEBP, 4) == 0;
+//}
 
 //bool Image::isPvr(const unsigned char * data, ssize_t dataLen)
 //{
@@ -719,14 +719,14 @@ Image::Format Image::detectFormat(const unsigned char * data, ssize_t dataLen)
     {
         return Format::JPG;
     }
-    else if (isTiff(data, dataLen))
-    {
-        return Format::TIFF;
-    }
-    else if (isWebp(data, dataLen))
-    {
-        return Format::WEBP;
-    }
+//    else if (isTiff(data, dataLen))
+//    {
+//        return Format::TIFF;
+//    }
+//    else if (isWebp(data, dataLen))
+//    {
+//        return Format::WEBP;
+//    }
 //    else if (isPvr(data, dataLen))
 //    {
 //        return Format::PVR;
@@ -1174,224 +1174,224 @@ bool Image::initWithPngData(const unsigned char * data, ssize_t dataLen)
 #endif //CC_USE_PNG
 }
 
-#if CC_USE_TIFF
-namespace
-{
-    static tmsize_t tiffReadProc(thandle_t fd, void* buf, tmsize_t size)
-    {
-        tImageSource* isource = (tImageSource*)fd;
-        uint8* ma;
-        uint64 mb;
-        unsigned long n;
-        unsigned long o;
-        tmsize_t p;
-        ma=(uint8*)buf;
-        mb=size;
-        p=0;
-        while (mb>0)
-        {
-            n=0x80000000UL;
-            if ((uint64)n>mb)
-                n=(unsigned long)mb;
-            
-            
-            if ((int)(isource->offset + n) <= isource->size)
-            {
-                memcpy(ma, isource->data+isource->offset, n);
-                isource->offset += n;
-                o = n;
-            }
-            else
-            {
-                return 0;
-            }
-            
-            ma+=o;
-            mb-=o;
-            p+=o;
-            if (o!=n)
-            {
-                break;
-            }
-        }
-        return p;
-    }
-    
-    static tmsize_t tiffWriteProc(thandle_t fd, void* buf, tmsize_t size)
-    {
-        CC_UNUSED_PARAM(fd);
-        CC_UNUSED_PARAM(buf);
-        CC_UNUSED_PARAM(size);
-        return 0;
-    }
-    
-    
-    static uint64 tiffSeekProc(thandle_t fd, uint64 off, int whence)
-    {
-        tImageSource* isource = (tImageSource*)fd;
-        uint64 ret = -1;
-        do
-        {
-            if (whence == SEEK_SET)
-            {
-                CC_BREAK_IF(off >= (uint64)isource->size);
-                ret = isource->offset = (uint32)off;
-            }
-            else if (whence == SEEK_CUR)
-            {
-                CC_BREAK_IF(isource->offset + off >= (uint64)isource->size);
-                ret = isource->offset += (uint32)off;
-            }
-            else if (whence == SEEK_END)
-            {
-                CC_BREAK_IF(off >= (uint64)isource->size);
-                ret = isource->offset = (uint32)(isource->size-1 - off);
-            }
-            else
-            {
-                CC_BREAK_IF(off >= (uint64)isource->size);
-                ret = isource->offset = (uint32)off;
-            }
-        } while (0);
-        
-        return ret;
-    }
-    
-    static uint64 tiffSizeProc(thandle_t fd)
-    {
-        tImageSource* imageSrc = (tImageSource*)fd;
-        return imageSrc->size;
-    }
-    
-    static int tiffCloseProc(thandle_t fd)
-    {
-        CC_UNUSED_PARAM(fd);
-        return 0;
-    }
-    
-    static int tiffMapProc(thandle_t fd, void** base, toff_t* size)
-    {
-        CC_UNUSED_PARAM(fd);
-        CC_UNUSED_PARAM(base);
-        CC_UNUSED_PARAM(size);
-        return 0;
-    }
-    
-    static void tiffUnmapProc(thandle_t fd, void* base, toff_t size)
-    {
-        CC_UNUSED_PARAM(fd);
-        CC_UNUSED_PARAM(base);
-        CC_UNUSED_PARAM(size);
-    }
-}
-#endif // CC_USE_TIFF
+//#if CC_USE_TIFF
+//namespace
+//{
+//    static tmsize_t tiffReadProc(thandle_t fd, void* buf, tmsize_t size)
+//    {
+//        tImageSource* isource = (tImageSource*)fd;
+//        uint8* ma;
+//        uint64 mb;
+//        unsigned long n;
+//        unsigned long o;
+//        tmsize_t p;
+//        ma=(uint8*)buf;
+//        mb=size;
+//        p=0;
+//        while (mb>0)
+//        {
+//            n=0x80000000UL;
+//            if ((uint64)n>mb)
+//                n=(unsigned long)mb;
+//            
+//            
+//            if ((int)(isource->offset + n) <= isource->size)
+//            {
+//                memcpy(ma, isource->data+isource->offset, n);
+//                isource->offset += n;
+//                o = n;
+//            }
+//            else
+//            {
+//                return 0;
+//            }
+//            
+//            ma+=o;
+//            mb-=o;
+//            p+=o;
+//            if (o!=n)
+//            {
+//                break;
+//            }
+//        }
+//        return p;
+//    }
+//    
+//    static tmsize_t tiffWriteProc(thandle_t fd, void* buf, tmsize_t size)
+//    {
+//        CC_UNUSED_PARAM(fd);
+//        CC_UNUSED_PARAM(buf);
+//        CC_UNUSED_PARAM(size);
+//        return 0;
+//    }
+//    
+//    
+//    static uint64 tiffSeekProc(thandle_t fd, uint64 off, int whence)
+//    {
+//        tImageSource* isource = (tImageSource*)fd;
+//        uint64 ret = -1;
+//        do
+//        {
+//            if (whence == SEEK_SET)
+//            {
+//                CC_BREAK_IF(off >= (uint64)isource->size);
+//                ret = isource->offset = (uint32)off;
+//            }
+//            else if (whence == SEEK_CUR)
+//            {
+//                CC_BREAK_IF(isource->offset + off >= (uint64)isource->size);
+//                ret = isource->offset += (uint32)off;
+//            }
+//            else if (whence == SEEK_END)
+//            {
+//                CC_BREAK_IF(off >= (uint64)isource->size);
+//                ret = isource->offset = (uint32)(isource->size-1 - off);
+//            }
+//            else
+//            {
+//                CC_BREAK_IF(off >= (uint64)isource->size);
+//                ret = isource->offset = (uint32)off;
+//            }
+//        } while (0);
+//        
+//        return ret;
+//    }
+//    
+//    static uint64 tiffSizeProc(thandle_t fd)
+//    {
+//        tImageSource* imageSrc = (tImageSource*)fd;
+//        return imageSrc->size;
+//    }
+//    
+//    static int tiffCloseProc(thandle_t fd)
+//    {
+//        CC_UNUSED_PARAM(fd);
+//        return 0;
+//    }
+//    
+//    static int tiffMapProc(thandle_t fd, void** base, toff_t* size)
+//    {
+//        CC_UNUSED_PARAM(fd);
+//        CC_UNUSED_PARAM(base);
+//        CC_UNUSED_PARAM(size);
+//        return 0;
+//    }
+//    
+//    static void tiffUnmapProc(thandle_t fd, void* base, toff_t size)
+//    {
+//        CC_UNUSED_PARAM(fd);
+//        CC_UNUSED_PARAM(base);
+//        CC_UNUSED_PARAM(size);
+//    }
+//}
+//#endif // CC_USE_TIFF
 
-bool Image::initWithTiffData(const unsigned char * data, ssize_t dataLen)
-{
-#if defined(CC_USE_WIC)
-    return decodeWithWIC(data, dataLen);
-#elif defined(CC_USE_TIFF)
-    bool ret = false;
-    do 
-    {
-        // set the read call back function
-        tImageSource imageSource;
-        imageSource.data    = data;
-        imageSource.size    = dataLen;
-        imageSource.offset  = 0;
+//bool Image::initWithTiffData(const unsigned char * data, ssize_t dataLen)
+//{
+//#if defined(CC_USE_WIC)
+//    return decodeWithWIC(data, dataLen);
+//#elif defined(CC_USE_TIFF)
+//    bool ret = false;
+//    do 
+//    {
+//        // set the read call back function
+//        tImageSource imageSource;
+//        imageSource.data    = data;
+//        imageSource.size    = dataLen;
+//        imageSource.offset  = 0;
+//
+//        TIFF* tif = TIFFClientOpen("file.tif", "r", (thandle_t)&imageSource, 
+//            tiffReadProc, tiffWriteProc,
+//            tiffSeekProc, tiffCloseProc, tiffSizeProc,
+//            tiffMapProc,
+//            tiffUnmapProc);
+//
+//        CC_BREAK_IF(nullptr == tif);
+//
+//        uint32 w = 0, h = 0;
+//        uint16 bitsPerSample = 0, samplePerPixel = 0, planarConfig = 0;
+//        size_t npixels = 0;
+//        
+//        TIFFGetField(tif, TIFFTAG_IMAGEWIDTH, &w);
+//        TIFFGetField(tif, TIFFTAG_IMAGELENGTH, &h);
+//        TIFFGetField(tif, TIFFTAG_BITSPERSAMPLE, &bitsPerSample);
+//        TIFFGetField(tif, TIFFTAG_SAMPLESPERPIXEL, &samplePerPixel);
+//        TIFFGetField(tif, TIFFTAG_PLANARCONFIG, &planarConfig);
+//
+//        npixels = w * h;
+//        
+//        _renderFormat = Texture2D::PixelFormat::RGBA8888;
+//        _width = w;
+//        _height = h;
+//
+//        _dataLen = npixels * sizeof (uint32);
+//        _data = static_cast<unsigned char*>(malloc(_dataLen * sizeof(unsigned char)));
+//
+//        uint32* raster = (uint32*) _TIFFmalloc(npixels * sizeof (uint32));
+//        if (raster != nullptr) 
+//        {
+//           if (TIFFReadRGBAImageOriented(tif, w, h, raster, ORIENTATION_TOPLEFT, 0))
+//           {
+//                /* the raster data is pre-multiplied by the alpha component 
+//                   after invoking TIFFReadRGBAImageOriented*/
+//                _hasPremultipliedAlpha = true;
+//
+//               memcpy(_data, raster, npixels*sizeof (uint32));
+//           }
+//
+//          _TIFFfree(raster);
+//        }
+//        
+//
+//        TIFFClose(tif);
+//
+//        ret = true;
+//    } while (0);
+//    return ret;
+//#else
+//    CCLOG("tiff is not enabled, please enable it in ccConfig.h");
+//    return false;
+//#endif //CC_USE_TIFF
+//}
 
-        TIFF* tif = TIFFClientOpen("file.tif", "r", (thandle_t)&imageSource, 
-            tiffReadProc, tiffWriteProc,
-            tiffSeekProc, tiffCloseProc, tiffSizeProc,
-            tiffMapProc,
-            tiffUnmapProc);
-
-        CC_BREAK_IF(nullptr == tif);
-
-        uint32 w = 0, h = 0;
-        uint16 bitsPerSample = 0, samplePerPixel = 0, planarConfig = 0;
-        size_t npixels = 0;
-        
-        TIFFGetField(tif, TIFFTAG_IMAGEWIDTH, &w);
-        TIFFGetField(tif, TIFFTAG_IMAGELENGTH, &h);
-        TIFFGetField(tif, TIFFTAG_BITSPERSAMPLE, &bitsPerSample);
-        TIFFGetField(tif, TIFFTAG_SAMPLESPERPIXEL, &samplePerPixel);
-        TIFFGetField(tif, TIFFTAG_PLANARCONFIG, &planarConfig);
-
-        npixels = w * h;
-        
-        _renderFormat = Texture2D::PixelFormat::RGBA8888;
-        _width = w;
-        _height = h;
-
-        _dataLen = npixels * sizeof (uint32);
-        _data = static_cast<unsigned char*>(malloc(_dataLen * sizeof(unsigned char)));
-
-        uint32* raster = (uint32*) _TIFFmalloc(npixels * sizeof (uint32));
-        if (raster != nullptr) 
-        {
-           if (TIFFReadRGBAImageOriented(tif, w, h, raster, ORIENTATION_TOPLEFT, 0))
-           {
-                /* the raster data is pre-multiplied by the alpha component 
-                   after invoking TIFFReadRGBAImageOriented*/
-                _hasPremultipliedAlpha = true;
-
-               memcpy(_data, raster, npixels*sizeof (uint32));
-           }
-
-          _TIFFfree(raster);
-        }
-        
-
-        TIFFClose(tif);
-
-        ret = true;
-    } while (0);
-    return ret;
-#else
-    CCLOG("tiff is not enabled, please enable it in ccConfig.h");
-    return false;
-#endif //CC_USE_TIFF
-}
-
-namespace
-{
-    bool testFormatForPvr2TCSupport(PVR2TexturePixelFormat format)
-    {
-        return true;
-    }
-    
-    bool testFormatForPvr3TCSupport(PVR3TexturePixelFormat format)
-    {
-        switch (format) {
-            case PVR3TexturePixelFormat::DXT1:
-            case PVR3TexturePixelFormat::DXT3:
-            case PVR3TexturePixelFormat::DXT5:
-                return Configuration::getInstance()->supportsS3TC();
-                
-            case PVR3TexturePixelFormat::BGRA8888:
-                return Configuration::getInstance()->supportsBGRA8888();
-                
-            case PVR3TexturePixelFormat::PVRTC2BPP_RGB:
-            case PVR3TexturePixelFormat::PVRTC2BPP_RGBA:
-            case PVR3TexturePixelFormat::PVRTC4BPP_RGB:
-            case PVR3TexturePixelFormat::PVRTC4BPP_RGBA:
-            case PVR3TexturePixelFormat::ETC1:
-            case PVR3TexturePixelFormat::RGBA8888:
-            case PVR3TexturePixelFormat::RGBA4444:
-            case PVR3TexturePixelFormat::RGBA5551:
-            case PVR3TexturePixelFormat::RGB565:
-            case PVR3TexturePixelFormat::RGB888:
-            case PVR3TexturePixelFormat::A8:
-            case PVR3TexturePixelFormat::L8:
-            case PVR3TexturePixelFormat::LA88:
-                return true;
-                
-            default:
-                return false;
-        }
-    }
-}
+//namespace
+//{
+//    bool testFormatForPvr2TCSupport(PVR2TexturePixelFormat format)
+//    {
+//        return true;
+//    }
+//    
+//    bool testFormatForPvr3TCSupport(PVR3TexturePixelFormat format)
+//    {
+//        switch (format) {
+//            case PVR3TexturePixelFormat::DXT1:
+//            case PVR3TexturePixelFormat::DXT3:
+//            case PVR3TexturePixelFormat::DXT5:
+//                return Configuration::getInstance()->supportsS3TC();
+//                
+//            case PVR3TexturePixelFormat::BGRA8888:
+//                return Configuration::getInstance()->supportsBGRA8888();
+//                
+//            case PVR3TexturePixelFormat::PVRTC2BPP_RGB:
+//            case PVR3TexturePixelFormat::PVRTC2BPP_RGBA:
+//            case PVR3TexturePixelFormat::PVRTC4BPP_RGB:
+//            case PVR3TexturePixelFormat::PVRTC4BPP_RGBA:
+//            case PVR3TexturePixelFormat::ETC1:
+//            case PVR3TexturePixelFormat::RGBA8888:
+//            case PVR3TexturePixelFormat::RGBA4444:
+//            case PVR3TexturePixelFormat::RGBA5551:
+//            case PVR3TexturePixelFormat::RGB565:
+//            case PVR3TexturePixelFormat::RGB888:
+//            case PVR3TexturePixelFormat::A8:
+//            case PVR3TexturePixelFormat::L8:
+//            case PVR3TexturePixelFormat::LA88:
+//                return true;
+//                
+//            default:
+//                return false;
+//        }
+//    }
+//}
 
 //bool Image::initWithPVRv2Data(const unsigned char * data, ssize_t dataLen)
 //{
@@ -2133,53 +2133,53 @@ namespace
 //    return initWithPVRv2Data(data, dataLen) || initWithPVRv3Data(data, dataLen);
 //}
 
-bool Image::initWithWebpData(const unsigned char * data, ssize_t dataLen)
-{
-#if CC_USE_WEBP
-	bool ret = false;
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
-    CCLOG("WEBP image format not supported on WinRT or WP8");
-#else
-	do
-	{
-        WebPDecoderConfig config;
-        if (WebPInitDecoderConfig(&config) == 0) break;
-        if (WebPGetFeatures(static_cast<const uint8_t*>(data), dataLen, &config.input) != VP8_STATUS_OK) break;
-        if (config.input.width == 0 || config.input.height == 0) break;
-        
-        config.output.colorspace = MODE_RGBA;
-        _renderFormat = Texture2D::PixelFormat::RGBA8888;
-        _width    = config.input.width;
-        _height   = config.input.height;
-        
-        //webp doesn't have premultipliedAlpha
-        _hasPremultipliedAlpha = false;
-        
-        _dataLen = _width * _height * 4;
-        _data = static_cast<unsigned char*>(malloc(_dataLen * sizeof(unsigned char)));
-        
-        config.output.u.RGBA.rgba = static_cast<uint8_t*>(_data);
-        config.output.u.RGBA.stride = _width * 4;
-        config.output.u.RGBA.size = _dataLen;
-        config.output.is_external_memory = 1;
-        
-        if (WebPDecode(static_cast<const uint8_t*>(data), dataLen, &config) != VP8_STATUS_OK)
-        {
-            free(_data);
-            _data = nullptr;
-            break;
-        }
-        
-        ret = true;
-	} while (0);
-#endif // (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
-	return ret;
-#else 
-    CCLOG("webp is not enabled, please enable it in ccConfig.h");
-    return false;
-#endif // CC_USE_WEBP
-}
+//bool Image::initWithWebpData(const unsigned char * data, ssize_t dataLen)
+//{
+//#if CC_USE_WEBP
+//	bool ret = false;
+//
+//#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+//    CCLOG("WEBP image format not supported on WinRT or WP8");
+//#else
+//	do
+//	{
+//        WebPDecoderConfig config;
+//        if (WebPInitDecoderConfig(&config) == 0) break;
+//        if (WebPGetFeatures(static_cast<const uint8_t*>(data), dataLen, &config.input) != VP8_STATUS_OK) break;
+//        if (config.input.width == 0 || config.input.height == 0) break;
+//        
+//        config.output.colorspace = MODE_RGBA;
+//        _renderFormat = Texture2D::PixelFormat::RGBA8888;
+//        _width    = config.input.width;
+//        _height   = config.input.height;
+//        
+//        //webp doesn't have premultipliedAlpha
+//        _hasPremultipliedAlpha = false;
+//        
+//        _dataLen = _width * _height * 4;
+//        _data = static_cast<unsigned char*>(malloc(_dataLen * sizeof(unsigned char)));
+//        
+//        config.output.u.RGBA.rgba = static_cast<uint8_t*>(_data);
+//        config.output.u.RGBA.stride = _width * 4;
+//        config.output.u.RGBA.size = _dataLen;
+//        config.output.is_external_memory = 1;
+//        
+//        if (WebPDecode(static_cast<const uint8_t*>(data), dataLen, &config) != VP8_STATUS_OK)
+//        {
+//            free(_data);
+//            _data = nullptr;
+//            break;
+//        }
+//        
+//        ret = true;
+//	} while (0);
+//#endif // (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+//	return ret;
+//#else 
+//    CCLOG("webp is not enabled, please enable it in ccConfig.h");
+//    return false;
+//#endif // CC_USE_WEBP
+//}
 
 
 bool Image::initWithRawData(const unsigned char * data, ssize_t dataLen, int width, int height, int bitsPerComponent, bool preMulti)
@@ -2506,10 +2506,10 @@ void Image::premultipliedAlpha()
 }
 
 
-void Image::setPVRImagesHavePremultipliedAlpha(bool haveAlphaPremultiplied)
-{
-    _PVRHaveAlphaPremultiplied = haveAlphaPremultiplied;
-}
+//void Image::setPVRImagesHavePremultipliedAlpha(bool haveAlphaPremultiplied)
+//{
+//    _PVRHaveAlphaPremultiplied = haveAlphaPremultiplied;
+//}
 
 NS_CC_END
 
