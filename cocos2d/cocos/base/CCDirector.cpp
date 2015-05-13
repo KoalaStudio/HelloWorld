@@ -31,35 +31,19 @@ THE SOFTWARE.
 // standard includes
 #include <string>
 
-//#include "2d/CCDrawingPrimitives.h"
-//#include "2d/CCSpriteFrameCache.h"
 #include "platform/CCFileUtils.h"
 
-//#include "2d/CCActionManager.h"
-//#include "2d/CCFontFNT.h"
-//#include "2d/CCFontAtlasCache.h"
-//#include "2d/CCAnimationCache.h"
-//#include "2d/CCTransition.h"
-//#include "2d/CCFontFreeType.h"
-//#include "2d/CCLabelAtlas.h"
 #include "renderer/CCGLProgramCache.h"
 #include "renderer/CCGLProgramStateCache.h"
 #include "renderer/CCTextureCache.h"
 #include "renderer/ccGLStateCache.h"
 #include "renderer/CCRenderer.h"
 #include "2d/CCCamera.h"
-//#include "base/CCUserDefault.h"
-//#include "base/ccFPSImages.h"
-//#include "base/CCScheduler.h"
 #include "base/ccMacros.h"
-//#include "base/CCEventDispatcher.h"
-//#include "base/CCEventCustom.h"
 #include "base/CCConsole.h"
 #include "base/CCAutoreleasePool.h"
 #include "base/CCConfiguration.h"
-//#include "base/CCAsyncTaskPool.h"
 #include "platform/CCApplication.h"
-//#include "platform/CCGLViewImpl.h"
 
 /**
  Position of the FPS
@@ -159,9 +143,6 @@ Director::~Director(void)
 
     delete _console;
 
-
-//    CC_SAFE_RELEASE(_eventDispatcher);
-    
     // delete _lastUpdate
     CC_SAFE_DELETE(_lastUpdate);
 
