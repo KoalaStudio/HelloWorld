@@ -95,7 +95,7 @@ THE SOFTWARE.
 #include "renderer/CCTrianglesCommand.h"
 
 // platform
-#include "platform/CCDevice.h"
+//#include "platform/CCDevice.h"
 #include "platform/CCCommon.h"
 #include "platform/CCFileUtils.h"
 #include "platform/CCImage.h"
